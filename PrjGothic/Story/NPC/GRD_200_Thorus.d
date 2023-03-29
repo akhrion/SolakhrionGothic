@@ -6,6 +6,7 @@ instance GRD_200_Thorus(Npc_Default)
 	guild = GIL_GRD;
 	level = 50;
 	voice = 9;
+	voicepitch = -1;
 	id = 200;
 	flags = NPC_FLAG_IMMORTAL;
 	attribute[ATR_STRENGTH] = 100;
