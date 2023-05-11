@@ -153,6 +153,7 @@ Items\Ranged_weapons.d
 Items\Ringe.d
 Items\Weapons.d
 Items\Written.d
+Items\TestItems.d
 AI\AI_Intern\C_ZSInit.d
 Story\B\db_say.d
 AI\B_Human\B_CompareNpcInstance.d
@@ -382,6 +383,7 @@ Story\ZS\ZS_WatchInExtremo.d
 Story\ZS\pers\GateTriggers.d
 Story\ZS\pers\ZS_Drained_YBerion.d
 Story\ZS\pers\ZS_HerbShop.d
+Story\B\b_cycle_hero.d
 Story\B\b_cycle_function.d
 Story\ZS\pers\ZS_InterceptMadCorKalom.d
 Story\ZS\pers\ZS_Orepile.d
@@ -1232,6 +1234,7 @@ Story\Events\EventsTemple.d
 Story\Events\MOB.d
 _misk_\pan_s1.d
 Story\Events\Sleepabit.d
+Story\Events\FishingSpot.d
 _misk_\bsfire_s1.d
 Story\ZS\zs_followpc_silent.d
 Story\ZS\zs_drained_oreguard.d
