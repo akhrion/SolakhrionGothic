@@ -1,6 +1,7 @@
 // GothicSourcer workspace file
 // WARNING: DO NOT EDIT OR DELETE THIS FILE!
 
+Externals.d
 _Intern\constants.d
 _Intern\classes.d
 _Intern\magic_intern.d
@@ -384,6 +385,7 @@ Story\ZS\pers\GateTriggers.d
 Story\ZS\pers\ZS_Drained_YBerion.d
 Story\ZS\pers\ZS_HerbShop.d
 Story\B\b_cycle_hero.d
+Story\Events\SpawnPlants.d
 Story\B\b_cycle_function.d
 Story\ZS\pers\ZS_InterceptMadCorKalom.d
 Story\ZS\pers\ZS_Orepile.d

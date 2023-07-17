@@ -28,6 +28,7 @@ const string MOBNAME_LADDER = "";
 const string MOBNAME_SWITCH = "Переключатель";
 const string MOBNAME_BARONSTHRONE = "";
 const string MOBNAME_ORE = "Залежи руды";
+const string MOBNAME_ORE_CLEAR = "Залежи чистой руды";
 const string MOBNAME_ROPEWAY = "";
 const string MOBNAME_STOMPER = "";
 const string MOBNAME_BELLOW = "Кузнечный мех";
@@ -46,6 +47,7 @@ const string MOBNAME_TARGETSTONE = "Мишень";
 const string MOBNAME_SHRINE = "Саркофаг с сердцем орка";
 const string MOBNAME_SWORDSTONE = "Необычный камень";
 const string MOBNAME_OLD_CHEST = "Старый сундук";
+const string MOBNAME_FISHINGSPOT = "Рыбалка";
 
 const string TXT_GUILDS[42] =
 {
@@ -302,6 +304,7 @@ const string _STR_MESSAGE_ORE_TAKEN = "Кусков руды получено: ";
 const string _STR_MESSAGE_TRADE_FAILURE = "Это неравноценный обмен.";
 const string _STR_MESSAGE_Joincamp = "Условие: уровень ";
 const string _STR_MESSAGE_CANNOTSTEAL = "Воровство невозможно.";
+const string _STR_MESSAGE_OREPICKED = "Руда добыта..";
 
 const int _YPOS_MESSAGE_GIVEN = 37;
 const int _YPOS_MESSAGE_TAKEN = 40;

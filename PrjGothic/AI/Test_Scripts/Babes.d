@@ -143,4 +143,42 @@ instance Babe7(Npc_Default)
 	Mdl_SetVisualBody(self,"Bab_body_Naked0",0,3,"Bab_Head_Hair1",0,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_COWARD;
 };
+instance Babe00(Npc_Default)
+{
+	name[0] = "babe00";
+	guild = GIL_None;
+	level = 1;
+	flags = 0;
+	voice = 19;
+	id = 110;
+	flags = NPC_FLAG_IMMORTAL;
+	attribute[ATR_STRENGTH] = 6;
+	attribute[ATR_DEXTERITY] = 8;
+	attribute[ATR_MANA_MAX] = 0;
+	attribute[ATR_MANA] = 0;
+	attribute[ATR_HITPOINTS_MAX] = 10;
+	attribute[ATR_HITPOINTS] = 10;
+	Mdl_SetVisual(self,"Babe.MDS");
+	Mdl_SetVisualBody(self,"Bab_body",0,0,"Bab_Head_Hair1",0,DEFAULT,-1);
+	fight_tactic = FAI_HUMAN_COWARD;
+};
+instance BabeA00(Npc_Default)
+{
+	name[0] = "babeA00";
+	guild = GIL_None;
+	level = 1;
+	flags = 0;
+	voice = 19;
+	id = 110;
+	flags = NPC_FLAG_IMMORTAL;
+	attribute[ATR_STRENGTH] = 6;
+	attribute[ATR_DEXTERITY] = 8;
+	attribute[ATR_MANA_MAX] = 0;
+	attribute[ATR_MANA] = 0;
+	attribute[ATR_HITPOINTS_MAX] = 10;
+	attribute[ATR_HITPOINTS] = 10;
+	Mdl_SetVisual(self,"Babe.MDS");
+	Mdl_SetVisualBody(self,"Bab_armor",0,0,"Bab_Head_Hair1",0,DEFAULT,-1);
+	fight_tactic = FAI_HUMAN_COWARD;
+};
 

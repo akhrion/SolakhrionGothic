@@ -107,6 +107,7 @@ instance AltesSchwertVM(C_Item)
 	damagetype = DAM_EDGE;
 	visual = "ItMw_1H_Sword_Old_02.3DS";
 	description = name;
+	range = 80;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -128,6 +129,7 @@ instance AltesSchwert(C_Item)
 	damageTotal = 12;
 	damagetype = DAM_EDGE;
 	visual = "ItMw_1H_Sword_Old_02.3DS";
+	range = 80;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;

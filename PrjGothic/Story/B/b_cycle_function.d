@@ -1,6 +1,8 @@
 
 func void b_cycle_function()
 {
+	SpawnPlants();
+	b_cycle_hero();
 	var C_Npc Kirgo;
 	var C_Npc Kharim;
 	var C_Npc GorHanis;
