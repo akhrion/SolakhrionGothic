@@ -1,6 +1,7 @@
 
 func void b_cycle_function()
 {
+	print("main branch");
 	var C_Npc Kirgo;
 	var C_Npc Kharim;
 	var C_Npc GorHanis;
