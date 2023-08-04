@@ -766,3 +766,49 @@ func void usefakeitem2()
 	PrintScreen(SCREENMESSAGE2,-1,40,"FONT_OLD_10_WHITE.TGA",3);
 };
 
+instance ChangeWeaponArm(C_Item)
+{
+	name = "Изменить хват оружия";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 0;
+	visual = "fakeitem.3ds";
+	material = MAT_LEATHER;
+	scemeName = "USEFAKEITEM";
+	on_state[0] = UseChangeWeaponArm;
+	description = name;
+};
+
+func void ChangeWeaponArm1H()
+{
+	Npc_GetEquippedMeleeWeapon(hero);
+	if(item.flags || ITEM_2HD_SWD)
+	{
+		item.flags -= ITEM_2HD_SWD;
+		item.flags += ITEM_SWD;
+//		AI_UnequipWeapons(hero);
+	};
+};
+func void ChangeWeaponArm2H()
+{
+	Npc_GetEquippedMeleeWeapon(hero);
+	if(item.flags || ITEM_SWD)
+	{
+		item.flags -= ITEM_SWD;
+		item.flags += ITEM_2HD_SWD;
+//		AI_UnequipWeapons(hero);
+	};
+};
+func void UseChangeWeaponArm()
+{
+	if(Npc_HasEquippedMeleeWeapon(hero))
+	{
+		PrintScreen(SCREENMESSAGE,-1,37,"FONT_OLD_10_WHITE.TGA",3);
+		AI_ProcessInfos(self);
+		AI_AskText(self,ChangeWeaponArm1H,ChangeWeaponArm2H,"Взять оружие в одну руку","Взять оружие в обе руки");
+	}
+	else
+	{
+		PrintScreen("Оружие не экипировано",-1,37,"FONT_OLD_10_WHITE.TGA",3);
+	};
+};
