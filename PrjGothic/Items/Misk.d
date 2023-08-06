@@ -766,49 +766,46 @@ func void usefakeitem2()
 	PrintScreen(SCREENMESSAGE2,-1,40,"FONT_OLD_10_WHITE.TGA",3);
 };
 
-instance ChangeWeaponArm(C_Item)
+
+
+
+
+
+
+
+
+
+
+
+instance ChangeWeaponHand(C_Item)
 {
 	name = "Изменить хват оружия";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI;
+	flags = ITEM_MISSION;
 	value = 0;
-	visual = "fakeitem.3ds";
+	visual = "ItMw_1H_Sword_Short_01.3DS";
 	material = MAT_LEATHER;
-	scemeName = "USEFAKEITEM";
-	on_state[0] = UseChangeWeaponArm;
+	scemeName = "MAP";
+	on_state[0] = UseChangeWeaponHand;
 	description = name;
 };
 
-func void ChangeWeaponArm1H()
-{
-	Npc_GetEquippedMeleeWeapon(hero);
-	if(item.flags || ITEM_2HD_SWD)
-	{
-		item.flags -= ITEM_2HD_SWD;
-		item.flags += ITEM_SWD;
-//		AI_UnequipWeapons(hero);
-	};
-};
-func void ChangeWeaponArm2H()
-{
-	Npc_GetEquippedMeleeWeapon(hero);
-	if(item.flags || ITEM_SWD)
-	{
-		item.flags -= ITEM_SWD;
-		item.flags += ITEM_2HD_SWD;
-//		AI_UnequipWeapons(hero);
-	};
-};
-func void UseChangeWeaponArm()
+
+
+
+
+func void UseChangeWeaponHand()
 {
 	if(Npc_HasEquippedMeleeWeapon(hero))
 	{
 		PrintScreen(SCREENMESSAGE,-1,37,"FONT_OLD_10_WHITE.TGA",3);
+		self.aivar[AIV_INVINCIBLE] = TRUE;
+		PC_IsAllowedToChange_EquipedWeaponHand_Melee = TRUE;
 		AI_ProcessInfos(self);
-		AI_AskText(self,ChangeWeaponArm1H,ChangeWeaponArm2H,"Взять оружие в одну руку","Взять оружие в обе руки");
+		PLAYER_MOBSI_PRODUCTION = MOBSI_ChangeWeaponHand;
 	}
 	else
 	{
-		PrintScreen("Оружие не экипировано",-1,37,"FONT_OLD_10_WHITE.TGA",3);
+		PrintScreen(MSG_WEAPONNOTEQUIPED,-1,37,"FONT_OLD_10_WHITE.TGA",3);
 	};
 };

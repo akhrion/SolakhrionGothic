@@ -32,6 +32,27 @@ func void hero_TakeItem()
 	{
 	};
 };
+func void PC_WeaponHand_Handler()
+{
+	if(
+		PC_IsAllowedToChange_EquipedWeaponHand_Melee
+	&&	!(PC_WeaponHand == Item_GetWeaponHand(PC_EquipedWeapon_Melee))
+	)
+	{
+//		Print("Switch Hand");
+		if(Item_GetWeaponHand(PC_EquipedWeapon_Melee) == PC_WeaponHandOne)
+		{
+			PC_EquipedWeapon_Melee.flags = PC_EquipedWeapon_Melee.flags - ITEM_SWD;
+			PC_EquipedWeapon_Melee.flags = PC_EquipedWeapon_Melee.flags + ITEM_2HD_SWD;
+		}
+		else
+		{
+			PC_EquipedWeapon_Melee.flags = PC_EquipedWeapon_Melee.flags - ITEM_2HD_SWD;
+			PC_EquipedWeapon_Melee.flags = PC_EquipedWeapon_Melee.flags + ITEM_SWD;
+		};
+	
+	};
+};
 func void b_cycle_hero()
 {
 //	PrintSIS("Dist to SPWN_PLANT_PSI_02 ",Npc_IsOnFP(hero,"SPWN_PLANT_PSI_02"),"");
@@ -39,4 +60,5 @@ func void b_cycle_hero()
 //	Print("20210717");
 	hero_OrePicking();
 	hero_TakeItem();
+	PC_WeaponHand_Handler();
 };

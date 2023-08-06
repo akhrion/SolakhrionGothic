@@ -1963,6 +1963,7 @@ func void init_world()
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	initplayerbody(3);
+	init_variables();
 };
 
 func void startup_world()

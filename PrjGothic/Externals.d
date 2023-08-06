@@ -2,6 +2,13 @@ func void PrintI(var int _i)
 {
 	Print(IntToString(_i));
 };
+func void PrintII(var int _i,var int _ii)
+{
+	Print(ConcatStrings(
+		IntToString(item.flags),
+		IntToString(ITEM_2HD_SWD)
+	));
+};
 func void PrintSIS(var string _s1, var int _i, var string _s2)
 {
 	Print(
@@ -11,6 +18,15 @@ func void PrintSIS(var string _s1, var int _i, var string _s2)
 		)
 	);
 };
+func void PrintScreenSIS(var string _s1, var int _i, var string _s2, var int _x, var int _y, var int time)
+{
+	PrintScreen(
+		ConcatStrings(
+			ConcatStrings(_s1,IntToString(_i)),
+			_s2
+		),_x, _y,"FONT_OLD_10_WHITE.TGA",time);
+};
+
 
 // add function prototypes here
 //Тернарка.

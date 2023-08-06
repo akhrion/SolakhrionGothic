@@ -217,6 +217,7 @@ AI\ZS_Human\ZS_AssessSurprise.d
 AI\ZS_Human\ZS_AssessWarn.d
 AI\ZS_Human\ZS_Attack.d
 AI\ZS_Human\ZS_CallGuards.d
+AI\ZS_Human\ZS_ChangeWeaponArm.d
 AI\ZS_Human\ZS_CatchThief.d
 AI\ZS_Human\ZS_ClearRoom.d
 AI\ZS_Human\ZS_Dead.d
@@ -1235,6 +1236,7 @@ _misk_\update_hp_cat_list.d
 Story\Events\EventsTemple.d
 Story\Events\MOB.d
 _misk_\pan_s1.d
+Story\Events\ChangeWeaponArm.d
 Story\Events\Sleepabit.d
 Story\Events\FishingSpot.d
 _misk_\bsfire_s1.d

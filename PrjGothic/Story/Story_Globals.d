@@ -461,3 +461,17 @@ const int SPWN_PLANT_PSI_array[60] =
     FALSE,
     FALSE
 };
+var int PC_WeaponHand;
+const int PC_WeaponHandOne = 1;
+const int PC_WeaponHandTwo = 2;
+var C_Item PC_EquipedWeapon_Melee;
+var int PC_IsAllowedToChange_EquipedWeaponHand_Melee;
+func void init_variables()
+{
+    if(PC_WeaponHand == 0)
+    {
+        Print("weaponHand init as one handed");
+        
+        PC_WeaponHand = PC_WeaponHandOne;
+    };
+};

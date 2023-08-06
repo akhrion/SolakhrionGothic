@@ -138,3 +138,5 @@ const int MOBSI_SLEEPABITEND = 101;
 const int MOBSI_PANEND = 103;
 const int MOBSI_POTIONALCHEMYEND = 105;
 const int MOBSI_STOMPEND = 107;
+const int MOBSI_ChangeWeaponHand = 9;
+const int MOBSI_ChangeWeaponHandEND = 109;
