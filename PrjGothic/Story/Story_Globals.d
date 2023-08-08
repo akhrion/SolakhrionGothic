@@ -466,6 +466,7 @@ const int PC_WeaponHandOne = 1;
 const int PC_WeaponHandTwo = 2;
 var C_Item PC_EquipedWeapon_Melee;
 var int PC_IsAllowedToChange_EquipedWeaponHand_Melee;
+var C_Item itmmm;
 func void init_variables()
 {
     if(PC_WeaponHand == 0)

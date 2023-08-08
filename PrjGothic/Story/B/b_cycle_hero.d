@@ -32,25 +32,25 @@ func void hero_TakeItem()
 	{
 	};
 };
-func void PC_WeaponHand_Handler()
+func void PC_WeaponHand_Handler(var C_Item _itm)
 {
 	if(
 		PC_IsAllowedToChange_EquipedWeaponHand_Melee
-	&&	!(PC_WeaponHand == Item_GetWeaponHand(PC_EquipedWeapon_Melee))
+	&&	!(PC_WeaponHand == Item_GetWeaponHand(_itm))
 	)
 	{
 //		Print("Switch Hand");
-		if(Item_GetWeaponHand(PC_EquipedWeapon_Melee) == PC_WeaponHandOne)
+		PC_IsAllowedToChange_EquipedWeaponHand_Melee = FALSE;
+		if(Item_GetWeaponHand(_itm) == PC_WeaponHandOne)
 		{
-			PC_EquipedWeapon_Melee.flags = PC_EquipedWeapon_Melee.flags - ITEM_SWD;
-			PC_EquipedWeapon_Melee.flags = PC_EquipedWeapon_Melee.flags + ITEM_2HD_SWD;
+			_itm.flags = _itm.flags - ITEM_SWD;
+			_itm.flags = _itm.flags + ITEM_2HD_SWD;
 		}
 		else
 		{
-			PC_EquipedWeapon_Melee.flags = PC_EquipedWeapon_Melee.flags - ITEM_2HD_SWD;
-			PC_EquipedWeapon_Melee.flags = PC_EquipedWeapon_Melee.flags + ITEM_SWD;
+			_itm.flags = _itm.flags - ITEM_2HD_SWD;
+			_itm.flags = _itm.flags + ITEM_SWD;
 		};
-	
 	};
 };
 func void b_cycle_hero()
@@ -60,5 +60,8 @@ func void b_cycle_hero()
 //	Print("20210717");
 	hero_OrePicking();
 	hero_TakeItem();
-	PC_WeaponHand_Handler();
+	PC_WeaponHand_Handler(PC_EquipedWeapon_Melee);
+//	itmmm = Npc_GetEquippedMeleeWeapon(hero);
+//	Print(itmmm.name);
+//	Print(Npc_GetDetectedMob(hero));
 };

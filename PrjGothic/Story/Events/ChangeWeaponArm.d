@@ -1,3 +1,4 @@
+
 instance ChangeWeaponHand1H(C_Info)
 {
 	npc = PC_Hero;
@@ -18,11 +19,22 @@ func int ChangeWeaponHand1H__Condition()
 func void ChangeWeaponHand1H__Info()
 {
 	PC_EquipedWeapon_Melee = Npc_GetEquippedMeleeWeapon(self);
-	if(Item_GetWeaponHand(PC_EquipedWeapon_Melee) == PC_WeaponHandTwo)
+	if(
+		Item_GetWeaponHand(PC_EquipedWeapon_Melee) == PC_WeaponHandTwo
+	)
 	{
-		Print(MSG_ONEHANDEDGRIP);		
-		AI_UnequipWeapons(self);
-        PC_WeaponHand = PC_WeaponHandOne;
+		if(self.attribute[ATR_STRENGTH] >= (PC_EquipedWeapon_Melee.cond_value[2] * 2))
+		{
+			Print(MSG_ONEHANDEDGRIP);		
+			ChangeWeaponHand1H_Item_ChangeCondition_STR(PC_EquipedWeapon_Melee);
+			PC_IsAllowedToChange_EquipedWeaponHand_Melee = TRUE;
+			AI_UnequipWeapons(self);
+			PC_WeaponHand = PC_WeaponHandOne;
+		}
+		else
+		{
+			Print(MSG_IMNOTENOUGHSTRENGTH);
+		};
 	};
     AI_StopProcessInfos(self);
     self.aivar[AIV_INVINCIBLE] = FALSE;
@@ -53,9 +65,13 @@ func int ChangeWeaponHand2H__Condition()
 func void ChangeWeaponHand2H__Info()
 {
 	PC_EquipedWeapon_Melee = Npc_GetEquippedMeleeWeapon(self);
-	if(Item_GetWeaponHand(PC_EquipedWeapon_Melee) == PC_WeaponHandOne)
+	if(
+		Item_GetWeaponHand(PC_EquipedWeapon_Melee) == PC_WeaponHandOne
+	)
 	{
 		Print(MSG_TWOHANDEDGRIP);
+		ChangeWeaponHand2H_Item_ChangeCondition_STR(PC_EquipedWeapon_Melee);
+		PC_IsAllowedToChange_EquipedWeaponHand_Melee = TRUE;
 		AI_UnequipWeapons(self);
         PC_WeaponHand = PC_WeaponHandTwo;
 	};

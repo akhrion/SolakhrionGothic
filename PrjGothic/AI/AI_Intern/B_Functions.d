@@ -578,3 +578,13 @@ func int Item_GetWeaponHand(var C_Item itm)
 	};
 	return UNDEFINED;
 };
+func void ChangeWeaponHand1H_Item_ChangeCondition_STR(var C_Item _itm)
+{
+	_itm.cond_value[2] = _itm.cond_value[2] * 2;
+	_itm.count[3] = _itm.cond_value[2];
+};
+func void ChangeWeaponHand2H_Item_ChangeCondition_STR(var C_Item _itm)
+{
+	_itm.cond_value[2] = _itm.cond_value[2] / 2;
+	_itm.count[3] = _itm.cond_value[2];
+};

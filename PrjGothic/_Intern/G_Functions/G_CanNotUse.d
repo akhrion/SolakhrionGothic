@@ -1,6 +1,12 @@
 
 func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 {
+	if(!bIsPlayer)
+	{
+		return;
+	};
+
+
 	var int nAttributeValue;
 	var string strAttribute;
 	var int nDifference;
@@ -30,6 +36,18 @@ func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 	{
 		strAttribute = _STR_ATTRIBUTE_STRENGTH;
 		nAttributeValue = self.attribute[ATR_STRENGTH];
+		if(
+			Item_GetWeaponHand(item) == PC_WeaponHandOne
+		&&	self.attribute[ATR_STRENGTH] >= item.cond_value[2] / 2 
+		)
+		{
+			Print(MSG_ICANTAKEITINBOTHHANDS);
+			PC_WeaponHand = PC_WeaponHandTwo;
+			ChangeWeaponHand2H_Item_ChangeCondition_STR(item);
+			PC_IsAllowedToChange_EquipedWeaponHand_Melee = TRUE;
+			PC_WeaponHand_Handler(item);
+		};
+		
 	}
 	else if(nAttribute == ATR_DEXTERITY)
 	{
@@ -43,21 +61,14 @@ func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 	};
 	nDifference = nValue - nAttributeValue;
 	strDifference = IntToString(nDifference);
-	if(bIsPlayer)
-	{
-		strMessage = _STR_CANNOTUSE_PRE_PLAYER;
-	}
-	else
-	{
-		return;
-	};
+
+	strMessage = _STR_CANNOTUSE_PRE_PLAYER;
+
 	strMessage = ConcatStrings(strMessage,strDifference);
 	strMessage = ConcatStrings(strMessage," ");
 	strMessage = ConcatStrings(strMessage,strAttribute);
 	strMessage = ConcatStrings(strMessage,"для использования.");
-	if(bIsPlayer)
-	{
-		G_PrintScreen(strMessage);
-	};
+
+	G_PrintScreen(strMessage);
 };
 

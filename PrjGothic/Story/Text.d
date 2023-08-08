@@ -386,3 +386,5 @@ const string NAME_EQUIPPED_BOLTFIRE = "Огненные болты экипированы";
 const string MSG_ONEHANDEDGRIP = "Оружие стало одноручным";
 const string MSG_TWOHANDEDGRIP = "Оружие стало двуручным";
 const string MSG_WEAPONNOTEQUIPED = "Оружие не экипировано";
+const string MSG_IMNOTENOUGHSTRENGTH = "Я недостаточно силён для этого";
+const string MSG_ICANTAKEITINBOTHHANDS = "Я могу взять его в обе руки";

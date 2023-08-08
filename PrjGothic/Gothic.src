@@ -1226,6 +1226,7 @@ AI\Test_Scripts\TestModelle_Nyul.d
 AI\Test_Scripts\TestModelle_Roman.d
 _Intern\G_Functions\G_Constants.d
 _Intern\G_Functions\G_PrintScreen.d
+_Intern\G_Functions\G_ChangeWeaponHands.d
 _Intern\G_Functions\G_CanSteal.d
 _Intern\G_Functions\G_CanNotCast.d
 _misk_\g_cannottrade.d

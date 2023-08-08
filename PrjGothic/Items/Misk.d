@@ -800,7 +800,6 @@ func void UseChangeWeaponHand()
 	{
 		PrintScreen(SCREENMESSAGE,-1,37,"FONT_OLD_10_WHITE.TGA",3);
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		PC_IsAllowedToChange_EquipedWeaponHand_Melee = TRUE;
 		AI_ProcessInfos(self);
 		PLAYER_MOBSI_PRODUCTION = MOBSI_ChangeWeaponHand;
 	}

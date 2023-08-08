@@ -803,4 +803,8 @@ func int c_npcisguarding(var C_Npc slf)
 	};
 	return FALSE;
 };
-
+func void Item_ChangeCondition_STR(var C_Item _itm, var int _str)
+{
+	_itm.cond_value[2] = _str;
+	_itm.count[3] = _str;
+};
