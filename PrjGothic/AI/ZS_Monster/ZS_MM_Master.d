@@ -2,6 +2,12 @@
 func int C_PreyToPredator(var C_Npc prey,var C_Npc predator)
 {
 	PrintDebugNpc(PD_MST_FRAME,"C_PreyToPredator");
+	if(other.level >= self.level * 2)
+	{
+		Npc_SetTarget(self,other);
+		Npc_ClearAIQueue(self);
+		AI_StartState(self,ZS_MM_Flee,0,"");
+	};
 	if(prey.guild == GIL_SCAVENGER)
 	{
 		if(predator.guild == GIL_SNAPPER)
