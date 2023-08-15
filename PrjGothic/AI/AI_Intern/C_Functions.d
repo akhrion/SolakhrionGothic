@@ -653,6 +653,38 @@ func int C_NpcHasWeapon(var C_Npc slf,var int category)
 	return FALSE;
 };
 
+func int Item_IsMeleeWeapon(var C_Item _itm)
+{
+	if(_itm.mainflag == ITEM_KAT_NF)
+	{
+		return true;
+	};
+	return false;
+};
+func int Item_IsRangedWeapon(var C_Item _itm)
+{
+	if(_itm.mainflag == ITEM_KAT_FF)
+	{
+		return true;
+	};
+	return false;
+};
+func int Item_IsBow(var C_Item _itm)
+{
+	if(isFlagsContainCategorie(_itm,ITEM_BOW))
+	{
+		return true;
+	};
+	return false;
+};
+func int Item_IsCrossBow(var C_Item _itm)
+{
+	if(isFlagsContainCategorie(_itm,ITEM_CROSSBOW))
+	{
+		return true;
+	};
+	return false;
+};
 func int C_GetAttackReason(var C_Npc slf)
 {
 	PrintDebugNpc(PD_ZS_DETAIL,"C_GetAttackReason");
@@ -831,4 +863,62 @@ func void Npc_AddHitpoints(var C_Npc _npc, var int hp)
 func void Npc_SubtractHitpoints(var C_Npc _npc, var int hp)
 {
 	_npc.attribute[ATR_HITPOINTS] = _npc.attribute[ATR_HITPOINTS] - hp;
+};
+func int Npc_IsReceiveDamage(var C_Npc victim, var C_Npc attacker)
+{
+	if(Npc_IsInFightMode(attacker,FMODE_MAGIC))
+	{
+		return FALSE;
+	};
+	if(Npc_IsInFightMode(attacker,FMODE_FIST))
+	{
+		if(attacker.attribute[ATR_STRENGTH] > victim.protection[PROT_BLUNT])
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		};
+	};
+
+	var C_Item weapon;
+	weapon = Npc_GetReadiedWeapon(attacker);
+	if(weapon.damage[DAM_INDEX_BARRIER] > victim.protection[PROT_BARRIER])
+	{
+		return true;
+	};
+	if(weapon.damage[DAM_INDEX_BLUNT] > victim.protection[PROT_BLUNT])
+	{
+		return true;
+	};
+	if(weapon.damage[DAM_INDEX_EDGE] > victim.protection[PROT_EDGE])
+	{
+		return true;
+	};
+	if(weapon.damage[DAM_INDEX_FIRE] > victim.protection[PROT_FIRE])
+	{
+		return true;
+	};
+	if(weapon.damage[DAM_INDEX_FLY] > victim.protection[PROT_FLY])
+	{
+		return true;
+	};
+	if(weapon.damage[DAM_INDEX_MAGIC] > victim.protection[PROT_MAGIC])
+	{
+		return true;
+	};
+	if(weapon.damage[DAM_INDEX_POINT] > victim.protection[PROT_POINT])
+	{
+		return true;
+	};
+	if(weapon.damage[DAM_INDEX_FALL] > victim.protection[PROT_FALL])
+	{
+		return true;
+	};
+	return FALSE;
+};
+func int HasChance(var int percent)
+{
+	return Hlp_Random(100 / percent);
 };

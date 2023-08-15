@@ -46,6 +46,12 @@ func void ZS_ReactToDamage()
 	{
 		if(Npc_IsPlayer(other))
 		{
+			if(Npc_IsReceiveDamage(self,other))
+			{
+				PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон монстру.");
+				PC_ImproveSkills();
+			};
+
 			self.aivar[AIV_BEENATTACKED] = 1;
 			if((Npc_GetTempAttitude(self,other) == ATT_FRIENDLY) || (self.npcType == npctype_friend))
 			{

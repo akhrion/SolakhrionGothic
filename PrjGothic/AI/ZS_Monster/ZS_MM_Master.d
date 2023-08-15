@@ -206,6 +206,16 @@ func void B_MM_ReactToDamage()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToDamage");
 	PrintGlobals(PD_MST_CHECK);
+	if(Npc_IsPlayer(other))
+	{
+		if(Npc_IsReceiveDamage(self,other))
+		{
+			PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон монстру.");
+			PC_ImproveSkills();
+		};
+		Npc_SetTarget(self,other);
+	};
+
 	self.aivar[AIV_PLUNDERED] = PRIO_ATTACKER;
 	if(C_PreyToPredator(self,other))
 	{
@@ -259,8 +269,15 @@ func void B_MM_ReactToCombatDamage()
 		Npc_ClearAIQueue(self);
 		AI_StartState(self,ZS_MM_Flee,0,"");
 	};
-	if(other == hero)
+	
+	if(Npc_IsPlayer(other))
 	{
+		
+		if(Npc_IsReceiveDamage(self,other))
+		{
+			PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон монстру.");
+			PC_ImproveSkills();
+		};
 		Npc_SetTarget(self,other);
 	};
 };

@@ -21,6 +21,14 @@ func void B_CombatReactToDamage()
 	};
 	if(Npc_IsPlayer(other))
 	{
+		
+		if(Npc_IsReceiveDamage(self,other))
+		{
+			
+			PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон НПС.");
+			PC_ImproveSkills();
+		};
+
 		Npc_SetTempAttitude(self,ATT_HOSTILE);
 		if((Npc_GetAttitude(self,other) == ATT_HOSTILE) || (Npc_GetAttitude(self,other) == ATT_ANGRY))
 		{
