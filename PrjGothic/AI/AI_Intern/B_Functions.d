@@ -588,3 +588,14 @@ func void ChangeWeaponHand2H_Item_ChangeCondition_STR(var C_Item _itm)
 	_itm.cond_value[2] = _itm.cond_value[2] / 2;
 	_itm.count[3] = _itm.cond_value[2];
 };
+func void PC_Handler_Invoke()
+{
+	if(PC_HasNecromancySkill)
+	{
+		if(PC_NecromancySkillValue == 1)
+		{
+			Wld_SpawnNpcRange(hero,SummonedByPC_SkeletonShield,2,1);
+
+		};
+	};
+};

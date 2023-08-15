@@ -308,8 +308,8 @@ instance Gil_Values(C_GILVALUES)
 	climb_ground_angle[GIL_SKELETON] = 30;
 	falldown_height[GIL_SKELETON] = 400;
 	falldown_damage[GIL_SKELETON] = 10;
-	fight_range_base[GIL_SKELETON] = 60;
-	fight_range_fist[GIL_SKELETON] = 50;
+	fight_range_base[GIL_SKELETON] = 40;
+	fight_range_fist[GIL_SKELETON] = 10;
 	blood_emitter[GIL_SKELETON] = "BFX_Skeleton";
 	blood_texture[GIL_SKELETON] = "MODIALPHA01.tga";
 	blood_flow[GIL_SKELETON] = 0;

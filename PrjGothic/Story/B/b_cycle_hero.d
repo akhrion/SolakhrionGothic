@@ -61,6 +61,7 @@ func void b_cycle_hero()
 	hero_OrePicking();
 	hero_TakeItem();
 	PC_WeaponHand_Handler(PC_EquipedWeapon_Melee);
+
 //	itmmm = Npc_GetEquippedMeleeWeapon(hero);
 //	Print(itmmm.name);
 //	Print(Npc_GetDetectedMob(hero));

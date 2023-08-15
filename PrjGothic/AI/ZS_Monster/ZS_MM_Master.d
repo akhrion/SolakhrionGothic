@@ -263,6 +263,7 @@ func void ZS_MM_Attack()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Attack");
 	PrintGlobals(PD_MST_DETAIL);
+
 	if(C_NpcIsMonsterMage(self))
 	{
 		B_FullStop(self);
@@ -284,6 +285,10 @@ func void ZS_MM_Attack()
 	AI_SetWalkMode(self,NPC_RUN);
 	Npc_GetTarget(self);
 	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	if(Npc_IsPlayer(other))
+	{
+		PC_Handler_Invoke();
+	};
 };
 
 func int ZS_MM_Attack_Loop()
@@ -295,8 +300,36 @@ func int ZS_MM_Attack_Loop()
 		return 1;
 	};
 	Npc_GetTarget(self);
+	
+	
+
 	if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
 	{
+		if(
+			Hlp_GetInstanceID(self) == Hlp_GetInstanceID(SummonedByPC_SkeletonShield)
+		&&	Npc_IsPlayer(other)
+		)
+		{
+			Print("ОШИБКА скелет атакует мастера!");
+			
+			if(Npc_GetNextTarget(self))
+			{
+				Print("есть новая цель");
+				
+				PrintDebugString(PD_MST_CHECK,"...есть новая цель: ",other.name);
+			}
+			else
+			{
+				Print("доступных целей нет!");
+				PrintDebugNpc(PD_MST_CHECK,"...доступных целей нет!");
+				return LOOP_END;
+			};
+		};
+
+			if(Npc_IsSummonedByPC(self))
+			{
+				PrintSIS("имя цели: ",0,other.name);
+			};
 		PrintDebugNpc(PD_MST_LOOP,"...Ziel vorhanden!");
 		if(C_BodyStateContains(other,BS_RUN) || C_BodyStateContains(other,BS_JUMP))
 		{
@@ -316,6 +349,10 @@ func int ZS_MM_Attack_Loop()
 		}
 		else
 		{
+			if(Npc_IsSummonedByPC(self))
+			{
+				Print("Npc_SetStateTime");
+			};
 			Npc_SetStateTime(self,0);
 		};
 		if(other.aivar[AIV_INVINCIBLE] == FALSE)
@@ -333,15 +370,27 @@ func int ZS_MM_Attack_Loop()
 		}
 		else
 		{
+			if(Npc_IsSummonedByPC(self))
+			{
+				Print("ПОИСК НОВОЙ ЦЕЛИ..");
+			};
 			Npc_PerceiveAll(self);
 			Npc_GetNextTarget(self);
 			PrintGlobals(PD_ZS_DETAIL);
 			if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
 			{
+			if(Npc_IsSummonedByPC(self))
+			{
+				Print("ПОИСК НОВОЙ ЦЕЛИ.. новая цель найдена");
+			};
 				PrintDebugString(PD_MST_CHECK,"...neues Ziel gefunden: ",other.name);
 			}
 			else
 			{
+			if(Npc_IsSummonedByPC(self))
+			{
+				Print("ПОИСК НОВОЙ ЦЕЛИ.. доступных целей нет!");
+			};
 				PrintDebugNpc(PD_MST_CHECK,"...kein Neues Ziel vorhanden!");
 				return LOOP_END;
 			};
@@ -353,11 +402,17 @@ func int ZS_MM_Attack_Loop()
 func void ZS_MM_Attack_End()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Attack_End");
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(SummonedByPC_SkeletonShield))
+	{
+		Print("skeleton's life ended..");
+		Npc_SetHitpoints(self,0);
+	};
 	self.aivar[AIV_PLUNDERED] = PRIO_PREY;
 	Npc_ClearAIQueue(self);
 	AI_Standup(self);
 	AI_PlayAni(self,"T_WARN");
 	AI_Wait(self,1);
+
 };
 
 func void ZS_MM_Flee()

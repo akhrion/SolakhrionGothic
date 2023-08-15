@@ -16,6 +16,10 @@ func void ZS_Attack()
 	B_WhirlAround(self,other);
 	B_SelectWeapon(self,other);
 	AI_SetWalkMode(self,NPC_RUN);
+	if(Npc_IsPlayer(other))
+	{
+		PC_Handler_Invoke();
+	};
 };
 
 func int ZS_Attack_Loop()
@@ -24,6 +28,7 @@ func int ZS_Attack_Loop()
 	PrintDebugNpc(PD_ZS_LOOP,"ZS_Attack_Loop");
 	Npc_GetTarget(self);
 	PrintGlobals(PD_ZS_DETAIL);
+
 	if(((self.id == 3) || (self.id == 5)) && Npc_IsPlayer(other) && (Kapitel >= 4))
 	{
 		return LOOP_END;
@@ -35,6 +40,18 @@ func int ZS_Attack_Loop()
 		self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
 		if(Npc_GetNextTarget(self))
 		{
+			if(Npc_IsPlayer(other))
+			{
+				if(
+					Npc_GetAttitude(self,other) == ATT_HOSTILE
+				||	Npc_GetPermAttitude(self,other) == ATT_HOSTILE
+				)
+				{
+					Print("Перевызов защиты");
+					
+					PC_Handler_Invoke();
+				};
+			};           
 			if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other) && Npc_CanSeeNpcFreeLOS(self,other) && !C_OtherIsToleratedEnemy(self,other))
 			{
 				PrintDebugString(PD_ZS_Check,"...neues Ziel gefunden: ",other.name);

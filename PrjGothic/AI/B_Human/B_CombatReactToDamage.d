@@ -7,6 +7,10 @@ func void B_CombatReactToDamage()
 	{
 		return;
 	};
+	if(Npc_IsSummonedByPC(other))
+	{
+		Npc_SetTarget(self,other);
+	};
 	if(Npc_IsInFightMode(other,FMODE_FAR) || Npc_IsInFightMode(other,FMODE_MAGIC))
 	{
 		self.aivar[AIV_LASTHITBYRANGEDWEAPON] = TRUE;

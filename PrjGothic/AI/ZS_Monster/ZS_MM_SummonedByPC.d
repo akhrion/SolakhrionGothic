@@ -24,10 +24,17 @@ func int ZS_MM_SummonedByPC_Loop()
 	};
 	if(Npc_GetNextTarget(self))
 	{
-		PrintDebugNpc(PD_MST_CHECK,"...neuer Gegner gefunden");
-		Npc_SetTarget(self,other);
-		Npc_ClearAIQueue(self);
-		AI_StartState(self,ZS_MM_Attack,0,"");
+		if(Npc_IsPlayer(other))
+		{
+			PrintDebugNpc(PD_MST_CHECK,"...Игрок наш мастер!");
+		}
+		else
+		{
+			PrintDebugNpc(PD_MST_CHECK,"...neuer Gegner gefunden");
+			Npc_SetTarget(self,other);
+			Npc_ClearAIQueue(self);
+			AI_StartState(self,ZS_MM_Attack,0,"");
+		};
 	}
 	else if(Npc_GetDistToNpc(self,hero) > self.aivar[AIV_HASDEFEATEDSC])
 	{

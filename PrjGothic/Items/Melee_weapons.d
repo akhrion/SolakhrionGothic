@@ -174,8 +174,11 @@ instance ITMW_SKELETON_SWORD(C_Item)
 	range = 100;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 6;
+	change_atr[2] = ATR_STRENGTH;
+	change_value[2] = -30;
 	visual = "ItMw_Skeleton_Sword.3DS";
 	description = name;
+	text[0] = "–уко€тка повреждена, меч сложно держать в руках";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;

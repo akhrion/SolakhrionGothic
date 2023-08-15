@@ -808,3 +808,27 @@ func void Item_ChangeCondition_STR(var C_Item _itm, var int _str)
 	_itm.cond_value[2] = _str;
 	_itm.count[3] = _str;
 };
+func int Npc_IsSummonedByPC(var C_Npc _npc)
+{
+	if(
+		Hlp_GetInstanceID(_npc) == Hlp_GetInstanceID(SummonedByPC_SkeletonShield)
+	||	Hlp_GetInstanceID(_npc) == Hlp_GetInstanceID(SummonedByPC_Skeleton)
+	||	Hlp_GetInstanceID(_npc) == Hlp_GetInstanceID(SummonedByPC_SkeletonWarrior)
+	)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+func void Npc_SetHitpoints(var C_Npc _npc, var int hp)
+{
+	_npc.attribute[ATR_HITPOINTS] = hp;	
+};
+func void Npc_AddHitpoints(var C_Npc _npc, var int hp)
+{
+	_npc.attribute[ATR_HITPOINTS] = _npc.attribute[ATR_HITPOINTS] + hp;
+};
+func void Npc_SubtractHitpoints(var C_Npc _npc, var int hp)
+{
+	_npc.attribute[ATR_HITPOINTS] = _npc.attribute[ATR_HITPOINTS] - hp;
+};

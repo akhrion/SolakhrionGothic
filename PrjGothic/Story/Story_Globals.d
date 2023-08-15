@@ -467,6 +467,16 @@ const int PC_WeaponHandTwo = 2;
 var C_Item PC_EquipedWeapon_Melee;
 var int PC_IsAllowedToChange_EquipedWeaponHand_Melee;
 var C_Item itmmm;
+var int PC_HasNecromancySkill;
+var int PC_NecromancySkillValue;
+
+
+
+
+
+
+
+
 func void init_variables()
 {
     if(PC_WeaponHand == 0)
@@ -474,5 +484,7 @@ func void init_variables()
         Print("weaponHand init as one handed");
         
         PC_WeaponHand = PC_WeaponHandOne;
+        PC_HasNecromancySkill = true;
+        PC_NecromancySkillValue = 1;
     };
 };
