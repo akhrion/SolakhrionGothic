@@ -7,7 +7,7 @@ instance Kdw_603_Nefarius(Npc_Default)
 	level = 25;
 	voice = 4;
 	id = 603;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 35;
 	attribute[ATR_DEXTERITY] = 35;
 	attribute[ATR_MANA_MAX] = 100;

@@ -7,7 +7,7 @@ instance Nov_1303_Nyras(Npc_Default)
 	level = 6;
 	voice = 3;
 	id = 1303;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 24;
 	attribute[ATR_DEXTERITY] = 13;
 	attribute[ATR_MANA_MAX] = 12;

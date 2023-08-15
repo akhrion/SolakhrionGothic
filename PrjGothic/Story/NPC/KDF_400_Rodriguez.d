@@ -7,7 +7,7 @@ instance KDF_400_Rodriguez(Npc_Default)
 	level = 25;
 	voice = 12;
 	id = 400;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 45;
 	attribute[ATR_DEXTERITY] = 35;
 	attribute[ATR_MANA_MAX] = 100;

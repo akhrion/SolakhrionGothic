@@ -62,7 +62,7 @@ instance Babe_Rockefeller(Npc_Default)
 	level = 1;
 	voice = 16;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;

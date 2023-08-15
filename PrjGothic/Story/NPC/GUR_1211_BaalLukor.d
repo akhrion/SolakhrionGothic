@@ -3,7 +3,7 @@ instance GUR_1211_BaalLukor(Npc_Default)
 {
 	name[0] = "ָהמכ ֻ‏ךמנ";
 	npcType = npctype_friend;
-	flags = NPC_FLAG_IMMORTAL;
+
 	guild = GIL_GUR;
 	level = 50;
 	voice = 13;
@@ -73,7 +73,7 @@ instance GUR_999_BAALLUKOR(Npc_Default)
 {
 	name[0] = "ָהמכ ֻ‏ךמנ";
 	npcType = npctype_main;
-	flags = NPC_FLAG_IMMORTAL;
+
 	guild = GIL_GUR;
 	level = 50;
 	voice = 13;

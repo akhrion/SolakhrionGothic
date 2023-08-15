@@ -7,7 +7,7 @@ instance NOV_1308_Novize(Npc_Default)
 	level = 9;
 	voice = 14;
 	id = 1308;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 15;
 	attribute[ATR_DEXTERITY] = 15;
 	attribute[ATR_MANA_MAX] = 0;

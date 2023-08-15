@@ -7,7 +7,6 @@ instance PC_Thief(Npc_Default)
 	level = 999;
 	voice = 11;
 	id = 1;
-	flags = NPC_FLAG_IMMORTAL;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",0,2,"Hum_Head_Thief",15,4,stt_armor_h);
 	attribute[ATR_STRENGTH] = 70;

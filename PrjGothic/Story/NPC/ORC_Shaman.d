@@ -3,7 +3,7 @@ instance ORC_2200_Shaman(Mst_Default_OrcShaman)
 {
 	name[0] = "г№-иръ";
 	npcType = npctype_friend;
-	flags = NPC_FLAG_IMMORTAL;
+
 	guild = GIL_None;
 	level = 25;
 	voice = 17;

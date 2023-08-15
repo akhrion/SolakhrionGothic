@@ -7,7 +7,7 @@ instance Kdw_601_Myxir(Npc_Default)
 	level = 24;
 	voice = 10;
 	id = 601;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 55;
 	attribute[ATR_DEXTERITY] = 35;
 	attribute[ATR_MANA_MAX] = 100;

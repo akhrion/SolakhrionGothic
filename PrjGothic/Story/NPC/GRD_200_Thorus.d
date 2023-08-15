@@ -8,7 +8,7 @@ instance GRD_200_Thorus(Npc_Default)
 	voice = 9;
 	voicepitch = -1;
 	id = 200;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 80;
 	attribute[ATR_MANA_MAX] = 0;

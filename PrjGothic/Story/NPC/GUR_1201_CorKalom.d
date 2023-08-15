@@ -7,7 +7,7 @@ instance GUR_1201_CorKalom(Npc_Default)
 	level = 30;
 	voice = 10;
 	id = 1201;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 80;
 	attribute[ATR_DEXTERITY] = 50;
 	attribute[ATR_MANA_MAX] = 100;

@@ -7,7 +7,7 @@ instance PC_Fighter(Npc_Default)
 	level = 999;
 	voice = 9;
 	id = 3;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 85;
 	attribute[ATR_DEXTERITY] = 1;
 	attribute[ATR_MANA_MAX] = 20;
@@ -134,7 +134,7 @@ instance PC_FighterFM(Npc_Default)
 	level = 15;
 	voice = 9;
 	id = 5;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 85;
 	attribute[ATR_DEXTERITY] = 1;
 	attribute[ATR_MANA_MAX] = 20;

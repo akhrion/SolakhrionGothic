@@ -7,7 +7,7 @@ instance KDF_405_Torrez(Npc_Default)
 	level = 26;
 	voice = 4;
 	id = 405;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 1;
 	attribute[ATR_DEXTERITY] = 1;
 	attribute[ATR_MANA_MAX] = 100;

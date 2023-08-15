@@ -5,7 +5,7 @@ instance SLD_728_Jarvis(Npc_Default)
 	npcType = npctype_main;
 	guild = GIL_SLD;
 	level = 16;
-	flags = NPC_FLAG_IMMORTAL;
+
 	voice = 8;
 	id = 728;
 	attribute[ATR_STRENGTH] = 75;

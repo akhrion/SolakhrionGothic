@@ -7,7 +7,7 @@ instance PC_Psionic(Npc_Default)
 	level = 999;
 	voice = 5;
 	id = 4;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 45;
 	attribute[ATR_DEXTERITY] = 35;
 	attribute[ATR_MANA_MAX] = 50;

@@ -58,7 +58,7 @@ instance FreemineOrc(C_Npc)
 	name[0] = "Таррок";
 	guild = GIL_None;
 	level = 3;
-	flags = NPC_FLAG_IMMORTAL;
+
 	voice = 17;
 	id = 2101;
 	attribute[ATR_STRENGTH] = 90;

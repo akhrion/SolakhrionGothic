@@ -7,7 +7,7 @@ instance GRD_219_Stone(Npc_Default)
 	level = 15;
 	voice = 6;
 	id = 219;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 70;
 	attribute[ATR_DEXTERITY] = 50;
 	attribute[ATR_MANA_MAX] = 0;

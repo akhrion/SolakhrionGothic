@@ -5,7 +5,7 @@ instance GUR_1204_BaalNamib(Npc_Default)
 	npcType = npctype_main;
 	guild = GIL_GUR;
 	level = 29;
-	flags = NPC_FLAG_IMMORTAL;
+
 	voice = 2;
 	id = 1204;
 	attribute[ATR_STRENGTH] = 70;

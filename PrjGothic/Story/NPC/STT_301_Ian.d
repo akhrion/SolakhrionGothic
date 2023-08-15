@@ -5,7 +5,7 @@ instance STT_301_Ian(Npc_Default)
 	npcType = npctype_main;
 	guild = GIL_STT;
 	level = 13;
-	flags = NPC_FLAG_IMMORTAL;
+
 	voice = 13;
 	id = 301;
 	attribute[ATR_STRENGTH] = 70;

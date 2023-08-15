@@ -7,7 +7,7 @@ instance GUR_1208_BaalCadar(Npc_Default)
 	level = 28;
 	voice = 2;
 	id = 1208;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 1;
 	attribute[ATR_DEXTERITY] = 1;
 	attribute[ATR_MANA_MAX] = 100;

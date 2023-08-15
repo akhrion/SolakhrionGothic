@@ -7,7 +7,7 @@ instance Babe(Npc_Default)
 	flags = 0;
 	voice = 19;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;
@@ -27,7 +27,7 @@ instance Babe2(Npc_Default)
 	flags = 0;
 	voice = 19;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;
@@ -50,7 +50,7 @@ instance Babe3(Npc_Default)
 	flags = 0;
 	voice = 19;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;
@@ -71,7 +71,7 @@ instance Babe4(Npc_Default)
 	flags = 0;
 	voice = 19;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;
@@ -92,7 +92,7 @@ instance Babe5(Npc_Default)
 	flags = 0;
 	voice = 19;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;
@@ -112,7 +112,7 @@ instance Babe6(Npc_Default)
 	flags = 0;
 	voice = 19;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;
@@ -132,7 +132,7 @@ instance Babe7(Npc_Default)
 	flags = 0;
 	voice = 19;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;
@@ -151,7 +151,7 @@ instance Babe00(Npc_Default)
 	flags = 0;
 	voice = 19;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;
@@ -170,7 +170,7 @@ instance BabeA00(Npc_Default)
 	flags = 0;
 	voice = 19;
 	id = 110;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 8;
 	attribute[ATR_MANA_MAX] = 0;

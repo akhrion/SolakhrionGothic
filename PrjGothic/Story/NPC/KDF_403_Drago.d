@@ -7,7 +7,7 @@ instance KDF_403_Drago(Npc_Default)
 	level = 28;
 	voice = 13;
 	id = 403;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 40;
 	attribute[ATR_DEXTERITY] = 35;
 	attribute[ATR_MANA_MAX] = 100;

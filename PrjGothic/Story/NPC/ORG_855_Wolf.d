@@ -7,7 +7,7 @@ instance ORG_855_Wolf(Npc_Default)
 	level = 11;
 	voice = 9;
 	id = 855;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 40;
 	attribute[ATR_DEXTERITY] = 90;
 	attribute[ATR_MANA_MAX] = 0;

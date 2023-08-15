@@ -5,7 +5,7 @@ instance GUR_1200_YBerion(Npc_Default)
 	npcType = npctype_main;
 	guild = GIL_GUR;
 	level = 30;
-	flags = NPC_FLAG_IMMORTAL;
+
 	voice = 12;
 	id = 1200;
 	attribute[ATR_STRENGTH] = 60;

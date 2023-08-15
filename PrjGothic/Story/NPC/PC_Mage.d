@@ -7,7 +7,7 @@ instance PC_Mage(Npc_Default)
 	level = 999;
 	voice = 2;
 	id = 2;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 30;
 	attribute[ATR_DEXTERITY] = 30;
 	attribute[ATR_MANA_MAX] = 150;

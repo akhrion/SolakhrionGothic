@@ -7,7 +7,7 @@ instance KDF_406_OTXardas(Npc_Default)
 	level = 50;
 	voice = 14;
 	id = 406;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 55;
 	attribute[ATR_DEXTERITY] = 65;
 	attribute[ATR_MANA_MAX] = 100;

@@ -7,7 +7,7 @@ instance STT_336_Cavalorn(Npc_Default)
 	level = 5;
 	voice = 12;
 	id = 336;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 15;
 	attribute[ATR_MANA_MAX] = 0;

@@ -7,7 +7,7 @@ instance InExtremo_DrPymonte(Npc_Default)
 	level = 4;
 	voice = 11;
 	id = 390;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -44,7 +44,7 @@ instance InExtremo_TheFlail(Npc_Default)
 	flags = 0;
 	voice = 11;
 	id = 391;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -81,7 +81,7 @@ instance InExtremo_ThomasTheForger(Npc_Default)
 	flags = 0;
 	voice = 11;
 	id = 392;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -118,7 +118,7 @@ instance InExtremo_Unicorn(Npc_Default)
 	flags = 0;
 	voice = 11;
 	id = 393;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -155,7 +155,7 @@ instance InExtremo_YellowPfeiffer(Npc_Default)
 	flags = 0;
 	voice = 11;
 	id = 394;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -191,7 +191,7 @@ instance InExtremo_Lutter(Npc_Default)
 	level = 4;
 	voice = 11;
 	id = 395;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -228,7 +228,7 @@ instance InExtremo_Flex(Npc_Default)
 	flags = 0;
 	voice = 11;
 	id = 396;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -264,7 +264,7 @@ instance IE_397_Announcer(Npc_Default)
 	level = 4;
 	voice = 11;
 	id = 397;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -306,7 +306,7 @@ instance Charlotte(Npc_Default)
 	level = 1;
 	voice = 16;
 	id = 398;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 5;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;

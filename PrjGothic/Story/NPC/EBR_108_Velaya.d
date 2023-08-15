@@ -7,7 +7,7 @@ instance EBR_108_Velaya(Npc_Default)
 	level = 1;
 	voice = 16;
 	id = 108;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 20;
 	attribute[ATR_MANA_MAX] = 0;

@@ -7,7 +7,7 @@ instance Grd_211_Skip(Npc_Default)
 	level = 15;
 	voice = 12;
 	id = 211;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 35;
 	attribute[ATR_DEXTERITY] = 50;
 	attribute[ATR_MANA_MAX] = 0;

@@ -7,7 +7,7 @@ instance Stt_311_Fisk(Npc_Default)
 	level = 7;
 	voice = 12;
 	id = 311;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 30;
 	attribute[ATR_DEXTERITY] = 18;
 	attribute[ATR_MANA_MAX] = 0;

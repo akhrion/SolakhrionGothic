@@ -7,7 +7,7 @@ instance KDW_605_Riordian(Npc_Default)
 	level = 25;
 	voice = 14;
 	id = 605;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 1;
 	attribute[ATR_DEXTERITY] = 1;
 	attribute[ATR_MANA_MAX] = 100;

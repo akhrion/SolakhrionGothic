@@ -5,7 +5,7 @@ instance GUR_1210_BaalTyon(Npc_Default)
 	npcType = npctype_friend;
 	guild = GIL_GUR;
 	level = 28;
-	flags = NPC_FLAG_IMMORTAL;
+
 	voice = 11;
 	id = 1210;
 	attribute[ATR_STRENGTH] = 70;

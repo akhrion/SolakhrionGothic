@@ -7,7 +7,7 @@ instance VLK_595_BUDDLER(Npc_Default)
 	level = 2;
 	voice = 19;
 	id = 595;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 13;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -102,7 +102,7 @@ instance VLK_596_BUDDLER(Npc_Default)
 	level = 2;
 	voice = 9;
 	id = 596;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 13;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;
@@ -152,7 +152,7 @@ instance VLK_597_BUDDLER(Npc_Default)
 	level = 2;
 	voice = 5;
 	id = 597;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 13;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;

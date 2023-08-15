@@ -7,7 +7,7 @@ instance Kdw_600_Saturas(Npc_Default)
 	level = 29;
 	voice = 14;
 	id = 600;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 50;
 	attribute[ATR_DEXTERITY] = 40;
 	attribute[ATR_MANA_MAX] = 100;

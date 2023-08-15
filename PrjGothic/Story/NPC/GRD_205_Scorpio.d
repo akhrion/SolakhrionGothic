@@ -7,7 +7,7 @@ instance GRD_205_Scorpio(Npc_Default)
 	level = 15;
 	voice = 13;
 	id = 205;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 30;
 	attribute[ATR_DEXTERITY] = 55;
 	attribute[ATR_MANA_MAX] = 0;

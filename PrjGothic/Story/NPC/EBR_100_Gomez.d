@@ -7,7 +7,7 @@ instance EBR_100_Gomez(Npc_Default)
 	level = 100;
 	voice = 11;
 	id = 100;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 110;
 	attribute[ATR_DEXTERITY] = 80;
 	attribute[ATR_MANA_MAX] = 0;

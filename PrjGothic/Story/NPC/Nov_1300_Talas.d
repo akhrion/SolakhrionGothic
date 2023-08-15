@@ -5,7 +5,7 @@ instance Nov_1300_Talas(Npc_Default)
 	npcType = npctype_friend;
 	guild = GIL_NOV;
 	level = 4;
-	flags = NPC_FLAG_IMMORTAL;
+
 	voice = 2;
 	id = 1300;
 	attribute[ATR_STRENGTH] = 15;

@@ -8,7 +8,7 @@ instance TPL_1433_GorNaVid(Npc_Default)
 	flags = 0;
 	voice = 13;
 	id = 1433;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 85;
 	attribute[ATR_DEXTERITY] = 65;
 	attribute[ATR_MANA_MAX] = 0;

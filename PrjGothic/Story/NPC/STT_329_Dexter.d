@@ -7,7 +7,7 @@ instance STT_329_Dexter(Npc_Default)
 	level = 7;
 	voice = 10;
 	id = 329;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 30;
 	attribute[ATR_DEXTERITY] = 18;
 	attribute[ATR_MANA_MAX] = 0;

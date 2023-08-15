@@ -7,7 +7,7 @@ instance ORG_897_MORT(Npc_Default)
 	level = 999;
 	voice = 5;
 	id = 897;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 60;
 	attribute[ATR_DEXTERITY] = 30;
 	attribute[ATR_MANA_MAX] = 0;

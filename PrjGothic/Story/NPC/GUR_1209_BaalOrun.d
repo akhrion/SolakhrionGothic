@@ -7,7 +7,7 @@ instance GUR_1209_BaalOrun(Npc_Default)
 	level = 28;
 	voice = 12;
 	id = 1209;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 70;
 	attribute[ATR_DEXTERITY] = 60;
 	attribute[ATR_MANA_MAX] = 100;

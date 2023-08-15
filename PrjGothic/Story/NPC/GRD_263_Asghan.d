@@ -7,7 +7,7 @@ instance GRD_263_Asghan(Npc_Default)
 	level = 20;
 	voice = 6;
 	id = 263;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 80;
 	attribute[ATR_MANA_MAX] = 0;

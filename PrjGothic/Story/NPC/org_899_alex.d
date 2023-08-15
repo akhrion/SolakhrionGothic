@@ -7,7 +7,7 @@ instance ORG_899_ALEX(Npc_Default)
 	level = 999;
 	voice = 19;
 	id = 899;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 60;
 	attribute[ATR_DEXTERITY] = 30;
 	attribute[ATR_MANA_MAX] = 0;

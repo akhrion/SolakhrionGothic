@@ -5,7 +5,7 @@ instance GUR_1203_BaalTondral(Npc_Default)
 	npcType = npctype_main;
 	guild = GIL_GUR;
 	level = 28;
-	flags = NPC_FLAG_IMMORTAL;
+
 	voice = 13;
 	id = 1203;
 	attribute[ATR_STRENGTH] = 60;

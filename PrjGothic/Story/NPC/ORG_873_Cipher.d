@@ -7,7 +7,7 @@ instance ORG_873_Cipher(Npc_Default)
 	level = 8;
 	voice = 12;
 	id = 873;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 30;
 	attribute[ATR_DEXTERITY] = 30;
 	attribute[ATR_MANA_MAX] = 0;

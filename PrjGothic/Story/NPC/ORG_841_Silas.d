@@ -7,7 +7,7 @@ instance ORG_841_Silas(Npc_Default)
 	level = 15;
 	voice = 6;
 	id = 841;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 60;
 	attribute[ATR_DEXTERITY] = 60;
 	attribute[ATR_MANA_MAX] = 0;

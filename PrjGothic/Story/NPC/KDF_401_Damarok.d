@@ -7,7 +7,7 @@ instance KDF_401_Damarok(Npc_Default)
 	level = 27;
 	voice = 5;
 	id = 401;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 35;
 	attribute[ATR_DEXTERITY] = 35;
 	attribute[ATR_MANA_MAX] = 100;

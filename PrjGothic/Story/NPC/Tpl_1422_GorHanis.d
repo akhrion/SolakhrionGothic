@@ -3,7 +3,7 @@ instance Tpl_1422_GorHanis(Npc_Default)
 {
 	name[0] = "Гор Ханис";
 	npcType = npctype_main;
-	flags = NPC_FLAG_IMMORTAL;
+
 	guild = GIL_None;
 	level = 20;
 	voice = 8;

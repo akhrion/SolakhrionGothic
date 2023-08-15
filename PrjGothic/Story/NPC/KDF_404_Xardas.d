@@ -7,7 +7,7 @@ instance KDF_404_Xardas(Npc_Default)
 	level = 50;
 	voice = 14;
 	id = 404;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 1;
 	attribute[ATR_DEXTERITY] = 1;
 	attribute[ATR_MANA_MAX] = 100;

@@ -7,7 +7,7 @@ instance Kdw_602_Merdarion(Npc_Default)
 	level = 26;
 	voice = 5;
 	id = 602;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 45;
 	attribute[ATR_DEXTERITY] = 35;
 	attribute[ATR_MANA_MAX] = 100;

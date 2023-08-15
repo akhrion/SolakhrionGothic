@@ -7,7 +7,7 @@ instance Kdf_402_Corristo(Npc_Default)
 	level = 30;
 	voice = 14;
 	id = 402;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 30;
 	attribute[ATR_DEXTERITY] = 40;
 	attribute[ATR_MANA_MAX] = 100;

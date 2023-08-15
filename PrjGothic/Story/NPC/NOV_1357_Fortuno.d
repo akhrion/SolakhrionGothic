@@ -7,7 +7,7 @@ instance NOV_1357_Fortuno(Npc_Default)
 	level = 9;
 	voice = 5;
 	id = 1357;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 15;
 	attribute[ATR_MANA_MAX] = 0;

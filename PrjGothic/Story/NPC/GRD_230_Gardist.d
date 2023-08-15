@@ -3,7 +3,7 @@ instance GRD_230_Gardist(Npc_Default)
 {
 	name[0] = NAME_Gardist;
 	npcType = npctype_guard;
-	flags = NPC_FLAG_IMMORTAL;
+
 	guild = GIL_GRD;
 	level = 20;
 	voice = 6;

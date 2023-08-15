@@ -7,7 +7,7 @@ instance VLK_538_Huno(Npc_Default)
 	level = 12;
 	voice = 9;
 	id = 538;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 55;
 	attribute[ATR_DEXTERITY] = 15;
 	attribute[ATR_MANA_MAX] = 0;

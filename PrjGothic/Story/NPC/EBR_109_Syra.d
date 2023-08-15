@@ -7,7 +7,7 @@ instance EBR_109_Syra(Npc_Default)
 	level = 1;
 	voice = 18;
 	id = 109;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 20;
 	attribute[ATR_MANA_MAX] = 0;

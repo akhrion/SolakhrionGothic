@@ -5,7 +5,7 @@ instance GUR_1202_CorAngar(Npc_Default)
 	npcType = npctype_friend;
 	guild = GIL_TPL;
 	level = 50;
-	flags = NPC_FLAG_IMMORTAL;
+
 	voice = 8;
 	id = 1202;
 	attribute[ATR_STRENGTH] = 85;

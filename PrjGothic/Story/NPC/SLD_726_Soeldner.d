@@ -7,7 +7,7 @@ instance SLD_726_Soeldner(Npc_Default)
 	level = 18;
 	voice = 11;
 	id = 726;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 90;
 	attribute[ATR_DEXTERITY] = 70;
 	attribute[ATR_MANA_MAX] = 0;

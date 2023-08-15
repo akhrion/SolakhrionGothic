@@ -60,7 +60,7 @@ instance BathBabe(C_Npc)
 	level = 3;
 	voice = 11;
 	id = 3009;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 7;
 	attribute[ATR_DEXTERITY] = 11;
 	attribute[ATR_MANA_MAX] = 0;

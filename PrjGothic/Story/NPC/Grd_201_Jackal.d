@@ -7,7 +7,7 @@ instance Grd_201_Jackal(Npc_Default)
 	level = 50;
 	voice = 7;
 	id = 201;
-	flags = NPC_FLAG_IMMORTAL;
+
 	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 50;
 	attribute[ATR_MANA_MAX] = 0;
