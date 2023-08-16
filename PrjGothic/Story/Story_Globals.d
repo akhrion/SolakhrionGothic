@@ -469,7 +469,8 @@ var int PC_IsAllowedToChange_EquipedWeaponHand_Melee;
 var C_Item itmmm;
 var int PC_HasNecromancySkill;
 var int PC_NecromancySkillValue;
-const int PC_ChanceToSkillsImproveInBattle = 5;
+const int PC_ChanceToSkillsImproveInBattle = 100;
+var int PC_WasTrade;
 
 
 

@@ -227,7 +227,7 @@ instance ITestmodell(Npc_TestDefault)
 	level = 3;
 	voice = 11;
 	id = 3009;
-
+	flags = NPC_FLAG_IMMORTAL;
 	attribute[ATR_STRENGTH] = 7;
 	attribute[ATR_DEXTERITY] = 11;
 	attribute[ATR_MANA_MAX] = 0;
@@ -390,7 +390,7 @@ instance TestInfo_001_07_700(C_Info)
 	nr = 1;
 	condition = TestInfo_001_07_700_Condition;
 	information = TestInfo_001_07_700_Info;
-	important = 0;
+	important = 1;
 };
 
 
@@ -417,20 +417,25 @@ func void Rtn_start_GRD1_Testmodell()
 
 instance GRD1_Testmodell_Trade_01(C_ITEMREACT)
 {
-	npc = GRD1_Testmodell;
+//	npc = GRD1_Testmodell;
+	npc = Stt_311_Fisk;
 	trade_item = ItFoRice;
-	trade_amount = 1;
-	requested_item = ItMiHammer;
-	requested_amount = 1;
+	trade_amount = 6;
+	requested_cat = ITEM_KAT_NONE;
+	requested_item = ItFoApple;
+	requested_amount = 5;
 	reaction = GRD1_Testmodell_Trade_01_Func;
 };
 
 
 func int GRD1_Testmodell_Trade_01_Func()
 {
-	if(GRD1_Testmodell_Trade_01.requested_amount == 1)
+	PrintSIS("",Npc_HasItems(self,GRD1_Testmodell_Trade_01.requested_item),"");
+	
+	if(Npc_HasItems(self,GRD1_Testmodell_Trade_01.requested_item) > GRD1_Testmodell_Trade_01.requested_amount)
 	{
-		Print("Обмен удался.");
+		AI_Output(self,other,"Trade_Hammers_Info_NULL_01");	//Спасибо тебе, теперь моиъ запасов достаточно. Вот, возьми.
+		CreateInvItems(other,GRD1_Testmodell_Trade_01.trade_item,GRD1_Testmodell_Trade_01.trade_amount);
 		return 1;
 	};
 	return 0;

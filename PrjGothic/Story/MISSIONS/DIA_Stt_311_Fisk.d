@@ -74,6 +74,7 @@ func int Stt_311_Fisk_Trade_Condition()
 func void Stt_311_Fisk_Trade_Info()
 {
 	AI_Output(other,self,"Stt_311_Fisk_Trade_15_00");	//Покажи, что у тебя есть.
+	Trade_Started();
 };
 
 

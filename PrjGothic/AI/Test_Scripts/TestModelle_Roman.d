@@ -184,7 +184,7 @@ instance Allround_Testmodell(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_CROSSBOW,3);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,8);
 	Npc_SetTalentSkill(self,NPC_TALENT_FIREMASTER,3);
-
+	flags = NPC_FLAG_IMMORTAL;
 	fight_tactic = FAI_HUMAN_Strong;
 	CreateInvItem(self,ItArRobeMithril);
 	EquipItem(self,ItMw_2H_Sword_Heavy_01);

@@ -601,10 +601,16 @@ func void PC_Handler_Invoke()
 };
 func void PC_ImproveSkills()
 {
-	if(HasChance(PC_ChanceToSkillsImproveInBattle))
+	var int chance;
+	if(chance)
 	{
-		return;
+		if(HasChance(chance))
+		{
+			chance +=1;
+			return;
+		};
 	};
+	chance = PC_ChanceToSkillsImproveInBattle;
 	if(Npc_IsInFightMode(hero,FMODE_MAGIC))
 	{
 		return;

@@ -97,6 +97,7 @@ func void DIA_Dexter_Trade_Info()
 {
 	AI_Output(other,self,"DIA_BaalKagan_TRADE_15_00");	//Покажи мне свои товары.
 	AI_Output(self,other,"DIA_Dexter_Trade_10_01");	//У меня все самое лучшее...
+	Trade_Started();
 };
 
 
