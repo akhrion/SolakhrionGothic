@@ -67,7 +67,6 @@ instance SummonedByNPC_Demon(Mst_Default_Demon)
 instance XardasDemon(Mst_Default_Demon)
 {
 	name[0] = " ";
-
 	npcType = npctype_friend;
 	guild = GIL_DEMON;
 	aivar[AIV_IMPORTANT] = ID_DEMON;
