@@ -1,4 +1,6 @@
 
+const int TRUE = 1;
+const int FALSE = 0;
 const int ATR_HITPOINTS = 0;
 const int ATR_HITPOINTS_MAX = 1;
 const int ATR_MANA = 2;
