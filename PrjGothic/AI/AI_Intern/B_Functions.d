@@ -560,24 +560,7 @@ func void b_learn_trophies_ulumulu()
 	Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,1);
 };
 
-func int Item_GetWeaponHand(var C_Item itm)
-{
-	if(
-		isFlagsContainCategorie(itm.flags, ITEM_SWD)
-	||	isFlagsContainCategorie(itm.flags, ITEM_AXE)
-	)
-	{
-		return PC_WeaponHandOne;
-	}
-	else if(
-		isFlagsContainCategorie(itm.flags,ITEM_2HD_SWD)
-	||	isFlagsContainCategorie(itm.flags,ITEM_2HD_AXE)
-	)
-	{
-		return PC_WeaponHandTwo;
-	};
-	return UNDEFINED;
-};
+
 func void ChangeWeaponHand1H_Item_ChangeCondition_STR(var C_Item _itm)
 {
 	_itm.cond_value[2] = _itm.cond_value[2] * 2;

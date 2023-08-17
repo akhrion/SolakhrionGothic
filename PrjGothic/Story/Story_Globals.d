@@ -472,7 +472,14 @@ var int PC_NecromancySkillValue;
 const int PC_ChanceToSkillsImproveInBattle = 100;
 var int PC_WasTrade;
 
-
+var int PC_DexBuff_1H;
+var int PC_DexBuff_2H;
+var int PC_DexBuff_Bow;
+var int PC_DexBuff_CrossBow;
+const int PC_DexBuff_1H_Quality = 50;
+const int PC_DexBuff_2H_Quality = 20;
+const int PC_DexBuff_Bow_Quality = 100;
+const int PC_DexBuff_CrossBow_Quality = 70;
 
 
 

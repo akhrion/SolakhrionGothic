@@ -671,7 +671,7 @@ func int Item_IsRangedWeapon(var C_Item _itm)
 };
 func int Item_IsBow(var C_Item _itm)
 {
-	if(isFlagsContainCategorie(_itm,ITEM_BOW))
+	if(isFlagsContainCategorie(_itm.flags,ITEM_BOW))
 	{
 		return true;
 	};
@@ -679,7 +679,7 @@ func int Item_IsBow(var C_Item _itm)
 };
 func int Item_IsCrossBow(var C_Item _itm)
 {
-	if(isFlagsContainCategorie(_itm,ITEM_CROSSBOW))
+	if(isFlagsContainCategorie(_itm.flags,ITEM_CROSSBOW))
 	{
 		return true;
 	};
@@ -725,7 +725,35 @@ func int C_OtherIsToleratedEnemy(var C_Npc slf,var C_Npc oth)
 	PrintDebugNpc(PD_ZS_DETAIL,"...false!");
 	return FALSE;
 };
-
+func int Item_GetWeaponHand(var C_Item itm)
+{
+	if(
+		isFlagsContainCategorie(itm.flags, ITEM_SWD)
+	||	isFlagsContainCategorie(itm.flags, ITEM_AXE)
+	)
+	{
+		return PC_WeaponHandOne;
+	}
+	else if(
+		isFlagsContainCategorie(itm.flags,ITEM_2HD_SWD)
+	||	isFlagsContainCategorie(itm.flags,ITEM_2HD_AXE)
+	)
+	{
+		return PC_WeaponHandTwo;
+	};
+	return UNDEFINED;
+};
+func int Item_IsWeaponHandOne(var C_Item itm)
+{
+	if(
+		isFlagsContainCategorie(itm.flags, ITEM_SWD)
+	||	isFlagsContainCategorie(itm.flags, ITEM_AXE)
+	)
+	{
+		return true;
+	};
+	return false;
+};
 func void B_TolerateEnemy(var C_Npc slf,var C_Npc oth)
 {
 	var int npcInstance;
@@ -921,4 +949,75 @@ func int Npc_IsReceiveDamage(var C_Npc victim, var C_Npc attacker)
 func int HasChance(var int percent)
 {
 	return Hlp_Random(100 / percent);
+};
+func void Npc_RescaleCriticalChance(var C_Npc _npc)
+{
+	if(Npc_HasReadiedWeapon(_npc))
+	{
+		var C_Item itm;
+		itm = Npc_GetReadiedWeapon(_npc);
+		var int bonus;
+		if(Item_IsMeleeWeapon(itm))
+		{
+			if(Item_IsWeaponHandOne(itm))
+			{
+				if(getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_1H_Quality) == PC_DexBuff_1H)
+				{
+					return;
+				};
+					Print("1H Buff received");
+				bonus = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_1H_Quality) - PC_DexBuff_1H;
+				Npc_SetTalentValue(_npc,NPC_TALENT_1H,
+					Npc_GetTalentValue(_npc,NPC_TALENT_1H)
+					+ bonus
+				);
+				PC_DexBuff_1H = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_1H_Quality);
+			}
+			else
+			{
+				if(getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_2H_Quality) == PC_DexBuff_2H)
+				{
+					return;
+				};
+					Print("2H Buff received");
+				bonus = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_2H_Quality) - PC_DexBuff_2H;
+				Npc_SetTalentValue(_npc,NPC_TALENT_2H,
+					Npc_GetTalentValue(_npc,NPC_TALENT_2H)
+					+ bonus
+				);
+				PC_DexBuff_2H = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_2H_Quality);
+			};
+		}
+		else
+		{
+			if(Item_IsBow(itm))
+			{
+				if(getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_Bow_Quality) == PC_DexBuff_Bow)
+				{
+					return;
+				};
+					Print("Bow Buff received");
+				bonus = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_Bow_Quality) - PC_DexBuff_Bow;
+				Npc_SetTalentValue(_npc,NPC_TALENT_BOW,
+					Npc_GetTalentValue(_npc,NPC_TALENT_BOW)
+					+ bonus
+				);
+				PC_DexBuff_Bow = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_Bow_Quality);
+			}
+			else
+			{
+				if(getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_CrossBow_Quality) == PC_DexBuff_CrossBow)
+				{
+					return;
+				};
+					Print("CrossBow Buff received");
+				bonus = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_CrossBow_Quality) - PC_DexBuff_CrossBow;
+				Npc_SetTalentValue(_npc,NPC_TALENT_CROSSBOW,
+					Npc_GetTalentValue(_npc,NPC_TALENT_CROSSBOW)
+					+ bonus
+				);
+				PC_DexBuff_CrossBow = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_CrossBow_Quality);
+			};
+		};
+	};
 };
