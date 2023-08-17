@@ -965,7 +965,6 @@ func void Npc_RescaleCriticalChance(var C_Npc _npc)
 				{
 					return;
 				};
-					Print("1H Buff received");
 				bonus = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_1H_Quality) - PC_DexBuff_1H;
 				Npc_SetTalentValue(_npc,NPC_TALENT_1H,
 					Npc_GetTalentValue(_npc,NPC_TALENT_1H)
@@ -979,7 +978,6 @@ func void Npc_RescaleCriticalChance(var C_Npc _npc)
 				{
 					return;
 				};
-					Print("2H Buff received");
 				bonus = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_2H_Quality) - PC_DexBuff_2H;
 				Npc_SetTalentValue(_npc,NPC_TALENT_2H,
 					Npc_GetTalentValue(_npc,NPC_TALENT_2H)
@@ -996,7 +994,6 @@ func void Npc_RescaleCriticalChance(var C_Npc _npc)
 				{
 					return;
 				};
-					Print("Bow Buff received");
 				bonus = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_Bow_Quality) - PC_DexBuff_Bow;
 				Npc_SetTalentValue(_npc,NPC_TALENT_BOW,
 					Npc_GetTalentValue(_npc,NPC_TALENT_BOW)
@@ -1010,7 +1007,6 @@ func void Npc_RescaleCriticalChance(var C_Npc _npc)
 				{
 					return;
 				};
-					Print("CrossBow Buff received");
 				bonus = getPercentFromInteger(_npc.attribute[ATR_DEXTERITY],PC_DexBuff_CrossBow_Quality) - PC_DexBuff_CrossBow;
 				Npc_SetTalentValue(_npc,NPC_TALENT_CROSSBOW,
 					Npc_GetTalentValue(_npc,NPC_TALENT_CROSSBOW)
