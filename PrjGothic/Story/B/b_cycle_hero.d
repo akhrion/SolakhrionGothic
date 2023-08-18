@@ -53,6 +53,17 @@ func void PC_WeaponHand_Handler(var C_Item _itm)
 		};
 	};
 };
+func void PC_Mana()
+{
+	if(Npc_GetMana(hero) <= getPercentFromInteger(Npc_GetManaMax(hero),10))
+	{
+		return;
+	};
+	if(!(getCurDayMinutes() % 10))
+	{
+		Npc_DecreaseMana(hero,1);
+	};
+};
 func void b_cycle_hero()
 {
 //	PrintSIS("Dist to SPWN_PLANT_PSI_02 ",Npc_IsOnFP(hero,"SPWN_PLANT_PSI_02"),"");
@@ -62,6 +73,20 @@ func void b_cycle_hero()
 	hero_TakeItem();
 	PC_WeaponHand_Handler(PC_EquipedWeapon_Melee);
 	Npc_RescaleCriticalChance(hero);
+	PC_Mana();
+
+
+
+	PrintScreenSIS("BodyState hero: ",Npc_GetBodyState(hero),"",0,20,1);
+	if(Npc_GetBodyState(hero) == BS_HIT)
+	{
+		Print("Hero hit someone..");
+		if(getCurDayMinutes() % 2)
+		{
+
+		};
+		
+	};
 //	itmmm = Npc_GetEquippedMeleeWeapon(hero);
 //	Print(itmmm.name);
 //	Print(Npc_GetDetectedMob(hero));

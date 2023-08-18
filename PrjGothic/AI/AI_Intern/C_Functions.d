@@ -1019,3 +1019,34 @@ func void Npc_RescaleCriticalChance(var C_Npc _npc)
 		};
 	};
 };
+func void Npc_SetMana(var C_NPC npc,var int mana)
+{
+	npc.attribute[ATR_MANA] = mana;
+};
+func void Npc_DecreaseMana(var C_NPC npc,var int mana)
+{
+	if(npc.attribute[ATR_MANA] < 1){return;};
+	if(npc.attribute[ATR_MANA] - mana < 1)
+	{
+		Npc_SetMana(npc,0);
+		return;
+	};
+	npc.attribute[ATR_MANA] -= mana;
+};
+func void Npc_IncreaseMana(var C_NPC npc,var int mana)
+{
+	if(npc.attribute[ATR_MANA] >= npc.attribute[ATR_MANA_MAX]){return;};
+	if(npc.attribute[ATR_MANA] + mana >= npc.attribute[ATR_MANA_MAX]){
+		Npc_SetMana(npc,npc.attribute[ATR_MANA_MAX]);
+		return;
+	};
+	npc.attribute[ATR_MANA] += mana;
+};
+func int Npc_GetMana(var C_NPC npc)
+{
+	return npc.attribute[ATR_MANA];
+};
+func int Npc_GetManaMax(var C_NPC npc)
+{
+	return npc.attribute[ATR_MANA_MAX];
+};
