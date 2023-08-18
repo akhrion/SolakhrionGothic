@@ -28,6 +28,68 @@ func void PrintScreenSIS(var string _s1, var int _i, var string _s2, var int _x,
 };
 
 
+//Проверяет является-ли h текущим часом 0-23
+func int isCurHour(var int h)
+{
+	if(Wld_IsTime(h,0,h+1,1))
+	{
+		return true;
+	};
+	return false;
+};
+//Колбек инициализируется нулём, возвращает часы текущего дня.
+func int getCurDayHours_cb(var int i){
+	if(isCurHour(i))
+	{
+		return i;
+	};
+	return getCurDayHours_cb(i + 1);
+};
+//Возвращает часы текущего дня
+func int getCurDayHours_a()
+{
+	return getCurDayHours_cb(0);
+};
+
+//Работа функции не очевидна. Использовать с осторожностью. akhrion
+//При инициализации инкрементом в цикле, возвращает true когда increment
+//достигает значения равного количеству минут от начала дня.
+func int isCurMinute_private(var int increment)
+{
+	if(Wld_IsTime(0,increment,0,increment+2))
+	{
+		return true;
+	};
+	return false;
+};
+//Колбек инициализируется нулём, возвращает количество минут от начала дня.
+func int getCurDayMinutes_cb(var int i){
+	if(!isCurMinute_private(i))
+	{
+		return getCurDayMinutes_cb(i + 1);
+	};
+	return i;
+};
+//Возвращает количество минут от начала дня.
+func int getCurDayMinutes()
+{
+	return getCurDayMinutes_cb(0);
+};
+//Возвращает количество часов текущего дня.
+func int getCurDayHours()
+{
+	return getCurDayMinutes() / 60;
+};
+//Возвращает количество минут текущего часа.
+func int getCurHourMinutes()
+{
+	return getCurDayMinutes() - 60 * getCurDayHours();
+};
+//Возвращает количество минут прошедших с начала игры.
+func int getTimestamp()
+{
+	return Wld_GetDay() * 1440 + getCurDayMinutes();
+};
 // add function prototypes here
 //Тернарка.
 //exp - expression, r1 - возвращает, если условие верно, r2 - если не верно.
