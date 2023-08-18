@@ -587,7 +587,7 @@ func void PC_ImproveSkills()
 	var int chance;
 	if(chance)
 	{
-		if(HasChance(chance))
+		if(!Random_IsProc(chance))
 		{
 			chance +=1;
 			return;

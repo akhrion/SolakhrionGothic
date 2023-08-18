@@ -946,8 +946,10 @@ func int Npc_IsReceiveDamage(var C_Npc victim, var C_Npc attacker)
 	};
 	return FALSE;
 };
-func int HasChance(var int percent)
+func int Random_IsProc(var int percent)
 {
+	if(percent < 1){return false;};
+	if(percent > 99){return true;};
 	return Hlp_Random(100 / percent);
 };
 func void Npc_RescaleCriticalChance(var C_Npc _npc)
