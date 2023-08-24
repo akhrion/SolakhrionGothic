@@ -49,7 +49,7 @@ const string MOBNAME_SWORDSTONE = "Необычный камень";
 const string MOBNAME_OLD_CHEST = "Старый сундук";
 const string MOBNAME_FISHINGSPOT = "Рыбалка";
 
-const string TXT_GUILDS[42] =
+const string TXT_GUILDS[44] =
 {
 	"Нет гильдии",
 	"Барон",
@@ -67,6 +67,8 @@ const string TXT_GUILDS[42] =
 	"Страж",
 	"Некромант",
 	"Девица",
+	"Разбойник",
+	"Краснолюд",
 	"",
 	"Ящерица",
 	"Спящий",
