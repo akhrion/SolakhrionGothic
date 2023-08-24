@@ -259,6 +259,26 @@ func void B_MM_ReactToOthersDamage()
 	};
 };
 
+func void ReactInBattle_Scavenger_Invisible()
+{
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Scavenger_Invisible))
+	{
+		if(Random_IsProc(50))
+		{
+			Print("visible");
+			
+			Mdl_SetVisualBody(self,"Sca_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
+		}
+		else
+		{
+			Print("IN     visible");
+			
+			Mdl_SetVisualBody(self,"",9,9,"",9,9,-1);
+		};
+	};
+};
+
+
 func void B_MM_ReactToCombatDamage()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToCombatDamage");
@@ -272,7 +292,7 @@ func void B_MM_ReactToCombatDamage()
 	
 	if(Npc_IsPlayer(other))
 	{
-		
+		ReactInBattle_Scavenger_Invisible();
 		if(Npc_IsReceiveDamage(self,other))
 		{
 			PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон монстру.");

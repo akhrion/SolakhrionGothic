@@ -41,6 +41,12 @@ func void Set_Scavenger_Visuals()
 	Mdl_SetVisualBody(self,"Sca_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
 };
 
+func void Set_Scavenger_Invisible_Visuals()
+{
+	Mdl_SetVisual(self,"Scavenger.mds");
+//	Mdl_SetVisualBody(self,"Sca_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
+};
+
 func void set_yscavenger_visuals()
 {
 	Mdl_SetVisual(self,"Scavenger.mds");
@@ -51,6 +57,13 @@ func void set_yscavenger_visuals()
 instance Scavenger(Mst_Default_Scavenger)
 {
 	Set_Scavenger_Visuals();
+	Npc_SetToFistMode(self);
+	CreateInvItem(self,ItFoMuttonRaw);
+};
+
+instance Scavenger_Invisible(Mst_Default_Scavenger)
+{
+	Set_Scavenger_Invisible_Visuals();
 	Npc_SetToFistMode(self);
 	CreateInvItem(self,ItFoMuttonRaw);
 };
