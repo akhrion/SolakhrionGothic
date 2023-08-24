@@ -66,7 +66,7 @@ instance DIA_Gomez_Hello(C_Info)
 
 func int DIA_Gomez_Hello_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Raven_There) && (gomez_kontakte < 4) && (Kapitel == 1))
+	if(Npc_KnowsInfo(hero,DIA_Raven_There) && (gomez_kontakte < 2) && (Kapitel == 1))
 	{
 		return 1;
 	};
@@ -97,8 +97,24 @@ func void DIA_Gomez_Hello_Kontakte()
 	Info_ClearChoices(DIA_Gomez_Hello);
 	Info_AddChoice(DIA_Gomez_Hello,"Это самые влиятельные люди.",DIA_Gomez_Hello_Kontakte_ThatsAll);
 	Info_AddChoice(DIA_Gomez_Hello,"Несколько воришек из Нового лагеря.",DIA_Gomez_Hello_Kontakte_NLHehler);
-	Info_AddChoice(DIA_Gomez_Hello,"Ларс.",DIA_Gomez_Hello_Kontakte_Lares);
-	Info_AddChoice(DIA_Gomez_Hello,"Пара Идолов из Братства.",DIA_Gomez_Hello_Kontakte_Baals);
+	if(
+		Npc_KnowsInfo(hero,ORG_801_Lares_YouHere)
+	||	Npc_KnowsInfo(hero,ORG_801_Lares_WannaJoin)
+	||	Npc_KnowsInfo(hero,ORG_801_Lares_MordragSentMe)
+	)
+	{
+		Info_AddChoice(DIA_Gomez_Hello,"Ларс.",DIA_Gomez_Hello_Kontakte_Lares);
+	};
+	if(
+		Npc_KnowsInfo(hero,DIA_BaalOrun_GotWeed)
+	||	Npc_KnowsInfo(hero,DIA_BaalCadar_SleepSpell)
+	||	Npc_KnowsInfo(hero,DIA_BaalNamib_FirstTalk)
+	||	Npc_KnowsInfo(hero,DIA_BaalTyon_Vision)
+	||	Npc_KnowsInfo(hero,DIA_BaalTondral_SendToKalom)
+	)
+	{
+		Info_AddChoice(DIA_Gomez_Hello,"Пара Идолов из Братства.",DIA_Gomez_Hello_Kontakte_Baals);
+	};
 	Info_AddChoice(DIA_Gomez_Hello,"Кор Галом.",DIA_Gomez_Hello_Kontakte_Kalom);
 	if(gomez_kontakte < 3)
 	{
@@ -193,7 +209,7 @@ instance DIA_Gomez_Dabei(C_Info)
 
 func int DIA_Gomez_Dabei_Condition()
 {
-	if((gomez_kontakte >= 3) && (Npc_GetTrueGuild(hero) == GIL_None))
+	if((gomez_kontakte >= 2) && (Npc_GetTrueGuild(hero) == GIL_None))
 	{
 		return 1;
 	};

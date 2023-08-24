@@ -193,7 +193,7 @@ func void ORG_801_Lares_BringListBack_Info()
 {
 	AI_Output(other,self,"ORG_801_Lares_BringListBack_15_00");	//Я передал список Диего.
 	AI_Output(self,other,"ORG_801_Lares_BringListBack_11_01");	//Хорошо! Я как раз направил своих людей к Старой шахте. Стражники Торуса должны сейчас лежать себе спокойно в лесу.
-	Points_NC = Points_NC + 10;
+	Points_NC = Points_NC + 30;
 	Lares_BringListBack = LOG_SUCCESS;
 	if(Npc_KnowsInfo(hero,Info_Diego_BringList_Offer))
 	{
@@ -421,7 +421,7 @@ func void ORG_801_Lares_400Ore_Info()
 		b_printtrademsg1("Отдано руды: 400");
 		AI_Output(self,other,"ORG_801_Lares_400Ore_11_01");	//Отлично! Конечно, это более чем достаточно.
 		Lares_Get400Ore = LOG_SUCCESS;
-		Points_NC = Points_NC + 10;
+		Points_NC = Points_NC + 20;
 		B_GiveInvItems(other,self,ItMiNugget,400);
 		if(BaalIsidro_DealerJob == LOG_RUNNING)
 		{
@@ -462,7 +462,7 @@ func int ORG_801_Lares_Reicht_Condition()
 func void ORG_801_Lares_Reicht_Info()
 {
 	AI_Output(other,self,"ORG_801_Lares_Reicht_15_00");	//Этого достаточно, чтобы меня приняли в шайку?
-	if((Points_NC >= 30) && (hero.level >= 5))
+	if(Points_NC >= 40)
 	{
 		AI_Output(self,other,"ORG_801_Lares_Reicht_AUFNAHME_11_00");	//Думаю, да.
 		AI_Output(self,other,"ORG_801_Lares_Reicht_AUFNAHME_11_01");	//Я даже приготовил тебе подарок - доспех, если быть точным. Подарок, конечно, небольшой, но заслуженный.
@@ -524,10 +524,6 @@ func void ORG_801_Lares_Reicht_Info()
 			AI_Output(self,other,"SVM_11_ITookYourOre");	//Как хорошо, что ты поделился со мной этой рудой!
 		};
 		AI_Output(self,other,"ORG_801_Lares_Reicht_11_04");	//Но ты еще не готов. Иди, выполняй другие поручения.
-		if(hero.level < 5)
-		{
-			B_PrintGuildCondition(5);
-		};
 	};
 };
 

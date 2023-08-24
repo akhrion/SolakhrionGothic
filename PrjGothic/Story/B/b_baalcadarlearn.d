@@ -154,6 +154,7 @@ func void DIA_BaalCadar_SleepSpell_Info()
 	AI_Output(self,other,"DIA_BaalCadar_SleepSpell_02_01");	//Кто научил тебя использовать магическую силу Спящего?
 	AI_Output(other,self,"DIA_BaalCadar_SleepSpell_15_02");	//Никто. Это было не слишком сложно.
 	AI_Output(self,other,"Gur_1208_BaalCadar_Teach_Info_02_02");	//Ключ к этому кроется в силе твоего духа.
+	PsiCamp_Entrance += 2;
 	BaalCadar_Ansprechbar = TRUE;
 	if((Npc_GetTrueGuild(hero) == GIL_None) && (Kapitel < 2))
 	{

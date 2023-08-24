@@ -232,41 +232,34 @@ func int GUR_1201_CorKalom_JoinPSI_Condition()
 
 func void GUR_1201_CorKalom_JoinPSI_Info()
 {
-	var int counter;
 	var C_Npc fortuno;
-	counter = 0;
 	fortuno = Hlp_GetNpc(NOV_1357_Fortuno);
 	AI_Output(other,self,"GUR_1201_CorKalom_JoinPSI_15_00");	//По-моему, я смог доказать Идолам свою преданность.
 	if(Npc_KnowsInfo(hero,DIA_BaalOrun_GotWeed))
 	{
 		AI_Output(other,self,"GUR_1201_CorKalom_JoinPSI_15_01");	//Идол Оран считает, что я достоин стать верным слугой Спящего.
-		counter = counter + 1;
 	};
 	if(Npc_KnowsInfo(hero,DIA_BaalCadar_SleepSpell))
 	{
 		AI_Output(self,other,"GUR_1201_CorKalom_JoinPSI_10_02");	//Дальше...
 		AI_Output(other,self,"GUR_1201_CorKalom_JoinPSI_15_03");	//Идол Кадар считает, что я быстро учусь.
-		counter = counter + 1;
 	};
 	if(Npc_KnowsInfo(hero,DIA_BaalNamib_FirstTalk))
 	{
 		AI_Output(other,self,"GUR_1201_CorKalom_JoinPSI_15_04");	//Идол Намиб уверен, что я истинный последователь веры в Спящего.
-		counter = counter + 1;
 	};
 	if(Npc_KnowsInfo(hero,DIA_BaalTyon_Vision))
 	{
 		AI_Output(other,self,"GUR_1201_CorKalom_JoinPSI_15_05");	//Благодаря мне Идолу Тиону было видение.
-		counter = counter + 1;
 	};
 	if(Npc_KnowsInfo(hero,DIA_BaalTondral_SendToKalom))
 	{
 		AI_Output(self,other,"GUR_1201_CorKalom_JoinPSI_10_06");	//И?
 		AI_Output(other,self,"GUR_1201_CorKalom_JoinPSI_15_07");	//Идол Тондрал сказал, что я могу получить одежду послушника. Я привел к нему нового последователя.
-		counter = counter + 1;
 	};
-	if(hero.level >= 5)
+	if(hero.level >= 1)
 	{
-		if(counter >= 4)
+		if(PsiCamp_Entrance >= 6)
 		{
 			AI_Output(self,other,"GUR_1201_CorKalom_JoinPSI_10_08");	//Хорошо. Слов Идолов мне вполне достаточно.
 			AI_Output(self,other,"GUR_1201_CorKalom_JoinPSI_10_09");	//Вот, возьми эту одежду. А теперь иди и постарайся быть полезным.

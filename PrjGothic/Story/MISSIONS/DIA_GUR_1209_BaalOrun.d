@@ -109,6 +109,7 @@ func void DIA_BaalOrun_FirstTalk_Info()
 	AI_Output(self,other,"DIA_BaalOrun_FirstTalk_12_01");	//Именно поэтому тебя выбрали для выполнения особого задания.
 	AI_Output(self,other,"DIA_BaalOrun_FirstTalk_12_02");	//Кор Галом постоянно экспериментирует и ему нужен болотник.
 	AI_Output(self,other,"DIA_BaalOrun_FirstTalk_12_03");	//Наши сборщики трудятся не покладая рук. Иди к ним и принеси в лабораторию Галома весь их дневной сбор.
+	PsiCamp_Entrance += 1;
 	B_GiveXP(XP_BaalOrunTalks);
 	B_LogEntry(CH1_GhorimsRelief,"Харлок сменил Горима. Да, бывают в жизни чудеса...");
 	Log_SetTopicStatus(CH1_GhorimsRelief,LOG_SUCCESS);
@@ -128,6 +129,7 @@ func void DIA_BaalOrun_FirstTalk_Where()
 	AI_Output(self,other,"DIA_BaalOrun_FirstTalk_Where_12_02");	//Молись Спящему, дабы он простил твой святотатственный поступок! И ступай. Твоя миссия очень важна для всех нас.
 	Info_ClearChoices(DIA_BaalOrun_FirstTalk);
 	AI_StopProcessInfos(self);
+	PsiCamp_Entrance -= 2;
 	BaalOrun_Ansprechbar = FALSE;
 };
 
@@ -163,6 +165,7 @@ func void DIA_BaalOrun_GotWeed_Info()
 	AI_Output(self,other,"DIA_BaalOrun_GotWeed_12_00");	//Ты спас наших сборщиков...
 	AI_Output(self,other,"DIA_BaalOrun_GotWeed_12_01");	//Это не просто любопытство к нам, это проявление веры в Спящего.
 	AI_Output(self,other,"DIA_BaalOrun_GotWeed_12_02");	//Я вижу, ты достоин носить робу послушника.
+	PsiCamp_Entrance += 3;
 	BaalOrun_Ansprechbar = TRUE;
 	if((Npc_GetTrueGuild(hero) == GIL_None) && (Kapitel < 2))
 	{
@@ -199,6 +202,7 @@ func void DIA_BaalOrun_WeedAtKaloms_Info()
 	AI_Output(self,other,"DIA_BaalOrun_WeedAtKaloms_12_01");	//Неплохо поработал. Вот тебе за это небольшая награда.
 	b_printtrademsg1("Получен свиток сна.");
 	AI_Output(self,other,"DIA_BaalOrun_WeedAtKaloms_12_02");	//Это магическое заклинание Сна. Ты сможешь воспользоваться им только один раз, но я надеюсь, что оно сослужит тебе хорошую службу.
+	PsiCamp_Entrance += 2;
 	BaalOrun_Ansprechbar = TRUE;
 	B_GiveXP(XP_ReportToBaalOrun);
 	CreateInvItem(self,ItArScrollSleep);

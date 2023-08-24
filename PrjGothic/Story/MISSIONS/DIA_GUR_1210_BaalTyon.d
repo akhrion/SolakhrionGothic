@@ -129,6 +129,7 @@ func void DIA_BaalTyon_Vision_Info()
 	AI_Output(self,other,"DIA_BaalTyon_Vision_11_03");	//И еще он был похож на тебя. Кто ты? Что тебе здесь нужно?
 	AI_Output(other,self,"DIA_BaalTyon_Vision_15_04");	//Я всего лишь скромный слуга Спящего...
 	AI_Output(self,other,"DIA_BaalTyon_Vision_11_05");	//Иди к Кор Галому. Он знает, что делать.
+	PsiCamp_Entrance += 2;
 	self.npcType = npctype_main;
 	self.flags = 0;
 	BaalTyon_Ansprechbar = FALSE;

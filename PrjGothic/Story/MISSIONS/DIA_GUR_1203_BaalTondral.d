@@ -104,6 +104,7 @@ func void DIA_BaalTondral_YouTalked_Info()
 	AI_Output(self,other,"DIA_BaalTondral_YouTalked_13_01");	//я вижу, ты уже ознакомилс€ с нашими правилами. Ёто похвально.
 	AI_Output(self,other,"DIA_BaalTondral_YouTalked_13_02");	//¬ тебе сокрыта велика€ духовна€ сила! я чувствую это. ¬озможно, ты очень скоро будешь прин€т в наше Ѕратство.
 	AI_Output(self,other,"DIA_BaalTondral_YouTalked_13_03");	//я заговорил с тобой, дабы дать тебе шанс доказать нам свою преданность.
+	PsiCamp_Entrance += 2;
 };
 
 
@@ -184,7 +185,7 @@ func int DIA_BaalTondral_NewMember2_Condition()
 {
 	var C_Npc Dusty;
 	Dusty = Hlp_GetNpc(VLK_524_Dusty);
-	if(Npc_KnowsInfo(hero,DIA_BaalTondral_Loyality) && (Npc_GetDistToWP(Dusty,"PSI_PLATFORM_1") >= 1000) && (GETNEWGUY_DUSTY_JOINED == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_BaalTondral_Loyality) && (Npc_GetDistToWP(Dusty,"PSI_PLATFORM_1") >= 1000))
 	{
 		return 1;
 	};
@@ -236,6 +237,7 @@ func void DIA_BaalTondral_DustySuccess_Info()
 	B_LogEntry(CH1_RecruitDusty,"ƒасти стал учеником »дола “ондрала. я выполнил свое задание.");
 	Log_SetTopicStatus(CH1_RecruitDusty,LOG_SUCCESS);
 	B_GiveXP(XP_DeliveredDusty);
+	PsiCamp_Entrance += 1;
 	GETNEWGUY_DUSTY_JOINED = TRUE;
 	GETNEWGUY_STARTED = LOG_SUCCESS;
 	Dusty.guild = GIL_NOV;

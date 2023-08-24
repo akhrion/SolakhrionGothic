@@ -99,6 +99,7 @@ func void DIA_BaalNamib_FirstTalk_Info()
 {
 	AI_Output(self,other,"DIA_BaalNamib_FirstTalk_02_00");	//
 	AI_Output(self,other,"DIA_BaalNamib_FirstTalk_02_01");	//Спящий избрал тебя. Ты и в самом деле хочешь присоединиться к нам?
+	PsiCamp_Entrance += 1;
 	Info_ClearChoices(DIA_BaalNamib_FirstTalk);
 	Info_AddChoice(DIA_BaalNamib_FirstTalk,"(промолчать)",DIA_BaalNamib_FirstTalk_Mute);
 	Info_AddChoice(DIA_BaalNamib_FirstTalk,"Да, я хочу вступить на путь, указанный Спящим.",DIA_BaalNamib_FirstTalk_Sleeper);
