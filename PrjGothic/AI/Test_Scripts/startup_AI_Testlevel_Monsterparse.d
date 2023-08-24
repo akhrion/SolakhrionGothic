@@ -43,7 +43,7 @@ func void startup_AI_Testlevel_Monsterparse()
 	Wld_InsertNpc(OrcWarrior2,"WP_ORC");
 	Wld_InsertNpc(UndeadOrcShaman,"WP_ORC");
 	Wld_InsertNpc(UndeadOrcWarrior,"WP_ORC");
-	Wld_InsertNpc(Babe,"WP_GUARD_1");
+	Wld_InsertNpc(Babe1,"WP_GUARD_1");
 	Wld_InsertNpc(Babe2,"WP_GUARD_1");
 	Wld_InsertNpc(Babe3,"WP_GUARD_1");
 	Wld_InsertNpc(Babe4,"WP_GUARD_1");
