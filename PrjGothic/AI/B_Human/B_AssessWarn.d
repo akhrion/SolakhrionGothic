@@ -1,6 +1,7 @@
 
 func void B_AssessWarn()
 {
+	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessWarn");
 	PrintGlobals(PD_ZS_Check);
 	PrintAttitudes(PD_ZS_Check);

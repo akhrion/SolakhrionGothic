@@ -1,6 +1,7 @@
 
 func void B_AssessFightSound()
 {
+	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessFightSound");
 	if(C_NpcIsMonster(other) && C_NpcIsHuman(victim))
 	{

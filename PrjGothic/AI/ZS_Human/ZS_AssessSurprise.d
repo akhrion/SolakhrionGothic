@@ -1,6 +1,7 @@
 
 func void ZS_AssessSurprise()
 {
+	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"ZS_AssessSurprise");
 	C_ZSInit();
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,ZS_ReactToDamage);

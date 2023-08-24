@@ -1,6 +1,7 @@
 
 func void ZS_AssessWarn()
 {
+	B_AssessRogue();
 	var string nextWP;
 	PrintDebugNpc(PD_ZS_FRAME,"ZS_AssessWarn");
 	PrintGlobals(PD_ZS_Check);

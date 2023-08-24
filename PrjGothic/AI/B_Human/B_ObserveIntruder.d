@@ -1,6 +1,7 @@
 
 func void B_ObserveIntruder()
 {
+	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"B_ObserveIntruder");
 	if(other.aivar[AIV_INVINCIBLE])
 	{

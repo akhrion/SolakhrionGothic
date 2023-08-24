@@ -1,6 +1,11 @@
 
 func void ZS_ObserveIntruder()
 {
+		if(other.npcType == Npctype_ROGUE)
+		{
+			PrintSIS("NpcType is ROGUE",0,self.name);
+			AI_StartState(self,ZS_Attack,0,"");
+		};
 	PrintDebugNpc(PD_ZS_FRAME,"ZS_ObserveIntruder");
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_AssessEnemy);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTER,B_AssessFighter);

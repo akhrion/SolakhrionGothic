@@ -24,6 +24,11 @@ func void ZS_Attack()
 
 func int ZS_Attack_Loop()
 {
+	if(self.npcType != Npctype_ROGUE)
+	{
+		PrintSIS("ZS_Attack_Loop",0,self.name);
+	};
+	
 	var int countPursuitCycles;
 	PrintDebugNpc(PD_ZS_LOOP,"ZS_Attack_Loop");
 	Npc_GetTarget(self);

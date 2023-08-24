@@ -1,10 +1,29 @@
+func void B_AssessRogue()
+{
+	if(self.id == 1110)
+	{
+		Print(other.name);
+		
+	};
+	if(other.npcType != Npctype_ROGUE)
+	{
+		return;
+	};
+	Print("ROGUE FOUND");
+	
+
+
+};
 
 func void B_AssessEnemy()
 {
+	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessEnemy");
 	PrintGlobals(PD_ZS_Check);
 	if(Npc_CanSeeNpcFreeLOS(self,other))
 	{
+		Print("afsdfasdf");
+		
 		if(C_NpcIsHuman(other))
 		{
 			PrintDebugNpc(PD_ZS_FRAME,"...Feind ist Mensch!");
@@ -36,6 +55,10 @@ func void B_AssessEnemy()
 			if(Npc_IsInCutscene(other))
 			{
 				PrintDebugNpc(PD_ZS_Check,"...Feind ist in Cutscene!");
+				return;
+			};
+			if(self.npcType == Npctype_ROGUE && other.npcType == Npctype_ROGUE)
+			{
 				return;
 			};
 			B_FullStop(self);

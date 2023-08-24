@@ -1,6 +1,7 @@
 
 func void ZS_AssessEnemy()
 {
+	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"ZS_AssessEnemy");
 	C_ZSInit();
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);

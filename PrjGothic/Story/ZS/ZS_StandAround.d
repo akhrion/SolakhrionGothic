@@ -3,6 +3,8 @@ func void ZS_StandAround()
 {
 	PrintDebugNpc(PD_TA_FRAME,"ZS_StandAround");
 	B_SetPerception(self);
+	B_AssessRogue();
+	
 	if(Npc_WasInState(self,ZS_Smalltalk))
 	{
 		Npc_PercEnable(self,PERC_NPCCOMMAND,B_SmallTalk);

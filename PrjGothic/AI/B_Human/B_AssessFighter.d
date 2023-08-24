@@ -1,6 +1,8 @@
 
 func void B_AssessFighter()
 {
+		B_AssessRogue();
+
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessFighter");
 	if((self.id == 888) && (GOPSTOPPED_BRIDGE == TRUE))
 	{
@@ -29,6 +31,9 @@ func void B_AssessFighter()
 			PrintDebugNpc(PD_ZS_Check,"...SC in magischem Schlaf!");
 			return;
 		};
+
+
+
 		if(!Npc_IsPlayer(other))
 		{
 			PrintDebugNpc(PD_ZS_Check,"...NSC ist kein Spieler!");

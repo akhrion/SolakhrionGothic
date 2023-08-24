@@ -1,6 +1,7 @@
 
 func void B_AssessQuietSound()
 {
+	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessQuietSound");
 	PrintGlobals(PD_ZS_FRAME);
 	if(Npc_GetDistToItem(self,item) > PERC_DIST_DIALOG)

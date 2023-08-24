@@ -1,6 +1,7 @@
 
 func void B_ObserveSuspect()
 {
+	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"B_ObserveSuspect");
 	if((self.npcType == npctype_friend) || (Npc_GetAttitude(self,other) == ATT_FRIENDLY))
 	{
