@@ -523,3 +523,40 @@ func void Rtn_start_GRD3_Testmodell()
 	TA_TestHangAround(0,0,13,0,"X");
 	TA_TestHangAround(13,0,0,0,"X");
 };
+
+prototype ProtRedMan(C_Npc)
+{
+	name[0] = "RedMan";
+	guild = GIL_None;
+	level = 30;
+	voice = 11;
+	id = 1110;
+	attribute[ATR_STRENGTH] = 200;
+	attribute[ATR_DEXTERITY] = 50;
+	attribute[ATR_MANA_MAX] = 1;
+	attribute[ATR_MANA] = 1;
+	attribute[ATR_HITPOINTS_MAX] = 300;
+	attribute[ATR_HITPOINTS] = 300;
+	protection[PROT_BLUNT] = 100;
+	protection[PROT_EDGE] = 50;
+	protection[PROT_POINT] = 50;
+	Mdl_SetVisual(self,"HUMANS.MDS");
+	Mdl_ApplyOverlayMds(self,"HumanS_Relaxed.MDS");
+	Mdl_SetVisualBody(self,"hum_body_Naked0",0,0,"Hum_Head_Fighter",1,2,-1);
+	Mdl_SetModelFatness(self,1);
+	Mdl_SetModelScale(self,1.5,0.7,1.5);
+	CreateInvItem(self,ItMw_2H_Axe_Old_01);
+	fight_tactic = FAI_HUMAN_MASTER;
+	daily_routine = Rtn_start_RedMan;
+};
+
+instance RedMan(ProtRedMan)
+{
+	name[0] = "Краснолюд";
+
+};
+func void Rtn_start_RedMan()
+{
+	TA_StandAround(0,0,13,0,"SPAWN_TALL_PATH_BANDITOS2_03");
+	TA_StandAround(13,0,0,0,"SPAWN_TALL_PATH_BANDITOS2_03");
+};

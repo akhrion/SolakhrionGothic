@@ -1297,7 +1297,7 @@ instance ItMw_2H_Axe_Old_01(C_Item)
 	damagetype = DAM_EDGE;
 	range = 150;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = 64;
+	cond_value[2] = 100;
 	visual = "ItMw_2H_Axe_Old_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
