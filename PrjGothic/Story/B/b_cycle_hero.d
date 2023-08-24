@@ -59,7 +59,13 @@ func void PC_Mana()
 	{
 		return;
 	};
-	if(!(getCurDayMinutes() % 10))
+	if(
+		Npc_GetMagCircle(hero) == 0
+	)
+	{
+		Npc_DecreaseMana(hero,1);
+	}
+	else if(!(getCurDayMinutes() % Npc_GetMagCircle(hero)))
 	{
 		Npc_DecreaseMana(hero,1);
 	};
@@ -76,8 +82,11 @@ func void b_cycle_hero()
 	PC_Mana();
 
 
-
 	PrintScreenSIS("BodyState hero: ",Npc_GetBodyState(hero),"",0,20,1);
+	if(Npc_GetTarget(hero))
+	{
+		PrintScreenSIS("Dist to target: ",Npc_GetDistToPlayer(other),"",0,22,1);
+	};
 	if(Npc_GetBodyState(hero) == BS_HIT)
 	{
 		Print("Hero hit someone..");
