@@ -576,11 +576,19 @@ func void ch_diff_info()
 	Info_AddChoice(ch_diff,DIALOG_BACK,ch_diff_back);
 	if(DIFF_HARD == TRUE)
 	{
+		Info_AddChoice(ch_diff,"Модификация akh",ch_akh_mod);
 		Info_AddChoice(ch_diff,"Повышенная (включено)",ch_diff_hard);
+		Info_AddChoice(ch_diff,"Стандартная",ch_diff_standart);
+	}
+	else if(akh_Mod)
+	{
+		Info_AddChoice(ch_diff,"Модификация akh (включено)",ch_akh_mod);
+		Info_AddChoice(ch_diff,"Повышенная",ch_diff_hard);
 		Info_AddChoice(ch_diff,"Стандартная",ch_diff_standart);
 	}
 	else
 	{
+		Info_AddChoice(ch_diff,"Модификация akh",ch_akh_mod);
 		Info_AddChoice(ch_diff,"Повышенная",ch_diff_hard);
 		Info_AddChoice(ch_diff,"Стандартная (включено)",ch_diff_standart);
 	};
@@ -610,6 +618,20 @@ func void ch_diff_hard()
 	DEX_EXTRAKT_VAL = 2;
 	DEX_ELIXIER_VAL = 3;
 	PrintScreen("Сложность: повышенная",-1,-1,"font_old_20_white.tga",5);
+};
+
+func void ch_akh_mod()
+{
+	Info_ClearChoices(ch_diff);
+	akh_Mod = TRUE;
+	Npc_InitParameters(hero);
+	STR_ESSENZ_VAL = 3;
+	STR_EXTRAKT_VAL = 5;
+	STR_ELIXIER_VAL = 8;
+	DEX_ESSENZ_VAL = 3;
+	DEX_EXTRAKT_VAL = 5;
+	DEX_ELIXIER_VAL = 8;
+	PrintScreen("Модификация: akh",-1,-1,"font_old_20_white.tga",5);
 };
 
 func void ch_diff_standart()

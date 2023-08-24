@@ -950,10 +950,11 @@ func int Random_IsProc(var int percent)
 {
 	if(percent < 1){return false;};
 	if(percent > 99){return true;};
-	return Hlp_Random(100 / percent);
+	return !Hlp_Random(100 / percent);
 };
 func void Npc_RescaleCriticalChance(var C_Npc _npc)
 {
+	if(!Npc_IsPlayer(_npc)){return;};
 	if(Npc_HasReadiedWeapon(_npc))
 	{
 		var C_Item itm;
@@ -1049,4 +1050,132 @@ func int Npc_GetMana(var C_NPC npc)
 func int Npc_GetManaMax(var C_NPC npc)
 {
 	return npc.attribute[ATR_MANA_MAX];
+};
+
+
+
+
+func int Npc_GetMagCircle(var C_Npc npc)
+{
+	return Npc_GetTalentSkill(npc,NPC_TALENT_MAGE);
+};
+func void Npc_RescaleHitpoints(var C_Npc npc)
+{
+
+	if(npc.attribute[ATR_HITPOINTS_MAX] != npc.attribute[ATR_STRENGTH] * npc.level)
+	{
+		npc.attribute[ATR_HITPOINTS_MAX] = npc.attribute[ATR_STRENGTH] * npc.level;
+	};
+	if(!Npc_IsPlayer(npc))
+	{
+		if(Npc_GetDistToPlayer(npc) < 3000)
+		{
+			if(npc.attribute[ATR_HITPOINTS] != npc.attribute[ATR_HITPOINTS_MAX])
+			{
+				npc.attribute[ATR_HITPOINTS] = npc.attribute[ATR_HITPOINTS_MAX];
+			};
+		};
+	}
+	else
+	{
+		if(npc.attribute[ATR_HITPOINTS] > npc.attribute[ATR_HITPOINTS_MAX])
+		{
+			npc.attribute[ATR_HITPOINTS] = npc.attribute[ATR_HITPOINTS_MAX];
+		};
+	};
+};
+func void Npc_RescaleMana(var C_Npc npc)
+{
+	if(!Npc_GetMagCircle(npc))
+	{
+		if(npc.attribute[ATR_MANA] != npc.level)
+		{
+			npc.attribute[ATR_MANA] = npc.level;
+		};
+		if(npc.attribute[ATR_MANA_MAX] != npc.level)
+		{
+			npc.attribute[ATR_MANA_MAX] = npc.level;
+		};
+	}
+	else
+	{
+		var int maxManaByLevelAndCircle;
+		maxManaByLevelAndCircle = npc.level + pow(Npc_GetMagCircle(npc),Npc_GetMagCircle(npc));
+		if(npc.attribute[ATR_MANA_MAX] != maxManaByLevelAndCircle)
+		{
+			npc.attribute[ATR_MANA_MAX] = maxManaByLevelAndCircle;
+		};
+		if(!Npc_IsPlayer(npc))
+		{
+			if(Npc_GetDistToPlayer(npc) < 3000)
+			{
+				if(npc.attribute[ATR_MANA] != maxManaByLevelAndCircle)
+				{
+					npc.attribute[ATR_MANA] = maxManaByLevelAndCircle;
+				};
+			};
+		}
+		else
+		{
+			if(npc.attribute[ATR_MANA] > maxManaByLevelAndCircle)
+			{
+				npc.attribute[ATR_MANA] = maxManaByLevelAndCircle;
+			};
+		};
+	};
+};
+
+func void Npc_RescaleProtections(var C_Npc npc)
+{
+	if(Npc_HasEquippedArmor(npc))
+	{
+		var C_Item armor;
+		armor = Npc_GetEquippedArmor(npc);
+		if(npc.protection[PROT_BLUNT] != armor.protection[PROT_BLUNT] + npc.attribute[ATR_STRENGTH])
+		{
+			npc.protection[PROT_BLUNT] = armor.protection[PROT_BLUNT] + npc.attribute[ATR_STRENGTH];
+		};
+	};
+};
+func void Npc_InitParameters(var C_Npc npc)
+{
+	if(akh_Mod)
+	{
+		if(
+			Npc_IsPlayer(npc)
+		&&	hero.level == 0
+		)
+		{
+			hero.level = 1;
+			if(npc.attribute[ATR_STRENGTH] != 1)
+			{
+				npc.attribute[ATR_STRENGTH] = 1;
+			};
+			if(npc.attribute[ATR_DEXTERITY] != 1)
+			{
+				npc.attribute[ATR_DEXTERITY] = 1;
+			};
+			if(npc.attribute[ATR_MANA] != 1)
+			{
+				npc.attribute[ATR_MANA] = 1;
+			};
+			if(npc.attribute[ATR_MANA_MAX] != 1)
+			{
+				npc.attribute[ATR_MANA_MAX] = 1;
+			};
+			if(npc.attribute[ATR_HITPOINTS] != 1)
+			{
+				npc.attribute[ATR_HITPOINTS] = 1;
+			};
+			if(npc.attribute[ATR_HITPOINTS_MAX] != 1)
+			{
+				npc.attribute[ATR_HITPOINTS_MAX] = 1;
+			};
+			return;
+		};
+		Npc_RescaleMana(npc);
+		Npc_RescaleHitpoints(npc);
+		Npc_RescaleProtections(npc);
+		Npc_RescaleCriticalChance(npc);
+	};
 };

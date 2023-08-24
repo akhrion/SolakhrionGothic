@@ -469,7 +469,7 @@ var int PC_IsAllowedToChange_EquipedWeaponHand_Melee;
 var C_Item itmmm;
 var int PC_HasNecromancySkill;
 var int PC_NecromancySkillValue;
-const int PC_ChanceToSkillsImproveInBattle = 100;
+const int PC_ChanceToSkillsImproveInBattle = 5;
 var int PC_WasTrade;
 
 var int PC_DexBuff_1H;
@@ -481,6 +481,9 @@ const int PC_DexBuff_2H_Quality = 20;
 const int PC_DexBuff_Bow_Quality = 100;
 const int PC_DexBuff_CrossBow_Quality = 70;
 
+var int PsiCamp_Entrance;
+
+var int akh_Mod;
 
 
 
