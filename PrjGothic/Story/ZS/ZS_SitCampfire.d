@@ -2,7 +2,6 @@
 func void ZS_SitCampfire()
 {
 	GuardPerception();
-	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSC);
 	if(!C_BodyStateContains(self,BS_SIT))
 	{
 		AI_Standup(self);
