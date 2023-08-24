@@ -585,6 +585,11 @@ func void PC_Handler_Invoke()
 func void PC_ImproveSkills()
 {
 	var int chance;
+	//С ростом уровня ГГ прокачка замедляется
+	if(Hlp_Random(hero.level))
+	{
+		return;
+	};
 	if(chance)
 	{
 		if(!Random_IsProc(chance))
