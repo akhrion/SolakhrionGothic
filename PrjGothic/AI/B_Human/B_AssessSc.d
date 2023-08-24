@@ -45,6 +45,9 @@ func void B_AssessSC()
 	var C_Npc her;
 	var C_Npc rock;
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessSc");
+	B_Cycle_NPC(self);
+
+	
 	if((self.id == 888) && (GOPSTOPPED_BRIDGE == TRUE))
 	{
 		Npc_SetTempAttitude(self,ATT_HOSTILE);
