@@ -81,7 +81,6 @@ func void ObservingPerception()
 {
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_AssessEnemy);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTER,B_AssessFighter);
-	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSC);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,ZS_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
