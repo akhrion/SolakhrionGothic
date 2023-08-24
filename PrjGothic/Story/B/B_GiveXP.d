@@ -30,7 +30,11 @@ func void B_GiveXP(var int add_xp)
 		hero.exp_next = hero.exp_next + ((hero.level + 1) * 500);
 		if(!Npc_IsDead(hero))
 		{
-			if(DIFF_HARD == TRUE)
+			if(akh_Mod == true)
+			{
+				Npc_RescaleHitpoints(hero);
+			}
+			else if(DIFF_HARD == TRUE)
 			{
 				hero.attribute[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX] + 8;
 				hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS] + 8;
