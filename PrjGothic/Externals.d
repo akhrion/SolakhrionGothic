@@ -122,6 +122,10 @@ func int expon(var int i,var int e)
 {
 	return expon_cb(i,e,i);
 };
+func int pow(var int i,var int e)
+{
+	return expon_cb(i,e,i);
+};
 
 //Возвращает результат* умножения целочисленного типа на тип с плавающей запятой:
 //*результат округляется в нижнюю сторону
