@@ -2,7 +2,6 @@
 func void ZS_Babe_Sleep()
 {
 	PrintDebugNpc(PD_TA_FRAME,"ZS_BabeSleep");
-	AI_UnequipArmor(self);
 	B_SetBabeDefaultPerceptions();
 	AI_SetWalkMode(self,NPC_WALK);
 	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT))

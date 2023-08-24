@@ -1,7 +1,7 @@
 
-instance Babe(Npc_Default)
+instance Babe0(Npc_Default)
 {
-	name[0] = "babe";
+	name[0] = "babe0";
 	guild = GIL_None;
 	level = 1;
 	flags = 0;
@@ -16,6 +16,26 @@ instance Babe(Npc_Default)
 	attribute[ATR_HITPOINTS] = 10;
 	Mdl_SetVisual(self,"Babe.MDS");
 	Mdl_SetVisualBody(self,"Bab_body_Naked0",0,0,"Bab_Head_Hair1",0,DEFAULT,-1);
+	fight_tactic = FAI_HUMAN_COWARD;
+};
+
+instance Babe1(Npc_Default)
+{
+	name[0] = "babe1";
+	guild = GIL_None;
+	level = 1;
+	flags = 0;
+	voice = 19;
+	id = 110;
+
+	attribute[ATR_STRENGTH] = 6;
+	attribute[ATR_DEXTERITY] = 8;
+	attribute[ATR_MANA_MAX] = 0;
+	attribute[ATR_MANA] = 0;
+	attribute[ATR_HITPOINTS_MAX] = 10;
+	attribute[ATR_HITPOINTS] = 10;
+	Mdl_SetVisual(self,"Babe.MDS");
+	Mdl_SetVisualBody(self,"Bab_body_Naked0",0,1,"Bab_Head_Hair1",0,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_COWARD;
 };
 
@@ -35,7 +55,7 @@ instance Babe2(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 10;
 	attribute[ATR_HITPOINTS] = 10;
 	Mdl_SetVisual(self,"Babe.MDS");
-	Mdl_SetVisualBody(self,"Bab_body_Naked0",0,1,"Bab_Head_Hair1",0,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Bab_body_Naked0",0,2,"Bab_Head_Hair1",0,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	CreateInvItem(self,bab_armor_nude);
 	CreateInvItem(self,bab_armor_bikini);
@@ -58,7 +78,7 @@ instance Babe3(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 10;
 	attribute[ATR_HITPOINTS] = 10;
 	Mdl_SetVisual(self,"Babe.MDS");
-	Mdl_SetVisualBody(self,"Bab_body_Naked0",1,1,"Bab_Head_Hair1",1,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Bab_body_Naked0",0,3,"Bab_Head_Hair1",1,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	start_aistate = ZS_Babe_SitAround;
 };

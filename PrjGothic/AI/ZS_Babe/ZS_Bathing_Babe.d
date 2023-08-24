@@ -12,11 +12,12 @@ func void ZS_Bathing_Babe()
 	if(Wld_IsMobAvailable(self,"BATHTUB"))
 	{
 		PrintDebug("Wanne gefunden! Gehe baden");
-		if(!Npc_HasItems(self,bab_armor_nude))
+		if(Npc_HasEquippedArmor(self))
 		{
-			CreateInvItem(self,bab_armor_nude);
+			item = Npc_GetEquippedArmor(self);
+			self.bodymass = Hlp_GetInstanceID(item);
+			AI_UnequipArmor(self);
 		};
-		AI_EquipBestArmor(self);
 		AI_UseMob(self,"BATHTUB",1);
 		Mdl_ApplyRandomAni(self,"S_BATHTUB_S1","T_BATHTUB_RANDOM1");
 		Mdl_ApplyRandomAni(self,"S_BATHTUB_S1","T_BATHTUB_RANDOM2");
@@ -36,10 +37,9 @@ func void ZS_Bathing_Babe_End()
 {
 	PrintDebug("Enter ZS_Bathing_Babe_End() ");
 	AI_UseMob(self,"BATHTUB",-1);
-	AI_UnequipArmor(self);
-	if(Npc_HasItems(self,bab_armor_nude))
+	if(self.bodymass)
 	{
-		Npc_RemoveInvItem(self,bab_armor_nude);
+		AI_EquipArmor(self,self.bodymass);
 	};
 };
 

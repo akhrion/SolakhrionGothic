@@ -1215,7 +1215,7 @@ instance BAB_ARMOR_NUDE(C_Item)
 
 instance BAB_ARMOR_BIKINI(C_Item)
 {
-	name = "Девица в бикини";
+	name = "Женская одежда";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	value = 1;
@@ -1229,6 +1229,42 @@ instance BAB_ARMOR_BIKINI(C_Item)
 	visual_change = "Bab_ARMOR.asc";
 	visual_skin = 1;
 	material = MAT_LEATHER;
+};
+instance t0(C_Item)
+{
+	name = "Женская одежда 0";
+	mainflag = ITEM_KAT_ARMOR;
+	wear = WEAR_TORSO;
+	visual = "vobbox.3ds";
+	visual_change = "Bab_ARMOR.asc";
+	visual_skin = 0;
+};
+instance t1(C_Item)
+{
+	name = "Женская одежда 1";
+	mainflag = ITEM_KAT_ARMOR;
+	wear = WEAR_TORSO;
+	visual = "vobbox.3ds";
+	visual_change = "Bab_ARMOR.asc";
+	visual_skin = 1;
+};
+instance t2(C_Item)
+{
+	name = "Женская одежда 2";
+	mainflag = ITEM_KAT_ARMOR;
+	wear = WEAR_TORSO;
+	visual = "vobbox.3ds";
+	visual_change = "Bab_ARMOR.asc";
+	visual_skin = 2;
+};
+instance t3(C_Item)
+{
+	name = "Женская одежда 3";
+	mainflag = ITEM_KAT_ARMOR;
+	wear = WEAR_TORSO;
+	visual = "vobbox.3ds";
+	visual_change = "Bab_ARMOR.asc";
+	visual_skin = 3;
 };
 
 instance ZOM_ARMOR(C_Item)

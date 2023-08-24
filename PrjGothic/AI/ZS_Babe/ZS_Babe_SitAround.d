@@ -2,7 +2,6 @@
 func void ZS_Babe_SitAround()
 {
 	PrintDebugNpc(PD_TA_FRAME,"ZS_BabeSitAround");
-	AI_UnequipArmor(self);
 	B_SetBabeDefaultPerceptions();
 	AI_SetWalkMode(self,NPC_WALK);
 	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == 0)
