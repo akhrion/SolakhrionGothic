@@ -3,6 +3,10 @@ func void B_AssessCaster()
 {
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessCaster");
 	PrintGlobals(PD_ZS_Check);
+	if(Npc_GetActiveSpell(other) == SPL_HEAL)
+	{
+		B_Magic_HealAOE(other,self);
+	};
 	if(!Npc_IsPlayer(other))
 	{
 		PrintDebugNpc(PD_ZS_Check,"...Zauberer NICHT der Spieler!");

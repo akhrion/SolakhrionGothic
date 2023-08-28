@@ -664,3 +664,11 @@ func void PC_ImproveSkills()
 		};
 	};
 };
+
+func void B_Magic_HealAOE(var C_Npc mag,var C_Npc observer)
+{
+	if(observer.attribute[ATR_HITPOINTS] < observer.attribute[ATR_HITPOINTS_MAX])
+	{
+		Npc_ChangeAttribute(observer,ATR_HITPOINTS,SPL_HEALING_HP_PER_MP);
+	};
+};
