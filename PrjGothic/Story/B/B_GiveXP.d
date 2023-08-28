@@ -105,3 +105,94 @@ func void B_UnconciousXP()
 	};
 };
 
+func void B_LevelUp_NPC(var C_Npc npc)
+{
+	PrintDebugNpc(PD_ZS_FRAME,"B_LevelUp_NPC");
+	PrintGlobals(PD_ZS_Check);
+	npc.level +=1;
+	Npc_InitParameters(npc);
+};
+
+func void PC_ImproveSkills()
+{
+	var int chance;
+	//С ростом уровня ГГ прокачка замедляется
+	if(Hlp_Random(hero.level + 1))
+	{
+		return;
+	};
+	if(chance)
+	{
+		if(!Random_IsProc(chance))
+		{
+			chance +=1;
+			return;
+		};
+	};
+	B_GiveXP(hero.exp_next - hero.exp);
+	chance = PC_ChanceToSkillsImproveInBattle;
+	if(Npc_IsInFightMode(hero,FMODE_MAGIC))
+	{
+		return;
+	};
+	if(Npc_IsInFightMode(hero,FMODE_FIST))
+	{
+		hero.attribute[ATR_STRENGTH] += 2;
+		return;
+	};
+
+	var C_Item weapon;
+	weapon = Npc_GetReadiedWeapon(hero);
+	if(Item_IsMeleeWeapon(weapon))
+	{
+		hero.attribute[ATR_STRENGTH] += 1;
+		if(Item_GetWeaponHand(weapon) == PC_WeaponHandOne)
+		{
+			Npc_SetTalentValue(hero,NPC_TALENT_1H,Npc_GetTalentValue(hero,NPC_TALENT_1H) + 1);
+			if(
+				Npc_GetTalentSkill(hero,NPC_TALENT_1H) == 0
+			&&	Npc_GetTalentValue(hero,NPC_TALENT_1H) >= 10
+			)
+			{
+				Npc_SetTalentSkill(hero,NPC_TALENT_1H,1);
+			};
+		}
+		else
+		{
+			Npc_SetTalentValue(hero,NPC_TALENT_2H,Npc_GetTalentValue(hero,NPC_TALENT_2H) + 1);
+			if(
+				Npc_GetTalentSkill(hero,NPC_TALENT_2H) == 0
+			&&	Npc_GetTalentValue(hero,NPC_TALENT_2H) >= 10
+			)
+			{
+				Npc_SetTalentSkill(hero,NPC_TALENT_2H,1);
+			};
+		};
+	}
+	else
+	{
+		hero.attribute[ATR_DEXTERITY] += 1;
+		if(Item_IsBow(weapon))
+		{
+			Npc_SetTalentValue(hero,NPC_TALENT_BOW,Npc_GetTalentValue(hero,NPC_TALENT_BOW) + 1);
+			if(
+				Npc_GetTalentSkill(hero,NPC_TALENT_BOW) == 0
+			&&	Npc_GetTalentValue(hero,NPC_TALENT_BOW) >= 10
+			)
+			{
+				Npc_SetTalentSkill(hero,NPC_TALENT_BOW,1);
+			};
+		}
+		else
+		{
+			Npc_SetTalentValue(hero,NPC_TALENT_CROSSBOW,Npc_GetTalentValue(hero,NPC_TALENT_CROSSBOW) + 1);
+			if(
+				Npc_GetTalentSkill(hero,NPC_TALENT_CROSSBOW) == 0
+			&&	Npc_GetTalentValue(hero,NPC_TALENT_CROSSBOW) >= 10
+			)
+			{
+				Npc_SetTalentSkill(hero,NPC_TALENT_CROSSBOW,1);
+			};
+		};
+	};
+};
