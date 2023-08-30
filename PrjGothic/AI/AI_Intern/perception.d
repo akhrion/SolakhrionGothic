@@ -4,7 +4,7 @@ const int PERC_DIST_FLEE = 300;
 const int PERC_DIST_DIALOG = 500;
 const int PERC_DIST_WATCHFIGHT = 600;
 const int PERC_DIST_INTERMEDIAT = 1000;
-const int PERC_DIST_MAX = 2000;
+const int PERC_DIST_MAX = 3000;
 
 func void b_setcutsceneperceptions()
 {
@@ -30,7 +30,7 @@ func void InitPerceptions()
 	Perc_SetRange(PERC_OBSERVEINTRUDER,HAI_DIST_OBSERVEINTRUDER);
 	Perc_SetRange(PERC_ASSESSFIGHTSOUND,HAI_DIST_HELPATTACKEDCHARGES);
 	Perc_SetRange(PERC_ASSESSQUIETSOUND,PERC_DIST_INTERMEDIAT);
-	Perc_SetRange(PERC_ASSESSWARN,3000);
+	Perc_SetRange(PERC_ASSESSWARN,PERC_DIST_MAX);
 	Perc_SetRange(PERC_CATCHTHIEF,HAI_DIST_CATCHTHIEF);
 	Perc_SetRange(PERC_ASSESSTHEFT,HAI_DIST_ASSESSTHEFT);
 	Perc_SetRange(PERC_ASSESSCALL,PERC_DIST_INTERMEDIAT);
@@ -74,12 +74,13 @@ func void GuardPerception()
 	Npc_PercEnable(self,PERC_ASSESSENTERROOM,B_AssessEnterRoom);
 	Npc_PercEnable(self,PERC_MOVEMOB,B_MoveMob);
 	Npc_PercEnable(self,PERC_MOVENPC,B_MoveNpc);
-	Npc_SetPercTime(self,0.5);
+	Npc_SetPercTime(self,1.0);
 };
 
 func void ObservingPerception()
 {
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_AssessEnemy);
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSC);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTER,B_AssessFighter);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,ZS_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
@@ -102,12 +103,13 @@ func void ObservingPerception()
 	Npc_PercEnable(self,PERC_ASSESSENTERROOM,B_AssessEnterRoom);
 	Npc_PercEnable(self,PERC_MOVEMOB,B_MoveMob);
 	Npc_PercEnable(self,PERC_MOVENPC,B_MoveNpc);
-	Npc_SetPercTime(self,1);
+	Npc_SetPercTime(self,1.0);
 };
 
 func void OccupiedPerception()
 {
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,ZS_ReactToDamage);
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSC);
 	Npc_PercEnable(self,PERC_ASSESSTHREAT,B_AssessFighter);
 	Npc_PercEnable(self,PERC_DRAWWEAPON,B_AssessFighter);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
@@ -126,22 +128,26 @@ func void OccupiedPerception()
 	Npc_PercEnable(self,PERC_ASSESSENTERROOM,B_AssessEnterRoom);
 	Npc_PercEnable(self,PERC_MOVEMOB,B_MoveMob);
 	Npc_PercEnable(self,PERC_MOVENPC,B_MoveNpc);
+	Npc_SetPercTime(self,1.0);
 };
 
 func void DeepSleepPerception()
 {
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,ZS_ReactToDamage);
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSC);
 	Npc_PercEnable(self,PERC_OBSERVEINTRUDER,B_TossAndTurn);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTSOUND,B_TossAndTurn);
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_TossAndTurn);
 	Npc_PercEnable(self,PERC_ASSESSTALK,B_TossAndTurn);
 	Npc_PercEnable(self,PERC_ASSESSCALL,B_TossAndTurn);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
+	Npc_SetPercTime(self,1.0);
 };
 
 func void LightSleepPerception()
 {
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,ZS_ReactToDamage);
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSC);
 	Npc_PercEnable(self,PERC_ASSESSWARN,ZS_WakeUp);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTSOUND,ZS_WakeUp);
 	Npc_PercEnable(self,PERC_CATCHTHIEF,ZS_CatchThief);
@@ -149,6 +155,7 @@ func void LightSleepPerception()
 	Npc_PercEnable(self,PERC_ASSESSTALK,ZS_WakeUp);
 	Npc_PercEnable(self,PERC_ASSESSCALL,ZS_WakeUp);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
+	Npc_SetPercTime(self,1.0);
 };
 
 func void B_SetPerception(var C_Npc self)

@@ -9,7 +9,14 @@ func void B_AssessRogue()
 	{
 		return;
 	};
-	Print("ROGUE FOUND");
+	if(self.npcType == Npctype_ROGUE)
+	{
+		Print("Rogue found another Rogue..");
+	}
+	else
+	{
+		Print("Attention!! ROGUE is here!");
+	};
 	
 
 
@@ -22,8 +29,6 @@ func void B_AssessEnemy()
 	PrintGlobals(PD_ZS_Check);
 	if(Npc_CanSeeNpcFreeLOS(self,other))
 	{
-		Print("afsdfasdf");
-		
 		if(C_NpcIsHuman(other))
 		{
 			PrintDebugNpc(PD_ZS_FRAME,"...Feind ist Mensch!");
