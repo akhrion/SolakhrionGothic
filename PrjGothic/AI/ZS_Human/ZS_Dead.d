@@ -37,6 +37,13 @@ func void ZS_Dead()
 	if(Npc_IsPlayer(other) || (C_NpcIsHuman(other) && other.aivar[AIV_PARTYMEMBER]) || (C_NpcIsMonster(other) && other.aivar[AIV_MOVINGMOB]))
 	{
 		B_DeathXP();
+	}
+	else
+	{
+		if(akh_Mod)
+		{
+			B_LevelUp_NPC(other);
+		};
 	};
 	if(C_NpcIsMonster(self))
 	{
