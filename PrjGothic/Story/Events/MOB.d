@@ -765,6 +765,7 @@ func void evt_ogy_calom_func()
 
 func int ll1_cf()
 {
+	PC_LootChest();
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK) < 1)
 	{
 		PrintScreen(_STR_CANNOTUSE_LOCKS_NO_SKILL,-1,_YPOS_MESSAGE_Joincamp,"font_old_10_white.tga",2);
@@ -779,9 +780,25 @@ func int ll1_cf()
 	};
 	return FALSE;
 };
-
+func void ll1_s0()
+{
+	Print("S0");
+};
+func void ll1_s1()
+{
+	Print("S1");
+};
+func void ll2_s0()
+{
+	Print("S0");
+};
+func void ll2_s1()
+{
+	Print("S1");
+};
 func int ll2_cf()
 {
+	PC_LootChest();
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK) < 1)
 	{
 		PrintScreen(_STR_CANNOTUSE_LOCKS_NO_SKILL,-1,_YPOS_MESSAGE_Joincamp,"font_old_10_white.tga",2);

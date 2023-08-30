@@ -609,10 +609,24 @@ func void B_Magic_HealAOE(var C_Npc mag,var C_Npc observer)
 };
 func int Random_RogueIsAttack(var int involvements)
 {
-	involvements +=10;
 	if(Hlp_Random((involvements + 1)))
 	{
 		return false;
 	};
 	return true;
+};
+func void PC_LootChest()
+{
+	if(Npc_IsDetectedMobOwnedByGuild(hero,GIL_EBR))
+	{
+		Print("EBR is owner..");
+	}
+	else if(Npc_IsDetectedMobOwnedByGuild(hero,GIL_KDF))
+	{
+		Print("KDF is owner..");
+	}
+	else if(Npc_IsDetectedMobOwnedByGuild(hero,GIL_GRD))
+	{
+		Print("GRD is owner..");
+	};
 };
