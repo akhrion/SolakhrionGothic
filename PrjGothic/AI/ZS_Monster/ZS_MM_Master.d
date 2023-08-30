@@ -63,6 +63,8 @@ func void B_MM_AssessBody()
 func void ZS_MM_EatBody()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_EatBody");
+	Npc_SetPercTime(self,1);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_OBSERVEINTRUDER,B_MM_ObserveIntruder);
@@ -120,7 +122,8 @@ func void B_MM_AssessEnemy()
 func void ZS_MM_AssessEnemy()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_AssessEnemy");
-	Npc_SetPercTime(self,2);
+	Npc_SetPercTime(self,1);
+//	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
@@ -292,7 +295,7 @@ func void B_MM_ReactToCombatDamage()
 	
 	if(Npc_IsPlayer(other))
 	{
-		ReactInBattle_Scavenger_Invisible();
+//		ReactInBattle_Scavenger_Invisible();
 		if(Npc_IsReceiveDamage(self,other))
 		{
 			PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон монстру.");
@@ -306,6 +309,8 @@ func void ZS_MM_Attack()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Attack");
 	PrintGlobals(PD_MST_DETAIL);
+	Npc_SetPercTime(self,1);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 
 	if(C_NpcIsMonsterMage(self))
 	{
@@ -461,6 +466,8 @@ func void ZS_MM_Attack_End()
 func void ZS_MM_Flee()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Flee");
+	Npc_SetPercTime(self,1);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	AI_Standup(self);
 	AI_SetWalkMode(self,NPC_RUN);
@@ -548,12 +555,14 @@ func void ZS_MM_AllScheduler()
 func void ZS_MM_Rtn_Default()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_Default");
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_MM_AssessEnemy);
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_MM_AssessWarn);
 	Npc_PercEnable(self,PERC_ASSESSBODY,B_MM_AssessBody);
+	Npc_SetPercTime(self,1);
 	AI_AlignToWP(self);
 };
 
@@ -599,6 +608,7 @@ func void ZS_MM_Rtn_Sleep()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_Sleep");
 	Npc_SetPercTime(self,2);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_MM_AssessWarn);
@@ -637,6 +647,10 @@ func void ZS_MM_Rtn_Sleep_end()
 func void ZS_MM_Rtn_Roam()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_Roam");
+	Npc_SetPercTime(self,1);
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSc);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
+	Npc_PercEnable(self,PERC_ASSESSQUIETSOUND,B_AssessQuietSound);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
@@ -698,6 +712,9 @@ func void ZS_MM_Rtn_Rest()
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_Rest");
 	Npc_SetPercTime(self,2);
 	self.aivar[AIV_PLUNDERED] = PRIO_PREY;
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSc);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
+	Npc_PercEnable(self,PERC_ASSESSQUIETSOUND,B_AssessQuietSound);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
@@ -754,6 +771,7 @@ func void ZS_MM_Rtn_EatGround()
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_EatGround");
 	Npc_SetPercTime(self,2);
 	self.aivar[AIV_PLUNDERED] = PRIO_PREY;
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
@@ -795,6 +813,8 @@ func void ZS_MM_Rtn_EatGround_End()
 func void ZS_MM_Rtn_Wusel()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_Wusel");
+	Npc_SetPercTime(self,1);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
@@ -854,6 +874,7 @@ func void ZS_MM_Summoned()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Summoned");
 	Npc_SetPercTime(self,1);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSENEMY,ZS_MM_Attack);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	AI_Standup(self);
@@ -891,6 +912,8 @@ func void ZS_MM_Summoned_End()
 
 func void zs_mm_minecrawler_omgate()
 {
+	Npc_SetPercTime(self,1);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);

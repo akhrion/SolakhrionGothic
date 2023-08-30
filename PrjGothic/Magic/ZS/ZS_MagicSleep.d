@@ -43,10 +43,18 @@ func void ZS_MagicSleep()
 func void ZS_MagicSleep_Loop()
 {
 	var int time;
+	var int time_sleep_local;
 	PrintDebugNpc(PD_ZS_LOOP,"MagicSleep Loop");
-	time = Npc_GetStateTime(self);
-	if(time > SPL_TIME_SLEEP)
+	Print(IntToString(time));
+	if(!time)
 	{
+		Print("ѕерва€ итераци€.. происходит инициализаци€.");
+		time_sleep_local = time_sleep_global;
+	};
+	time = Npc_GetStateTime(self);
+	if(time > time_sleep_local)
+	{
+		time = 0;
 		B_StopMagicSleep();
 	};
 	AI_Wait(self,1);

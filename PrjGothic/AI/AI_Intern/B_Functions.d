@@ -585,8 +585,34 @@ func void PC_Handler_Invoke()
 
 func void B_Magic_HealAOE(var C_Npc mag,var C_Npc observer)
 {
-	if(observer.attribute[ATR_HITPOINTS] < observer.attribute[ATR_HITPOINTS_MAX])
+	var int heal_LastTime;
+//	if(heal_LastTime == getTimestamp()){return;};
+	Print(IntToString(Npc_GetDistToNpc(mag,observer)));
+	PrintSIS(mag.name,0,observer.name);
+	if(Npc_GetDistToNpc(mag,observer) < 1000)
 	{
-		Npc_ChangeAttribute(observer,ATR_HITPOINTS,SPL_HEALING_HP_PER_MP);
+		heal_LastTime = getTimestamp();
+		Print(ConcatStrings(ConcatStrings(IntToString(heal_LastTime),"  "),IntToString(getTimestamp())));
+		if(
+			observer.guild == GIL_SKELETON
+		||	observer.guild == GIL_UNDEADORC
+		||	observer.guild == GIL_ZOMBIE
+		)
+		{
+			Npc_ChangeAttribute(observer,ATR_HITPOINTS,-SPL_HEALING_HP_PER_MP);
+		}
+		else if(observer.attribute[ATR_HITPOINTS] < observer.attribute[ATR_HITPOINTS_MAX])
+		{
+			Npc_ChangeAttribute(observer,ATR_HITPOINTS,SPL_HEALING_HP_PER_MP);
+		};
 	};
+};
+func int Random_RogueIsAttack(var int involvements)
+{
+	involvements +=10;
+	if(Hlp_Random((involvements + 1)))
+	{
+		return false;
+	};
+	return true;
 };

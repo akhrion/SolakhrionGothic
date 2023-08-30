@@ -20,13 +20,14 @@ func void ZS_Attack()
 	{
 		PC_Handler_Invoke();
 	};
+	Npc_SetPercTime(self,1.0);
 };
 
 func int ZS_Attack_Loop()
 {
 	if(self.npcType != Npctype_ROGUE)
 	{
-		PrintSIS("ZS_Attack_Loop",0,self.name);
+//		PrintSIS("ZS_Attack_Loop",0,self.name);
 	};
 	
 	var int countPursuitCycles;

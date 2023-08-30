@@ -184,6 +184,16 @@ func void B_AssessMagic_Control()
 	Npc_SendPassivePerc(self,PERC_ASSESSFIGHTSOUND,self,other);
 };
 
+func void B_AssessMagic_Heal()
+{
+	PrintSIS("B_AssessMagic_Heal",0,other.name);
+	Print(self.name);
+	if(Npc_GetDistToNpc(other,self) < 1000)
+	{
+
+	B_Magic_HealAOE(other,self);
+	};
+};
 func void B_AssessMagic()
 {
 	PrintGlobals(PD_MAGIC);
@@ -271,6 +281,10 @@ func void B_AssessMagic()
 	else if(Npc_GetActiveSpell(other) == SPL_SHRINK)
 	{
 		B_AssessMagic_Shrink();
+	}
+	else if(Npc_GetActiveSpell(other) == SPL_HEAL)
+	{
+		B_AssessMagic_Heal();
 	};
 };
 

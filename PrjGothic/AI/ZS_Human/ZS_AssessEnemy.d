@@ -4,11 +4,13 @@ func void ZS_AssessEnemy()
 	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"ZS_AssessEnemy");
 	C_ZSInit();
+//	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSMURDER,B_CombatAssessMurder);
 	Npc_PercEnable(self,PERC_ASSESSDEFEAT,B_CombatAssessDefeat);
 	Npc_PercEnable(self,PERC_CATCHTHIEF,ZS_CatchThief);
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,ZS_AssessSurprise);
+	Npc_SetPercTime(self,1.0);
 	B_FullStop(self);
 	B_WhirlAround(self,other);
 	if(C_NpcIsGuard(self) || C_NpcIsGuardArcher(self) || C_NpcIsBoss(self) || (self.npcType == npctype_friend))
