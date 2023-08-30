@@ -45,7 +45,7 @@ func void B_AssessSC()
 	var C_Npc her;
 	var C_Npc rock;
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessSc");
-	B_Cycle_NPC(self);
+	B_Cycle_NPC();
 
 	
 	if((self.id == 888) && (GOPSTOPPED_BRIDGE == TRUE))

@@ -1135,8 +1135,16 @@ func void Npc_RescaleProtections(var C_Npc npc)
 		{
 			npc.protection[PROT_BLUNT] = armor.protection[PROT_BLUNT] + npc.attribute[ATR_STRENGTH];
 		};
+	}
+	else
+	{
+		if(npc.protection[PROT_BLUNT] != npc.attribute[ATR_STRENGTH])
+		{
+			npc.protection[PROT_BLUNT] = npc.attribute[ATR_STRENGTH];
+		};
 	};
 };
+
 func void Npc_InitParameters(var C_Npc npc)
 {
 	if(akh_Mod)
@@ -1177,5 +1185,40 @@ func void Npc_InitParameters(var C_Npc npc)
 		Npc_RescaleHitpoints(npc);
 		Npc_RescaleProtections(npc);
 		Npc_RescaleCriticalChance(npc);
+	};
+};
+func int Npc_GetMagicPower(var C_Npc npc)
+{
+	return npc.attribute[ATR_MANA] * Npc_GetTalentSkill(npc,NPC_TALENT_MAGE);
+};
+func void Spell_CalculateTimePerMana(var C_Spell spell)
+{
+	if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 0)
+	{
+		spell.time_per_mana = 5000;
+	}
+	else if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 1)
+	{
+		spell.time_per_mana = 2000;
+	}
+	else if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 2)
+	{
+		spell.time_per_mana = 1000;
+	}
+	else if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 3)
+	{
+		spell.time_per_mana = 300;
+	}
+	else if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 4)
+	{
+		spell.time_per_mana = 100;
+	}
+	else if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 5)
+	{
+		spell.time_per_mana = 10;
+	}
+	else if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 6)
+	{
+		spell.time_per_mana = 1;
 	};
 };
