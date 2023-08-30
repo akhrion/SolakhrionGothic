@@ -2128,6 +2128,7 @@ func void init_orctempel()
 
 func void startup_oldmine()
 {
+	b_cycle_om_function();
 	Wld_InsertNpc(STT_300_Alberto,"OM_122");
 	Wld_InsertNpc(STT_301_Ian,"OM_122");
 	Wld_InsertNpc(STT_302_Viper,"OM_122");

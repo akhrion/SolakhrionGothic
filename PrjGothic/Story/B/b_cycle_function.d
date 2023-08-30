@@ -1,8 +1,15 @@
+func void b_cycle_om_function()
+{
+	b_cycle_hero();
+	B_Cycle_NPC();
+	Wld_SendTrigger("CYCLE_TRIGGER");
+};
 
 func void b_cycle_function()
 {
 	SpawnPlants();
 	b_cycle_hero();
+	B_Cycle_NPC();
 	var C_Npc Kirgo;
 	var C_Npc Kharim;
 	var C_Npc GorHanis;
