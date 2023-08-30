@@ -484,12 +484,15 @@ const int PC_DexBuff_CrossBow_Quality = 70;
 var int PsiCamp_Entrance;
 
 var int akh_Mod;
+var int time_sleep_global;
+var int SPL_FIREBALL_TIME_PER_MANA_BASIC;
 
-
+var int PC_iRogueInvolvements;
 
 
 func void init_variables()
 {
+    SPL_FIREBALL_TIME_PER_MANA_BASIC = 750;
     if(PC_WeaponHand == 0)
     {
         PC_WeaponHand = PC_WeaponHandOne;
