@@ -2,10 +2,12 @@ func void PrintI(var int _i)
 {
 	Print(IntToString(_i));
 };
-func void PrintII(var int _i,var int _ii)
+func void PrintISI(var int _i,var string _str,var int _ii)
 {
 	Print(ConcatStrings(
-		IntToString(item.flags),
+		ConcatStrings(
+			IntToString(item.flags),_str
+		),
 		IntToString(ITEM_2HD_SWD)
 	));
 };
