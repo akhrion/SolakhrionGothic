@@ -1,3 +1,9 @@
+// ITEM_AXE			edge	dmg += str / 2; пробитие брони - половина урона топора без силы;	средний шанс крита;
+// ITEM_CLUB		blunt	dmg += str; шанс оглушить цель;										низкий шанс крита;
+// ITEM_SWD			edge	dmg += (str + dex) / 2;												высокий шанс крита;
+// ITEM_2H_AXE		edge	dmg += str; пробитие + оглушение;									низкий шанс крита;
+// ITEM_2H_STAFF	blunt	dmg += 
+// ITEM_2H_SWD		edge	dmg += str
 
 const int Value_1H_Sword_01 = 100;
 
@@ -80,7 +86,7 @@ instance ItMwPickaxe(C_Item)
 	damagetype = DAM_EDGE;
 	range = 100;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = 5;
+	cond_value[2] = 1;
 	visual = "ItMw_2H_Pickaxe_01.3DS";
 	material = MAT_WOOD;
 	description = name;
@@ -441,12 +447,12 @@ instance ItMw_2H_Staff_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
-	value = 80;
+	value = 20;
 	damageTotal = 17;
 	damagetype = DAM_BLUNT;
 	range = 160;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = 14;
+	cond_value[2] = 3;
 	visual = "ItMw_2H_Staff_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
