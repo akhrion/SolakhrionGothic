@@ -89,12 +89,25 @@ func void b_cycle_hero()
 	};
 	if(Npc_GetBodyState(hero) == BS_HIT)
 	{
-		Print("Hero hit someone..");
-		if(getCurDayMinutes() % 2)
+		if(Npc_GetTarget(hero))
 		{
+			Print("Hero hit someone..");
+			if(getCurDayMinutes() % 2)
+			{
 
+			};
+		}
+		else
+		{
+			if(
+				quest_Blade_SwordsSkills_Counter < 10
+			&&	questTaken_Blade_SwordsSkills
+			&&	Npc_IsInFightMode(hero,FMODE_MELEE)
+			)
+			{
+				quest_Blade_SwordsSkills_Counter +=1;
+			};
 		};
-		
 	};
 //	itmmm = Npc_GetEquippedMeleeWeapon(hero);
 //	Print(itmmm.name);
