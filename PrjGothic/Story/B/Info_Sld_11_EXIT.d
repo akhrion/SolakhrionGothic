@@ -40,18 +40,77 @@ func int Info_Sld_11_EinerVonEuchWerden_Condition()
 
 func void Info_Sld_11_EinerVonEuchWerden_Info()
 {
-	var C_Npc gorn;
 	AI_Output(other,self,"Info_Sld_11_EinerVonEuchWerden_15_00");	//Я бы хотел быть наемником магов.
 	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_11_01");	//Это не так уж сложно. Если ты докажешь, что хочешь работать на нас, Ли примет тебя.
 	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_11_02");	//Но ему нужны такие люди, которые хорошо владеют мечом. А ты можешь сказать это о себе?
+	Info_ClearChoices(Info_Sld_11_EinerVonEuchWerden);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"Ну..",Info_Sld_11_EinerVonEuchWerden_Amm);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"Нет.",Info_Sld_11_EinerVonEuchWerden_NO);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"Конечно, я владею оружием!",Info_Sld_11_EinerVonEuchWerden_Obviously);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"Да.",Info_Sld_11_EinerVonEuchWerden_YES);
+};
+func void Info_Sld_11_EinerVonEuchWerden_Amm()
+{
+	var C_Npc gorn;
 	AI_Output(other,self,"Info_Sld_11_EinerVonEuchWerden_15_03");	//Ну...я...
 	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_11_04");	//Так я и подумал. Если ты еще не передумал, поговори с Горном. Когда-то он уже тренировал новичков.
 	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_11_05");	//Может быть, тебе повезет, и он согласится поработать над твоей техникой.
 	gorn = Hlp_GetNpc(PC_Fighter);
 	gorn.aivar[AIV_FINDABLE] = TRUE;
 };
+func void Info_Sld_11_EinerVonEuchWerden_NO()
+{
+	AI_Output(other,self,"Info_Sld_11_EinerVonEuchWerden_NO_15_01");	//Нет.
+	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_NO_11_02");	//В таком случае вряд ли что-то получится. В первую очередь наёмник должен владеть мечом. Как ты собрался защищать магов?
+	Info_ClearChoices(Info_Sld_11_EinerVonEuchWerden);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"Ну..",Info_Sld_11_EinerVonEuchWerden_Amm);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"А охотники вам не нужны?",Info_Sld_11_EinerVonEuchWerden_HUNTER);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"Я умею пользоваться арбалетом.",Info_Sld_11_EinerVonEuchWerden_CROSSBOW);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"Я владею луком.",Info_Sld_11_EinerVonEuchWerden_BOW);
+};
+func void Info_Sld_11_EinerVonEuchWerden_HUNTER()
+{
+	AI_Output(other,self,"Info_Sld_11_EinerVonEuchWerden_HUNTER_15_01");	//А охотники вам не нужны?
+	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_HUNTER_11_02");	//Хах.. конечно нужны! Однако охотой обычно занимаются люди Ларса. Некоторые из нас тоже охотятся, но это другая история.
+	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_HUNTER_11_03");	//*усмехаясь* Охота не защитит магов. Наёмник должен владеть оружием.
+	Info_ClearChoices(Info_Sld_11_EinerVonEuchWerden);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"Но я охочусь с помощью лука!",Info_Sld_11_EinerVonEuchWerden_HUNTER_BUTITWEAPONTO);
+	Info_AddChoice(Info_Sld_11_EinerVonEuchWerden,"Понятно..",Info_Sld_11_EinerVonEuchWerden_HUNTER_GETIT);
+};
+func void Info_Sld_11_EinerVonEuchWerden_HUNTER_BUTITWEAPONTO()
+{
+	AI_Output(other,self,"Info_Sld_11_EinerVonEuchWerden_HUNTER_BUTITWEAPONTO_15_01");	//Но я охочусь с помощью лука!
+};
+func void Info_Sld_11_EinerVonEuchWerden_HUNTER_GETIT()
+{
+	AI_Output(other,self,"Info_Sld_11_EinerVonEuchWerden_HUNTER_GETIT_15_01");	//Понятно..
+};
+func void Info_Sld_11_EinerVonEuchWerden_CROSSBOW()
+{
 
-
+};
+func void Info_Sld_11_EinerVonEuchWerden_ALSO()
+{
+	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_ALSO_11_01");	//В любом случае, одного оружия ещё не достаточно, что-бы Ли принял тебя. Ли должен доверять тебе.
+	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_ALSO_11_02");	//И мы должны.
+};
+func void Info_Sld_11_EinerVonEuchWerden_BOW()
+{
+	AI_Output(other,self,"Info_Sld_11_EinerVonEuchWerden_BOW_15_01");	//Я владею луком.
+	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_BOW_11_02");	//Хм лук.. ну может что-то из этого и выйдет.
+	Info_Sld_11_EinerVonEuchWerden_ALSO();
+};
+func void Info_Sld_11_EinerVonEuchWerden_Obviously()
+{
+	AI_Output(other,self,"Info_Sld_11_EinerVonEuchWerden_Obviously_15_01");	//Конечно, я владею оружием!
+	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_Obviously_11_02");	//Воу воу в тебе есть запал хаха. Покажи что ты умеешь..
+	questTaken_Blade_SwordsSkills = true;
+};
+func void Info_Sld_11_EinerVonEuchWerden_YES()
+{
+	AI_Output(other,self,"Info_Sld_11_EinerVonEuchWerden_YES_15_01");	//Да.
+	AI_Output(self,other,"Info_Sld_11_EinerVonEuchWerden_YES_11_02");	//Это хорошо, тогда осмотрись в лагере. И всё решится само собой.
+};
 instance Info_Sld_11_WichtigePersonen(C_Info)
 {
 	nr = 3;

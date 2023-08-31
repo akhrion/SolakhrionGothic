@@ -487,8 +487,9 @@ var int akh_Mod;
 var int time_sleep_global;
 var int SPL_FIREBALL_TIME_PER_MANA_BASIC;
 
-var int PC_iRogueInvolvements;
-
+var int PC_iRogueInvolvements; //чем выше значение переменной, тем с меньшей охотой игрока атакуют бандиты
+var int questTaken_Blade_SwordsSkills;
+var int quest_Blade_SwordsSkills_Counter;
 
 func void init_variables()
 {

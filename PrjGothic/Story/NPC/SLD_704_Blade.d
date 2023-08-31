@@ -46,3 +46,31 @@ func void rtn_fmtaken_704()
 	TA_Smalltalk(7,30,23,0,"OW_PATH_069");
 };
 
+instance Blade_SwordsSkills(C_Info)
+{
+	npc = SLD_704_Blade;
+	condition = Blade_SwordsSkills_Condition;
+	information = Blade_SwordsSkills_Info;
+	important = 1;
+	permanent = 0;
+};
+func int Blade_SwordsSkills_Condition()
+{
+	if(
+		quest_Blade_SwordsSkills_Counter >=10
+	&&	(
+			Npc_GetTalentSkill(hero,NPC_TALENT_1H) > 0
+		||	Npc_GetTalentSkill(hero,NPC_TALENT_2H) > 0
+		)
+	)
+	{
+		return TRUE;
+	};
+	return false;
+};
+func void Blade_SwordsSkills_Info()
+{
+	AI_Output(self,other,"Blade_SwordsSkills_Info_NULL_01");	//Да, твои навыки обращения с мечом, на уровне.
+	AI_Output(self,other,"Blade_SwordsSkills_Info_NULL_02");	//Пообщайся с парнями, может для тебя найдётся занятие.
+	AI_StopProcessInfos(self);
+};
