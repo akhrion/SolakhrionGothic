@@ -27,6 +27,7 @@ func void ChangeWeaponHand1H__Info()
 		{
 			Print(MSG_ONEHANDEDGRIP);		
 			ChangeWeaponHand1H_Item_ChangeCondition_STR(PC_EquipedWeapon_Melee);
+			PC_EquipedWeapon_Melee.range += 20;
 			PC_IsAllowedToChange_EquipedWeaponHand_Melee = TRUE;
 			AI_UnequipWeapons(self);
 			PC_WeaponHand = PC_WeaponHandOne;
@@ -71,6 +72,7 @@ func void ChangeWeaponHand2H__Info()
 	{
 		Print(MSG_TWOHANDEDGRIP);
 		ChangeWeaponHand2H_Item_ChangeCondition_STR(PC_EquipedWeapon_Melee);
+		PC_EquipedWeapon_Melee.range -= 20;
 		PC_IsAllowedToChange_EquipedWeaponHand_Melee = TRUE;
 		AI_UnequipWeapons(self);
         PC_WeaponHand = PC_WeaponHandTwo;
