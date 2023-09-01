@@ -18,6 +18,10 @@ func void B_GuardItemsAssessTheft()
 			{
 				return;
 			};
+			if(C_NpcBelongsToPsiCamp(self) && (Npc_GetTrueGuild(hero) == GIL_GUR))
+			{
+				return;
+			};
 			if(Npc_CanSeeNpcFreeLOS(self,other))
 			{
 				B_Say(self,other,"$HANDSOFF");
