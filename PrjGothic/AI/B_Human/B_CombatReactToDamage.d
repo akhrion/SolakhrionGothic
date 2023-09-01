@@ -34,6 +34,16 @@ func void B_CombatReactToDamage()
 		{
 			Npc_SetTarget(self,other);
 		};
+	}
+	else
+	{
+		if(
+			Npc_IsInFightMode(other,FMODE_MELEE)
+		||	Npc_IsInFightMode(other,FMODE_FIST)
+		)
+		{
+			Npc_SetTarget(self,other);
+		};
 	};
 	if(self.aivar[AIV_SPECIALCOMBATDAMAGEREACTION])
 	{

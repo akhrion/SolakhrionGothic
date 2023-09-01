@@ -207,6 +207,8 @@ func void ZS_MM_AssessEnemy_end()
 
 func void B_MM_ReactToDamage()
 {
+	Print("reacttodamage");
+	
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToDamage");
 	PrintGlobals(PD_MST_CHECK);
 	if(Npc_IsPlayer(other))
@@ -284,6 +286,8 @@ func void ReactInBattle_Scavenger_Invisible()
 
 func void B_MM_ReactToCombatDamage()
 {
+	Print("ReactToCombatDamage");
+	
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToCombatDamage");
 	self.aivar[AIV_PLUNDERED] = PRIO_ATTACKER;
 	if(C_PreyToPredator(self,other))
@@ -301,6 +305,12 @@ func void B_MM_ReactToCombatDamage()
 			PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон монстру.");
 			PC_ImproveSkills();
 		};
+	};
+	if(
+		Npc_IsInFightMode(other,FMODE_MELEE)
+	||	Npc_IsInFightMode(other,FMODE_FIST)
+	)
+	{
 		Npc_SetTarget(self,other);
 	};
 };
