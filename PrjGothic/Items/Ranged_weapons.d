@@ -605,93 +605,117 @@ instance ITAMBOLT_FIRE(C_Item)
 
 func void usearrow()
 {
-	CreateInvItem(hero,ItAmArrow);
-	if(Npc_HasEquippedRangedWeapon(hero))
+	CreateInvItem(self,ItAmArrow);
+	if(Npc_HasEquippedRangedWeapon(self))
 	{
-		item = Npc_GetEquippedRangedWeapon(hero);
-		if(item.flags & ITEM_BOW)
-		{
-			Print(NAME_EQUIPPED_ARROW);
-			item.munition = ItAmArrow;
-			item.damagetype = DAM_POINT;
-		}
-		else
-		{
-			Print(NAME_EQUIP_NEEDABOW);
-		};
+		item = Npc_GetEquippedRangedWeapon(self);
+	}
+	else if(Npc_HasReadiedRangedWeapon(self))
+	{
+		item = Npc_GetReadiedWeapon(self);
 	}
 	else
 	{
 		Print(NAME_EQUIP_NEEDARANGEDWEAPON);
+		return;
+	};
+
+	if((item.flags & ITEM_BOW)==ITEM_BOW)
+	{
+		Print(NAME_EQUIPPED_ARROW);
+		item.munition = ItAmArrow;
+		item.damagetype = DAM_POINT;
+	}
+	else
+	{
+		Print(NAME_EQUIP_NEEDABOW);
 	};
 };
 
 func void usearrow_fire()
 {
-	CreateInvItem(hero,itamarrow_fire);
-	if(Npc_HasEquippedRangedWeapon(hero))
+	CreateInvItem(self,itamarrow_fire);
+	if(Npc_HasEquippedRangedWeapon(self))
 	{
-		item = Npc_GetEquippedRangedWeapon(hero);
-		if(item.flags & ITEM_BOW)
-		{
-			Print(NAME_EQUIPPED_ARROWFIRE);
-			item.munition = itamarrow_fire;
-			item.damagetype = DAM_FIRE;
-		}
-		else
-		{
-			Print(NAME_EQUIP_NEEDABOW);
-		};
+		item = Npc_GetEquippedRangedWeapon(self);
+	}
+	else if(Npc_HasReadiedRangedWeapon(self))
+	{
+		item = Npc_GetReadiedWeapon(self);
 	}
 	else
 	{
 		Print(NAME_EQUIP_NEEDARANGEDWEAPON);
+		return;
+	};
+
+	if((item.flags & ITEM_BOW)==ITEM_BOW)
+	{
+		Print(NAME_EQUIPPED_ARROWFIRE);
+		item.munition = itamarrow_fire;
+		item.damagetype = DAM_FIRE;
+	}
+	else
+	{
+		Print(NAME_EQUIP_NEEDABOW);
 	};
 };
 
 func void usebolt()
 {
-	CreateInvItem(hero,ItAmBolt);
-	if(Npc_HasEquippedRangedWeapon(hero))
+	CreateInvItem(self,ItAmBolt);
+	if(Npc_HasEquippedRangedWeapon(self))
 	{
-		item = Npc_GetEquippedRangedWeapon(hero);
-		if(item.flags & ITEM_CROSSBOW)
-		{
-			Print(NAME_EQUIPPED_BOLT);
-			item.munition = ItAmBolt;
-			item.damagetype = DAM_POINT;
-		}
-		else
-		{
-			Print(NAME_EQUIP_NEEDACROSSBOW);
-		};
+		item = Npc_GetEquippedRangedWeapon(self);
+	}
+	else if(Npc_HasReadiedRangedWeapon(self))
+	{
+		item = Npc_GetReadiedWeapon(self);
 	}
 	else
 	{
 		Print(NAME_EQUIP_NEEDARANGEDWEAPON);
+		return;
+	};
+
+	if((item.flags & ITEM_CROSSBOW)==ITEM_CROSSBOW)
+	{
+		Print(NAME_EQUIPPED_BOLT);
+		item.munition = ItAmBolt;
+		item.damagetype = DAM_POINT;
+	}
+	else
+	{
+		Print(NAME_EQUIP_NEEDACROSSBOW);
 	};
 };
 
 func void usebolt_fire()
 {
-	CreateInvItem(hero,itambolt_fire);
-	if(Npc_HasEquippedRangedWeapon(hero))
+	CreateInvItem(self,itambolt_fire);
+	if(Npc_HasEquippedRangedWeapon(self))
 	{
-		item = Npc_GetEquippedRangedWeapon(hero);
-		if(item.flags & ITEM_CROSSBOW)
-		{
-			Print(NAME_EQUIPPED_BOLTFIRE);
-			item.munition = itambolt_fire;
-			item.damagetype = DAM_FIRE;
-		}
-		else
-		{
-			Print(NAME_EQUIP_NEEDACROSSBOW);
-		};
+		item = Npc_GetEquippedRangedWeapon(self);
+	}
+	else if(Npc_HasReadiedRangedWeapon(self))
+	{
+		item = Npc_GetReadiedWeapon(self);
 	}
 	else
 	{
 		Print(NAME_EQUIP_NEEDARANGEDWEAPON);
+		return;
+	};
+
+	if((item.flags & ITEM_CROSSBOW)==ITEM_CROSSBOW)
+	{
+		Print(NAME_EQUIPPED_BOLTFIRE);
+		item.munition = itambolt_fire;
+		item.damagetype = DAM_FIRE;
+	}
+	else
+	{
+		Print(NAME_EQUIP_NEEDACROSSBOW);
 	};
 };
 
