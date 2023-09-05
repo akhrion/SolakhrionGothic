@@ -1,3 +1,5 @@
+// ITEM_BOW			point	dmg += str + dex;	дорогие снаряды;
+// ITEM_CROSSBOW	point	dmg += dex;			дешёвые снаряды; больше аммуниция;
 
 const int AKH_BOWMANLINE_MULTIPLIER = 2;
 
