@@ -491,6 +491,9 @@ var int PC_iRogueInvolvements; //чем выше значение переменной, тем с меньшей охо
 var int questTaken_Blade_SwordsSkills;
 var int quest_Blade_SwordsSkills_Counter;
 
+var int Perk_Warior_Bravery;        //Увеличивает параметры если противников много.
+
+
 func void init_variables()
 {
     SPL_FIREBALL_TIME_PER_MANA_BASIC = 750;
