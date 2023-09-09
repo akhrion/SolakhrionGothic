@@ -795,3 +795,61 @@ func void UnEquip_Machtring()
 	Npc_ChangeAttribute(self,ATR_DEXTERITY,-4);
 };
 
+instance CursedRing_01(C_Item)
+{
+	name = "Кольцо рудокопа";
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_RING | ITEM_MISSION;
+	value = 0;
+	visual = "ItMi_Ring_01.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_CursedRing_01;
+	on_unequip = UnEquip_CursedRing_01;
+	description = name;
+};
+func void Equip_CursedRing_01()
+{
+	if(self.attribute[ATR_MANA_MAX] > 10)
+	{
+		Npc_GetInvItem(self,CursedRing_01);
+		item.name = "Кольцо рукожопа";
+		item.description = "Кольцо рукожопа";
+	};
+	Npc_ChangeAttribute(self,ATR_DEXTERITY,-2);
+};
+func void UnEquip_CursedRing_01()
+{
+	Npc_ChangeAttribute(self,ATR_DEXTERITY,2);
+	if(self.attribute[ATR_MANA_MAX] < 10)
+	{
+		Print("Кольцо не снимается..");
+//		Npc_RemoveInvItem(self,CursedRing_01);
+//		EquipItem(self,CursedRing_01);
+	};
+};
+
+
+instance Test_MultiRing(C_Item)
+{
+	name = "Тестовое Кольцо 10 пальцев";
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_RING;
+	value = 0;
+	visual = "ItMi_Ring_03.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_Test_MultiRing;
+	on_unequip = UnEquip_Test_MultiRing;
+	description = "Тестовое Кольцо 10 пальцев";
+};
+func void Equip_Test_MultiRing()
+{
+	Print("Equiped");
+	Npc_ChangeAttribute(self,ATR_STRENGTH,2);
+};
+func void UnEquip_Test_MultiRing()
+{
+	Print("UnEquiped");
+	Npc_ChangeAttribute(self,ATR_STRENGTH,-2);
+};
