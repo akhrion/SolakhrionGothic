@@ -402,7 +402,33 @@ func int C_NpcIsWorker(var C_Npc slf)
 func int C_NpcIsMage(var C_Npc slf)
 {
 	PrintDebugNpc(PD_ZS_DETAIL,"C_NpcIsMage");
-	if(slf.attribute[ATR_MANA_MAX] > 0)
+	if(
+		slf.guild == GIL_KDF
+	||	slf.guild == GIL_KDW
+	||	slf.guild == GIL_DMB
+	||	slf.guild == GIL_GUR
+	)
+	{
+		PrintDebugNpc(PD_ZS_DETAIL,"...true");
+		return TRUE;
+	}
+	else
+	{
+		PrintDebugNpc(PD_ZS_DETAIL,"...false");
+	};
+	return FALSE;
+};
+func int C_NpcHasMagicalTalent(var C_Npc slf)
+{
+	PrintDebugNpc(PD_ZS_DETAIL,"C_NpcIsMage");
+	if(
+		slf.guild == GIL_KDF
+	||	slf.guild == GIL_KDW
+	||	slf.guild == GIL_DMB
+	||	slf.guild == GIL_GUR
+	||	slf.guild == GIL_TPL
+	||	slf.guild == GIL_NOV
+	)
 	{
 		PrintDebugNpc(PD_ZS_DETAIL,"...true");
 		return TRUE;
