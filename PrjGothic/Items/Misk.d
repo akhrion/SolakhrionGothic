@@ -364,6 +364,22 @@ instance ItMiNugget(C_Item)
 	count[5] = value;
 };
 
+instance testItLsTorch(C_Item)
+{
+	name = "тестовый Факел";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_BURN | ITEM_TORCH | ITEM_MULTI;
+	value = Value_Fackel;
+	visual = "ItLs_Torch_01.3ds";
+	material = MAT_WOOD;
+	scemeName = "USEFAKEITEM";
+	on_state[0] = Use_testItLsTorch;
+//	on_equip = eq_testItLsTorch;
+//	on_unequip = uneq_testItLsTorch;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
 instance ItLsTorch(C_Item)
 {
 	name = "Факел";
@@ -376,7 +392,21 @@ instance ItLsTorch(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
+func void Use_testItLsTorch()
+{
+	print("Факел взят");
+//	CreateInvItem(self,ItLsTorchburning);
+	EquipItem(self,ItLsTorch);
+	AI_UseItemToState(self,ItLsTorch,-1);
+};
+func void eq_testItLsTorch()
+{
+	print("Факел экипирован");
+};
+func void uneq_testItLsTorch()
+{
+	print("Факел разэкипирован");
+};
 instance ItLsTorchburning(C_Item)
 {
 	name = "Горящий факел";

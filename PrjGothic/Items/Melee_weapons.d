@@ -1,9 +1,9 @@
 // ITEM_AXE			edge	dmg += str / 2; пробитие брони - половина урона топора без силы;	средний шанс крита;
 // ITEM_CLUB		blunt	dmg += str; шанс оглушить цель;										низкий шанс крита;
 // ITEM_SWD			edge	dmg += (str + dex) / 2;												высокий шанс крита;
-// ITEM_2H_AXE		edge	dmg += str; пробитие + оглушение;									низкий шанс крита;
-// ITEM_2H_STAFF	blunt	dmg += 
-// ITEM_2H_SWD		edge	dmg += str
+// ITEM_2HD_AXE		edge	dmg += str; пробитие + оглушение;									низкий шанс крита;
+// ITEM_2HD_STAFF	blunt	dmg += 
+// ITEM_2HD_SWD		edge	dmg += str
 
 const int Value_1H_Sword_01 = 100;
 
@@ -11,7 +11,7 @@ instance ItMw_1H_Club_01(C_Item)
 {
 	name = "ƒубина";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_AXE;
+	flags = ITEM_AXE | ITEM_CLUB;
 	material = MAT_WOOD;
 	value = 2;
 	damageTotal = 5;
@@ -445,7 +445,7 @@ instance ItMw_2H_Staff_01(C_Item)
 {
 	name = "Ѕоевой посох";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_2HD_AXE;
+	flags = ITEM_2HD_AXE | ITEM_2HD_STAFF;
 	material = MAT_WOOD;
 	value = 20;
 	damageTotal = 17;
@@ -468,7 +468,7 @@ instance ItMw_2H_Staff_02(C_Item)
 {
 	name = "ѕосох судьи";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_2HD_AXE;
+	flags = ITEM_2HD_AXE | ITEM_2HD_STAFF;
 	material = MAT_WOOD;
 	value = 95;
 	damageTotal = 19;
@@ -491,7 +491,7 @@ instance ItMw_2H_Staff_03(C_Item)
 {
 	name = "ѕосох св€щенника";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_2HD_AXE;
+	flags = ITEM_2HD_AXE | ITEM_2HD_STAFF;
 	material = MAT_WOOD;
 	value = 125;
 	damageTotal = 22;
@@ -500,6 +500,29 @@ instance ItMw_2H_Staff_03(C_Item)
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 22;
 	visual = "ItMw_2H_Staff_03.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_TwoHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMw_2H_Staff_KDF_01(C_Item)
+{
+	name = "ѕосох магов";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_2HD_AXE | ITEM_2HD_STAFF;
+	material = MAT_WOOD;
+	value = 20;
+	damageTotal = 17;
+	damagetype = DAM_FIRE;
+	range = 320;
+	cond_atr[2] = ATR_MANA_MAX;
+	cond_value[2] = 40;
+	visual = "ItMw_2H_Staff_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1970,11 +1993,11 @@ instance ItMw2hOrcMace01(C_Item)
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
 	value = 24;
-	damageTotal = 75;
+	damageTotal = 300;
 	damagetype = DAM_BLUNT;
 	range = 150;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = 85;
+	cond_value[2] = 200;
 	visual = "ItMw_2H_OrcMace_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;

@@ -480,6 +480,10 @@ const int PC_DexBuff_1H_Quality = 50;
 const int PC_DexBuff_2H_Quality = 20;
 const int PC_DexBuff_Bow_Quality = 100;
 const int PC_DexBuff_CrossBow_Quality = 70;
+const int Chanse_Bash_Club = 20;
+
+var int PC_HasTorchs;
+var int PC_IsTorchBurning;
 
 var int PsiCamp_Entrance;
 

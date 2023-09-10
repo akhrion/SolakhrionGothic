@@ -1219,6 +1219,7 @@ func int Npc_GetMagicPower(var C_Npc npc)
 };
 func void Spell_CalculateTimePerMana(var C_Spell spell)
 {
+	if(!Npc_IsPlayer(self)){spell.time_per_mana = 1;return;};
 	if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 0)
 	{
 		spell.time_per_mana = 5000;
@@ -1247,4 +1248,47 @@ func void Spell_CalculateTimePerMana(var C_Spell spell)
 	{
 		spell.time_per_mana = 1;
 	};
+};
+
+func int Npc_HasReadiedWeapon_Axe(var C_Npc npc)
+{
+	item = Npc_GetReadiedWeapon(npc);
+	if(
+		!(item.flags & ITEM_CLUB)
+	&&	item.flags & ITEM_AXE
+	){return true;};
+	return false;
+};
+func int Npc_HasReadiedWeapon_Club(var C_Npc npc)
+{
+	item = Npc_GetReadiedWeapon(npc);
+	if((item.flags & ITEM_CLUB) == ITEM_CLUB){return true;};
+	return false;
+};
+func int Npc_HasReadiedWeapon_Swd(var C_Npc npc)
+{
+	item = Npc_GetReadiedWeapon(npc);
+	if((item.flags & ITEM_SWD) == ITEM_SWD){return true;};
+	return false;
+};
+func int Npc_HasReadiedWeapon_2HD_Axe(var C_Npc npc)
+{
+	item = Npc_GetReadiedWeapon(npc);
+	if(
+		!(item.flags & ITEM_2HD_STAFF)
+	&&	item.flags & ITEM_2HD_AXE
+	){return true;};
+	return false;
+};
+func int Npc_HasReadiedWeapon_2HD_Staff(var C_Npc npc)
+{
+	item = Npc_GetReadiedWeapon(npc);
+	if((item.flags & ITEM_2HD_STAFF) == ITEM_2HD_STAFF){return true;};
+	return false;
+};
+func int Npc_HasReadiedWeapon_2HD_Swd(var C_Npc npc)
+{
+	item = Npc_GetReadiedWeapon(npc);
+	if((item.flags & ITEM_2HD_SWD) == ITEM_2HD_SWD){return true;};
+	return false;
 };

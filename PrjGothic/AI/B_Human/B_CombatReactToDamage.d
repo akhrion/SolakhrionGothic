@@ -1,8 +1,55 @@
+func void Npc_ReceiveBash(var C_Npc vict, var C_Npc attacker)
+{
+	if(
+		Npc_IsInFightMode(attacker,FMODE_FIST)
+	||	Npc_IsInFightMode(attacker,FMODE_MELEE)
+	)
+	{
+		if(Npc_HasReadiedWeapon_Club(attacker))
+		{
+			if(Random_IsProc(Chanse_Bash_Club))
+			{
+				AI_PlayAni(vict,"T_STAND_2_WOUNDEDB");
+				AI_Wait(vict,5);
+				AI_PlayAni(vict,"T_WOUNDEDB_TRY");
+				AI_Standup(vict);
+		//		B_FullStop(vict);
+			};
+		};
+	};
+};
 
+
+
+
+func void ReactToDamage_Mage_Fireshield()
+{
+	if(Hlp_Random(3))
+	{
+		Print("Меня обожгло огнем.");
+	}
+	else if(Hlp_Random(2))
+	{
+		Print("Как жарко!");
+	}
+	else
+	{
+		Print("Я горю!");
+	};
+	Npc_ChangeAttribute(other,ATR_HITPOINTS,-50);
+};
 func void B_CombatReactToDamage()
 {
 	PrintDebugNpc(PD_ZS_FRAME,"B_CombatReactToDamage");
 	PrintGlobals(PD_ZS_Check);
+	if(
+		self.guild == GIL_KDF
+	&&	Npc_GetDistToNpc(self,other) < HAI_DIST_MELEE
+	)
+	{
+		ReactToDamage_Mage_Fireshield();
+	};
+		
 	if(Npc_IsPlayer(other) && ((self.npcType == npctype_friend) || (Npc_GetPermAttitude(self,other) == ATT_FRIENDLY)))
 	{
 		return;
@@ -21,7 +68,7 @@ func void B_CombatReactToDamage()
 	};
 	if(Npc_IsPlayer(other))
 	{
-		
+		Npc_ReceiveBash(self,other);
 		if(Npc_IsReceiveDamage(self,other))
 		{
 			
