@@ -138,14 +138,6 @@ func int ZS_Attack_Loop()
 		AI_SetWalkMode(self,NPC_RUN);
 		Npc_SetStateTime(self,0);
 	};
-	if(other.aivar[AIV_INVINCIBLE] == FALSE)
-	{
-		AI_Attack(self);
-	}
-	else
-	{
-		AI_Wait(self,0.5);
-	};
 	if((self.npcType == npctype_ambient) || (self.npcType == NPCTYPE_OW_AMBIENT) || (self.npcType == Npctype_MINE_Ambient) || (self.fight_tactic == FAI_HUMAN_COWARD))
 	{
 		if((self.fight_tactic == FAI_HUMAN_COWARD) && (self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] / 2)))
@@ -168,6 +160,14 @@ func int ZS_Attack_Loop()
 			PrintDebugNpc(PD_ZS_Check,"...ranged fighter flees!");
 			AI_StartState(self,ZS_Flee,0,"");
 		};
+	};
+	if(other.aivar[AIV_INVINCIBLE] == FALSE)
+	{
+		AI_Attack(self);
+	}
+	else
+	{
+		AI_Wait(self,0.5);
 	};
 	return LOOP_CONTINUE;
 };
