@@ -1253,10 +1253,7 @@ func void Spell_CalculateTimePerMana(var C_Spell spell)
 func int Npc_HasReadiedWeapon_Axe(var C_Npc npc)
 {
 	item = Npc_GetReadiedWeapon(npc);
-	if(
-		!(item.flags & ITEM_CLUB)
-	&&	item.flags & ITEM_AXE
-	){return true;};
+	if(item.flags & ITEM_AXE){return true;};
 	return false;
 };
 func int Npc_HasReadiedWeapon_Club(var C_Npc npc)

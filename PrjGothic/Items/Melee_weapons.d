@@ -11,7 +11,7 @@ instance ItMw_1H_Club_01(C_Item)
 {
 	name = "Дубина";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_AXE | ITEM_CLUB;
+	flags = ITEM_CLUB;
 	material = MAT_WOOD;
 	value = 2;
 	damageTotal = 5;
