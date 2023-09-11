@@ -32,6 +32,18 @@ func void hero_TakeItem()
 	{
 	};
 };
+func void PC_DropItem()
+{
+	if(C_BodyStateContains(hero,BS_INVENTORY))
+	{
+		if(PC_DropCursedRing)
+		{
+			PC_DropCursedRing = false;
+			Wld_RemoveItem(CursedRing_01);
+			EquipItem(hero,CursedRing_01);
+		};
+	};
+};
 func void PC_WeaponHand_Handler(var C_Item _itm)
 {
 	if(
@@ -100,6 +112,15 @@ func void PC_Torch()
 		{
 			//факел был сброшен на землю..
 		};
+	};
+};
+func void PC_Limitedbag()
+{
+	if(Npc_GetInvItemBySlot(hero,INV_FOOD,2))
+	{
+		item.flags = item.flags | (1 << 26);
+		AI_Wait(hero,1);
+		AI_DropItem(hero,item);
 	};
 };
 func void b_cycle_hero()
@@ -188,8 +209,8 @@ else
 
 
 PC_Torch();
-
-
+PC_Limitedbag();
+PC_DropItem();
 
 //	itmmm = Npc_GetEquippedMeleeWeapon(hero);
 //	Print(itmmm.name);

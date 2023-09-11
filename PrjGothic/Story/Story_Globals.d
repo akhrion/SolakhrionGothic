@@ -485,6 +485,8 @@ const int Chanse_Bash_Club = 20;
 var int PC_HasTorchs;
 var int PC_IsTorchBurning;
 
+var int PC_DropCursedRing;
+
 var int PsiCamp_Entrance;
 
 var int akh_Mod;

@@ -820,12 +820,22 @@ func void Equip_CursedRing_01()
 };
 func void UnEquip_CursedRing_01()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,2);
 	if(self.attribute[ATR_MANA_MAX] < 10)
 	{
 		Print("Кольцо не снимается..");
-//		Npc_RemoveInvItem(self,CursedRing_01);
-//		EquipItem(self,CursedRing_01);
+		Npc_GetInvItem(self,CursedRing_01);
+		if(Hlp_IsValidItem(item))
+		{
+			Npc_RemoveInvItem(self,Hlp_GetInstanceID(item));
+			EquipItem(self,CursedRing_01);
+			return;
+		};
+		//По какой-то причине, если использовать "else" то первое условие не отрабатывает.. мистика.
+		PC_DropCursedRing = true;
+	}
+	else
+	{
+		Npc_ChangeAttribute(self,ATR_DEXTERITY,2);
 	};
 };
 
