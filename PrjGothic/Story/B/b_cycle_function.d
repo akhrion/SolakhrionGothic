@@ -2,7 +2,7 @@ func void b_cycle_om_function()
 {
 	b_cycle_hero();
 	B_Cycle_NPC();
-	Wld_SendTrigger("CYCLE_TRIGGER");
+	Wld_SendTrigger("CYCLE_TRIGER_OM");
 };
 
 func void b_cycle_function()
