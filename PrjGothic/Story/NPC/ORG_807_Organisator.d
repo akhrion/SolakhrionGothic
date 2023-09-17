@@ -22,6 +22,7 @@ instance ORG_807_Organisator(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_BOW,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_2H,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_PICKPOCKET,2);
 	CreateInvItems(self,ItKeLockpick,2);
 	CreateInvItems(self,ItMiNugget,16);
 	CreateInvItem(self,ItMi_Stuff_Barbknife_01);

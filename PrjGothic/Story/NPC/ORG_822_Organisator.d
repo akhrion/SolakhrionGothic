@@ -21,6 +21,7 @@ instance ORG_822_Organisator(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_BOW,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_2H,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_PICKPOCKET,1);
 	CreateInvItems(self,ItMiNugget,9);
 	CreateInvItems(self,ItFoBooze,2);
 	CreateInvItem(self,ItMi_Stuff_Cup_01);

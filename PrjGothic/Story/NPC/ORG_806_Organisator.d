@@ -20,6 +20,7 @@ instance ORG_806_Organisator(Npc_Default)
 	fight_tactic = FAI_HUMAN_Strong;
 	Npc_SetTalentSkill(self,NPC_TALENT_BOW,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_PICKPOCKET,3);
 	CreateInvItem(self,ItKeLockpick);
 	CreateInvItems(self,ItMiNugget,14);
 	CreateInvItem(self,ItAt_Teeth_01);

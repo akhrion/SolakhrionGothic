@@ -14,6 +14,7 @@ func void ZS_Smalltalk()
 	Npc_PercEnable(self,PERC_ASSESSDEFEAT,ZS_AssessDefeat);
 	Npc_PercEnable(self,PERC_DRAWWEAPON,B_AssessFighter);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTSOUND,B_AssessFightSound);
+	Npc_PercEnable(self,PERC_ASSESSQUIETSOUND,B_AssessQuietSound);
 	Npc_PercEnable(self,PERC_CATCHTHIEF,ZS_CatchThief);
 	Npc_PercEnable(self,PERC_ASSESSTHEFT,B_AssessTheft);
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,ZS_AssessSurprise);
