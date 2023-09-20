@@ -193,7 +193,10 @@ func void update_alco_cat_list()
 		};
 	};
 };
-
+func int potionalchemy_cf()
+{
+	return true;
+};
 func void potionalchemy_s1()
 {
 	if(Npc_IsPlayer(self))

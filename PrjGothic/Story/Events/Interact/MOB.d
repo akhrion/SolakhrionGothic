@@ -762,6 +762,14 @@ func void evt_ogy_calom_func()
 		};
 	};
 };
+func void Chest_s0()
+{
+	Print("Chest_s0");
+};
+func void Chest_s1()
+{
+	Print("Chest_s1");
+};
 
 func int ll1_cf()
 {

@@ -1,11 +1,15 @@
-
+func int bsfire_cf()
+{
+	return true;
+};
 func void bsfire_s1()
 {
 	if(Npc_IsPlayer(self))
 	{
+		PC_Forging_IncandescenceTime = getTimestamp();
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		AI_Wait(self,6);
-		B_StopUseMob(self,"BSFIRE");
+	// 	AI_Wait(self,6);
+	// 	B_StopUseMob(self,"BSFIRE");
 	};
 };
 
@@ -13,9 +17,17 @@ func void bsfire_s0()
 {
 	if(Npc_IsPlayer(self))
 	{
+		if(PC_Forging_IncandescenceTime)
+		{
+			PC_Forging_IncandescenceTime = getTimestamp() - PC_Forging_IncandescenceTime;
+		};
 		self.aivar[AIV_INVINCIBLE] = FALSE;
 	};
 };
+
+
+
+
 
 func int bsanvil_cf()
 {
@@ -71,6 +83,9 @@ func void bsanvil_s0()
 	};
 };
 
+
+
+func int bscool_cf(){return true;};
 func void bscool_s1()
 {
 	if(Npc_IsPlayer(self))
@@ -89,6 +104,11 @@ func void bscool_s0()
 	};
 };
 
+
+
+
+
+func int bssharp_cf(){return true;};
 func void bssharp_s1()
 {
 	if(Npc_IsPlayer(self))

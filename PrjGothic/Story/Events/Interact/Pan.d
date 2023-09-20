@@ -1,4 +1,7 @@
-
+func int pan_cf()
+{
+	return true;
+};
 func void pan_s1()
 {
 	if(Npc_IsPlayer(self))
