@@ -17,8 +17,8 @@ prototype Mst_Default_Skeleton(C_Npc)
 	protection[PROT_FLY] = 0;
 	protection[PROT_MAGIC] = 35;
 	damagetype = DAM_EDGE;
-	fight_tactic = FAI_SKELETON;
-	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
+	fight_tactic = FAI_HUMAN_Strong;
+	senses = SENSE_HEAR | SENSE_SEE;
 	senses_range = 3000;
 	aivar[AIV_FINDABLE] = PACKHUNTER;
 	aivar[AIV_PCISSTRONGER] = 2000;
@@ -64,7 +64,8 @@ instance Skeleton(Mst_Default_Skeleton)
 {
 	aivar[AIV_IMPORTANT] = id_skeleton;
 	Set_Skeleton_Visuals();
-	Npc_SetToFightMode(self,itmw_skeleton_sword);
+	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
+	EquipItem(self,itmw_skeleton_sword);
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
 };
 
@@ -72,7 +73,8 @@ instance SkeletonSH(Mst_Default_Skeleton)
 {
 	aivar[AIV_IMPORTANT] = ID_SKELETON;
 	Set_Skeleton_Visuals();
-	Npc_SetToFightMode(self,itmw_skeleton_axe);
+	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
+	EquipItem(self,itmw_skeleton_axe);
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
 	protection[PROT_FIRE] = 40;
 	senses_range = 1000;
@@ -90,8 +92,9 @@ instance SkeletonScout(Mst_Default_Skeleton)
 	name[0] = "Скелет-разведчик";
 	aivar[AIV_IMPORTANT] = id_skeletonscout;
 	Set_SkeletonScout_Visuals();
-	Npc_SetToFightMode(self,itmw_skeleton_scythe);
-	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
+	Npc_SetTalentSkill(self,NPC_TALENT_1H,0);
+	EquipItem(self,itmw_skeleton_scythe);
+	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH];
 };
 
 instance SkeletonWarrior(Mst_Default_Skeleton)
@@ -101,7 +104,8 @@ instance SkeletonWarrior(Mst_Default_Skeleton)
 	level = 30;
 	attribute[ATR_STRENGTH] = 120;
 	aivar[AIV_IMPORTANT] = id_skeletonwarrior;
-	Npc_SetToFightMode(self,itmw_skeleton_axe);
+	Npc_SetTalentSkill(self,NPC_TALENT_2H,1);
+	EquipItem(self,ItMw_2H_Sword_Old_01);
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
 };
 

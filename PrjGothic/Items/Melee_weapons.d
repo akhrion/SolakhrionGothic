@@ -170,7 +170,7 @@ instance ItMw_1H_Hatchet_01(C_Item)
 
 instance ITMW_SKELETON_SWORD(C_Item)
 {
-	name = "Древний меч";
+	name = "Погнутый ржавый меч";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
@@ -178,8 +178,12 @@ instance ITMW_SKELETON_SWORD(C_Item)
 	damageTotal = 10;
 	damagetype = DAM_EDGE;
 	range = 100;
+	cond_atr[1] = ATR_DEXTERITY;
+	cond_value[1] = 10;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = 6;
+	cond_value[2] = 30;
+	change_atr[1] = ATR_DEXTERITY;
+	change_value[1] = -20;
 	change_atr[2] = ATR_STRENGTH;
 	change_value[2] = -30;
 	visual = "ItMw_Skeleton_Sword.3DS";
@@ -378,7 +382,7 @@ instance ItMw_1H_Axe_Old_01(C_Item)
 
 instance ITMW_SKELETON_AXE(C_Item)
 {
-	name = "Древний топор";
+	name = "Разваливающийся топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
@@ -422,7 +426,7 @@ instance ItMw_1H_Scythe_01(C_Item)
 
 instance ITMW_SKELETON_SCYTHE(C_Item)
 {
-	name = "Древний косарь";
+	name = "Разваливающийся косарь";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
