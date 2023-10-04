@@ -560,3 +560,15 @@ func void Rtn_start_RedMan()
 	TA_StandAround(0,0,13,0,"SPAWN_TALL_PATH_BANDITOS2_03");
 	TA_StandAround(13,0,0,0,"SPAWN_TALL_PATH_BANDITOS2_03");
 };
+
+
+instance FreeMan(ProtRedMan)
+{
+	name[0] = "Свободный человек";
+	daily_routine = Rtn_start_FreeMan;
+};
+func void Rtn_start_FreeMan()
+{
+	TA_Min(self,1,0,13,0,ZS_FreeMan,"");
+	TA_Min(self,13,0,1,0,ZS_FreeMan,"");
+};
