@@ -1,3 +1,22 @@
+instance ItBS(C_Item)
+{
+    name = "Смена позы";
+    mainflag = ITEM_KAT_NONE;
+    flags = ITEM_MISSION;
+    value = 0;
+    visual = "ItFo_Potion_BurnTicks.3ds";
+    material = MAT_GLAS;
+    on_state[0] = UseItBS;
+    scemeName = "MAP";
+    description = name;
+};
+func void UseItBS()
+{
+    self.aivar[AIV_INVINCIBLE] = TRUE;
+    AI_ProcessInfos(self);
+    PLAYER_MOBSI_PRODUCTION = MOBSI_PC_BS_Change;
+};
+
 instance ItFo_Potion_BurnTicks10000(C_Item)
 {
 name = NAME_Trank;

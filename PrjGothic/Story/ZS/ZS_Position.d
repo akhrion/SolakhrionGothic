@@ -37,6 +37,7 @@ func void B_FriendlyAssessCall()
 {
 	PrintDebugNpc(PD_ZS_FRAME,"B_FriendlyAssessCall");
 	AI_TurnToNPC(self,other);
+	B_SayOverlay(self,NULL,"$HeyYou");
 	AI_PlayAni(self,"T_COMEOVERHERE");
 };
 

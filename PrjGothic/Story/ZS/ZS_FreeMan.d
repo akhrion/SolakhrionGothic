@@ -21,25 +21,38 @@ func void ZS_FreeMan()
     //     };
     // };
 };
-func void ZS_FreeMan_Loop()
+func int ZS_FreeMan_Loop()
 {
     Print("zs_freeman_loop");
+    if(
+        Npc_GetDistToPlayer(self) > 1000
+    &&  Random_IsProc(10)
+    )
+    {
+        B_FriendlyAssessCall();
+        AI_Wait(self,3);
+        return LOOP_CONTINUE;
+    };
     if(Random_IsProc(30))
     {
         self.wp = "smalltalk";
         ZS_Smalltalk();
+        AI_Wait(self,3);
     }
     else if(Random_IsProc(50))
     {
         self.wp = "meditate";
         ZS_Meditate();
+        AI_Wait(self,5);
     }
     else
     {
         self.wp = "wash";
         ZS_WashSelf();
+        AI_Wait(self,3);
     };
-    AI_Wait(self,1);
+    AI_Wait(self,3);
+    return LOOP_CONTINUE;
 };
 func void ZS_FreeMan_End()
 {
