@@ -1,5 +1,36 @@
+func void PC_Forging_Furnace()
+{
+	if(
+		C_BodyStateContains(hero,BS_MOBINTERACT_INTERRUPT)
+	&&	self.aivar[AIV_INVINCIBLE] == FALSE
+	)
+	{
+		Print(ConcatStrings("Furnace ",IntToString(PC_Forging_IncandescenceTime)));
+		
+	};
+};
+func void PC_Forging_Anvil()
+{};
+func void PC_Forging_Quenching()
+{};
+func void PC_Forging_Sharpening()
+{};
+func void PC_Forging()
+{
+	PC_Forging_Furnace();
+	PC_Forging_Anvil();
+	PC_Forging_Quenching();
+	PC_Forging_Sharpening();
+};
 func void hero_OrePicking()
 {
+	return;
+	var string pcMOB;
+	pcMOB = Npc_GetDetectedMob(hero);
+	Print(pcMOB);
+	
+	Print(IntToString(Wld_GetMobState(hero,pcMOB)));
+	
 	if(C_BodyStateContains(hero,BS_MOBINTERACT_INTERRUPT))
 	{
 		if(Wld_GetMobState(hero,"ORE"))
@@ -120,11 +151,103 @@ func void PC_Limitedbag()
 	{
 		item.flags = item.flags | (1 << 26);
 		AI_Wait(hero,1);
-		AI_DropItem(hero,item);
+		AI_DropItem(hero,Hlp_GetInstanceID(item));
+		AI_OutputSVM_Overlay(hero,NULL,"$INVFULL");
 	};
 };
+
+func void PC_SitCampfire_algo001()
+{
+	if(!(getTimestamp()%1))
+	{
+		if(!(Npc_GetHP(hero) % 5))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,1);
+		}
+		else if(!(Npc_GetHP(hero) % 4))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,5);
+		}
+		else if(!(Npc_GetHP(hero) % 3))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,10);
+		}
+		else if(!(Npc_GetHP(hero) % 2))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,25);
+		}
+		else if(!(Npc_GetHP(hero) % 1))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,50);
+		};
+	};
+};
+func void PC_SitCampfire_algo002()
+{
+	if(!(getTimestamp()%1))
+	{
+		if(!(Npc_GetHP(hero) % 5))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,56);
+		}
+		else if(!(Npc_GetHP(hero) % 4))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,29);
+		}
+		else if(!(Npc_GetHP(hero) % 3))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,10);
+		}
+		else if(!(Npc_GetHP(hero) % 2))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,5);
+		}
+		else if(!(Npc_GetHP(hero) % 1))
+		{
+			Npc_ChangeAttribute(hero,ATR_HITPOINTS,2);
+		};
+	};
+};
+func void PC_SitCampfire()
+{
+//	if(Npc_IsOnFP(hero,"FP_CAMPFIRE_A_OW_OC_NC_AMBIENTNSC3"))
+	if(Wld_IsFPAvailable(hero,"FP_CAMPFIRE"))
+	{
+		if(Npc_GetHP(hero) < Npc_GetHPMax(hero))
+		{
+			PC_SitCampfire_algo002();
+		};
+	};
+};
+func void PC_Test()
+{
+	Print(FloatToString(Focus_Ranged.npc_range2));
+	if(
+		hero.level == 10
+	&&	FloatToInt(Focus_Ranged.npc_range2) != 1000
+	)
+	{
+		Focus_Ranged.npc_range2 = 1000000;
+	};
+	if(
+		hero.level == 20
+	&&	FloatToInt(Focus_Ranged.npc_range2) != 2000
+	)
+	{
+		Focus_Ranged.npc_range2 = 2000000;
+	};
+	if(
+		hero.level == 30
+	&&	FloatToInt(Focus_Ranged.npc_range2) != 3000
+	)
+	{
+		Focus_Ranged.npc_range2 = 3000000;
+	};
+};
+
 func void b_cycle_hero()
 {
+	if(!Hlp_IsValidNpc(hero)){return;};
 //	PrintSIS("Dist to SPWN_PLANT_PSI_02 ",Npc_IsOnFP(hero,"SPWN_PLANT_PSI_02"),"");
 //	PrintSIS("Dist to PATH_TAKE_HERB_07 ",Npc_GetDistToWP(hero,"PATH_TAKE_HERB_07"),"");
 //	Print("20210717");
@@ -178,7 +301,6 @@ PrintScreenSIS("31 ",(1<<31)," ",0,42,1);
 PrintScreenSIS("32 ",(1<<32)," ",0,44,1);
 PrintScreenSIS("33 ",(1<<33)," ",0,46,1);
 PrintScreenSIS("34 ",(1<<34)," ",0,48,1);
-
 item = Npc_GetReadiedWeapon(hero);
 if(Npc_HasReadiedWeapon_2HD_Staff(hero))
 {
@@ -211,7 +333,14 @@ else
 PC_Torch();
 PC_Limitedbag();
 PC_DropItem();
+PC_Forging();
+PC_SitCampfire();
 
+
+
+
+
+PC_Test();
 //	itmmm = Npc_GetEquippedMeleeWeapon(hero);
 //	Print(itmmm.name);
 //	Print(Npc_GetDetectedMob(hero));
