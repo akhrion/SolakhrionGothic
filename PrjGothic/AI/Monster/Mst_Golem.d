@@ -20,15 +20,15 @@ prototype Mst_Default_Golem(C_Npc)
 	fight_tactic = FAI_GOLEM;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 2000;
-	aivar[AIV_FINDABLE] = PASSIVE;
-	aivar[AIV_PCISSTRONGER] = 1500;
-	aivar[AIV_BEENATTACKED] = 1500;
-	aivar[AIV_HIGHWAYMEN] = 1500;
-	aivar[AIV_HAS_ERPRESSED] = 0;
-	aivar[AIV_BEGGAR] = 5;
-	aivar[AIV_OBSERVEINTRUDER] = TRUE;
+	aivar[AIV_MM_Behaviour] = PASSIVE;
+	aivar[AIV_MM_PercRange] = 1500;
+	aivar[AIV_MM_DrohRange] = 1500;
+	aivar[AIV_MM_AttackRange] = 1500;
+	aivar[AIV_MM_DrohTime] = 0;
+	aivar[AIV_MM_FollowTime] = 5;
+	aivar[AIV_MM_FollowInWater] = TRUE;
 	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_HASBEENDEFEATEDINPORTALROOM] = OnlyRoutine;
+	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
 func void Set_StoneGolem_Visuals()

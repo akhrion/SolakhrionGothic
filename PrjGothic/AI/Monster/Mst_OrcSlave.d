@@ -20,7 +20,7 @@ prototype Mst_Default_OrcSlave(C_Npc)
 	fight_tactic = FAI_ORC;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 3000;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
 };
 

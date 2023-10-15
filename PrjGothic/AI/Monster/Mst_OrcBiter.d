@@ -21,15 +21,15 @@ prototype Mst_Default_OrcBiter(C_Npc)
 	fight_tactic = FAI_SCAVENGER;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 3000;
-	aivar[AIV_FINDABLE] = HUNTER;
-	aivar[AIV_PCISSTRONGER] = 1200;
-	aivar[AIV_BEENATTACKED] = 1000;
-	aivar[AIV_HIGHWAYMEN] = 700;
-	aivar[AIV_HAS_ERPRESSED] = 5;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = TRUE;
+	aivar[AIV_MM_Behaviour] = HUNTER;
+	aivar[AIV_MM_PercRange] = 1200;
+	aivar[AIV_MM_DrohRange] = 1000;
+	aivar[AIV_MM_AttackRange] = 700;
+	aivar[AIV_MM_DrohTime] = 5;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = TRUE;
 	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_HASBEENDEFEATEDINPORTALROOM] = OnlyRoutine;
+	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
 func void Set_OrcBiter_Visuals()

@@ -22,13 +22,13 @@ prototype Mst_Default_OrcScout(C_Npc)
 	fight_tactic = FAI_HUMAN_Strong;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 2500;
-	aivar[AIV_FINDABLE] = HUNTER;
-	aivar[AIV_PCISSTRONGER] = 1200;
-	aivar[AIV_BEENATTACKED] = 1000;
-	aivar[AIV_HIGHWAYMEN] = 700;
-	aivar[AIV_HAS_ERPRESSED] = 5;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_Behaviour] = HUNTER;
+	aivar[AIV_MM_PercRange] = 1200;
+	aivar[AIV_MM_DrohRange] = 1000;
+	aivar[AIV_MM_AttackRange] = 700;
+	aivar[AIV_MM_DrohTime] = 5;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_GuardPatrol;
 };
 
@@ -59,11 +59,11 @@ instance OrcScoutGYD(Mst_Default_OrcScout)
 	name[0] = "Орк-разведчик";
 	level = 18;
 	attribute[ATR_STRENGTH] = 50;
-	aivar[AIV_PCISSTRONGER] = 1500;
-	aivar[AIV_BEENATTACKED] = 1200;
-	aivar[AIV_HIGHWAYMEN] = 1000;
-	aivar[AIV_HAS_ERPRESSED] = 0;
-	aivar[AIV_BEGGAR] = 10;
+	aivar[AIV_MM_PercRange] = 1500;
+	aivar[AIV_MM_DrohRange] = 1200;
+	aivar[AIV_MM_AttackRange] = 1000;
+	aivar[AIV_MM_DrohTime] = 0;
+	aivar[AIV_MM_FollowTime] = 10;
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_Trigger3] = OnlyRoutine;
 	Set_OrcScout_Visuals();

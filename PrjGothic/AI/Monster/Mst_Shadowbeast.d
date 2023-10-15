@@ -21,15 +21,15 @@ prototype Mst_Default_Shadowbeast(C_Npc)
 	fight_tactic = FAI_SHADOWBEAST;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 3000;
-	aivar[AIV_FINDABLE] = HUNTER;
-	aivar[AIV_PCISSTRONGER] = 1500;
-	aivar[AIV_BEENATTACKED] = 1300;
-	aivar[AIV_HIGHWAYMEN] = 700;
-	aivar[AIV_HAS_ERPRESSED] = 4;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_Behaviour] = HUNTER;
+	aivar[AIV_MM_PercRange] = 1500;
+	aivar[AIV_MM_DrohRange] = 1300;
+	aivar[AIV_MM_AttackRange] = 700;
+	aivar[AIV_MM_DrohTime] = 4;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_Trigger3] = OnlyRoutine;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
 };
 
 func void Set_Shadowbeast_Visuals()

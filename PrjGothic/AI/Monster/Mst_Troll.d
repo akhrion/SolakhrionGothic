@@ -21,15 +21,15 @@ prototype Mst_Default_Troll(C_Npc)
 	fight_tactic = FAI_TROLL;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 3000;
-	aivar[AIV_FINDABLE] = PASSIVE;
-	aivar[AIV_PCISSTRONGER] = 1500;
-	aivar[AIV_BEENATTACKED] = 1300;
-	aivar[AIV_HIGHWAYMEN] = 700;
-	aivar[AIV_HAS_ERPRESSED] = 5;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_Behaviour] = PASSIVE;
+	aivar[AIV_MM_PercRange] = 1500;
+	aivar[AIV_MM_DrohRange] = 1300;
+	aivar[AIV_MM_AttackRange] = 700;
+	aivar[AIV_MM_DrohTime] = 5;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_HASBEENDEFEATEDINPORTALROOM] = OnlyRoutine;
+	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
 func void Set_Troll_Visuals()
@@ -71,14 +71,14 @@ instance YoungTroll(Mst_Default_Troll)
 	damagetype = DAM_FLY;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 4000;
-	aivar[AIV_FINDABLE] = PASSIVE;
-	aivar[AIV_PCISSTRONGER] = 3000;
-	aivar[AIV_BEENATTACKED] = 2500;
-	aivar[AIV_HIGHWAYMEN] = 2000;
-	aivar[AIV_HAS_ERPRESSED] = 5;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_Behaviour] = PASSIVE;
+	aivar[AIV_MM_PercRange] = 3000;
+	aivar[AIV_MM_DrohRange] = 2500;
+	aivar[AIV_MM_AttackRange] = 2000;
+	aivar[AIV_MM_DrohTime] = 5;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_HASBEENDEFEATEDINPORTALROOM] = OnlyRoutine;
+	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 

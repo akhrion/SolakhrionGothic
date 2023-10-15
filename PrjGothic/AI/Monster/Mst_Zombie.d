@@ -21,15 +21,15 @@ prototype Mst_Default_Zombie(C_Npc)
 	fight_tactic = FAI_ZOMBIE;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 3000;
-	aivar[AIV_FINDABLE] = HUNTER;
-	aivar[AIV_PCISSTRONGER] = 2000;
-	aivar[AIV_BEENATTACKED] = 1500;
-	aivar[AIV_HIGHWAYMEN] = 1500;
-	aivar[AIV_HAS_ERPRESSED] = 0;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_Behaviour] = HUNTER;
+	aivar[AIV_MM_PercRange] = 2000;
+	aivar[AIV_MM_DrohRange] = 1500;
+	aivar[AIV_MM_AttackRange] = 1500;
+	aivar[AIV_MM_DrohTime] = 0;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_HASBEENDEFEATEDINPORTALROOM] = OnlyRoutine;
+	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
 func void Set_Zombie_Visuals()
@@ -98,13 +98,13 @@ instance ZombieTheKeeper(Mst_Default_Zombie)
 	protection[PROT_EDGE] = 150;
 	protection[PROT_FIRE] = 9999;
 	senses_range = 1000;
-	aivar[AIV_FINDABLE] = HUNTER;
-	aivar[AIV_PCISSTRONGER] = 1000;
-	aivar[AIV_BEENATTACKED] = 1000;
-	aivar[AIV_HIGHWAYMEN] = 1000;
-	aivar[AIV_HAS_ERPRESSED] = 0;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_Behaviour] = HUNTER;
+	aivar[AIV_MM_PercRange] = 1000;
+	aivar[AIV_MM_DrohRange] = 1000;
+	aivar[AIV_MM_AttackRange] = 1000;
+	aivar[AIV_MM_DrohTime] = 0;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 	CreateInvItem(self,ItMi_OrcTalisman);
 	CreateInvItem(self,ItKe_Focus5);
 };

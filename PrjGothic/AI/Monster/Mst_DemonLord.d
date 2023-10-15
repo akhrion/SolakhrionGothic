@@ -21,13 +21,13 @@ prototype Mst_Default_DemonLord(C_Npc)
 	fight_tactic = FAI_Demon;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 4000;
-	aivar[AIV_FINDABLE] = HUNTER;
-	aivar[AIV_PCISSTRONGER] = 4000;
-	aivar[AIV_BEENATTACKED] = 4000;
-	aivar[AIV_HIGHWAYMEN] = 3500;
-	aivar[AIV_HAS_ERPRESSED] = 0;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = TRUE;
+	aivar[AIV_MM_Behaviour] = HUNTER;
+	aivar[AIV_MM_PercRange] = 4000;
+	aivar[AIV_MM_DrohRange] = 4000;
+	aivar[AIV_MM_AttackRange] = 3500;
+	aivar[AIV_MM_DrohTime] = 0;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = TRUE;
 	start_aistate = ZS_MM_AllScheduler;
 };
 

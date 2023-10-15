@@ -21,15 +21,15 @@ prototype Mst_Default_Waran(C_Npc)
 	fight_tactic = FAI_WARAN;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 3000;
-	aivar[AIV_FINDABLE] = PASSIVE;
-	aivar[AIV_PCISSTRONGER] = 1400;
-	aivar[AIV_BEENATTACKED] = 1100;
-	aivar[AIV_HIGHWAYMEN] = 700;
-	aivar[AIV_HAS_ERPRESSED] = 2;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = TRUE;
+	aivar[AIV_MM_Behaviour] = PASSIVE;
+	aivar[AIV_MM_PercRange] = 1400;
+	aivar[AIV_MM_DrohRange] = 1100;
+	aivar[AIV_MM_AttackRange] = 700;
+	aivar[AIV_MM_DrohTime] = 2;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = TRUE;
 	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_Trigger3] = OnlyRoutine;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
 };
 
 func void Set_Waran_Visuals()

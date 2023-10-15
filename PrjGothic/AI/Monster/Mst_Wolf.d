@@ -21,15 +21,15 @@ prototype Mst_Default_Wolf(C_Npc)
 	fight_tactic = FAI_WOLF;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 3000;
-	aivar[AIV_FINDABLE] = PACKHUNTER;
-	aivar[AIV_PCISSTRONGER] = 1500;
-	aivar[AIV_BEENATTACKED] = 1200;
-	aivar[AIV_HIGHWAYMEN] = 500;
-	aivar[AIV_HAS_ERPRESSED] = 3;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = TRUE;
+	aivar[AIV_MM_Behaviour] = PACKHUNTER;
+	aivar[AIV_MM_PercRange] = 1500;
+	aivar[AIV_MM_DrohRange] = 1200;
+	aivar[AIV_MM_AttackRange] = 500;
+	aivar[AIV_MM_DrohTime] = 3;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = TRUE;
 	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_Trigger3] = OnlyRoutine;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
 };
 
 func void Set_Wolf_Visuals()

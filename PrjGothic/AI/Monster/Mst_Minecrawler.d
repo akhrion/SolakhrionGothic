@@ -21,15 +21,15 @@ prototype Mst_Default_Minecrawler(C_Npc)
 	fight_tactic = FAI_MINECRAWLER;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = 3000;
-	aivar[AIV_FINDABLE] = PACKHUNTER;
-	aivar[AIV_PCISSTRONGER] = 1200;
-	aivar[AIV_BEENATTACKED] = 1200;
-	aivar[AIV_HIGHWAYMEN] = 1000;
-	aivar[AIV_HAS_ERPRESSED] = 2;
-	aivar[AIV_BEGGAR] = 10;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_Behaviour] = PACKHUNTER;
+	aivar[AIV_MM_PercRange] = 1200;
+	aivar[AIV_MM_DrohRange] = 1200;
+	aivar[AIV_MM_AttackRange] = 1000;
+	aivar[AIV_MM_DrohTime] = 2;
+	aivar[AIV_MM_FollowTime] = 10;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_ITEMSTATUS] = OnlyRoutine;
+	aivar[AIV_MM_WuselStart] = OnlyRoutine;
 };
 
 func void Set_Minecrawler_Visuals()

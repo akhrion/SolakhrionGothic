@@ -32,11 +32,14 @@ func void B_MM_DeSynchronize()
 	msec = Hlp_Random(1000);
 	AI_Waitms(self,msec);
 };
-
+func void B_MM_AssessPlayer()
+{
+	Print("B_MM_AssessPlayer");
+};
 func void B_MM_ObserveIntruder()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ObserveIntruder");
-	if(Npc_GetDistToNpc(self,other) <= self.aivar[AIV_HIGHWAYMEN])
+	if(Npc_GetDistToNpc(self,other) <= self.aivar[AIV_MM_AttackRange])
 	{
 		Npc_SetTarget(self,other);
 		Npc_ClearAIQueue(self);
@@ -49,7 +52,7 @@ func void B_MM_AssessBody()
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessBody");
 	if(self.aivar[AIV_PLUNDERED] == PRIO_PREY)
 	{
-		if(Npc_GetDistToNpc(self,other) < self.aivar[AIV_PCISSTRONGER])
+		if(Npc_GetDistToNpc(self,other) < self.aivar[AIV_MM_PercRange])
 		{
 			if(C_PreyToPredator(other,self))
 			{
@@ -93,7 +96,7 @@ func void ZS_MM_EatBody_end()
 func void B_MM_AssessEnemy()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessEnemy");
-	if((Npc_GetDistToNpc(self,other) < self.aivar[AIV_PCISSTRONGER]) && Npc_CanSeeNpcFreeLOS(self,other))
+	if((Npc_GetDistToNpc(self,other) < self.aivar[AIV_MM_PercRange]) && Npc_CanSeeNpcFreeLOS(self,other))
 	{
 		if(C_PreyToPredator(other,self))
 		{
@@ -128,14 +131,14 @@ func void ZS_MM_AssessEnemy()
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSBODY,B_MM_AssessBody);
-	if(self.aivar[AIV_FINDABLE] == HUNTER)
+	if(self.aivar[AIV_MM_Behaviour] == HUNTER)
 	{
 		AI_Standup(self);
 		AI_TurnToNPC(self,other);
 		AI_PlayAni(self,"T_WARN");
 		AI_SetWalkMode(self,NPC_WALK);
 	};
-	if((self.aivar[AIV_FINDABLE] == PASSIVE) || (self.aivar[AIV_FINDABLE] == PACKHUNTER))
+	if((self.aivar[AIV_MM_Behaviour] == PASSIVE) || (self.aivar[AIV_MM_Behaviour] == PACKHUNTER))
 	{
 		AI_Standup(self);
 		AI_LookAtNpc(self,other);
@@ -145,29 +148,29 @@ func void ZS_MM_AssessEnemy()
 func int ZS_MM_AssessEnemy_loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_AssessEnemy_loop");
-	if(Npc_GetDistToNpc(self,other) > self.aivar[AIV_PCISSTRONGER])
+	if(Npc_GetDistToNpc(self,other) > self.aivar[AIV_MM_PercRange])
 	{
 		return 1;
 	};
-	if((Npc_GetDistToNpc(self,other) <= self.aivar[AIV_PCISSTRONGER]) && (Npc_GetDistToNpc(self,other) > self.aivar[AIV_BEENATTACKED]))
+	if((Npc_GetDistToNpc(self,other) <= self.aivar[AIV_MM_PercRange]) && (Npc_GetDistToNpc(self,other) > self.aivar[AIV_MM_DrohRange]))
 	{
-		if((self.aivar[AIV_FINDABLE] == PASSIVE) || (self.aivar[AIV_FINDABLE] == PACKHUNTER))
+		if((self.aivar[AIV_MM_Behaviour] == PASSIVE) || (self.aivar[AIV_MM_Behaviour] == PACKHUNTER))
 		{
 			if(!Npc_CanSeeNpc(self,other))
 			{
 				AI_TurnToNPC(self,other);
 			};
 		};
-		if(self.aivar[AIV_FINDABLE] == HUNTER)
+		if(self.aivar[AIV_MM_Behaviour] == HUNTER)
 		{
 			AI_GotoNpc(self,other);
 		};
 	};
-	if((Npc_GetDistToNpc(self,other) <= self.aivar[AIV_BEENATTACKED]) && (Npc_GetDistToNpc(self,other) > self.aivar[AIV_HIGHWAYMEN]))
+	if((Npc_GetDistToNpc(self,other) <= self.aivar[AIV_MM_DrohRange]) && (Npc_GetDistToNpc(self,other) > self.aivar[AIV_MM_AttackRange]))
 	{
-		if((self.aivar[AIV_FINDABLE] == PASSIVE) || (self.aivar[AIV_FINDABLE] == PACKHUNTER))
+		if((self.aivar[AIV_MM_Behaviour] == PASSIVE) || (self.aivar[AIV_MM_Behaviour] == PACKHUNTER))
 		{
-			if(Npc_GetStateTime(self) > self.aivar[AIV_HAS_ERPRESSED])
+			if(Npc_GetStateTime(self) > self.aivar[AIV_MM_DrohTime])
 			{
 				Npc_SetTarget(self,other);
 				Npc_ClearAIQueue(self);
@@ -180,7 +183,7 @@ func int ZS_MM_AssessEnemy_loop()
 				Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
 			};
 		};
-		if(self.aivar[AIV_FINDABLE] == HUNTER)
+		if(self.aivar[AIV_MM_Behaviour] == HUNTER)
 		{
 			AI_GotoNpc(self,other);
 		};
@@ -189,7 +192,7 @@ func int ZS_MM_AssessEnemy_loop()
 	{
 		Npc_SetStateTime(self,0);
 	};
-	if(Npc_GetDistToNpc(self,other) <= self.aivar[AIV_HIGHWAYMEN])
+	if(Npc_GetDistToNpc(self,other) <= self.aivar[AIV_MM_AttackRange])
 	{
 		Npc_SetTarget(self,other);
 		Npc_ClearAIQueue(self);
@@ -289,7 +292,7 @@ func void B_MM_ReactToCombatDamage()
 	Print("ReactToCombatDamage");
 	
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToCombatDamage");
-	self.aivar[AIV_PLUNDERED] = PRIO_ATTACKER;
+	self.aivar[AIV_MM_TEMP_PRIO] = PRIO_ATTACKER;
 	if(C_PreyToPredator(self,other))
 	{
 		Npc_SetTarget(self,other);
@@ -392,7 +395,7 @@ func int ZS_MM_Attack_Loop()
 		if(C_BodyStateContains(other,BS_RUN) || C_BodyStateContains(other,BS_JUMP))
 		{
 			PrintDebugNpc(PD_MST_LOOP,"...Ziel läuft oder springt!");
-			if(Npc_GetStateTime(self) > self.aivar[AIV_BEGGAR])
+			if(Npc_GetStateTime(self) > self.aivar[AIV_MM_FollowTime])
 			{
 				PrintDebugNpc(PD_MST_CHECK,"...Ziel schon zu lange verfolgt!");
 				return 1;
@@ -400,7 +403,7 @@ func int ZS_MM_Attack_Loop()
 		}
 		else if(C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE))
 		{
-			if(self.aivar[AIV_OBSERVEINTRUDER] == FALSE)
+			if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 			{
 				return 1;
 			};
@@ -421,7 +424,7 @@ func int ZS_MM_Attack_Loop()
 	else
 	{
 		PrintDebugNpc(PD_ZS_Check,"...Ziel ist ungültig oder kampf-unfähig!");
-		if(self.aivar[AIV_FINDABLE] == HUNTER)
+		if(self.aivar[AIV_MM_Behaviour] == HUNTER)
 		{
 			Npc_ClearAIQueue(self);
 			AI_StartState(self,ZS_MM_EatBody,0,"");
@@ -512,7 +515,7 @@ func void B_MM_AssessWarn()
 		Npc_ClearAIQueue(self);
 		AI_StartState(self,ZS_MM_Flee,0,"");
 	};
-	if((Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY) && (self.aivar[AIV_FINDABLE] == PACKHUNTER))
+	if((Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY) && (self.aivar[AIV_MM_Behaviour] == PACKHUNTER))
 	{
 		if(Npc_IsInState(other,ZS_MM_Attack))
 		{
@@ -540,11 +543,11 @@ func void ZS_MM_AllScheduler()
 	{
 		AI_StartState(self,ZS_MM_Rtn_Sleep,1,"");
 	}
-	else if(Wld_IsTime(self.aivar[AIV_HASBEENDEFEATEDINPORTALROOM],0,self.aivar[AIV_HangAroundStatus],0) || (self.aivar[AIV_HASBEENDEFEATEDINPORTALROOM] == OnlyRoutine))
+	else if(Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_HangAroundStatus],0) || (self.aivar[AIV_MM_RestStart] == OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_Rtn_Rest,1,"");
 	}
-	else if(Wld_IsTime(self.aivar[AIV_Trigger3],0,self.aivar[AIV_GUARDMEMORY],0) || (self.aivar[AIV_Trigger3] == OnlyRoutine))
+	else if(Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_GUARDMEMORY],0) || (self.aivar[AIV_MM_RoamStart] == OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_Rtn_Roam,1,"");
 	}
@@ -552,7 +555,7 @@ func void ZS_MM_AllScheduler()
 	{
 		AI_StartState(self,ZS_MM_Rtn_EatGround,1,"");
 	}
-	else if(Wld_IsTime(self.aivar[AIV_ITEMSTATUS],0,self.aivar[AIV_ITEMFREQ],0) || (self.aivar[AIV_ITEMSTATUS] == OnlyRoutine))
+	else if(Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_ITEMFREQ],0) || (self.aivar[AIV_MM_WuselStart] == OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_Rtn_Wusel,1,"");
 	}
@@ -605,7 +608,7 @@ func void B_MM_AssessEnemy_Sleep()
 func void B_MM_AssessQuietSound_Sleep()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessQuietSound_Sleep");
-	if(Npc_GetDistToNpc(self,other) <= self.aivar[AIV_BEENATTACKED])
+	if(Npc_GetDistToNpc(self,other) <= self.aivar[AIV_MM_DrohRange])
 	{
 		if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
 		{
@@ -679,7 +682,7 @@ func void ZS_MM_Rtn_Roam_loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Roam_loop");
-	if(!Wld_IsTime(self.aivar[AIV_Trigger3],0,self.aivar[AIV_GUARDMEMORY],0) && (self.aivar[AIV_Trigger3] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],0) && (self.aivar[AIV_MM_RoamStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 	};
@@ -747,7 +750,7 @@ func void ZS_MM_Rtn_Rest_Loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Rest_Loop");
-	if(!Wld_IsTime(self.aivar[AIV_HASBEENDEFEATEDINPORTALROOM],0,self.aivar[AIV_HangAroundStatus],0) && (self.aivar[AIV_HASBEENDEFEATEDINPORTALROOM] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_HangAroundStatus],0) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 	};
@@ -842,7 +845,7 @@ func void ZS_MM_Rtn_Wusel_loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Wusel_loop");
-	if(!Wld_IsTime(self.aivar[AIV_ITEMSTATUS],0,self.aivar[AIV_ITEMFREQ],0) && (self.aivar[AIV_ITEMSTATUS] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_ITEMFREQ],0) && (self.aivar[AIV_MM_WuselStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 	};

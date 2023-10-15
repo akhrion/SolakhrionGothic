@@ -20,13 +20,13 @@ prototype Mst_Default_Skeleton(C_Npc)
 	fight_tactic = FAI_HUMAN_Strong;
 	senses = SENSE_HEAR | SENSE_SEE;
 	senses_range = 3000;
-	aivar[AIV_FINDABLE] = PACKHUNTER;
-	aivar[AIV_PCISSTRONGER] = 2000;
-	aivar[AIV_BEENATTACKED] = 1500;
-	aivar[AIV_HIGHWAYMEN] = 1500;
-	aivar[AIV_HAS_ERPRESSED] = 0;
-	aivar[AIV_BEGGAR] = 5;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_Behaviour] = PACKHUNTER;
+	aivar[AIV_MM_PercRange] = 2000;
+	aivar[AIV_MM_DrohRange] = 1500;
+	aivar[AIV_MM_AttackRange] = 1500;
+	aivar[AIV_MM_DrohTime] = 0;
+	aivar[AIV_MM_FollowTime] = 5;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
 };
 
@@ -78,13 +78,13 @@ instance SkeletonSH(Mst_Default_Skeleton)
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
 	protection[PROT_FIRE] = 40;
 	senses_range = 1000;
-	aivar[AIV_FINDABLE] = PACKHUNTER;
-	aivar[AIV_PCISSTRONGER] = 1000;
-	aivar[AIV_BEENATTACKED] = 1000;
-	aivar[AIV_HIGHWAYMEN] = 1000;
-	aivar[AIV_HAS_ERPRESSED] = 0;
-	aivar[AIV_BEGGAR] = 5;
-	aivar[AIV_OBSERVEINTRUDER] = FALSE;
+	aivar[AIV_MM_Behaviour] = PACKHUNTER;
+	aivar[AIV_MM_PercRange] = 1000;
+	aivar[AIV_MM_DrohRange] = 1000;
+	aivar[AIV_MM_AttackRange] = 1000;
+	aivar[AIV_MM_DrohTime] = 0;
+	aivar[AIV_MM_FollowTime] = 5;
+	aivar[AIV_MM_FollowInWater] = FALSE;
 };
 
 instance SkeletonScout(Mst_Default_Skeleton)
