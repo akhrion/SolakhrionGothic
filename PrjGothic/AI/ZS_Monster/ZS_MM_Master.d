@@ -539,23 +539,23 @@ func void B_MM_AssessWarn()
 func void ZS_MM_AllScheduler()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_AllScheduler");
-	if(Wld_IsTime(self.aivar[AIV_WARNTARGET],0,self.aivar[AIV_LASTHITBYRANGEDWEAPON],0) || (self.aivar[AIV_WARNTARGET] == OnlyRoutine))
+	if(Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) || (self.aivar[AIV_MM_SleepStart] == OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_Rtn_Sleep,1,"");
 	}
-	else if(Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_HangAroundStatus],0) || (self.aivar[AIV_MM_RestStart] == OnlyRoutine))
+	else if(Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],0) || (self.aivar[AIV_MM_RestStart] == OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_Rtn_Rest,1,"");
 	}
-	else if(Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_GUARDMEMORY],0) || (self.aivar[AIV_MM_RoamStart] == OnlyRoutine))
+	else if(Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],0) || (self.aivar[AIV_MM_RoamStart] == OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_Rtn_Roam,1,"");
 	}
-	else if(Wld_IsTime(self.aivar[AIV_GUARDITERATOR],0,self.aivar[AIV_FIGHTSPEACHFLAG],0) || (self.aivar[AIV_GUARDITERATOR] == OnlyRoutine))
+	else if(Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],0) || (self.aivar[AIV_MM_EatGroundStart] == OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_Rtn_EatGround,1,"");
 	}
-	else if(Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_ITEMFREQ],0) || (self.aivar[AIV_MM_WuselStart] == OnlyRoutine))
+	else if(Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_MM_WuselEnd],0) || (self.aivar[AIV_MM_WuselStart] == OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_Rtn_Wusel,1,"");
 	}
@@ -645,7 +645,7 @@ func void ZS_MM_Rtn_Sleep()
 func void ZS_MM_Rtn_Sleep_loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Sleep_loop");
-	if(!Wld_IsTime(self.aivar[AIV_WARNTARGET],0,self.aivar[AIV_LASTHITBYRANGEDWEAPON],0) && (self.aivar[AIV_WARNTARGET] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) && (self.aivar[AIV_MM_SleepStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 	};
@@ -750,7 +750,7 @@ func void ZS_MM_Rtn_Rest_Loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Rest_Loop");
-	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_HangAroundStatus],0) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],0) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 	};
@@ -811,7 +811,7 @@ func void ZS_MM_Rtn_EatGround()
 func void ZS_MM_Rtn_EatGround_Loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_EatGround_Loop");
-	if(!Wld_IsTime(self.aivar[AIV_GUARDITERATOR],0,self.aivar[AIV_FIGHTSPEACHFLAG],0) && (self.aivar[AIV_GUARDITERATOR] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],0) && (self.aivar[AIV_MM_EatGroundStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 	};
@@ -845,7 +845,7 @@ func void ZS_MM_Rtn_Wusel_loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Wusel_loop");
-	if(!Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_ITEMFREQ],0) && (self.aivar[AIV_MM_WuselStart] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_MM_WuselEnd],0) && (self.aivar[AIV_MM_WuselStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 	};
