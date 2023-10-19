@@ -23,6 +23,11 @@ func void ZS_SitCampfire()
 
 func void ZS_SitCampfire_loop()
 {
+	if(Npc_GetHP(self) < Npc_GetHPMax(self))
+	{
+		Npc_ChangeAttribute(self,ATR_HITPOINTS,1);
+	};
+	AI_Wait(self,1);
 };
 
 func void ZS_SitCampfire_end()

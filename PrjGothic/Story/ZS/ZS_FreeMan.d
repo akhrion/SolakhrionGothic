@@ -25,25 +25,32 @@ func int ZS_FreeMan_Loop()
 {
     Print("zs_freeman_loop");
     if(
-        Npc_GetDistToPlayer(self) > 1000
-    &&  Random_IsProc(10)
+        (Npc_GetDistToPlayer(self) > 1000)
+    &&  (Npc_GetDistToPlayer(self) < 2000)
+    &&  Random_IsProc(1)
     )
     {
         B_FriendlyAssessCall();
         AI_Wait(self,3);
         return LOOP_CONTINUE;
     };
-    if(Random_IsProc(30))
+    if(Random_IsProc(25))
     {
         self.wp = "smalltalk";
-        ZS_Smalltalk();
-        AI_Wait(self,3);
+        AI_StartState(self,ZS_Smalltalk,0,"");
+        AI_Wait(self,5);
     }
-    else if(Random_IsProc(50))
+    else if(Random_IsProc(30))
     {
         self.wp = "meditate";
         ZS_Meditate();
         AI_Wait(self,5);
+    }
+    else if(Random_IsProc(30))
+    {
+        self.wp = "camp";
+        ZS_SitCampfire();
+        AI_Wait(self,10);
     }
     else
     {

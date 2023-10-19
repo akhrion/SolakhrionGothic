@@ -906,6 +906,16 @@ func int Npc_IsSummonedByPC(var C_Npc _npc)
 	};
 	return FALSE;
 };
+
+
+func int Npc_GetHP(var C_NPC npc)
+{
+	return npc.attribute[ATR_HITPOINTS];
+};
+func int Npc_GetHPMax(var C_NPC npc)
+{
+	return npc.attribute[ATR_HITPOINTS_MAX];
+};
 func void Npc_SetHitpoints(var C_Npc _npc, var int hp)
 {
 	_npc.attribute[ATR_HITPOINTS] = hp;	
@@ -1288,4 +1298,25 @@ func int Npc_HasReadiedWeapon_2HD_Swd(var C_Npc npc)
 	item = Npc_GetReadiedWeapon(npc);
 	if((item.flags & ITEM_2HD_SWD) == ITEM_2HD_SWD){return true;};
 	return false;
+};
+func int Npc_IsWannaTalk(var C_Npc npc)
+{
+	return isFlagsContainCategorie(npc.aivar[AIV_FREEMAN],AIV_FREEMAN_WANNATALK);
+};
+func void Npc_SetWannaTalk(var C_Npc npc,var int boolFlag)
+{
+	if(!Npc_IsWannaTalk(npc))
+	{
+		if(boolFlag)
+		{
+			npc.aivar[AIV_FREEMAN] += AIV_FREEMAN_WANNATALK;
+		};
+	}
+	else
+	{
+		if(!boolFlag)
+		{
+			npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_WANNATALK;
+		};
+	};
 };

@@ -36,9 +36,13 @@ func void ZS_Smalltalk()
 	AI_RemoveWeapon(self);
 	AI_GotoFP(self,"SMALLTALK");
 	AI_AlignToFP(self);
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(FreeMan))
+	{
+		Npc_SetWannaTalk(self,TRUE);
+	};
 };
 
-func void ZS_Smalltalk_Loop()
+func int ZS_Smalltalk_Loop()
 {
 	var int talktime;
 	PrintDebugNpc(PD_TA_LOOP,"ZS_Smalltalk_Loop");
@@ -47,6 +51,10 @@ func void ZS_Smalltalk_Loop()
 	PrintGlobals(PD_TA_CHECK);
 	if(Wld_DetectNpc(self,-1,ZS_Smalltalk,-1) && (Npc_GetDistToNpc(self,other) < 250))
 	{
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(FreeMan))
+		{
+			Print(IntToString(self.aivar[AIV_FREEMAN]));
+		};
 		AI_TurnToNPC(self,other);
 		talktime = Hlp_Random(200);
 		if(talktime < 5)
@@ -153,6 +161,25 @@ func void ZS_Smalltalk_Loop()
 		PrintDebugNpc(PD_TA_CHECK,"... kein Gesprächspartner gefunden!");
 	};
 	AI_Wait(self,1);
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(FreeMan))
+	{
+		if(Random_IsProc(20))
+		{
+			Npc_SetWannaTalk(self,FALSE);
+		};
+		if(Npc_IsWannaTalk(self))
+		{
+//			ZS_Smalltalk_Loop();
+			Print("ZS_Smalltalk_CONTINUE");
+			return LOOP_CONTINUE;
+		}
+		else
+		{
+			Print("ZS_Smalltalk_End");
+			return LOOP_END;
+		};
+	};
+	return LOOP_END;
 };
 
 func void ZS_Smalltalk_End()

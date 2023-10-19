@@ -50,6 +50,7 @@ const int AIV_DEALDAY = 41;
 const int AIV_ITEMSCHWEIN = 42;
 const int AIV_DROPDEADANDKILL = 43;
 const int AIV_FREEMAN = 49;
+const int AIV_FREEMAN_WANNATALK = 1;
 const int npctype_ambient = 0;
 const int npctype_main = 1;
 const int npctype_guard = 2;
