@@ -95,7 +95,9 @@ func void ZS_MM_EatBody_end()
 
 func void B_MM_AssessEnemy()
 {
+
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessEnemy");
+//	Print("B_MM_AssessEnemy");
 	if((Npc_GetDistToNpc(self,other) < self.aivar[AIV_MM_PercRange]) && Npc_CanSeeNpcFreeLOS(self,other))
 	{
 		if(C_PreyToPredator(other,self))
@@ -508,6 +510,7 @@ func void ZS_MM_Flee_End()
 
 func void B_MM_AssessWarn()
 {
+	Print("B_MM_AssessWarn");
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessWarn");
 	if(C_PreyToPredator(self,other))
 	{
@@ -541,22 +544,27 @@ func void ZS_MM_AllScheduler()
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_AllScheduler");
 	if(Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) || (self.aivar[AIV_MM_SleepStart] == OnlyRoutine))
 	{
+		Print("ZS_MM_Rtn_Sleep");
 		AI_StartState(self,ZS_MM_Rtn_Sleep,1,"");
 	}
 	else if(Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],0) || (self.aivar[AIV_MM_RestStart] == OnlyRoutine))
 	{
+		Print("ZS_MM_Rtn_Rest");
 		AI_StartState(self,ZS_MM_Rtn_Rest,1,"");
 	}
 	else if(Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],0) || (self.aivar[AIV_MM_RoamStart] == OnlyRoutine))
 	{
+		Print("ZS_MM_Rtn_Roam");
 		AI_StartState(self,ZS_MM_Rtn_Roam,1,"");
 	}
 	else if(Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],0) || (self.aivar[AIV_MM_EatGroundStart] == OnlyRoutine))
 	{
+		Print("ZS_MM_Rtn_EatGround");
 		AI_StartState(self,ZS_MM_Rtn_EatGround,1,"");
 	}
 	else if(Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_MM_WuselEnd],0) || (self.aivar[AIV_MM_WuselStart] == OnlyRoutine))
 	{
+		Print("ZS_MM_Rtn_Wusel");
 		AI_StartState(self,ZS_MM_Rtn_Wusel,1,"");
 	}
 	else
@@ -605,6 +613,55 @@ func void B_MM_AssessEnemy_Sleep()
 	};
 };
 
+func void B_MM_AssessQuietSound()
+{
+	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessQuietSound");
+	PrintGlobals(PD_ZS_FRAME);
+	return;
+	Print("B_MM_AssessQuietSound");
+	B_Cycle_NPC();
+	if(Snd_GetDistToSource(self) > 1000)
+	{
+		PrintDebugNpc(PD_ZS_FRAME,"... to far");
+		Print("B_MM_AssessQuietSound end");
+		return;
+	};
+	if(Npc_CanSeeSource(self))
+	{
+		PrintDebugNpc(PD_ZS_Check,"...kann Geräuschquelle sehen!");
+		Print("B_MM_AssessQuietSound Npc_CanSeeSource");
+		if(Snd_IsSourceNpc(self))
+		{
+			PrintDebugNpc(PD_ZS_Check,"...Geräuschquelle ist SC!");
+			if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
+			{
+				PrintDebugNpc(PD_ZS_Check,"...SC ist HOSTILE!");
+				Print("B_MM_AssessQuietSound to ZS_MM_AssessEnemy");
+				Npc_ClearAIQueue(self);
+				B_MM_AssessEnemy();
+			};
+		}
+		else
+		{
+			AI_GotoSound(self);
+			PrintSIS("Item: ",0,item.name);
+		};
+	}
+	else
+	{
+		PrintDebugNpc(PD_ZS_Check,"...kann NICHT Geräuschquelle sehen!");
+		if(Snd_IsSourceNpc(self))
+		{
+			Npc_ClearAIQueue(self);
+			AI_TurnToNPC(self,other);
+		}
+		else
+		{
+			AI_GotoSound(self);
+			PrintSIS("Item: ",0,item.name);
+		};
+	};
+};
 func void B_MM_AssessQuietSound_Sleep()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessQuietSound_Sleep");
@@ -663,7 +720,7 @@ func void ZS_MM_Rtn_Roam()
 	Npc_SetPercTime(self,1);
 	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSc);
 	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
-	Npc_PercEnable(self,PERC_ASSESSQUIETSOUND,B_AssessQuietSound);
+	Npc_PercEnable(self,PERC_ASSESSQUIETSOUND,B_MM_AssessQuietSound);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
@@ -672,19 +729,33 @@ func void ZS_MM_Rtn_Roam()
 	Npc_PercEnable(self,PERC_ASSESSBODY,B_MM_AssessBody);
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();
+	Npc_PerceiveAll(self);
 	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == FALSE)
 	{
 		AI_GotoWP(self,self.wp);
 	};
 };
 
-func void ZS_MM_Rtn_Roam_loop()
+func int ZS_MM_Rtn_Roam_loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Roam_loop");
 	if(!Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],0) && (self.aivar[AIV_MM_RoamStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
+	};
+	if(self.aivar[AIV_MM_REAL_ID] == ID_WOLF)
+	{
+		if(Wld_DetectItem(self,ITEM_KAT_FOOD))
+		{
+			PrintSIS("Food founded..",0,item.name);
+
+			return LOOP_CONTINUE;
+		}
+		else
+		{
+			var int i;
+		};
 	};
 	if(Hlp_Random(100) <= 20)
 	{
@@ -713,6 +784,7 @@ func void ZS_MM_Rtn_Roam_loop()
 			AI_PlayAni(self,"R_ROAM3");
 		};
 	};
+	return LOOP_END;
 };
 
 func void ZS_MM_Rtn_Roam_end()
@@ -727,7 +799,7 @@ func void ZS_MM_Rtn_Rest()
 	self.aivar[AIV_PLUNDERED] = PRIO_PREY;
 	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSc);
 	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
-	Npc_PercEnable(self,PERC_ASSESSQUIETSOUND,B_AssessQuietSound);
+	Npc_PercEnable(self,PERC_ASSESSQUIETSOUND,B_MM_AssessQuietSound);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
