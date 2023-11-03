@@ -3,7 +3,7 @@ prototype Mst_Default_UndeadOrcWarrior(C_Npc)
 {
 	name[0] = "Страж храма";
 	guild = GIL_UNDEADORC;
-	aivar[AIV_IMPORTANT] = ID_UNDEADORCWARRIOR;
+	aivar[AIV_MM_REAL_ID] = ID_UNDEADORCWARRIOR;
 	level = 25;
 	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 100;

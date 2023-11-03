@@ -3,7 +3,7 @@ prototype Mst_Default_Lurker(C_Npc)
 {
 	name[0] = "Øíûã";
 	guild = GIL_LURKER;
-	aivar[AIV_IMPORTANT] = ID_LURKER;
+	aivar[AIV_MM_REAL_ID] = ID_LURKER;
 	level = 17;
 	attribute[ATR_STRENGTH] = 50;
 	attribute[ATR_DEXTERITY] = 50;

@@ -3,7 +3,7 @@ prototype Mst_Default_Snapper(C_Npc)
 {
 	name[0] = "Глорх";
 	guild = GIL_SNAPPER;
-	aivar[AIV_IMPORTANT] = ID_SNAPPER;
+	aivar[AIV_MM_REAL_ID] = ID_SNAPPER;
 	level = 22;
 	attribute[ATR_STRENGTH] = 80;
 	attribute[ATR_DEXTERITY] = 80;

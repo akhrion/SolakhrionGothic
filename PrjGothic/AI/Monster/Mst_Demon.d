@@ -3,7 +3,7 @@ prototype Mst_Default_Demon(C_Npc)
 {
 	name[0] = "Пламенный демон";
 	guild = GIL_DEMON;
-	aivar[AIV_IMPORTANT] = ID_DEMON;
+	aivar[AIV_MM_REAL_ID] = ID_DEMON;
 	level = 50;
 	attribute[ATR_STRENGTH] = 75;
 	attribute[ATR_DEXTERITY] = 75;
@@ -69,7 +69,7 @@ instance XardasDemon(Mst_Default_Demon)
 	name[0] = " ";
 	npcType = npctype_friend;
 	guild = GIL_DEMON;
-	aivar[AIV_IMPORTANT] = ID_DEMON;
+	aivar[AIV_MM_REAL_ID] = ID_DEMON;
 	Mdl_SetVisual(self,"Demon.mds");
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_XardasDemon;

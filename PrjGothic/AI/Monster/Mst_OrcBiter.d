@@ -3,7 +3,7 @@ prototype Mst_Default_OrcBiter(C_Npc)
 {
 	name[0] = "Жерх";
 	guild = GIL_ORCDOG;
-	aivar[AIV_IMPORTANT] = ID_ORCBITER;
+	aivar[AIV_MM_REAL_ID] = ID_ORCBITER;
 	level = 12;
 	attribute[ATR_STRENGTH] = 80;
 	attribute[ATR_DEXTERITY] = 80;

@@ -3,7 +3,7 @@ prototype Mst_Default_GreenGobbo(C_Npc)
 {
 	name[0] = "Гоблин";
 	guild = GIL_GOBBO;
-	aivar[AIV_IMPORTANT] = ID_GOBBO;
+	aivar[AIV_MM_REAL_ID] = ID_GOBBO;
 	level = 6;
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 20;

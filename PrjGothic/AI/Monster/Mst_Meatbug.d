@@ -3,7 +3,7 @@ prototype Mst_Default_Meatbug(C_Npc)
 {
 	name[0] = "ћ€сной жук";
 	guild = GIL_MEATBUG;
-	aivar[AIV_IMPORTANT] = ID_MEATBUG;
+	aivar[AIV_MM_REAL_ID] = ID_MEATBUG;
 	level = 1;
 	Npc_SetToFistMode(self);
 	attribute[ATR_STRENGTH] = 1;

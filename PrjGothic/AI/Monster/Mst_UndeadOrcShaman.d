@@ -3,7 +3,7 @@ prototype Mst_Default_UndeadOrcShaman(C_Npc)
 {
 	name[0] = "Hohepriester";
 	guild = GIL_UNDEADORC;
-	aivar[AIV_IMPORTANT] = ID_UNDEADORCSHAMAN;
+	aivar[AIV_MM_REAL_ID] = ID_UNDEADORCSHAMAN;
 	level = 30;
 	attribute[ATR_STRENGTH] = 190;
 	attribute[ATR_DEXTERITY] = 190;

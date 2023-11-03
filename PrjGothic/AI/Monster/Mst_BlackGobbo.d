@@ -3,7 +3,7 @@ prototype Mst_Default_BlackGobbo(C_Npc)
 {
 	name[0] = "Черный гоблин";
 	guild = GIL_GOBBO;
-	aivar[AIV_IMPORTANT] = ID_BLACKGOBBO;
+	aivar[AIV_MM_REAL_ID] = ID_BLACKGOBBO;
 	level = 12;
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 20;

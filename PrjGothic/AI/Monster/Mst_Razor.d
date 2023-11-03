@@ -3,7 +3,7 @@ prototype Mst_Default_Razor(C_Npc)
 {
 	name[0] = "Штек";
 	guild = GIL_SNAPPER;
-	aivar[AIV_IMPORTANT] = ID_RAZOR;
+	aivar[AIV_MM_REAL_ID] = ID_RAZOR;
 	level = 20;
 	attribute[ATR_STRENGTH] = 110;
 	attribute[ATR_DEXTERITY] = 110;

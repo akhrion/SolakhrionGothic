@@ -3,7 +3,7 @@ prototype Mst_Default_Molerat(C_Npc)
 {
 	name[0] = "Кротокрыс";
 	guild = GIL_MOLERAT;
-	aivar[AIV_IMPORTANT] = ID_MOLERAT;
+	aivar[AIV_MM_REAL_ID] = ID_MOLERAT;
 	level = 5;
 	attribute[ATR_STRENGTH] = 8;
 	attribute[ATR_DEXTERITY] = 8;

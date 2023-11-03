@@ -3,7 +3,7 @@ prototype Mst_Default_Minecrawler(C_Npc)
 {
 	name[0] = "Ползун";
 	guild = GIL_MINECRAWLER;
-	aivar[AIV_IMPORTANT] = ID_MINECRAWLER;
+	aivar[AIV_MM_REAL_ID] = ID_MINECRAWLER;
 	level = 13;
 	attribute[ATR_STRENGTH] = 65;
 	attribute[ATR_DEXTERITY] = 30;

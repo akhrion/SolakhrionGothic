@@ -3,7 +3,7 @@ prototype Mst_Default_MinecrawlerQueen(C_Npc)
 {
 	name[0] = "Королева ползунов";
 	guild = GIL_MINECRAWLER;
-	aivar[AIV_IMPORTANT] = ID_MINECRAWLERQUEEN;
+	aivar[AIV_MM_REAL_ID] = ID_MINECRAWLERQUEEN;
 	level = 200;
 	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 100;

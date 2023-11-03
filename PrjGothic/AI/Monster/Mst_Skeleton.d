@@ -62,7 +62,7 @@ func void Set_SkeletonMage_Visuals()
 
 instance Skeleton(Mst_Default_Skeleton)
 {
-	aivar[AIV_IMPORTANT] = id_skeleton;
+	aivar[AIV_MM_REAL_ID] = id_skeleton;
 	Set_Skeleton_Visuals();
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
 	EquipItem(self,itmw_skeleton_sword);
@@ -71,7 +71,7 @@ instance Skeleton(Mst_Default_Skeleton)
 
 instance SkeletonSH(Mst_Default_Skeleton)
 {
-	aivar[AIV_IMPORTANT] = ID_SKELETON;
+	aivar[AIV_MM_REAL_ID] = ID_SKELETON;
 	Set_Skeleton_Visuals();
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
 	EquipItem(self,itmw_skeleton_axe);
@@ -90,7 +90,7 @@ instance SkeletonSH(Mst_Default_Skeleton)
 instance SkeletonScout(Mst_Default_Skeleton)
 {
 	name[0] = "Скелет-разведчик";
-	aivar[AIV_IMPORTANT] = id_skeletonscout;
+	aivar[AIV_MM_REAL_ID] = id_skeletonscout;
 	Set_SkeletonScout_Visuals();
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,0);
 	EquipItem(self,itmw_skeleton_scythe);
@@ -103,7 +103,7 @@ instance SkeletonWarrior(Mst_Default_Skeleton)
 	Set_SkeletonWarrior_Visuals();
 	level = 30;
 	attribute[ATR_STRENGTH] = 120;
-	aivar[AIV_IMPORTANT] = id_skeletonwarrior;
+	aivar[AIV_MM_REAL_ID] = id_skeletonwarrior;
 	Npc_SetTalentSkill(self,NPC_TALENT_2H,1);
 	EquipItem(self,ItMw_2H_Sword_Old_01);
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
@@ -111,7 +111,7 @@ instance SkeletonWarrior(Mst_Default_Skeleton)
 
 instance SkeletonMage(Mst_Default_Skeleton)
 {
-	aivar[AIV_IMPORTANT] = id_skeletonmage;
+	aivar[AIV_MM_REAL_ID] = id_skeletonmage;
 	Set_SkeletonMage_Visuals();
 	name[0] = "Скелет-маг";
 	guild = GIL_DEMON;
@@ -129,7 +129,7 @@ instance SkeletonMage(Mst_Default_Skeleton)
 
 instance SkeletonMage_fogtower(Mst_Default_Skeleton)
 {
-	aivar[AIV_IMPORTANT] = ID_SKELETONMAGE;
+	aivar[AIV_MM_REAL_ID] = ID_SKELETONMAGE;
 	Set_SkeletonMage_Visuals();
 	name[0] = "Скелет-маг туманной башни";
 	guild = GIL_DEMON;
@@ -149,7 +149,7 @@ instance SkeletonMage_fogtower(Mst_Default_Skeleton)
 instance SummonedByPC_Skeleton(Mst_Default_Skeleton)
 {
 	name[0] = "Призванный скелет";
-	aivar[AIV_IMPORTANT] = ID_SKELETON;
+	aivar[AIV_MM_REAL_ID] = ID_SKELETON;
 	level = 0;
 	Set_Skeleton_Visuals();
 	Npc_SetToFightMode(self,itmw_skeleton_sword);
@@ -165,7 +165,7 @@ instance SummonedByPC_Skeleton(Mst_Default_Skeleton)
 instance SummonedByPC_SkeletonShield(Mst_Default_Skeleton)
 {
 	name[0] = "Защита некроманта";
-	aivar[AIV_IMPORTANT] = ID_SKELETON;
+	aivar[AIV_MM_REAL_ID] = ID_SKELETON;
 	level = 0;
 	Set_Skeleton_Visuals();
 
@@ -181,7 +181,7 @@ instance SummonedByPC_SkeletonShield(Mst_Default_Skeleton)
 
 instance SummonedByNPC_Skeleton(Mst_Default_Skeleton)
 {
-	aivar[AIV_IMPORTANT] = ID_SKELETON;
+	aivar[AIV_MM_REAL_ID] = ID_SKELETON;
 	Set_Skeleton_Visuals();
 	Npc_SetToFightMode(self,itmw_skeleton_sword);
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
@@ -194,7 +194,7 @@ instance SummonedByPC_SkeletonWarrior(Mst_Default_Skeleton)
 	level = 0;
 	attribute[ATR_STRENGTH] = 120;
 	senses = SENSE_HEAR | SENSE_SEE;
-	aivar[AIV_IMPORTANT] = ID_SKELETONWARRIOR;
+	aivar[AIV_MM_REAL_ID] = ID_SKELETONWARRIOR;
 	Set_SkeletonWarrior_Visuals();
 	Npc_SetToFightMode(self,itmw_skeleton_axe);
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
@@ -209,7 +209,7 @@ instance SummonedByNPC_SkeletonWarrior(Mst_Default_Skeleton)
 	name[0] = "Скелет-боец";
 	level = 30;
 	attribute[ATR_STRENGTH] = 120;
-	aivar[AIV_IMPORTANT] = ID_SKELETONWARRIOR;
+	aivar[AIV_MM_REAL_ID] = ID_SKELETONWARRIOR;
 	Set_SkeletonWarrior_Visuals();
 	Npc_SetToFightMode(self,itmw_skeleton_axe);
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;

@@ -3,7 +3,7 @@ prototype Mst_Default_Waran(C_Npc)
 {
 	name[0] = "ящерица";
 	guild = GIL_WARAN;
-	aivar[AIV_IMPORTANT] = ID_WARAN;
+	aivar[AIV_MM_REAL_ID] = ID_WARAN;
 	level = 8;
 	attribute[ATR_STRENGTH] = 40;
 	attribute[ATR_DEXTERITY] = 40;

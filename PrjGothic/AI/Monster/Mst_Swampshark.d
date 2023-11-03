@@ -3,7 +3,7 @@ prototype Mst_Default_Swampshark(C_Npc)
 {
 	name[0] = "Болотожор";
 	guild = GIL_SWAMPSHARK;
-	aivar[AIV_IMPORTANT] = ID_SWAMPSHARK;
+	aivar[AIV_MM_REAL_ID] = ID_SWAMPSHARK;
 	level = 40;
 	attribute[ATR_STRENGTH] = 140;
 	attribute[ATR_DEXTERITY] = 140;

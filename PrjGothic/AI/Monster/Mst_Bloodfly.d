@@ -3,7 +3,7 @@ prototype Mst_Default_Bloodfly(C_Npc)
 {
 	name[0] = "Шершень";
 	guild = GIL_BLOODFLY;
-	aivar[AIV_IMPORTANT] = ID_BLOODFLY;
+	aivar[AIV_MM_REAL_ID] = ID_BLOODFLY;
 	level = 7;
 	attribute[ATR_STRENGTH] = 30;
 	attribute[ATR_DEXTERITY] = 30;

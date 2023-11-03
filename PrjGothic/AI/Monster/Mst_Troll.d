@@ -3,7 +3,7 @@ prototype Mst_Default_Troll(C_Npc)
 {
 	name[0] = "Тролль";
 	guild = GIL_TROLL;
-	aivar[AIV_IMPORTANT] = ID_TROLL;
+	aivar[AIV_MM_REAL_ID] = ID_TROLL;
 	level = 200;
 	attribute[ATR_STRENGTH] = 160;
 	attribute[ATR_DEXTERITY] = 20;
@@ -49,7 +49,7 @@ instance YoungTroll(Mst_Default_Troll)
 {
 	name[0] = "Молодой тролль";
 	guild = GIL_TROLL;
-	aivar[AIV_IMPORTANT] = ID_TROLL;
+	aivar[AIV_MM_REAL_ID] = ID_TROLL;
 	level = 100;
 	id = mid_youngtroll;
 	Set_Troll_Visuals();

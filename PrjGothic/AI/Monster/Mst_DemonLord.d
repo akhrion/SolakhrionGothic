@@ -3,7 +3,7 @@ prototype Mst_Default_DemonLord(C_Npc)
 {
 	name[0] = "Демон-лорд";
 	guild = GIL_DEMON;
-	aivar[AIV_IMPORTANT] = ID_DEMONLORD;
+	aivar[AIV_MM_REAL_ID] = ID_DEMONLORD;
 	level = 100;
 	attribute[ATR_STRENGTH] = 170;
 	attribute[ATR_DEXTERITY] = 100;

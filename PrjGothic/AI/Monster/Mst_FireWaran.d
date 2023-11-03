@@ -3,7 +3,7 @@ prototype Mst_Default_FireWaran(C_Npc)
 {
 	name[0] = "Огненная ящерица";
 	guild = GIL_WARAN;
-	aivar[AIV_IMPORTANT] = ID_FIREWARAN;
+	aivar[AIV_MM_REAL_ID] = ID_FIREWARAN;
 	level = 50;
 	attribute[ATR_STRENGTH] = 80;
 	attribute[ATR_DEXTERITY] = 80;

@@ -3,7 +3,7 @@ prototype Mst_Default_Sleeper(C_Npc)
 {
 	name[0] = "Спящий";
 	guild = GIL_SLF;
-	aivar[AIV_IMPORTANT] = ID_SLEEPER;
+	aivar[AIV_MM_REAL_ID] = ID_SLEEPER;
 	level = 2000;
 	attribute[ATR_STRENGTH] = 500;
 	attribute[ATR_DEXTERITY] = 500;

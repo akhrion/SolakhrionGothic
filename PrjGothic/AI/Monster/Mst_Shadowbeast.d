@@ -3,7 +3,7 @@ prototype Mst_Default_Shadowbeast(C_Npc)
 {
 	name[0] = "ћракорис";
 	guild = GIL_SHADOWBEAST;
-	aivar[AIV_IMPORTANT] = ID_SHADOWBEAST;
+	aivar[AIV_MM_REAL_ID] = ID_SHADOWBEAST;
 	level = 40;
 	attribute[ATR_STRENGTH] = 110;
 	attribute[ATR_DEXTERITY] = 110;

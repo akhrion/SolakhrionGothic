@@ -3,7 +3,7 @@ prototype Mst_Default_Harpie(C_Npc)
 {
 	name[0] = "Γΰποθÿ";
 	guild = GIL_DEMON;
-	aivar[AIV_IMPORTANT] = ID_HARPIE;
+	aivar[AIV_MM_REAL_ID] = ID_HARPIE;
 	level = 20;
 	attribute[ATR_STRENGTH] = 85;
 	attribute[ATR_DEXTERITY] = 85;

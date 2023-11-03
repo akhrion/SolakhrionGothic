@@ -3,7 +3,7 @@ prototype Mst_Default_Zombie(C_Npc)
 {
 	name[0] = "ַמלבט";
 	guild = GIL_ZOMBIE;
-	aivar[AIV_IMPORTANT] = ID_ZOMBIE;
+	aivar[AIV_MM_REAL_ID] = ID_ZOMBIE;
 	level = 20;
 	attribute[ATR_STRENGTH] = 140;
 	attribute[ATR_DEXTERITY] = 140;

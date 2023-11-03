@@ -3,7 +3,7 @@ prototype Mst_Default_Wolf(C_Npc)
 {
 	name[0] = "Волк";
 	guild = GIL_WOLF;
-	aivar[AIV_IMPORTANT] = ID_WOLF;
+	aivar[AIV_MM_REAL_ID] = ID_WOLF;
 	level = 9;
 	attribute[ATR_STRENGTH] = 40;
 	attribute[ATR_DEXTERITY] = 40;
