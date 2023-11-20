@@ -795,3 +795,4 @@ func void UnEquip_Machtring()
 	Npc_ChangeAttribute(self,ATR_DEXTERITY,-4);
 };
 
+qwe
