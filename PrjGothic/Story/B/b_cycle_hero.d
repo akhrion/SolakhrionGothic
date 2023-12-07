@@ -247,6 +247,7 @@ func void PC_Test()
 
 func void b_cycle_hero()
 {
+	return;
 	if(!Hlp_IsValidNpc(hero)){return;};
 //	PrintSIS("Dist to SPWN_PLANT_PSI_02 ",Npc_IsOnFP(hero,"SPWN_PLANT_PSI_02"),"");
 //	PrintSIS("Dist to PATH_TAKE_HERB_07 ",Npc_GetDistToWP(hero,"PATH_TAKE_HERB_07"),"");

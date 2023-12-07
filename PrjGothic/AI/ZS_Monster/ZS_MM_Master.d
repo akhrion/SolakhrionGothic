@@ -418,6 +418,13 @@ func int ZS_MM_Attack_Loop()
 			};
 			Npc_SetStateTime(self,0);
 		};
+		if(
+			self.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST
+		&&	Npc_GetDistToNpc(self,other) > 800
+		)
+		{
+			AI_Teleport(self,Npc_GetNearestWP(other));
+		};
 		if(other.aivar[AIV_INVINCIBLE] == FALSE)
 		{
 			AI_Attack(self);
@@ -555,6 +562,14 @@ func void ZS_MM_AllScheduler()
 	else if(Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],0) || (self.aivar[AIV_MM_RoamStart] == OnlyRoutine))
 	{
 		Print("ZS_MM_Rtn_Roam");
+		if(
+			self.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST
+		&&	Npc_GetTarget(self)
+		)
+		{
+			// Npc_SetTarget(self,other);
+			AI_StartState(self,ZS_MM_Attack,0,"");
+		};
 		AI_StartState(self,ZS_MM_Rtn_Roam,1,"");
 	}
 	else if(Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],0) || (self.aivar[AIV_MM_EatGroundStart] == OnlyRoutine))

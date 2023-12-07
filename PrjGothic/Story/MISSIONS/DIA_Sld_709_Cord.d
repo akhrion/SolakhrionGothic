@@ -89,10 +89,10 @@ func void SLD_709_Cord_TRAIN_Info()
 			AI_Output(self,other,"SLD_709_Cord_TRAIN_14_021");	//Конечно, ты можешь взять любое оружие в обе руки, однако у каждоко, будь то меч или топор, у каждого оружия есть свои характеристики.
 			AI_Output(self,other,"SLD_709_Cord_TRAIN_14_022");	//Длинна, острота, размер ручки. И если ты сравнишь, то увидишь, что одноручные мечи имеют меньшую рукоятку, рассчитанную под одну руку.
 			AI_Output(self,other,"SLD_709_Cord_TRAIN_14_023");	//Так-же одноручным мечем сложнее дотянуться до противника, так как он попросту короче. А когда ты берешь его в обе руки, то твой мах уменьшается еще больше.
-			Info_ClearChoices(SLD_709_Cord_TRAIN);
-			Info_AddChoice(SLD_709_Cord_TRAIN,"",);
-			Info_AddChoice(SLD_709_Cord_TRAIN,"",);
-			Info_AddChoice(SLD_709_Cord_TRAIN,"",);
+			// Info_ClearChoices(SLD_709_Cord_TRAIN);
+			// Info_AddChoice(SLD_709_Cord_TRAIN,"",);
+			// Info_AddChoice(SLD_709_Cord_TRAIN,"",);
+			// Info_AddChoice(SLD_709_Cord_TRAIN,"",);
 			AI_Output(self,other,"SLD_709_Cord_TRAIN_14_03");	//Всегда держи меч одной рукой, острием вверх.
 			AI_Output(self,other,"SLD_709_Cord_TRAIN_14_04");	//Он должен стать продолжением твоей руки, слиться с ее движением. Это позволит тебе атаковать намного быстрее.
 			AI_Output(self,other,"SLD_709_Cord_TRAIN_14_05");	//Если усвоишь все, что я тебе сказал, твои удары станут более изящными и быстрыми.

@@ -499,6 +499,7 @@ var int quest_Blade_SwordsSkills_Counter;
 
 var int Perk_Warior_Bravery;        //”величивает параметры если противников много.
 
+var int PC_Forging_IncandescenceTime;
 
 func void init_variables()
 {

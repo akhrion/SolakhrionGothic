@@ -307,6 +307,9 @@ const string _STR_MESSAGE_TRADE_FAILURE = "Это неравноценный обмен.";
 const string _STR_MESSAGE_Joincamp = "Условие: уровень ";
 const string _STR_MESSAGE_CANNOTSTEAL = "Воровство невозможно.";
 const string _STR_MESSAGE_OREPICKED = "Руда добыта..";
+const string _STR_MESSAGE_PILLAR = "Да я в своем уме? Я не в жизнь не сдвину эту махину так..";
+const string _STR_MESSAGE_PILLAR1 = "Был-бы я чуть посильней..";
+const string _STR_MESSAGE_PILLAR2 = "Ещё чуть чуть..";
 
 const int _YPOS_MESSAGE_GIVEN = 37;
 const int _YPOS_MESSAGE_TAKEN = 40;
