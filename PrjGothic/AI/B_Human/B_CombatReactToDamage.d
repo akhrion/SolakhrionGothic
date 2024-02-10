@@ -76,7 +76,8 @@ func void B_CombatReactToDamage()
 				Npc_SetHP(self,1);
 				if(!C_BodyStateContains(self,BS_LIE))
 				{
-					AI_PlayAniBS(self,"T_STAND_2_WOUNDED",BS_LIE);
+					AI_PlayAniBS(self,"T_DEAD",BS_LIE);
+					// AI_PlayAniBS(self,"T_STAND_2_WOUNDED",BS_LIE);
 				};
 				AI_StartState(self,ZS_Unconscious,0,"");
 			};
