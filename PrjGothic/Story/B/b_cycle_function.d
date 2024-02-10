@@ -7,6 +7,7 @@ func void b_cycle_om_function()
 
 func void b_cycle_function()
 {
+	PrintScreen("test branch",2,10,_STR_FONT_ONSCREEN,1);
 	SpawnPlants();
 	b_cycle_hero();
 	B_Cycle_NPC();
