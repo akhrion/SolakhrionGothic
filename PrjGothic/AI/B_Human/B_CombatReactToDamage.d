@@ -67,7 +67,7 @@ func void B_CombatReactToDamage()
 		self.aivar[AIV_LASTHITBYRANGEDWEAPON] = FALSE;
 		if(!Npc_CanSeeNpc(self,other))
 		{
-			Npc_DecreaseHP(self,Npc_GetStr(other));
+			Npc_DecreaseHP(self,Npc_GetDex(other) * DAM_CRITICAL_MULTIPLIER);
 		};
 	};
 	if(Npc_IsPlayer(other))
