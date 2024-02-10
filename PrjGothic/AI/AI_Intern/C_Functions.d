@@ -907,7 +907,14 @@ func int Npc_IsSummonedByPC(var C_Npc _npc)
 	return FALSE;
 };
 
-
+func int Npc_GetStr(var C_Npc npc_)
+{
+	return npc_.attribute[ATR_STRENGTH];
+};
+func int Npc_GetDex(var C_Npc npc_)
+{
+	return npc_.attribute[ATR_DEXTERITY];
+};
 func int Npc_GetHP(var C_NPC npc)
 {
 	return npc.attribute[ATR_HITPOINTS];
@@ -915,6 +922,18 @@ func int Npc_GetHP(var C_NPC npc)
 func int Npc_GetHPMax(var C_NPC npc)
 {
 	return npc.attribute[ATR_HITPOINTS_MAX];
+};
+func int Npc_GetHPPcnt(var C_NPC npc)
+{
+	return npc.attribute[ATR_HITPOINTS] * 100 / npc.attribute[ATR_HITPOINTS_MAX];
+};
+func void Npc_SetHP(var C_NPC npc, var int hp)
+{
+	npc.attribute[ATR_HITPOINTS] = hp;
+};
+func void Npc_SetHPPcnt(var C_NPC npc,var int hp)
+{
+	npc.attribute[ATR_HITPOINTS] = hp * npc.attribute[ATR_HITPOINTS_MAX] / 100;
 };
 func void Npc_SetHitpoints(var C_Npc _npc, var int hp)
 {
@@ -927,6 +946,16 @@ func void Npc_AddHitpoints(var C_Npc _npc, var int hp)
 func void Npc_SubtractHitpoints(var C_Npc _npc, var int hp)
 {
 	_npc.attribute[ATR_HITPOINTS] = _npc.attribute[ATR_HITPOINTS] - hp;
+};
+func void Npc_DecreaseHP(var C_NPC npc,var int hp)
+{
+	npc.attribute[ATR_HITPOINTS] -= hp;
+};
+func void Npc_IncreaseHP(var C_NPC npc,var int hp)
+{
+	IF(npc.attribute[ATR_HITPOINTS] == npc.attribute[ATR_HITPOINTS_MAX]){return;};
+	IF(npc.attribute[ATR_HITPOINTS] > npc.attribute[ATR_HITPOINTS_MAX]){Npc_SetHP(npc,npc.attribute[ATR_HITPOINTS_MAX]);return;};
+	npc.attribute[ATR_HITPOINTS] += hp;
 };
 func int Npc_IsReceiveDamage(var C_Npc victim, var C_Npc attacker)
 {
