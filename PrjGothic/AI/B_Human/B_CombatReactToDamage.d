@@ -67,7 +67,19 @@ func void B_CombatReactToDamage()
 		self.aivar[AIV_LASTHITBYRANGEDWEAPON] = FALSE;
 		if(!Npc_CanSeeNpc(self,other))
 		{
-			Npc_DecreaseHP(self,Npc_GetDex(other) * DAM_CRITICAL_MULTIPLIER);
+			if(Npc_GetHP(self) > Npc_GetDex(other) * DAM_CRITICAL_MULTIPLIER)
+			{
+				Npc_DecreaseHP(self,Npc_GetDex(other) * DAM_CRITICAL_MULTIPLIER);
+			}
+			else
+			{
+				Npc_SetHP(self,1);
+				if(!C_BodyStateContains(self,BS_LIE))
+				{
+					AI_PlayAniBS(self,"T_STAND_2_WOUNDED",BS_LIE);
+				};
+				AI_StartState(self,ZS_Unconscious,0,"");
+			};
 		};
 	};
 	if(Npc_IsPlayer(other))
