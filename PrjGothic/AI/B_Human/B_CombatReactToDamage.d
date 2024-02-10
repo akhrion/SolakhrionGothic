@@ -38,6 +38,25 @@ func void ReactToDamage_Mage_Fireshield()
 	};
 	Npc_ChangeAttribute(other,ATR_HITPOINTS,-50);
 };
+func void ReactToDamage_ByBackSide()
+{
+	if(!Npc_CanSeeNpc(self,other))
+	{
+		if(Npc_GetHP(self) > Npc_GetDex(other) * DAM_CRITICAL_MULTIPLIER)
+		{
+			Npc_DecreaseHP(self,Npc_GetDex(other) * DAM_CRITICAL_MULTIPLIER);
+		}
+		else
+		{
+			Npc_SetHP(self,1);
+			if(!C_BodyStateContains(self,BS_LIE))
+			{
+				AI_PlayAniBS(self,"T_DEAD",BS_LIE);
+			};
+			AI_StartState(self,ZS_Unconscious,0,"");
+		};
+	};
+};
 func void B_CombatReactToDamage()
 {
 	PrintDebugNpc(PD_ZS_FRAME,"B_CombatReactToDamage");
@@ -65,22 +84,7 @@ func void B_CombatReactToDamage()
 	else
 	{
 		self.aivar[AIV_LASTHITBYRANGEDWEAPON] = FALSE;
-		if(!Npc_CanSeeNpc(self,other))
-		{
-			if(Npc_GetHP(self) > Npc_GetDex(other) * DAM_CRITICAL_MULTIPLIER)
-			{
-				Npc_DecreaseHP(self,Npc_GetDex(other) * DAM_CRITICAL_MULTIPLIER);
-			}
-			else
-			{
-				Npc_SetHP(self,1);
-				if(!C_BodyStateContains(self,BS_LIE))
-				{
-					AI_PlayAniBS(self,"T_DEAD",BS_LIE);
-				};
-				AI_StartState(self,ZS_Unconscious,0,"");
-			};
-		};
+		ReactToDamage_ByBackSide();
 	};
 	if(Npc_IsPlayer(other))
 	{
