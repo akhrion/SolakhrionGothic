@@ -252,22 +252,22 @@ func void NPC_Dodge(var C_Npc npc)
 	PrintScreen(getConcatSI("Npc_GetBodyState(npc) & BS_STAND: ",Npc_GetBodyState(npc) & BS_STAND),2,16,_STR_FONT_ONSCREEN,1);
 	PrintScreen(getConcatSI("npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE: ",npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE),2,18,_STR_FONT_ONSCREEN,1);
 
-	if(npc.flags & NPC_FLAG_IMMORTAL)
+	if(isFlagsContainCategorie(npc.flags, NPC_FLAG_IMMORTAL))
 	{
 		npc.flags = npc.flags - NPC_FLAG_IMMORTAL;
 	};
 	if(
-		Npc_GetBodyState(npc) & BS_STAND
-	&	(npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE)
+		isFlagsContainCategorie(Npc_GetBodyState(npc), BS_STAND)
+	&	isFlagsContainCategorie(npc.aivar[AIV_ABILITY], AIV_ABILITY_DODGE)
 	)
 	{
 		npc.aivar[AIV_ABILITY] = npc.aivar[AIV_ABILITY] - AIV_ABILITY_DODGE;
 	};
 	if(
 		Npc_GetTarget(npc)
-	&	!(npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE)
-	&	Npc_GetBodyState(npc) & BS_RUN
-	&	!(npc.flags & NPC_FLAG_IMMORTAL)
+	&	!isFlagsContainCategorie(npc.aivar[AIV_ABILITY], AIV_ABILITY_DODGE)
+	&	isFlagsContainCategorie(Npc_GetBodyState(npc), BS_RUN)
+	&	!isFlagsContainCategorie(npc.flags, NPC_FLAG_IMMORTAL)
 	)
 	{
 		npc.flags = npc.flags | NPC_FLAG_IMMORTAL;
