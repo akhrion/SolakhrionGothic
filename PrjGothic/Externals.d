@@ -1,3 +1,20 @@
+func string getConcatSI(var string s1, var int i)
+{
+	return ConcatStrings(
+		s1,
+		IntToString(i)
+	);
+};
+func string getConcatSIS(var string s1, var int i, var string s2)
+{
+	return ConcatStrings(
+		getConcatSI(
+			s1,
+			i
+		),
+		s2
+	);
+};
 func void PrintI(var int _i)
 {
 	Print(IntToString(_i));
@@ -10,6 +27,14 @@ func void PrintISI(var int _i,var string _str,var int _ii)
 		),
 		IntToString(ITEM_2HD_SWD)
 	));
+};
+func void PrintSI(var string str_, var int i_){
+	Print(
+		ConcatStrings(
+			str_,
+			IntToString(i_)
+		)
+	);
 };
 func void PrintSIS(var string _s1, var int _i, var string _s2)
 {

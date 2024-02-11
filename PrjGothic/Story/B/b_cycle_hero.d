@@ -244,9 +244,40 @@ func void PC_Test()
 		Focus_Ranged.npc_range2 = 3000000;
 	};
 };
-
-func void b_cycle_hero()
+func void NPC_Dodge(var C_Npc npc)
 {
+	PrintSI("bodystate: ",Npc_GetBodyState(npc));
+	PrintScreen(getConcatSI("immortal flag: ",npc.flags),2,12,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("ability dodge: ",npc.aivar[AIV_ABILITY]),2,14,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("Npc_GetBodyState(npc) & BS_STAND: ",Npc_GetBodyState(npc) & BS_STAND),2,16,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE: ",npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE),2,18,_STR_FONT_ONSCREEN,1);
+
+	if(npc.flags & NPC_FLAG_IMMORTAL)
+	{
+		npc.flags = npc.flags - NPC_FLAG_IMMORTAL;
+	};
+	if(
+		Npc_GetBodyState(npc) & BS_STAND
+	&	(npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE)
+	)
+	{
+		npc.aivar[AIV_ABILITY] = npc.aivar[AIV_ABILITY] - AIV_ABILITY_DODGE;
+	};
+	if(
+		Npc_GetTarget(npc)
+	&	!(npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE)
+	&	Npc_GetBodyState(npc) & BS_RUN
+	&	!(npc.flags & NPC_FLAG_IMMORTAL)
+	)
+	{
+		npc.flags = npc.flags | NPC_FLAG_IMMORTAL;
+		npc.aivar[AIV_ABILITY] = npc.aivar[AIV_ABILITY] | AIV_ABILITY_DODGE;
+	};
+};
+func void b_cycle_hero()
+{	
+	NPC_Dodge(hero);
+	
 	return;
 	if(!Hlp_IsValidNpc(hero)){return;};
 //	PrintSIS("Dist to SPWN_PLANT_PSI_02 ",Npc_IsOnFP(hero,"SPWN_PLANT_PSI_02"),"");
