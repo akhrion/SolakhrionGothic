@@ -246,7 +246,6 @@ func void PC_Test()
 };
 func void NPC_Dodge(var C_Npc npc)
 {
-	PrintSI("bodystate: ",Npc_GetBodyState(npc));
 	PrintScreen(getConcatSI("immortal flag: ",npc.flags),2,12,_STR_FONT_ONSCREEN,1);
 	PrintScreen(getConcatSI("ability dodge: ",npc.aivar[AIV_ABILITY]),2,14,_STR_FONT_ONSCREEN,1);
 	PrintScreen(getConcatSI("Npc_GetBodyState(npc) & BS_STAND: ",Npc_GetBodyState(npc) & BS_STAND),2,16,_STR_FONT_ONSCREEN,1);
