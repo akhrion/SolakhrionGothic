@@ -1,11 +1,19 @@
-func void b_cycle_om_function()
+func void b_cycle02_function_om()
 {
 	b_cycle_hero();
 	B_Cycle_NPC();
-	Wld_SendTrigger("CYCLE_TRIGER_OM");
+	Wld_SendTrigger("CYCLE02_TRIGGER_OM");
+};
+func void b_cycle_function_om()
+{
+	Wld_SendTrigger("CYCLE_TRIGGER_OM");
+};
+func void b_cycle60_function_om()
+{
+	Wld_SendTrigger("CYCLE60_TRIGGER_OM");
 };
 
-func void b_cycle_function()
+func void b_cycle02_function()
 {
 	PrintScreen("test branch",2,10,_STR_FONT_ONSCREEN,1);
 	SpawnPlants();
@@ -62,6 +70,14 @@ func void b_cycle_function()
 		Wld_InsertItem(theriddle5,"FP_RIDD_4");
 		RIDDLE4INSERT = FALSE;
 	};
+	Wld_SendTrigger("CYCLE02_TRIGGER");
+};
+func void b_cycle_function()
+{
+	FireGolem_Aura(hero);
 	Wld_SendTrigger("CYCLE_TRIGGER");
 };
-
+func void b_cycle60_function()
+{
+	Wld_SendTrigger("CYCLE60_TRIGGER");
+};

@@ -1976,7 +1976,9 @@ func void startup_world()
 	Startup_Sub_Surface();
 	init_world();
 	PlayVideo("INTRO.BIK");
+	b_cycle02_function();
 	b_cycle_function();
+	b_cycle60_function();
 	RUSSOBITMFIXV13 = TRUE;
 	FIX_VERSION_SAVE = FIX_VERSION_START;
 };
@@ -2128,7 +2130,9 @@ func void init_orctempel()
 
 func void startup_oldmine()
 {
-	b_cycle_om_function();
+	b_cycle02_function_om();
+	b_cycle_function_om();
+	b_cycle60_function_om();
 	Wld_InsertNpc(STT_300_Alberto,"OM_122");
 	Wld_InsertNpc(STT_301_Ian,"OM_122");
 	Wld_InsertNpc(STT_302_Viper,"OM_122");

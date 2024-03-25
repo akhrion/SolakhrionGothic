@@ -630,3 +630,20 @@ func void PC_LootChest()
 		Print("GRD is owner..");
 	};
 };
+func void FireGolem_Aura(var C_Npc vict)
+{
+	if(Npc_IsDead(vict)){return;};
+	var C_Npc npcFireGolem; npcFireGolem = Hlp_GetNpc(FireGolem);
+	if(Npc_GetDistToNpc(npcFireGolem,vict) < 500)
+	{
+		vict.attribute[ATR_HITPOINTS] -= FireGolem_Aura_Damage_Near;
+	}
+	else if(Npc_GetDistToNpc(npcFireGolem,vict) < 1500)
+	{
+		vict.attribute[ATR_HITPOINTS] -= FireGolem_Aura_Damage_Normal;
+	}
+	else if(Npc_GetDistToNpc(npcFireGolem,vict) < 2000)
+	{
+		vict.attribute[ATR_HITPOINTS] -= FireGolem_Aura_Damage_Far;
+	};
+};
