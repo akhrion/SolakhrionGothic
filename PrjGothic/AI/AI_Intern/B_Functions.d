@@ -632,8 +632,12 @@ func void PC_LootChest()
 };
 func void FireGolem_Aura(var C_Npc vict)
 {
-	if(Npc_IsDead(vict)){return;};
-	var C_Npc npcFireGolem; npcFireGolem = Hlp_GetNpc(FireGolem);
+	return;
+	var int instFireGolem; instFireGolem = Hlp_GetInstanceID(FireGolem);
+	var C_Npc npcFireGolem; npcFireGolem = Hlp_GetNpc(instFireGolem);
+	if(Npc_IsDead(npcFireGolem)){return;};
+	msgSI("dist to firegolem: ",Npc_GetDistToNpc(npcFireGolem,vict),80,60,1);
+	msgSI("C_Npc: ",npcFireGolem,80,62,1);
 	if(Npc_GetDistToNpc(npcFireGolem,vict) < 500)
 	{
 		vict.attribute[ATR_HITPOINTS] -= FireGolem_Aura_Damage_Near;
@@ -645,5 +649,52 @@ func void FireGolem_Aura(var C_Npc vict)
 	else if(Npc_GetDistToNpc(npcFireGolem,vict) < 2000)
 	{
 		vict.attribute[ATR_HITPOINTS] -= FireGolem_Aura_Damage_Far;
+	};
+};
+func int Npc_IsMining(var C_Npc npc)
+{
+	if(
+		Npc_GetBodyState(npc) == BS_MOBINTERACT_INTERRUPT
+	&&	npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_ISMINING
+	){
+		return true;
+	};
+	return false;
+};
+func void PC_MenuOpen(var int mobsiID)
+{
+		hero.aivar[AIV_INVINCIBLE] = TRUE;
+		AI_ProcessInfos(hero);
+		PLAYER_MOBSI_PRODUCTION = mobsiID;
+};
+func void PC_MenuClose(var int mobsiID)
+{
+	    AI_StopProcessInfos(hero);
+    	hero.aivar[AIV_INVINCIBLE] = FALSE;
+	    PLAYER_MOBSI_PRODUCTION = mobsiID;
+};
+func void PC_ReceivedBacksideDamage()
+{
+	PrintDebugNpc(PD_ZS_LOOP,"Если получивший урон не является игроком - скип.");
+	PrintDebugNpc(PD_ZS_LOOP,"Если урон уже получен - скип.");
+	if(
+		!Npc_IsPlayer(other)
+	||	PC_IsReceivedBacksideDamage
+	)
+	{return;};
+
+	Npc_GetTarget(other);
+	if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(other))
+	{
+		PrintDebugNpc(PD_ZS_LOOP,"Игрока ударил не тот, кто в фокусе.");
+		if(C_BodyStateContains(self,BS_HIT))
+		{
+			PC_IsReceivedBacksideDamage = true;
+			Npc_DecreaseHP(hero,Npc_GetDex(self));
+		};
+	}
+	else
+	{
+		PrintDebugNpc(PD_ZS_LOOP,"Игрок держит атакующего в фокусе.");
 	};
 };

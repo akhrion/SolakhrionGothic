@@ -7,6 +7,23 @@
 
 const int Value_1H_Sword_01 = 100;
 
+func void Equip_ItMw_1H_Club_01()
+{
+	if(!Npc_IsPlayer(self)){return;};
+	if(
+		Npc_HasItems(self,ItMi_Nail) > 2
+	||	(
+			Npc_HasItems(self,ItMi_Nail_Bent) > 2
+		&&	(
+				Npc_HasItems(self,ItMiHammer)
+			||	Npc_HasItems(self,ItMw_1H_Sledgehammer_01)
+			)
+		)
+	)
+	{
+
+	};
+};
 instance ItMw_1H_Club_01(C_Item)
 {
 	name = "Дубина";
@@ -19,6 +36,7 @@ instance ItMw_1H_Club_01(C_Item)
 	range = 100;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 5;
+	on_equip = Equip_ItMw_1H_Club_01;
 	visual = "ItMw_1H_Club_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -219,6 +237,11 @@ instance ItMw_1H_Sword_Old_01(C_Item)
 	count[5] = value;
 };
 
+func void Unequip_ItMw_1H_Nailmace_01()
+{
+	if(!Npc_IsPlayer(self)){return;};
+	PC_MenuOpen(MOBSI_PC_Menu);
+};
 instance ItMw_1H_Nailmace_01(C_Item)
 {
 	name = "Дубина с гвоздями";
@@ -231,6 +254,7 @@ instance ItMw_1H_Nailmace_01(C_Item)
 	range = 100;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 7;
+	on_unequip = Unequip_ItMw_1H_Nailmace_01;
 	visual = "ItMw_1H_Nailmace_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;

@@ -82,6 +82,7 @@ func int ZS_Attack_Loop()
 			if((Npc_GetDistToNpc(self,other) > HAI_DIST_ABORT_MELEE) && (self.aivar[AIV_LASTHITBYRANGEDWEAPON] == FALSE))
 			{
 				PrintDebugNpc(PD_ZS_Check,"...Gegner auЯerhalb Nahkampfreichweite & letzter Treffer nicht durch Fernkampfwaffe!");
+				PrintDebugNpc(PD_ZS_Check,"...Враги вне зоны ближнего боя & последний удар не из оружия дальнего боя!");
 				B_FullStop(self);
 				PrintGlobals(PD_ZS_Check);
 				if(C_NpcIsHuman(other))
@@ -164,6 +165,7 @@ func int ZS_Attack_Loop()
 	if(other.aivar[AIV_INVINCIBLE] == FALSE)
 	{
 		AI_Attack(self);
+		PC_ReceivedBacksideDamage();
 	}
 	else
 	{

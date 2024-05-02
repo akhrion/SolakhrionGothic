@@ -61,6 +61,7 @@ func void Info_Grd_218_FirstWarn_Info()
 	hero.aivar[AIV_LASTDISTTOWP] = Npc_GetDistToWP(hero,Grd_218_CHECKPOINT);
 	hero.aivar[AIV_GUARDPASSAGE_STATUS] = AIV_GPS_FIRSTWARN;
 	AI_StopProcessInfos(self);
+	AI_Teleport(hero,"OCC_MERCS_ENTRANCE_1");
 };
 
 

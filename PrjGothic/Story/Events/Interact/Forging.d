@@ -1,14 +1,21 @@
 func int bsfire_cf()
 {
-	return true;
+	if(!Npc_IsPlayer(self)){return true;};
+	PC_Count_Swordrawhot = Npc_HasItems(self,ItMiSwordrawhot);
+	if(Npc_HasItems(self,ItMiSwordraw))
+	{
+		return true;
+	};
+	msgSS("Для этого мне нужна ",ItMiSwordraw.name,-1,-1,3);
+	return false;
 };
 func void bsfire_s1()
 {
 	if(Npc_IsPlayer(self))
 	{
-		PC_Forging_IncandescenceTime = getTimestamp();
+		PC_Forging_Incandescence_TimeStarted = getTimestamp();
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-	// 	AI_Wait(self,6);
+		// AI_Wait(self,2);
 	// 	B_StopUseMob(self,"BSFIRE");
 	};
 };
@@ -17,9 +24,16 @@ func void bsfire_s0()
 {
 	if(Npc_IsPlayer(self))
 	{
-		if(PC_Forging_IncandescenceTime)
+		if(PC_Forging_Incandescence_TimeStarted)
 		{
-			PC_Forging_IncandescenceTime = getTimestamp() - PC_Forging_IncandescenceTime;
+			PC_Forging_Incandescence_IsStopped = true;
+			PC_Forging_Incandescence_TimeLasted = getTimestamp() - PC_Forging_Incandescence_TimeStarted;
+			msgSI("forging time: ",PC_Forging_Incandescence_TimeLasted,-1,-1,3);
+			// if(PC_Count_Swordrawhot != Npc_HasItems(self,ItMiSwordrawhot))
+			// {
+
+			// };
+			// msgSS(item.name,"",-1,54,3);
 		};
 		self.aivar[AIV_INVINCIBLE] = FALSE;
 	};

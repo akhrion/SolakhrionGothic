@@ -551,17 +551,17 @@ func void ZS_MM_AllScheduler()
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_AllScheduler");
 	if(Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) || (self.aivar[AIV_MM_SleepStart] == OnlyRoutine))
 	{
-		Print("ZS_MM_Rtn_Sleep");
+		// Print("ZS_MM_Rtn_Sleep");
 		AI_StartState(self,ZS_MM_Rtn_Sleep,1,"");
 	}
 	else if(Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],0) || (self.aivar[AIV_MM_RestStart] == OnlyRoutine))
 	{
-		Print("ZS_MM_Rtn_Rest");
+		// Print("ZS_MM_Rtn_Rest");
 		AI_StartState(self,ZS_MM_Rtn_Rest,1,"");
 	}
 	else if(Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],0) || (self.aivar[AIV_MM_RoamStart] == OnlyRoutine))
 	{
-		Print("ZS_MM_Rtn_Roam");
+		// Print("ZS_MM_Rtn_Roam");
 		if(
 			self.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST
 		&&	Npc_GetTarget(self)
@@ -574,12 +574,12 @@ func void ZS_MM_AllScheduler()
 	}
 	else if(Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],0) || (self.aivar[AIV_MM_EatGroundStart] == OnlyRoutine))
 	{
-		Print("ZS_MM_Rtn_EatGround");
+		// Print("ZS_MM_Rtn_EatGround");
 		AI_StartState(self,ZS_MM_Rtn_EatGround,1,"");
 	}
 	else if(Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_MM_WuselEnd],0) || (self.aivar[AIV_MM_WuselStart] == OnlyRoutine))
 	{
-		Print("ZS_MM_Rtn_Wusel");
+		// Print("ZS_MM_Rtn_Wusel");
 		AI_StartState(self,ZS_MM_Rtn_Wusel,1,"");
 	}
 	else

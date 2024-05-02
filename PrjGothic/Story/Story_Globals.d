@@ -502,8 +502,16 @@ var int quest_Blade_SwordsSkills_Counter;
 
 var int Perk_Warior_Bravery;        //”величивает параметры если противников много.
 
-var int PC_Forging_IncandescenceTime;
+var int PC_Forging_Incandescence_IsStopped;
+var int PC_Forging_Incandescence_TimeStarted;
+var int PC_Forging_Incandescence_TimeStopped;
+var int PC_Forging_Incandescence_TimeLasted;
+var int PC_Activity_Time;
 
+var int PC_Count_Swordrawhot;
+
+var int PC_Damage_Bow;
+var int PC_IsReceivedBacksideDamage;
 func void init_variables()
 {
     SPL_FIREBALL_TIME_PER_MANA_BASIC = 750;

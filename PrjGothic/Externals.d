@@ -1,3 +1,19 @@
+func void msg(var string str, var int x, var int y, var int _time){
+	PrintScreen(str,x,y,"FONT_OLD_10_WHITE.TGA",_time);
+};
+func void msgI(var int i_, var int x_, var int y_, var int _time){
+	PrintScreen(IntToString(i_),x_,y_,"FONT_OLD_10_WHITE.TGA",_time);
+};
+func void msgISI(var int i_, var string s_, var int ii_, var int x_, var int y_, var int _time){
+	PrintScreen(ConcatStrings(ConcatStrings(IntToString(i_),s_),IntToString(ii_)),x_,y_,"FONT_OLD_10_WHITE.TGA",_time);
+};
+func void msgSS(var string str_, var string strr_, var int x_, var int y_, var int _time){
+	PrintScreen(ConcatStrings(str_, strr_),x_,y_,"FONT_OLD_10_WHITE.TGA",_time);
+};
+func void msgSI(var string str_, var int i_, var int x_, var int y_, var int _time){
+	PrintScreen(ConcatStrings(str_,IntToString(i_)),x_,y_,"FONT_OLD_10_WHITE.TGA",_time);
+};
+
 func string getConcatSI(var string s1, var int i)
 {
 	return ConcatStrings(

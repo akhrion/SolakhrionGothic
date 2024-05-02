@@ -1,8 +1,13 @@
 
 func void B_ObserveIntruder()
 {
-	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"B_ObserveIntruder");
+	B_AssessRogue();
+	if(!Npc_CanSeeNpc(self,other))
+	{
+		PrintDebugNpc(PD_ZS_Check,"...NPC isn't see the Intruder!");
+		return;
+	};
 	if(other.aivar[AIV_INVINCIBLE])
 	{
 		PrintDebugNpc(PD_ZS_Check,"...SC im Dialog!");

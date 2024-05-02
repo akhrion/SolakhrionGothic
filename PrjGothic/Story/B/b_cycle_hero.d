@@ -5,7 +5,7 @@ func void PC_Forging_Furnace()
 	&&	self.aivar[AIV_INVINCIBLE] == FALSE
 	)
 	{
-		Print(ConcatStrings("Furnace ",IntToString(PC_Forging_IncandescenceTime)));
+		Print(ConcatStrings("Furnace ",IntToString(PC_Forging_Incandescence_TimeLasted)));
 		
 	};
 };
@@ -248,8 +248,9 @@ func void NPC_Dodge(var C_Npc npc)
 {
 	PrintScreen(getConcatSI("immortal flag: ",npc.flags),2,12,_STR_FONT_ONSCREEN,1);
 	PrintScreen(getConcatSI("ability dodge: ",npc.aivar[AIV_ABILITY]),2,14,_STR_FONT_ONSCREEN,1);
-	PrintScreen(getConcatSI("Npc_GetBodyState(npc) & BS_STAND: ",Npc_GetBodyState(npc) & BS_STAND),2,16,_STR_FONT_ONSCREEN,1);
-	PrintScreen(getConcatSI("npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE: ",npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE),2,18,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("Npc_GetBodyState(npc): ",Npc_GetBodyState(npc)),2,16,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("Npc_GetBodyState(npc) & BS_STAND: ",Npc_GetBodyState(npc) & (BS_STAND)),2,18,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE: ",npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE),2,20,_STR_FONT_ONSCREEN,1);
 
 	if(isFlagsContainCategorie(npc.flags, NPC_FLAG_IMMORTAL))
 	{
@@ -273,18 +274,52 @@ func void NPC_Dodge(var C_Npc npc)
 		npc.aivar[AIV_ABILITY] = npc.aivar[AIV_ABILITY] | AIV_ABILITY_DODGE;
 	};
 };
-func void b_cycle_hero()
+
+
+func void PC_Bowman()
+{
+	var C_Item itm; itm = Npc_GetReadiedWeapon(hero);
+	if(
+		Hlp_StrCmp(itm.name,"")
+	||	!Item_IsBow(itm)
+	){return;};
+	msgSI("Bow damage: ",itm.damageTotal,-1,44,1);
+
+	Npc_GetTarget(hero);
+	if(Npc_IsAiming(hero,other))
+	{
+		itm.damageTotal +=1;
+		// increase accuracy++
+		// decrease damage--
+		
+	}
+	else if(itm.damageTotal != PC_Damage_Bow)
+	{
+		Print("RESET: bow damage.");
+		itm.damageTotal = PC_Damage_Bow;
+	};
+};
+
+
+
+
+
+
+
+
+func void b_cycle02_hero()
 {	
+	if(Npc_IsDead(hero)){return;};
+	PC_Bowman();
 	NPC_Dodge(hero);
+	hero_TakeItem();
+	PC_WeaponHand_Handler(PC_EquipedWeapon_Melee);
 	
 	return;
-	if(!Hlp_IsValidNpc(hero)){return;};
 //	PrintSIS("Dist to SPWN_PLANT_PSI_02 ",Npc_IsOnFP(hero,"SPWN_PLANT_PSI_02"),"");
 //	PrintSIS("Dist to PATH_TAKE_HERB_07 ",Npc_GetDistToWP(hero,"PATH_TAKE_HERB_07"),"");
 //	Print("20210717");
 	hero_OrePicking();
-	hero_TakeItem();
-	PC_WeaponHand_Handler(PC_EquipedWeapon_Melee);
 	Npc_RescaleCriticalChance(hero);
 	PC_Mana();
 
@@ -375,4 +410,37 @@ PC_Test();
 //	itmmm = Npc_GetEquippedMeleeWeapon(hero);
 //	Print(itmmm.name);
 //	Print(Npc_GetDetectedMob(hero));
+};
+func void bsfire_hero()
+{
+	if(PC_Forging_Incandescence_TimeLasted < 3)
+	{
+		Npc_RemoveInvItem(hero,ItMiSwordrawhot);
+	}
+	else if(PC_Forging_Incandescence_TimeLasted < 9)
+	{
+		Npc_RemoveInvItem(hero,ItMiSwordraw);
+		Npc_RemoveInvItem(hero,ItMiSwordrawhot);
+		CreateInvItem(hero,ItMiSwordrawErhitzt);
+	}
+	else if(PC_Forging_Incandescence_TimeLasted > 8)
+	{
+		Npc_RemoveInvItem(hero,ItMiSwordraw);
+	};
+};
+func void b_cycle_hero()
+{
+	if(Npc_IsDead(hero)){return;};
+	if(PC_IsReceivedBacksideDamage){PC_IsReceivedBacksideDamage = false;};//per second reset
+	
+	if(PC_Forging_Incandescence_IsStopped)
+	{
+		PC_Forging_Incandescence_IsStopped = false;
+		bsfire_hero();
+	};
+};
+func void b_cycle60_hero()
+{
+	if(!Hlp_IsValidNpc(hero)){return;};
+
 };

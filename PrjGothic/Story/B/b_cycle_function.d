@@ -1,11 +1,21 @@
 func void b_cycle02_function_om()
 {
-	b_cycle_hero();
+	b_cycle02_hero();
 	B_Cycle_NPC();
 	Wld_SendTrigger("CYCLE02_TRIGGER_OM");
 };
 func void b_cycle_function_om()
 {
+	// if(!Npc_IsDead(hero))
+	if(!Hlp_IsValidNpc(hero))// ?? ERROR ??
+	{
+		if(
+			Npc_IsMining(hero)
+		){
+			Print("hero mining Old Mine");
+			Print(Npc_GetDetectedMob(hero));
+		};
+	};
 	Wld_SendTrigger("CYCLE_TRIGGER_OM");
 };
 func void b_cycle60_function_om()
@@ -15,10 +25,13 @@ func void b_cycle60_function_om()
 
 func void b_cycle02_function()
 {
-	PrintScreen("test branch",2,10,_STR_FONT_ONSCREEN,1);
-	SpawnPlants();
-	b_cycle_hero();
+	b_cycle02_hero();
 	B_Cycle_NPC();
+	Wld_SendTrigger("CYCLE02_TRIGGER");
+};
+func void b_cycle_function()
+{
+	PrintScreen("test branch",2,10,_STR_FONT_ONSCREEN,1);
 	var C_Npc Kirgo;
 	var C_Npc Kharim;
 	var C_Npc GorHanis;
@@ -70,11 +83,21 @@ func void b_cycle02_function()
 		Wld_InsertItem(theriddle5,"FP_RIDD_4");
 		RIDDLE4INSERT = FALSE;
 	};
-	Wld_SendTrigger("CYCLE02_TRIGGER");
-};
-func void b_cycle_function()
-{
-	FireGolem_Aura(hero);
+
+
+	// if(!Hlp_IsValidNpc(hero))
+	if(!Npc_IsDead(hero))
+	{
+		PrintScreenSIS("Wld_IsFPAvailable: ",Wld_IsFPAvailable(hero,"FP_ROAM_OW_MEATBUG_03_03"),"",50,52,1);
+		b_cycle_hero();
+		SpawnPlants();
+		if(
+			Npc_IsMining(hero)
+		){
+			Print("hero mining on Surface");
+			Print(Npc_GetDetectedMob(hero));
+		};
+	};
 	Wld_SendTrigger("CYCLE_TRIGGER");
 };
 func void b_cycle60_function()

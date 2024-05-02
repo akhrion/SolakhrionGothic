@@ -153,7 +153,7 @@ func void BurnTicks100()
 
 
 
-func void GetTestItems()
+func void SetTestItems()
 {
     CreateInvItems(self,ItFo_Potion_BurnTicks100,10);
     CreateInvItems(self,ItFo_Potion_BurnTicks250,10);
@@ -161,6 +161,17 @@ func void GetTestItems()
     CreateInvItems(self,ItFo_Potion_BurnTicks1000,10);
     CreateInvItems(self,ItFo_Potion_BurnTicks5000,10);
     CreateInvItems(self,ItFo_Potion_BurnTicks10000,10);
+    CreateInvItems(self,ItMw_1H_Sword_01,1);
     CreateInvItems(self,ItAmArrow,100);
     CreateInvItems(self,ItRw_Bow_Small_01,1);
+};
+func void SetTestSkils()
+{
+	Npc_SetTalentValue(self,NPC_TALENT_1H,50);
+	Npc_SetTalentValue(self,NPC_TALENT_BOW,50);
+};
+func void SetTestAttributes()
+{
+	self.attribute[ATR_STRENGTH] = 100;
+	self.attribute[ATR_DEXTERITY] = 100;
 };

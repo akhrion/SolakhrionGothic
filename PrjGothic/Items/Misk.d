@@ -1,5 +1,6 @@
 
 const int Value_MobsiItem = 2;
+const int Value_Nail = 1;
 const int Value_SwordBlade = 50;
 const int Value_SwordBladeHot = 50;
 const int Value_SwordRawHot = 40;
@@ -154,7 +155,55 @@ instance ItMiFlask(C_Item)
 
 instance ItMiSwordraw(C_Item)
 {
-	name = "Сырая сталь";
+	name = "Стальная заготовка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_SwordRaw;
+	visual = "ItMi_SmithSword_Raw_01.3DS";
+	material = MAT_METAL;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+instance ItMiSwordraw_Big(C_Item)
+{
+	name = "Большая стальная заготовка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_SwordRaw;
+	visual = "ItMi_SmithSword_Raw_01.3DS";
+	material = MAT_METAL;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+instance ItMiSwordraw_Half(C_Item)
+{
+	name = "Половина стальной заготовки";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_SwordRaw;
+	visual = "ItMi_SmithSword_Raw_01.3DS";
+	material = MAT_METAL;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+instance ItMiSwordraw_Small(C_Item)
+{
+	name = "Кусочек стальной заготовки";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_SwordRaw;
+	visual = "ItMi_SmithSword_Raw_01.3DS";
+	material = MAT_METAL;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+instance ItMiSwordrawErhitzt(C_Item)
+{
+	name = "Нагретая сталь";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_SwordRaw;
@@ -428,7 +477,30 @@ instance ItLsTorchburned(C_Item)
 	material = MAT_WOOD;
 	description = name;
 };
-
+instance ItMi_Nail(C_Item)
+{
+	name = "Гвоздь";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_Nail;
+	visual = "ItMi_SmithSword_Raw_01.3DS";
+	material = MAT_METAL;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+instance ItMi_Nail_Bent(C_Item)
+{
+	name = "Погнутый Гвоздь";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_Nail;
+	visual = "ItMi_SmithSword_Raw_01.3DS";
+	material = MAT_METAL;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
 instance ItMi_Plants_Swampherb_01(C_Item)
 {
 	name = "Болотник";

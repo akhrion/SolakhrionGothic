@@ -2,7 +2,6 @@
 // ITEM_CROSSBOW	point	dmg += dex;			дешёвые снаряды; больше аммуниция;
 
 const int AKH_BOWMANLINE_MULTIPLIER = 2;
-
 instance ItRw_Bow_Small_01(C_Item)
 {
 	name = "Короткий лук";
@@ -15,6 +14,8 @@ instance ItRw_Bow_Small_01(C_Item)
 	munition = ItAmArrow;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = 10;
+	on_equip = OnEquip_Bow;
+	on_unequip = OnUnequip_Bow;
 	visual = "ItRw_Bow_Small_01.mms";
 	description = name;
 	text[2] = NAME_Damage;
@@ -23,6 +24,16 @@ instance ItRw_Bow_Small_01(C_Item)
 	count[3] = cond_value[2];
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+func void OnEquip_Bow()
+{
+	PC_Damage_Bow = ItRw_Bow_Small_01.damageTotal;
+	Print(IntToString(PC_Damage_Bow));
+};
+func void OnUnequip_Bow()
+{
+	// item.damageTotal = PC_Damage_Bow;
+	// Print(IntToString(item.damageTotal));
 };
 
 instance ItRw_Bow_Small_02(C_Item)
@@ -37,6 +48,8 @@ instance ItRw_Bow_Small_02(C_Item)
 	munition = ItAmArrow;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = 12;
+	on_equip = OnEquip_Bow;
+	on_unequip = OnUnequip_Bow;
 	visual = "ItRw_Bow_Small_02.mms";
 	description = name;
 	text[2] = NAME_Damage;
@@ -59,6 +72,8 @@ instance ItRw_Bow_Small_03(C_Item)
 	munition = ItAmArrow;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = 16;
+	on_equip = OnEquip_Bow;
+	on_unequip = OnUnequip_Bow;
 	visual = "ItRw_Bow_Small_03.mms";
 	description = name;
 	text[2] = NAME_Damage;

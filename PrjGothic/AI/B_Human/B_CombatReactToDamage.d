@@ -61,7 +61,6 @@ func void B_CombatReactToDamage()
 {
 	PrintDebugNpc(PD_ZS_FRAME,"B_CombatReactToDamage");
 	PrintGlobals(PD_ZS_Check);
-	Print("asdfsdf");
 
 
 

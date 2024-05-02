@@ -388,9 +388,6 @@ Story\ZS\ZS_WatchInExtremo.d
 Story\ZS\pers\GateTriggers.d
 Story\ZS\pers\ZS_Drained_YBerion.d
 Story\ZS\pers\ZS_HerbShop.d
-Story\B\b_cycle_hero.d
-Story\Events\SpawnPlants.d
-Story\B\b_cycle_function.d
 Story\ZS\pers\ZS_InterceptMadCorKalom.d
 Story\ZS\pers\ZS_Orepile.d
 Story\ZS\pers\ZS_Preach_YBerion.d
@@ -1207,6 +1204,9 @@ Story\Missions\DIA_VLK_585_Aleph.d
 Story\Missions\DIA_VLK_586_Grimes.d
 Story\Missions\DIA_VLK_587_Garp.d
 Story\Missions\DIA_XardasDemon.d
+Story\B\b_cycle_hero.d
+Story\Events\SpawnPlants.d
+Story\B\b_cycle_function.d
 Story\Startup.d
 AI\Test_Scripts\TestZustaende\B_Hurt.d
 AI\Test_Scripts\TestZustaende\ZS_TestGoto.d
@@ -1244,10 +1244,13 @@ Story\Events\Interact\Chest.d
 Story\Events\Interact\Pan.d
 Story\Events\Interact\FishingSpot.d
 Story\Events\Interact\Forging.d
+Story\Events\Interact\Gold_Ground.d
+Story\Events\Interact\Ground.d
 Story\Events\Interact\MOB.d
 Story\Events\Interact\OrcDrum.d
 Story\Events\Interact\Ore.d
 Story\Events\Interact\ORE_GROUND.d
+Story\Events\Interact\ORE_GROUND_MILL.d
 Story\Events\Interact\PILLAR.d
 Story\Events\Interact\PotionAlchemy.d
 Story\Events\Interact\Repair.d
@@ -1257,6 +1260,7 @@ Story\Events\Interact\Stomp.d
 Story\Events\Interact\Rest.d
 Story\Events\EventsOldmine.d
 Story\Events\EventsTemple.d
+Story\Events\Disassemble.d
 Story\Events\ChangeWeaponArm.d
 Story\ZS\zs_followpc_silent.d
 Story\ZS\zs_drained_oreguard.d
