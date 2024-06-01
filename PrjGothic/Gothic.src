@@ -111,6 +111,7 @@ Story\B\Info_Nov_5_EXIT.d
 Story\B\Info_Org_13_EXIT.d
 Story\B\Info_Org_6_EXIT.d
 Story\B\Info_Org_7_EXIT.d
+Story\B\Info_RandomQuests.d
 Story\B\Info_SFB_1_EXIT.d
 Story\B\Info_SFB_2_Pre.d
 Story\B\Info_SFB_5_Pre.d
@@ -126,6 +127,7 @@ Story\B\Info_Vlk_2_EXIT.d
 Story\B\Info_Vlk_3_EXIT.d
 Story\B\Info_Vlk_4_EXIT.d
 Story\B\Info_Trade_Exit.d
+Story\B\PC_Dialog_InputManual.d
 Story\B\B_AssignAmbientInfos.d
 Story\B\b_corkalomleft.d
 Story\B\b_clearquentincamp.d
@@ -173,6 +175,7 @@ AI\B_Human\B_AssessThreat.d
 AI\B_Human\B_ObserveSuspect.d
 AI\B_Human\B_ObserveIntruder.d
 Story\B\B_Cycle_NPC.d
+AI\B_Human\B_AssessTheft.d
 AI\B_Human\B_AssessSc.d
 AI\B_Human\B_AssessTalk.d
 AI\B_Human\C_WantItem.d
@@ -183,7 +186,6 @@ AI\B_Human\B_AssessRemoveWeapon.d
 AI\B_Human\B_AssessFightSound.d
 Story\Events\Theft.d
 AI\B_Human\B_AssessQuietSound.d
-AI\B_Human\B_AssessTheft.d
 AI\B_Human\B_AssessUseMob.d
 AI\B_Human\B_AssessWarn.d
 AI\B_Human\B_CheerFight.d

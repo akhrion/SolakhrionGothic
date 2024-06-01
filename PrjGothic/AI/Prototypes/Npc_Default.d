@@ -13,7 +13,7 @@ prototype Npc_Default(C_Npc)
 	attribute[ATR_HITPOINTS_MAX] = 30;
 	attribute[ATR_HITPOINTS] = 30;
 	senses = SENSE_HEAR | SENSE_SEE;
-	senses_range = 2000;
+	senses_range = 3000;
 	Npc_SetTalentValue(self,NPC_TALENT_1H,0);
 	Npc_SetTalentValue(self,NPC_TALENT_2H,0);
 	Npc_SetTalentValue(self,NPC_TALENT_BOW,0);

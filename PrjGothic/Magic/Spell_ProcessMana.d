@@ -10,7 +10,7 @@ func int Spell_ProcessMana(var int manaInvested)
 	};
 	if(Npc_GetActiveSpell(self) == SPL_FIREBOLT)
 	{
-		Spell_CalculateTimePerMana(Spell_Fireball);
+		Spell_CalculateTimePerMana(Spell_Firebolt);
 		return Spell_Logic_Firebolt(manaInvested);
 	};
 	if(Npc_GetActiveSpell(self) == SPL_FIREBALL)
@@ -25,6 +25,7 @@ func int Spell_ProcessMana(var int manaInvested)
 	};
 	if(Npc_GetActiveSpell(self) == SPL_FIRERAIN)
 	{
+		Spell_CalculateTimePerMana(Spell_FireRain);
 		return Spell_Logic_Firerain(manaInvested);
 	};
 	if(Npc_GetActiveSpell(self) == SPL_Teleport1)

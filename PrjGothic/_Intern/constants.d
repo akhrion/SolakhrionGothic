@@ -96,7 +96,7 @@ const int DAM_INDEX_FALL = 7;
 const int DAM_INDEX_MAX = 8;
 const int NPC_ATTACK_FINISH_DISTANCE = 180;
 const int NPC_BURN_TICKS_PER_DAMAGE_POINT = 100;
-const int DAM_CRITICAL_MULTIPLIER = 4;
+const int DAM_CRITICAL_MULTIPLIER = 10;
 const int BLOOD_SIZE_DIVISOR = 1000;
 const int BLOOD_DAMAGE_MAX = 200;
 const int DAMAGE_FLY_CM_MAX = 2000;
@@ -274,3 +274,6 @@ const int LOG_NOTE = 1;
 const int TIME_INFINITE = -1000;
 const int NPC_VOICE_VARIATION_MAX = 10;
 const int UNDEFINED = 0;
+
+const int PC_DIALOG_INPUTMANUAL_SHOW_X = 0;
+const int PC_DIALOG_INPUTMANUAL_SHOW_Y = 50;

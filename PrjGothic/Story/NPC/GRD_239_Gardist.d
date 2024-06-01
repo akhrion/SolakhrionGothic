@@ -1,11 +1,12 @@
 
 instance GRD_239_Gardist(Npc_Default)
 {
-	name[0] = "Надзиратель";
+	name[0] = NAME_Overseer;
 	npcType = npctype_ambient;
 	guild = GIL_GRD;
 	level = 15;
 	voice = 7;
+	voicePitch = 1;
 	id = 239;
 	attribute[ATR_STRENGTH] = 70;
 	attribute[ATR_DEXTERITY] = 50;

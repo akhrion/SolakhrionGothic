@@ -1,7 +1,8 @@
 
 instance Grd_201_Jackal(Npc_Default)
 {
-	name[0] = "Шакал";
+	name[0] = NAME_Gardist;
+	name[1] = "Шакал";
 	npcType = npctype_main;
 	guild = GIL_GRD;
 	level = 50;

@@ -218,6 +218,16 @@ func void B_SelectWeapon(var C_Npc slf,var C_Npc oth)
 			};
 			return;
 		}
+		else if(
+			Npc_HasSpell(slf,SPL_FIRERAIN)
+		&&	Npc_GetDistToNpc(slf,oth) < 1000
+		&&	Random_IsProc(10)
+		)
+		{
+			PrintDebugNpc(PD_ZS_Check,"...Firerain!");
+			PrintDebugNpc(PD_ZS_Check,"...противник слишком близко, киска в зоне риска, ультимативная убивака активейтед!");
+			B_DrawSpell(slf,SPL_FIRERAIN,SPL_SENDCAST_FIRERAIN);
+		}
 		else if(C_NpcHasSpell(slf,SPL_FIREBALL))
 		{
 			PrintDebugNpc(PD_ZS_Check,"...Fireball!");

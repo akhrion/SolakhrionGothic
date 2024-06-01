@@ -40,6 +40,28 @@ func void B_CheckStolenEquipment()
 	};
 };
 
+func void B_CheckStolenTrophy()
+{
+	Npc_GetInvItem(hero,ItFoMuttonRaw);
+	B_AssessTheft();
+};
+
+func void B_RandomQuest()
+{
+	//entrypoint B_AssessSC()
+	if(
+		Info_RQ_Beggar.npc == -1
+	&&	self.guild == GIL_VLK
+    &&	self.aivar[AIV_BEGGAR] < getTimestamp()
+    &&	Random_IsProcM(1)
+	)
+	{
+		Info_RQ_Beggar.npc = Hlp_GetInstanceID(self);
+		AI_SetWalkmode(self,NPC_RUN);
+        AI_GotoNpc(self,hero);
+	};
+};
+
 func void B_AssessSC()
 {
 	var C_Npc her;
@@ -102,6 +124,8 @@ func void B_AssessSC()
 		};
 		B_CheckStolenEquipment();
 	};
+	B_CheckStolenTrophy();
+	B_RandomQuest();
 	if((hero.aivar[AIV_GUARDPASSAGE_STATUS] == AIV_GPS_FIRSTWARN) || (hero.aivar[AIV_GUARDPASSAGE_STATUS] == AIV_GPS_LASTWARN))
 	{
 		PrintDebugNpc(PD_ZS_Check,"...SC wurde von Durchgangswachen verwarnt!");

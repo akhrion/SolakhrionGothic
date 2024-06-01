@@ -1,6 +1,7 @@
 
 func void B_AssignAmbientInfos(var C_Npc amb_self)
 {
+	PC_Dialog_InputManual(amb_self);
 	if((amb_self.npcType == npctype_ambient) || (amb_self.npcType == npctype_guard))
 	{
 		if(amb_self.guild == GIL_VLK)

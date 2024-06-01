@@ -42,7 +42,10 @@ func void Info_FindNPC_OC_Diego()
 	var C_Npc diego;
 	AI_Output(other,self,"Info_FindNPC_Diego_15_00");	//Где я могу найти Диего?
 	diego = Hlp_GetNpc(PC_Thief);
-	if(Npc_GetDistToNpc(self,diego) < PERC_DIST_INTERMEDIAT)
+	if(
+		Npc_GetDistToNpc(self,diego) < self.senses_range
+	&&	Npc_CanSeeNpcFreeLOS(self,diego)
+	)
 	{
 		B_PointAtNpc(self,other,diego);
 	}
@@ -99,8 +102,12 @@ func void Info_FindNPC_OC_Thorus()
 	var C_Npc Thorus;
 	AI_Output(other,self,"Info_FindNPC_OC_Thorus_15_00");	//Где я могу найти Торуса?
 	Thorus = Hlp_GetNpc(GRD_200_Thorus);
-	if(Npc_GetDistToNpc(self,Thorus) < PERC_DIST_INTERMEDIAT)
+	if(
+		(Npc_GetDistToNpc(self,Thorus) < self.senses_range)
+	&&	Npc_CanSeeNpcFreeLOS(self,Thorus)
+	)
 	{
+		PC_Knowledge_NpcName(Thorus);
 		B_PointAtNpc(self,other,Thorus);
 	}
 	else if(self.guild == GIL_VLK)

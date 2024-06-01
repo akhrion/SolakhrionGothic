@@ -163,15 +163,23 @@ func void SetTestItems()
     CreateInvItems(self,ItFo_Potion_BurnTicks10000,10);
     CreateInvItems(self,ItMw_1H_Sword_01,1);
     CreateInvItems(self,ItAmArrow,100);
+    CreateInvItems(self,ItAmBolt,100);
+    CreateInvItems(self,ItRw_Crossbow_01,1);
     CreateInvItems(self,ItRw_Bow_Small_01,1);
+    CreateInvItems(self,ItArScrollFirebolt,100);
+    CreateInvItems(self,ItArScrollFireball,100);
+    CreateInvItems(self,ItArScrollFirestorm,100);
 };
 func void SetTestSkils()
 {
 	Npc_SetTalentValue(self,NPC_TALENT_1H,50);
 	Npc_SetTalentValue(self,NPC_TALENT_BOW,50);
+	Npc_SetTalentSkill(self,NPC_TALENT_BOW,1);
 };
 func void SetTestAttributes()
 {
-	self.attribute[ATR_STRENGTH] = 100;
-	self.attribute[ATR_DEXTERITY] = 100;
+	self.attribute[ATR_STRENGTH] = 10;
+	self.attribute[ATR_DEXTERITY] = 10;
+	self.attribute[ATR_MANA] = 100;
+	self.attribute[ATR_MANA_MAX] = 100;
 };

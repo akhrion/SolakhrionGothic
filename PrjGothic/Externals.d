@@ -14,6 +14,23 @@ func void msgSI(var string str_, var int i_, var int x_, var int y_, var int _ti
 	PrintScreen(ConcatStrings(str_,IntToString(i_)),x_,y_,"FONT_OLD_10_WHITE.TGA",_time);
 };
 
+func string getConcatStr7(
+	var string s1, var string s2, var string s3,
+	var string s4, var string s5, var string s6, var string s7
+)
+{
+	return ConcatStrings(
+		ConcatStrings(ConcatStrings(
+			ConcatStrings(ConcatStrings(
+				ConcatStrings(ConcatStrings(
+					ConcatStrings(ConcatStrings(
+						ConcatStrings(ConcatStrings(
+							ConcatStrings(s1, " "), s2), " "),
+						s3), " "), s4), " "),
+					s5), " "), s6), " "),
+				s7);
+};
+
 func string getConcatSI(var string s1, var int i)
 {
 	return ConcatStrings(

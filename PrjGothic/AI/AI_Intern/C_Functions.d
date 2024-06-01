@@ -927,6 +927,14 @@ func int Npc_GetHPPcnt(var C_NPC npc)
 {
 	return npc.attribute[ATR_HITPOINTS] * 100 / npc.attribute[ATR_HITPOINTS_MAX];
 };
+func void Npc_IncreaseDex(var C_Npc npc_, var int dex)
+{
+	npc_.attribute[ATR_DEXTERITY] += dex;
+};
+func void Npc_SetDex(var C_Npc npc_, var int dex)
+{
+	npc_.attribute[ATR_DEXTERITY] = dex;
+};
 func void Npc_SetHP(var C_NPC npc, var int hp)
 {
 	npc.attribute[ATR_HITPOINTS] = hp;
@@ -1016,6 +1024,12 @@ func int Random_IsProc(var int percent)
 	if(percent < 1){return false;};
 	if(percent > 99){return true;};
 	return !Hlp_Random(100 / percent);
+};
+func int Random_IsProcM(var int prob)
+{
+	if(prob < 1){return false;};
+	if(prob > 9999){return true;};
+	return !Hlp_Random(10000 / prob);
 };
 func void Npc_RescaleCriticalChance(var C_Npc _npc)
 {
@@ -1258,7 +1272,13 @@ func int Npc_GetMagicPower(var C_Npc npc)
 };
 func void Spell_CalculateTimePerMana(var C_Spell spell)
 {
-	if(!Npc_IsPlayer(self)){spell.time_per_mana = 1;return;};
+	if(!Npc_IsPlayer(self))
+	{
+		AI_ReadySpell(self,spell,1000);
+		Npc_SetMana(self,Npc_GetManaMax(self));
+		spell.time_per_mana = 1;
+		return;
+	};
 	if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 0)
 	{
 		spell.time_per_mana = 5000;
@@ -1348,4 +1368,20 @@ func void Npc_SetWannaTalk(var C_Npc npc,var int boolFlag)
 			npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_WANNATALK;
 		};
 	};
+};
+func void PC_Knowledge_NpcName(var C_Npc npc)
+{
+	//Устанавливает имя НПС если ГГ его узнаёт.
+	if(Npc_IsDead(npc)){return;};
+	if(Hlp_StrCmp("",npc.name[1])){return;};
+	if(Hlp_StrCmp(npc.name[0],npc.name[1])){return;};
+	npc.name[0] = npc.name[1];
+};
+func int Npc_IsTalking(var C_Npc npc)
+{
+	if(npc.aivar[AIV_INVINCIBLE] == TRUE)
+	{
+		return TRUE;
+	};
+	return FALSE;
 };

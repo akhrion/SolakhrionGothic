@@ -1,7 +1,7 @@
 
 func void B_GiveDeathInv()
 {
-	if(self.aivar[AIV_MISSION1])
+	if(self.aivar[AIV_DEATHINVFILLED])
 	{
 		return;
 	};
@@ -138,6 +138,9 @@ func void B_GiveDeathInv()
 			CreateInvItems(self,ItAt_Troll_02,2);
 		};
 	};
-	self.aivar[AIV_MISSION1] = TRUE;
+	Npc_GetInvItem(self,ItFoMuttonRaw);
+	item.description = ConcatStrings(item.name,"*****+");
+	item.ownerGuild = other.guild;
+	self.aivar[AIV_DEATHINVFILLED] = TRUE;
 };
 

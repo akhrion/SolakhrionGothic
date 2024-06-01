@@ -10,6 +10,7 @@ instance PC_Hero(Npc_Default)
 	exp = 0;
 	exp_next = 500;
 	lp = 0;
+	B_Scale(self);
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 5;

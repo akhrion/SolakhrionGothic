@@ -60,6 +60,14 @@ instance Scavenger(Mst_Default_Scavenger)
 	Npc_SetToFistMode(self);
 	CreateInvItem(self,ItFoMuttonRaw);
 };
+instance ScavengerAgressive_1(Mst_Default_Scavenger)
+{
+	name[0] = NAME_SCAVENGERAGRESSIVE;
+	aivar[AIV_MM_AttackRange] = aivar[AIV_MM_PercRange];
+	Set_Scavenger_Visuals();
+	Npc_SetToFistMode(self);
+	CreateInvItem(self,ItFoMuttonRaw);
+};
 
 instance Scavenger_Invisible(Mst_Default_Scavenger)
 {

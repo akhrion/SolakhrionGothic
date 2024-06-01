@@ -48,8 +48,12 @@ func void Info_FindNPC_ST_CorAngar()
 	var C_Npc CorAngar;
 	AI_Output(other,self,"Info_FindNPC_ST_CorAngar_15_00");	//Где я могу найти Кор Ангара?
 	CorAngar = Hlp_GetNpc(GUR_1202_CorAngar);
-	if(Npc_GetDistToNpc(self,CorAngar) < PERC_DIST_INTERMEDIAT)
+	if(
+		(Npc_GetDistToNpc(self,CorAngar) < self.senses_range)
+	&&	Npc_CanSeeNpcFreeLOS(self,CorAngar)
+	)
 	{
+		PC_Knowledge_NpcName(CorAngar);
 		B_PointAtNpc(self,other,CorAngar);
 	}
 	else if(self.guild == GIL_NOV)
@@ -86,8 +90,12 @@ func void Info_FindNPC_ST_CorKalom()
 	var C_Npc CorKalom;
 	AI_Output(other,self,"Info_FindNPC_ST_CorKalom_15_00");	//Где я могу найти Кор Галома?
 	CorKalom = Hlp_GetNpc(GUR_1201_CorKalom);
-	if(Npc_GetDistToNpc(self,CorKalom) < PERC_DIST_INTERMEDIAT)
+	if(
+		(Npc_GetDistToNpc(self,CorKalom) < self.senses_range)
+	&&	Npc_CanSeeNpcFreeLOS(self,CorKalom)
+	)
 	{
+		PC_Knowledge_NpcName(CorKalom);
 		B_PointAtNpc(self,other,CorKalom);
 	}
 	else if(self.guild == GIL_NOV)
@@ -124,8 +132,12 @@ func void Info_FindNPC_ST_YBerion()
 	var C_Npc YBerion;
 	AI_Output(other,self,"Info_FindNPC_ST_YBerion_15_00");	//Где я могу найти Юбериона?
 	YBerion = Hlp_GetNpc(GUR_1200_YBerion);
-	if(Npc_GetDistToNpc(self,YBerion) < PERC_DIST_INTERMEDIAT)
+	if(
+		(Npc_GetDistToNpc(self,YBerion) < self.senses_range)
+	&&	Npc_CanSeeNpcFreeLOS(self,YBerion)
+	)
 	{
+		PC_Knowledge_NpcName(YBerion);
 		B_PointAtNpc(self,other,YBerion);
 	}
 	else if(self.guild == GIL_NOV)

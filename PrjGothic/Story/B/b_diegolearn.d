@@ -665,6 +665,7 @@ func void Info_Diego_Teach_BACK()
 	if(Diego_Merke_STR < hero.attribute[ATR_STRENGTH])
 	{
 		AI_Output(self,hero,"Info_Diego_Teach_BACK_11_00");	//Теперь ты стал сильнее.
+		B_Scale(hero);
 	};
 	if(Diego_Merke_DEX < hero.attribute[ATR_DEXTERITY])
 	{

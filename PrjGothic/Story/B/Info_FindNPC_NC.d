@@ -54,8 +54,12 @@ func void Info_FindNPC_NC_Gorn()
 	var C_Npc gorn;
 	AI_Output(other,self,"Info_FindNPC_NC_Gorn_15_00");	//Где я могу найти Горна?
 	gorn = Hlp_GetNpc(PC_Fighter);
-	if(Npc_GetDistToNpc(self,gorn) < PERC_DIST_INTERMEDIAT)
+	if(
+		(Npc_GetDistToNpc(self,gorn) < self.senses_range)
+	&&	Npc_CanSeeNpcFreeLOS(self,gorn)
+	)
 	{
+		PC_Knowledge_NpcName(gorn);
 		B_PointAtNpc(self,other,gorn);
 	}
 	else if(self.guild == GIL_ORG)
@@ -92,8 +96,12 @@ func void Info_FindNPC_NC_Lares()
 	var C_Npc Lares;
 	AI_Output(other,self,"Info_FindNPC_NC_Lares_15_00");	//Где я могу найти Ларса?
 	Lares = Hlp_GetNpc(Org_801_Lares);
-	if(Npc_GetDistToNpc(self,Lares) < PERC_DIST_INTERMEDIAT)
+	if(
+		(Npc_GetDistToNpc(self,Lares) < self.senses_range)
+	&&	Npc_CanSeeNpcFreeLOS(self,Lares)
+	)
 	{
+		PC_Knowledge_NpcName(Lares);
 		B_PointAtNpc(self,other,Lares);
 	}
 	else if(self.guild == GIL_ORG)
@@ -130,8 +138,12 @@ func void Info_FindNPC_NC_Lee()
 	var C_Npc Lee;
 	AI_Output(other,self,"Info_FindNPC_NC_Lee_15_00");	//Где я могу найти Ли?
 	Lee = Hlp_GetNpc(Sld_700_Lee);
-	if(Npc_GetDistToNpc(self,Lee) < PERC_DIST_INTERMEDIAT)
+	if(
+		(Npc_GetDistToNpc(self,Lee) < self.senses_range)
+	&&	Npc_CanSeeNpcFreeLOS(self,Lee)
+	)
 	{
+		PC_Knowledge_NpcName(Lee);
 		B_PointAtNpc(self,other,Lee);
 	}
 	else if(self.guild == GIL_ORG)
@@ -168,8 +180,12 @@ func void Info_FindNPC_NC_Mage()
 	var C_Npc Cronos;
 	AI_Output(other,self,"Info_FindNPC_NC_Cronos_15_00");	//Где я могу найти мага?
 	Cronos = Hlp_GetNpc(KDW_604_Cronos);
-	if(Npc_GetDistToNpc(self,Cronos) < PERC_DIST_INTERMEDIAT)
+	if(
+		(Npc_GetDistToNpc(self,Cronos) < self.senses_range)
+	&&	Npc_CanSeeNpcFreeLOS(self,Cronos)
+	)
 	{
+		PC_Knowledge_NpcName(Cronos);
 		B_PointAtNpc(self,other,Cronos);
 	}
 	else if(self.guild == GIL_ORG)

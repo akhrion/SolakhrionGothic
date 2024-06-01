@@ -246,11 +246,11 @@ func void PC_Test()
 };
 func void NPC_Dodge(var C_Npc npc)
 {
-	PrintScreen(getConcatSI("immortal flag: ",npc.flags),2,12,_STR_FONT_ONSCREEN,1);
-	PrintScreen(getConcatSI("ability dodge: ",npc.aivar[AIV_ABILITY]),2,14,_STR_FONT_ONSCREEN,1);
-	PrintScreen(getConcatSI("Npc_GetBodyState(npc): ",Npc_GetBodyState(npc)),2,16,_STR_FONT_ONSCREEN,1);
-	PrintScreen(getConcatSI("Npc_GetBodyState(npc) & BS_STAND: ",Npc_GetBodyState(npc) & (BS_STAND)),2,18,_STR_FONT_ONSCREEN,1);
-	PrintScreen(getConcatSI("npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE: ",npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE),2,20,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("immortal flag: ",npc.flags),2,OVERLAY_TARGET_ISIMMORTAL_Y,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("ability dodge: ",npc.aivar[AIV_ABILITY]),2,OVERLAY_BODYSTATE_AIV_ABILITY_Y,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("Npc_GetBodyState(npc): ",Npc_GetBodyState(npc)),2,OVERLAY_BODYSTATE_HERO_Y,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("Npc_GetBodyState(npc) & BS_STAND: ",Npc_GetBodyState(npc) & (BS_STAND)),2,OVERLAY_BODYSTATE_HERO_AND_Y,_STR_FONT_ONSCREEN,1);
+	PrintScreen(getConcatSI("npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE: ",npc.aivar[AIV_ABILITY] & AIV_ABILITY_DODGE),2,OVERLAY_BODYSTATE_DODGE_Y,_STR_FONT_ONSCREEN,1);
 
 	if(isFlagsContainCategorie(npc.flags, NPC_FLAG_IMMORTAL))
 	{
@@ -283,20 +283,32 @@ func void PC_Bowman()
 		Hlp_StrCmp(itm.name,"")
 	||	!Item_IsBow(itm)
 	){return;};
-	msgSI("Bow damage: ",itm.damageTotal,-1,44,1);
 
 	Npc_GetTarget(hero);
 	if(Npc_IsAiming(hero,other))
 	{
-		itm.damageTotal +=1;
+		msgSI("Точность выстрела: ",hero.attribute[ATR_DEXTERITY],0,OVERLAY_AIMING_ACCURACY_Y,1);
+		msgSI("Урон от выстрела: ",itm.damageTotal,0,OVERLAY_AIMING_DAMAGE_Y,1);
+		if(PC_StoppedAiming){
+			PC_StoppedAiming = false;
+			if(Npc_GetDex(hero) != PC_ATR_DEX){Npc_SetDex(hero,PC_ATR_DEX);};
+			if(itm.damageTotal != PC_Damage_Bow)
+			{
+				// Print("RESET: bow damage.");
+				itm.damageTotal = PC_Damage_Bow;
+				itm.damage[DAM_INDEX_POINT] = PC_Damage_Bow;
+			};
+		};
+		Npc_IncreaseDex(hero,1);
+		if(itm.damageTotal){itm.damageTotal -=1;};
+		if(itm.damage[DAM_INDEX_POINT]){itm.damage[DAM_INDEX_POINT] -=1;};
 		// increase accuracy++
 		// decrease damage--
 		
 	}
-	else if(itm.damageTotal != PC_Damage_Bow)
+	else 
 	{
-		Print("RESET: bow damage.");
-		itm.damageTotal = PC_Damage_Bow;
+		if(!PC_StoppedAiming){PC_StoppedAiming = true;};
 	};
 };
 
@@ -304,8 +316,40 @@ func void PC_Bowman()
 
 
 
-
-
+var int PC_CriticalHit_WasOnItIterate;
+func void PC_CriticalHit()
+{
+	if(
+		Npc_GetBodyState(hero) == BS_HIT
+	)
+	{
+		Print("hit");
+		if(
+			Random_IsProc(50)
+		&&	!PC_CriticalHit_WasOnItIterate
+		)
+		{
+			Print("hit11111");
+			PC_CriticalHit_WasOnItIterate = true;
+			Npc_SetTalentValue(hero,NPC_TALENT_1H,100);
+			DAM_CRITICAL_MULTIPLIER = 100;
+		};
+	}
+	else if(PC_CriticalHit_WasOnItIterate)
+	{
+		Print("hit reset");
+		PC_CriticalHit_WasOnItIterate = false;
+		Npc_SetTalentValue(hero,NPC_TALENT_1H,0);
+		DAM_CRITICAL_MULTIPLIER = 1;
+	};
+};
+func void PC_Bashed()
+{
+	if(Npc_GetBodyState(hero) == BS_STUMBLE)//true при получении урона, если ГГ без оружия и не двигается.
+	{
+		AI_Wait(hero,1);
+	};
+};
 
 func void b_cycle02_hero()
 {	
@@ -314,7 +358,8 @@ func void b_cycle02_hero()
 	NPC_Dodge(hero);
 	hero_TakeItem();
 	PC_WeaponHand_Handler(PC_EquipedWeapon_Melee);
-	
+	PC_CriticalHit();
+	PC_Bashed();
 	return;
 //	PrintSIS("Dist to SPWN_PLANT_PSI_02 ",Npc_IsOnFP(hero,"SPWN_PLANT_PSI_02"),"");
 //	PrintSIS("Dist to PATH_TAKE_HERB_07 ",Npc_GetDistToWP(hero,"PATH_TAKE_HERB_07"),"");
@@ -324,10 +369,10 @@ func void b_cycle02_hero()
 	PC_Mana();
 
 
-	PrintScreenSIS("BodyState hero: ",Npc_GetBodyState(hero),"",0,20,1);
+	PrintScreenSIS("BodyState hero: ",Npc_GetBodyState(hero),"",0,OVERLAY_BODYSTATE_HERO_Y,1);
 	if(Npc_GetTarget(hero))
 	{
-		PrintScreenSIS("Dist to target: ",Npc_GetDistToPlayer(other),"",0,22,1);
+		PrintScreenSIS("Dist to target: ",Npc_GetDistToPlayer(other),"",0,OVERLAY_TARGET_DISTANCE_Y,1);
 	};
 	if(Npc_GetBodyState(hero) == BS_HIT)
 	{
@@ -428,11 +473,45 @@ func void bsfire_hero()
 		Npc_RemoveInvItem(hero,ItMiSwordraw);
 	};
 };
+func void PC_Knowledge()
+{
+	Npc_GetTarget(hero);
+	if(Hlp_StrCmp(other.name,"")){return;};
+	if(other.guild < GIL_SEPERATOR_HUM)
+	{
+		if(Npc_GetTalentValue(hero,NPC_TALENT_1H) != PC_Knowledge_Human){Npc_SetTalentValue(hero,NPC_TALENT_1H,PC_Knowledge_Human);};
+	}
+	else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Scavenger))
+	{
+		if(Npc_GetTalentValue(hero,NPC_TALENT_1H) != PC_Knowledge_Scavenger){Npc_SetTalentValue(hero,NPC_TALENT_1H,PC_Knowledge_Scavenger);};
+	}
+	else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Wolf))
+	{
+		if(Npc_GetTalentValue(hero,NPC_TALENT_1H) != PC_Knowledge_Wolf){Npc_SetTalentValue(hero,NPC_TALENT_1H,PC_Knowledge_Wolf);};
+	};
+};
+
+func void PC_Dialog_InputManual_Show()
+{
+	if(!Npc_IsTalking(hero)){return;};
+	msg(getConcatStr7(
+		PC_Dialog_Word1, PC_Dialog_Word2, PC_Dialog_Word3,
+		PC_Dialog_Word4, PC_Dialog_Word5, PC_Dialog_Word6, PC_Dialog_Word7
+		),
+	PC_DIALOG_INPUTMANUAL_SHOW_X,PC_DIALOG_INPUTMANUAL_SHOW_Y,1);
+};
 func void b_cycle_hero()
 {
 	if(Npc_IsDead(hero)){return;};
-	if(PC_IsReceivedBacksideDamage){PC_IsReceivedBacksideDamage = false;};//per second reset
-	
+	if(Npc_IsDead(ScavengerAgressive_1))
+	{
+		Print("SCAVENGER WAS SPAWNED..");
+		Wld_InsertNpc(ScavengerAgressive_1,"OW_SCAVENGER_TREE_SPAWN");
+	};
+
+	PC_Dialog_InputManual_Show();
+	PC_Knowledge();
+	if(PC_IsReceivedBacksideDamage){PC_IsReceivedBacksideDamage = false;};//per second reset	
 	if(PC_Forging_Incandescence_IsStopped)
 	{
 		PC_Forging_Incandescence_IsStopped = false;
@@ -441,6 +520,6 @@ func void b_cycle_hero()
 };
 func void b_cycle60_hero()
 {
-	if(!Hlp_IsValidNpc(hero)){return;};
+	if(Npc_IsDead(hero)){return;};
 
 };

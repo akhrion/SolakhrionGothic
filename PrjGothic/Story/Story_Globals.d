@@ -475,6 +475,12 @@ var int PC_NecromancySkillValue;
 const int PC_ChanceToSkillsImproveInBattle = 5;
 var int PC_WasTrade;
 
+//PC ATTRIBUTES
+var int PC_ATR_STR;
+var int PC_ATR_DEX;
+var int PC_ATR_MP;
+var int PC_ATR_HP;
+
 var int PC_DexBuff_1H;
 var int PC_DexBuff_2H;
 var int PC_DexBuff_Bow;
@@ -512,9 +518,34 @@ var int PC_Count_Swordrawhot;
 
 var int PC_Damage_Bow;
 var int PC_IsReceivedBacksideDamage;
+
+var int PC_Knowledge_Scavenger;
+var int PC_Knowledge_Wolf;
+var int PC_Knowledge_Human;
+var int PC_StoppedAiming;//Игрок выстрелил или прекратил прицеливаться, либо его прервали.
+
+
+//OVERLAY COORDINATES
+
+const int OVERLAY_TARGET_ISIMMORTAL_Y = 12;
+const int OVERLAY_BODYSTATE_AIV_ABILITY_Y = 14;
+const int OVERLAY_BODYSTATE_HERO_Y = 16;
+const int OVERLAY_BODYSTATE_HERO_AND_Y = 18;
+const int OVERLAY_BODYSTATE_DODGE_Y = 20;
+const int OVERLAY_TARGET_DISTANCE_Y = 22;
+const int OVERLAY_AIMING_ACCURACY_Y = 36;
+const int OVERLAY_AIMING_DAMAGE_Y = 38;
+
 func void init_variables()
 {
-    SPL_FIREBALL_TIME_PER_MANA_BASIC = 750;
+    PC_ATR_STR = hero.attribute[ATR_STRENGTH];
+    PC_ATR_DEX = hero.attribute[ATR_DEXTERITY];
+    PC_ATR_MP = hero.attribute[ATR_MANA_MAX];
+    PC_ATR_HP = hero.attribute[ATR_HITPOINTS_MAX];
+    PC_Knowledge_Scavenger = 80;
+    PC_Knowledge_Wolf = 20;
+    PC_Knowledge_Human = 50;
+    SPL_FIREBALL_TIME_PER_MANA_BASIC = 750;//устарела, заменена
     if(PC_WeaponHand == 0)
     {
         PC_WeaponHand = PC_WeaponHandOne;

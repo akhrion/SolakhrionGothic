@@ -115,6 +115,8 @@ func void B_LevelUp_NPC(var C_Npc npc)
 
 func void PC_ImproveSkills()
 {
+	return;
+	//20240509 akhRework: Функция устарела. Требуется реворк.
 	var int chance;
 	//С ростом уровня ГГ прокачка замедляется
 	if(Hlp_Random(hero.level + 1))
@@ -128,6 +130,10 @@ func void PC_ImproveSkills()
 			chance +=1;
 			return;
 		};
+	}
+	else
+	{
+		return;
 	};
 	B_GiveXP(hero.exp_next - hero.exp);
 	chance = PC_ChanceToSkillsImproveInBattle;

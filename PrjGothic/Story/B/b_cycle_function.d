@@ -102,5 +102,6 @@ func void b_cycle_function()
 };
 func void b_cycle60_function()
 {
+	b_cycle60_hero();
 	Wld_SendTrigger("CYCLE60_TRIGGER");
 };

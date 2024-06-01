@@ -21,22 +21,25 @@ func void Npc_ReceiveBash(var C_Npc vict, var C_Npc attacker)
 
 
 
-
+const int Fireshield_Damage = 50;
 func void ReactToDamage_Mage_Fireshield()
 {
-	if(Hlp_Random(3))
+	if(Fireshield_Damage - other.protection[PROT_FIRE] > 0)
 	{
-		Print("Меня обожгло огнем.");
-	}
-	else if(Hlp_Random(2))
-	{
-		Print("Как жарко!");
-	}
-	else
-	{
-		Print("Я горю!");
+		if(Hlp_Random(3))
+		{
+			Print("Меня обожгло огнем.");
+		}
+		else if(Hlp_Random(2))
+		{
+			Print("Как жарко!");
+		}
+		else
+		{
+			Print("Я горю!");
+		};
+		Npc_ChangeAttribute(other,ATR_HITPOINTS,-(Fireshield_Damage - other.protection[PROT_FIRE]));
 	};
-	Npc_ChangeAttribute(other,ATR_HITPOINTS,-50);
 };
 func void ReactToDamage_ByBackSide()
 {
