@@ -59,6 +59,7 @@ const int AIV_FREEMAN_WANNATALK = 1;
 const int AIV_FREEMAN_ISMINING = 2;
 const int AIV_FREEMAN_INITIALIZED = 4;
 const int AIV_ITEROCCUR_DEMON_EXISTENCE = 8;//регистрирует итерацию состояния вызываемого AI_StartState
+const int AIV_ITEROCCUR_ISHEALEDONITERAT = 16;
 const int npctype_ambient = 0;
 const int npctype_main = 1;
 const int npctype_guard = 2;

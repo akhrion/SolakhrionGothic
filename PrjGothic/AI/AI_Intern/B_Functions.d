@@ -585,14 +585,17 @@ func void PC_Handler_Invoke()
 
 func void B_Magic_HealAOE(var C_Npc mag,var C_Npc observer)
 {
-	var int heal_LastTime;
+	// var int heal_LastTime;
 //	if(heal_LastTime == getTimestamp()){return;};
-	Print(IntToString(Npc_GetDistToNpc(mag,observer)));
-	PrintSIS(mag.name,0,observer.name);
+	// Print(IntToString(Npc_GetDistToNpc(mag,observer)));
+	// PrintSIS(mag.name,0,observer.name);
+	// msgSI("B_Magic_HealAOE: ",Npc_GetStateTime(observer),0,74,1);
+
+
 	if(Npc_GetDistToNpc(mag,observer) < 1000)
 	{
-		heal_LastTime = getTimestamp();
-		Print(ConcatStrings(ConcatStrings(IntToString(heal_LastTime),"  "),IntToString(getTimestamp())));
+		// heal_LastTime = getTimestamp();
+		// Print(ConcatStrings(ConcatStrings(IntToString(heal_LastTime),"  "),IntToString(getTimestamp())));
 		if(
 			observer.guild == GIL_SKELETON
 		||	observer.guild == GIL_UNDEADORC

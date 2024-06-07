@@ -186,12 +186,26 @@ func void B_AssessMagic_Control()
 
 func void B_AssessMagic_Heal()
 {
-	PrintSIS("B_AssessMagic_Heal",0,other.name);
-	Print(self.name);
+	// PrintSIS("B_AssessMagic_Heal",0,other.name);
+	// Print(self.name);
 	if(Npc_GetDistToNpc(other,self) < 1000)
 	{
-
-	B_Magic_HealAOE(other,self);
+		if(
+			Npc_GetStateTime(self) % 2
+		&&	self.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_ISHEALEDONITERAT
+		)
+		{
+			self.aivar[AIV_FREEMAN] -= AIV_ITEROCCUR_ISHEALEDONITERAT;
+			B_Magic_HealAOE(other,self);
+		}
+		else if(
+			!(Npc_GetStateTime(self) % 2)
+		&&	!(self.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_ISHEALEDONITERAT)
+		)
+		{
+			self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_ITEROCCUR_ISHEALEDONITERAT;
+			B_Magic_HealAOE(other,self);
+		};
 	};
 };
 func void B_AssessMagic()

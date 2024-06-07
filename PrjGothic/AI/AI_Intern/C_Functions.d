@@ -1224,6 +1224,15 @@ func void Npc_RescaleProtections(var C_Npc npc)
 	};
 };
 
+func int Npc_IsHealedOnIterat(var C_Npc npc)
+{
+	if(npc.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_ISHEALEDONITERAT)
+	{
+		return true;
+	};
+	return false;
+};
+
 func void Npc_InitParameters(var C_Npc npc)
 {
 	if(akh_Mod)
