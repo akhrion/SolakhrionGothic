@@ -98,6 +98,15 @@ func void b_cycle_function()
 			Print(Npc_GetDetectedMob(hero));
 		};
 	};
+	if(!init_NPC_vars){init_NPC_variables();};
+	if(overlay_loaded < 5)
+	{
+		overlay_loaded +=1;
+	}
+	else
+	{
+		overlay_loaded = true;
+	};
 	Wld_SendTrigger("CYCLE_TRIGGER");
 };
 func void b_cycle60_function()
