@@ -17,8 +17,23 @@ func int ZS_MM_SummonedByPC_Loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_SummonedByPC_Loop");
 	PrintGlobals(PD_MST_DETAIL);
-	if(Npc_GetStateTime(self) > self.aivar[AIV_ISLOOKING])
+	if(self.aivar[AIV_MM_REAL_ID] == ID_DEMON)
 	{
+		if(PC_SummonSomeone())
+		{
+			return LOOP_END;
+		};
+	}
+	else if(Npc_GetStateTime(self) > self.aivar[AIV_ISLOOKING])
+	{
+		if(
+			self.aivar[AIV_MM_REAL_ID] == ID_DEMON
+		&&	Npc_GetMana(hero) < PC_Mana_Sustain_Demon
+		)
+		{
+			Npc_SetHP(self,0);
+			return LOOP_END;
+		};
 		Npc_ChangeAttribute(self,ATR_HITPOINTS,-1);
 		Npc_SetStateTime(self,0);
 	};
@@ -36,7 +51,7 @@ func int ZS_MM_SummonedByPC_Loop()
 			AI_StartState(self,ZS_MM_Attack,0,"");
 		};
 	}
-	else if(Npc_GetDistToNpc(self,hero) > self.aivar[AIV_HASDEFEATEDSC])
+	else if(Npc_GetDistToNpc(self,hero) > self.aivar[AIV_PARTYMEMBER_FOLLOWDIST])
 	{
 		AI_GotoNpc(self,hero);
 	}
@@ -57,7 +72,7 @@ func void ZS_MM_SummonedByPC_End()
 func void B_SummonedByPC_AssessSC()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_SummonedByPC_AssessSC");
-	if(Npc_GetDistToNpc(self,hero) < self.aivar[AIV_HASDEFEATEDSC])
+	if(Npc_GetDistToNpc(self,hero) < self.aivar[AIV_PARTYMEMBER_FOLLOWDIST])
 	{
 		PrintDebugNpc(PD_MST_CHECK,"...SC-Meister jetzt nahe genug!");
 		B_FullStop(self);
@@ -70,12 +85,14 @@ func void B_SummonedByPC_AssessEnemy()
 	PrintGlobals(PD_MST_CHECK);
 	if(!other.aivar[AIV_PARTYMEMBER] && (other.npcType != npctype_friend))
 	{
+		Print("B_SummonedByPC_AssessEnemy");
 		AI_StartState(self,ZS_MM_Attack,0,"");
 	};
 };
 
 func void B_MM_SummonedByPCAssessOthersDamage()
 {
+	Print("B_MM_SummonedByPCAssessOthersDamage");
 	var C_Npc her;
 	var C_Npc rock;
 	her = Hlp_GetNpc(PC_Hero);

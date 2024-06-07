@@ -1279,6 +1279,8 @@ func void Spell_CalculateTimePerMana(var C_Spell spell)
 		spell.time_per_mana = 1;
 		return;
 	};
+		spell.time_per_mana = 50;
+		return;
 	if(Npc_GetTalentSkill(self,NPC_TALENT_MAGE) == 0)
 	{
 		spell.time_per_mana = 5000;
@@ -1384,4 +1386,60 @@ func int Npc_IsTalking(var C_Npc npc)
 		return TRUE;
 	};
 	return FALSE;
+};
+func int Recovering_IsSitNearCampfire(var C_Npc npc)
+{
+	if(
+		Npc_GetBodyState(npc) == BS_SIT
+	&&	Wld_IsFPAvailable(npc,"FP_CAMPFIRE")
+	)
+	{
+		return true;
+	};
+	return false;
+};
+func void Recovering_SitNearCampfire(var C_Npc npc)
+{
+	if(Npc_GetHP(npc) < Npc_GetHPMax(npc))
+	{
+		Npc_ChangeAttribute(npc,ATR_HITPOINTS,1);
+	};
+};
+func void Recovering_ByCampfire(var C_Npc npc)
+{
+	//entrypoint cycle
+	if(Recovering_IsSitNearCampfire(npc))
+	{
+		Recovering_SitNearCampfire(npc);
+	};
+};
+func void Random_AttributesByLevel(var C_Npc npc)
+{
+
+};
+func int GetL_sub(var int goal, var int curATRvalue, var int price,var int accumulator)
+{
+	return true;
+	// if(goal > curATRvalue * 2){
+	// 	accumulator += ((curATRvalue * 2 - 1) * price);
+	// 	price +=1;
+	// 	return GetL_sub(goal,curATRvalue + 1,price,accumulator);
+	// };
+	// accumulator += tern()
+	// return tern(curATRvalue == goal,accumulator,
+	// GetL_sub(goal,curATRvalue + 1,price,accumulator));
+};
+func int GetL(var int goal)
+{
+	return GetL_sub(goal,1,1,0);
+    // global price
+    // price = 1
+    // totalSpend = 0
+    // for i in range(1,goal+1):
+    //     for ii in range(1,5):
+    //         if(i / ii == ii):
+    //             price = ii
+    //             break
+    //     totalSpend += price
+    // print(goal,totalSpend)
 };

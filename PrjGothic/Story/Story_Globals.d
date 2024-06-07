@@ -401,6 +401,11 @@ const int SPWN_MAX_ATATIME_Swampherb_01 = 20;
 const int SPWN_Chanse_Swampherb_01 = 10;
 var int SPWN_Cur_Swampherb_01;
 var int PC_Has_Swampherb;
+//при подобной реализации будут баги:
+//вопервых переменные будут сбрасываться к изначальным после перезахода в игру
+//во вторых и третьих при перезагрузке или новой игре, переменные будут сохранять свои значения
+// т.е. return SPWN[3] -> FALSE -> SPWN[3] = TRUE -> LOADING -> return SPWN[3] -> TRUE
+// const int и var int ведут себя идентично - разница лишь в инициализации: константы на предкомпиле, а вары в рантайме.
 const int SPWN_PLANT_PSI_array[60] =
 {
     FALSE,
@@ -478,6 +483,8 @@ var int PC_WasTrade;
 //PC ATTRIBUTES
 var int PC_ATR_STR;
 var int PC_ATR_DEX;
+var int PC_ATR_INT;
+var int PC_ATR_LUC;
 var int PC_ATR_MP;
 var int PC_ATR_HP;
 
@@ -522,9 +529,18 @@ var int PC_IsReceivedBacksideDamage;
 var int PC_Knowledge_Scavenger;
 var int PC_Knowledge_Wolf;
 var int PC_Knowledge_Human;
+var int PC_Knowledge_Demon_Existence;//Чем больше узнаёт игрок о жизни демонов, тем проще ему удерживать их в нашем мире. Значение не меньше 2 - для корректной отработки в AI_StartState [20240607184143]
+var int PC_Knowledge_Demon_Info;
+const int PC_KNOWLEDGE_DEMON_INFODELAY_CONST = 3;
+var int PC_Knowledge_Demon_InfoDelay;
 var int PC_StoppedAiming;//Игрок выстрелил или прекратил прицеливаться, либо его прервали.
 
+var int PC_PartymemberInvoked;
+var int PC_Partymember_Demon_Invoked_Count;
+const int PC_Mana_Sustain_Demon = 5;
 
+const int PC_IDLETIME = 120;
+var int PC_Idle;
 //OVERLAY COORDINATES
 
 const int OVERLAY_TARGET_ISIMMORTAL_Y = 12;
@@ -532,20 +548,48 @@ const int OVERLAY_BODYSTATE_AIV_ABILITY_Y = 14;
 const int OVERLAY_BODYSTATE_HERO_Y = 16;
 const int OVERLAY_BODYSTATE_HERO_AND_Y = 18;
 const int OVERLAY_BODYSTATE_DODGE_Y = 20;
-const int OVERLAY_TARGET_DISTANCE_Y = 22;
+var int OVERLAY_TargetKnowledge;
+const int OVERLAY_TargetKnowledge_Y = 74;
+const int OVERLAY_TARGET_DISTANCE_Y = 76;
+const int OVERLAY_ATR_STR_Y = 80;
+const int OVERLAY_ATR_DEX_Y = 82;
+const int OVERLAY_ATR_INT_Y = 84;
+const int OVERLAY_ATR_LUC_Y = 86;
 const int OVERLAY_AIMING_ACCURACY_Y = 36;
 const int OVERLAY_AIMING_DAMAGE_Y = 38;
 
+var int init_NPC_vars;
+var int overlay_loaded;
+func void init_NPC_variables()
+{
+    if(
+        !PC_ATR_STR
+    ||  !PC_ATR_DEX
+    ||  !PC_ATR_INT
+    ||  !PC_ATR_LUC
+    ||  !PC_ATR_MP
+    ||  !PC_ATR_HP
+    )
+    {
+        PC_ATR_STR = hero.attribute[ATR_STRENGTH];
+        PC_ATR_DEX = hero.attribute[ATR_DEXTERITY];
+        PC_ATR_INT = hero.attribute[ATR_MANA_MAX] / 10;
+        PC_ATR_LUC = 22;
+        PC_ATR_MP = hero.attribute[ATR_MANA_MAX];
+        PC_ATR_HP = hero.attribute[ATR_HITPOINTS_MAX];
+    }
+    else
+    {
+        init_NPC_vars = true;
+    };
+};
 func void init_variables()
 {
-    PC_ATR_STR = hero.attribute[ATR_STRENGTH];
-    PC_ATR_DEX = hero.attribute[ATR_DEXTERITY];
-    PC_ATR_MP = hero.attribute[ATR_MANA_MAX];
-    PC_ATR_HP = hero.attribute[ATR_HITPOINTS_MAX];
     PC_Knowledge_Scavenger = 80;
     PC_Knowledge_Wolf = 20;
     PC_Knowledge_Human = 50;
     SPL_FIREBALL_TIME_PER_MANA_BASIC = 750;//устарела, заменена
+    PC_Knowledge_Demon_Existence = 2;
     if(PC_WeaponHand == 0)
     {
         PC_WeaponHand = PC_WeaponHandOne;

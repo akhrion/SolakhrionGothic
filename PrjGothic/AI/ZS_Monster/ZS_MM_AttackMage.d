@@ -26,12 +26,21 @@ func int ZS_MM_AttackMage_Loop()
 			return LOOP_END;
 		};
 	};
-	if(Npc_GetStateTime(self) >= 3)
+	if(self.aivar[AIV_PARTYMEMBER])
+	{
+		if(self.aivar[AIV_MM_REAL_ID] == ID_DEMON)
+		{
+			if(PC_SummonSomeone())
+			{
+				return LOOP_END;
+			};
+		};
+	};
+	if(!(Npc_GetStateTime(self) % 3))
 	{
 		PrintGlobals(PD_MST_DETAIL);
 		Npc_ClearAIQueue(self);
 		B_SelectWeapon(self,other);
-		Npc_SetStateTime(self,0);
 	};
 	AI_Attack(self);
 	AI_Wait(self,0.2);

@@ -362,6 +362,16 @@ func int ZS_MM_Attack_Loop()
 		B_MM_AssessBody();
 		return 1;
 	};
+	if(self.aivar[AIV_MM_PARTYMEMBER])
+	{
+		if(self.aivar[AIV_MM_REAL_ID] == ID_DEMON)
+		{
+			if(PC_SummonSomeone())
+			{
+				return LOOP_END;
+			};
+		};
+	};
 	Npc_GetTarget(self);
 	
 	
@@ -409,14 +419,6 @@ func int ZS_MM_Attack_Loop()
 			{
 				return 1;
 			};
-		}
-		else
-		{
-			if(Npc_IsSummonedByPC(self))
-			{
-				Print("Npc_SetStateTime");
-			};
-			Npc_SetStateTime(self,0);
 		};
 		if(
 			self.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST

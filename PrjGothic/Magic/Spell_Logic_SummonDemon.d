@@ -8,6 +8,9 @@ func int Spell_Logic_SummonDemon(var int manaInvested)
 		{
 			PrintDebugNpc(PD_MAGIC,"...beschwört von Spieler");
 			Wld_SpawnNpcRange(self,SummonedByPC_Demon,1,1000);
+			PC_PartymemberInvoked += 1;
+			PC_Partymember_Demon_Invoked_Count +=1;
+			PC_Knowledge_Demon_Existence +=1;
 		}
 		else
 		{

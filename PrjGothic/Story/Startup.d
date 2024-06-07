@@ -1954,6 +1954,7 @@ func void init_surface()
 
 func void init_world()
 {
+	//LOADING
 	INIT_Sub_Newcamp();
 	INIT_Sub_Oldcamp();
 	INIT_Sub_Psicamp();
@@ -1963,11 +1964,11 @@ func void init_world()
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	initplayerbody(3);
-	init_variables();
 };
 
 func void startup_world()
 {
+	//NG
 	Startup_Sub_Newcamp();
 	Startup_Sub_Oldcamp();
 	Startup_Sub_Psicamp();
@@ -1979,6 +1980,7 @@ func void startup_world()
 	b_cycle02_function();
 	b_cycle_function();
 	b_cycle60_function();
+	init_variables();
 	RUSSOBITMFIXV13 = TRUE;
 	FIX_VERSION_SAVE = FIX_VERSION_START;
 };

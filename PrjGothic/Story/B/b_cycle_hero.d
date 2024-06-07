@@ -96,8 +96,39 @@ func void PC_WeaponHand_Handler(var C_Item _itm)
 		};
 	};
 };
+func void PC_Partymember_Demon_Invoked_Count_Info()
+{
+	if(!PC_Knowledge_Demon_Info)
+	{
+		msgI(PC_Knowledge_Demon_InfoDelay,0,72,1);
+		if(PC_Knowledge_Demon_InfoDelay < PC_KNOWLEDGE_DEMON_INFODELAY_CONST)
+		{
+			PC_Knowledge_Demon_InfoDelay += 1;
+		}
+		else
+		{
+			PC_Knowledge_Demon_Info = true;
+			Log_CreateTopic(GE_MEETINGWITHDEMONS,LOG_NOTE);
+			B_LogEntry(GE_MEETINGWITHDEMONS,GE_MEETINGWITHDEMONS_01);				
+		};
+	};
+};
+func void PC_Mana_PartymemberInvoked()
+{
+	if(!PC_PartymemberInvoked){return;};
+	if(PC_Partymember_Demon_Invoked_Count)
+	{
+		// Npc_DecreaseMana(hero,PC_Mana_Sustain_Demon * PC_Partymember_Demon_Invoked_Count);akharase
+		// if(Npc_GetMana(hero) < PC_Mana_Sustain_Demon * PC_Partymember_Demon_Invoked_Count)
+		// {
+		// 	PC_Partymember_Demon_Invoked_Count_Info();
+		// };
+	};
+};
 func void PC_Mana()
 {
+	// PC_Mana_PartymemberInvoked();
+	return;//akherase
 	if(Npc_GetMana(hero) <= getPercentFromInteger(Npc_GetManaMax(hero),10))
 	{
 		return;
@@ -366,14 +397,9 @@ func void b_cycle02_hero()
 //	Print("20210717");
 	hero_OrePicking();
 	Npc_RescaleCriticalChance(hero);
-	PC_Mana();
 
 
 	PrintScreenSIS("BodyState hero: ",Npc_GetBodyState(hero),"",0,OVERLAY_BODYSTATE_HERO_Y,1);
-	if(Npc_GetTarget(hero))
-	{
-		PrintScreenSIS("Dist to target: ",Npc_GetDistToPlayer(other),"",0,OVERLAY_TARGET_DISTANCE_Y,1);
-	};
 	if(Npc_GetBodyState(hero) == BS_HIT)
 	{
 		if(Npc_GetTarget(hero))
@@ -473,22 +499,26 @@ func void bsfire_hero()
 		Npc_RemoveInvItem(hero,ItMiSwordraw);
 	};
 };
-func void PC_Knowledge()
+func int PC_Knowledge()
 {
 	Npc_GetTarget(hero);
-	if(Hlp_StrCmp(other.name,"")){return;};
+	if(Hlp_StrCmp(other.name,"")){return 0;};
 	if(other.guild < GIL_SEPERATOR_HUM)
 	{
 		if(Npc_GetTalentValue(hero,NPC_TALENT_1H) != PC_Knowledge_Human){Npc_SetTalentValue(hero,NPC_TALENT_1H,PC_Knowledge_Human);};
+		return PC_Knowledge_Human;
 	}
-	else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Scavenger))
+	else if(other.guild == GIL_SCAVENGER)
 	{
 		if(Npc_GetTalentValue(hero,NPC_TALENT_1H) != PC_Knowledge_Scavenger){Npc_SetTalentValue(hero,NPC_TALENT_1H,PC_Knowledge_Scavenger);};
+		return PC_Knowledge_Scavenger;
 	}
-	else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Wolf))
+	else if(other.guild == GIL_WOLF)
 	{
 		if(Npc_GetTalentValue(hero,NPC_TALENT_1H) != PC_Knowledge_Wolf){Npc_SetTalentValue(hero,NPC_TALENT_1H,PC_Knowledge_Wolf);};
+		return PC_Knowledge_Wolf;
 	};
+	return 0;
 };
 
 func void PC_Dialog_InputManual_Show()
@@ -500,6 +530,51 @@ func void PC_Dialog_InputManual_Show()
 		),
 	PC_DIALOG_INPUTMANUAL_SHOW_X,PC_DIALOG_INPUTMANUAL_SHOW_Y,1);
 };
+func void PC_Recovering()
+{
+	Recovering_ByCampfire(hero);
+};
+func void PC_Idling()
+{
+	// PrintI(PC_Idle);
+	if(Npc_GetBodyState(hero) == BS_STAND)
+	{
+		if(PC_Idle < PC_IDLETIME)
+		{
+			PC_Idle +=1;
+		}
+		else if(PC_Idle == PC_IDLETIME)
+		{
+			AI_PlayAniBS(hero,"T_STAND_2_SIT",BS_SIT);
+		};
+	}
+	else
+	{
+		if(Npc_GetBodyState(hero) != BS_SIT)
+		{
+			if(PC_Idle == PC_IDLETIME)
+			{
+				AI_PlayAniBS(hero,"T_SIT_2_STAND",BS_STAND);
+			};
+			if(PC_Idle){PC_Idle = 0;};
+		};
+	};
+};
+func void overlay()
+{
+	// if(overlay_loaded < 5){return;};
+	// msgSI("Знание цели ",Npc_GetTalentValue(hero,NPC_TALENT_1H),0,OVERLAY_TargetKnowledge_Y,1);
+	if(Npc_GetTarget(hero))
+	{
+		OVERLAY_TargetKnowledge = PC_Knowledge();
+		msgSI("Знание цели ",OVERLAY_TargetKnowledge,0,OVERLAY_TargetKnowledge_Y,1);
+		msgSI("Dist to target: ",Npc_GetDistToPlayer(other),0,OVERLAY_TARGET_DISTANCE_Y,1);
+	};
+	msgSI("Сила ",PC_ATR_STR,0,OVERLAY_ATR_STR_Y,1);
+	msgSI("Ловкость ",PC_ATR_DEX,0,OVERLAY_ATR_DEX_Y,1);
+	msgSI("Интеллект ",PC_ATR_INT,0,OVERLAY_ATR_INT_Y,1);
+	msgSI("Удача ",PC_ATR_LUC,0,OVERLAY_ATR_LUC_Y,1);
+};
 func void b_cycle_hero()
 {
 	if(Npc_IsDead(hero)){return;};
@@ -508,9 +583,12 @@ func void b_cycle_hero()
 		Print("SCAVENGER WAS SPAWNED..");
 		Wld_InsertNpc(ScavengerAgressive_1,"OW_SCAVENGER_TREE_SPAWN");
 	};
-
+	PC_Recovering();
 	PC_Dialog_InputManual_Show();
-	PC_Knowledge();
+	PC_Idling();
+	PC_Mana();
+	overlay();
+
 	if(PC_IsReceivedBacksideDamage){PC_IsReceivedBacksideDamage = false;};//per second reset	
 	if(PC_Forging_Incandescence_IsStopped)
 	{

@@ -698,3 +698,45 @@ func void PC_ReceivedBacksideDamage()
 		PrintDebugNpc(PD_ZS_LOOP,"Игрок держит атакующего в фокусе.");
 	};
 };
+func int PC_SummonSomeone()
+{
+	// Print("PC_SummonSomeone");
+	// PrintI((Npc_GetStateTime(self) % PC_Knowledge_Demon_Existence));
+	if(self.aivar[AIV_MM_REAL_ID] == ID_DEMON)
+	{
+		// msgISI(PC_Knowledge_Demon_Existence," ",Npc_GetStateTime(self),0,70,1);
+		if(
+			!(Npc_GetStateTime(self) % PC_Knowledge_Demon_Existence)
+		)
+		{
+			if(self.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_DEMON_EXISTENCE){return LOOP_CONTINUE;};
+			self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_ITEROCCUR_DEMON_EXISTENCE;
+			Npc_DecreaseMana(hero,PC_Mana_Sustain_Demon);
+			if(Npc_GetMana(hero) < PC_Mana_Sustain_Demon)
+			{
+				if(PC_Knowledge_Demon_InfoDelay < PC_KNOWLEDGE_DEMON_INFODELAY_CONST * PC_Knowledge_Demon_Existence)
+				{
+					PC_Knowledge_Demon_InfoDelay += 1;
+				}
+				else
+				{
+					if(!PC_Knowledge_Demon_Info)
+					{
+						PC_Knowledge_Demon_Info = true;
+						Log_CreateTopic(GE_MEETINGWITHDEMONS,LOG_NOTE);
+						B_LogEntry(GE_MEETINGWITHDEMONS,GE_MEETINGWITHDEMONS_01);
+					};
+					Npc_SetHP(self,0);
+					return LOOP_END;
+				};
+			};
+			Npc_ChangeAttribute(self,ATR_HITPOINTS,-1);
+			// AI_Teleport(self,other.wp);//akhmod 20240607210246 should to implement
+		}
+		else if(self.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_DEMON_EXISTENCE)
+		{
+			self.aivar[AIV_FREEMAN] -= AIV_ITEROCCUR_DEMON_EXISTENCE;
+		};
+	};
+	return LOOP_CONTINUE;
+};
