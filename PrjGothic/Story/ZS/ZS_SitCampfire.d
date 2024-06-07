@@ -19,14 +19,17 @@ func void ZS_SitCampfire()
 		AI_PlayAniBS(self,"T_STAND_2_SIT",BS_SIT);
 	};
 	AI_AlignToFP(self);
+	if(!(self.aivar[AIV_FREEMAN] && AIV_FREEMAN_INITIALIZED))
+	{
+		self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_FREEMAN_INITIALIZED;
+		Random_AttributesByLevel(self);
+	};
+	PrintI(self.aivar[AIV_FREEMAN] && AIV_FREEMAN_INITIALIZED);
 };
 
 func void ZS_SitCampfire_loop()
 {
-	if(Npc_GetHP(self) < Npc_GetHPMax(self))
-	{
-		Npc_ChangeAttribute(self,ATR_HITPOINTS,1);
-	};
+	Recovering_ByCampfire(self);
 	AI_Wait(self,1);
 };
 
