@@ -1452,3 +1452,23 @@ func int GetL(var int goal)
     //     totalSpend += price
     // print(goal,totalSpend)
 };
+func int C_IsSecondPassed()
+{
+	if(
+		Npc_GetStateTime(self) % 2
+	&&	self.aivar[AIV_FREEMAN] && AIV_FREEMAN_TIMEITERATORSECOND
+	)
+    {
+		self.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TIMEITERATORSECOND;
+        return true;
+    }
+	else if(
+		!(Npc_GetStateTime(self) % 2)
+	&&	!(self.aivar[AIV_FREEMAN] && AIV_FREEMAN_TIMEITERATORSECOND)
+	)
+	{
+		self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_FREEMAN_TIMEITERATORSECOND;
+		return true;
+	};
+	return false;
+};

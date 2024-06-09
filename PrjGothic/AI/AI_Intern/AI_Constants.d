@@ -60,6 +60,7 @@ const int AIV_FREEMAN_ISMINING = 2;
 const int AIV_FREEMAN_INITIALIZED = 4;
 const int AIV_ITEROCCUR_DEMON_EXISTENCE = 8;//регистрирует итерацию состояния вызываемого AI_StartState
 const int AIV_ITEROCCUR_ISHEALEDONITERAT = 16;
+const int AIV_FREEMAN_TIMEITERATORSECOND = 32;//Меняет своё состояние один раз в секунду реального времени. Филд используется в B_Cycle_NPC() -> B_Cycle_NPC вызывается в различных AI_StartState. На основании этого филда, раз в секунду совершаются воздействия на НПС self. Воздействие происходит из B_Cycle_NPC()
 const int npctype_ambient = 0;
 const int npctype_main = 1;
 const int npctype_guard = 2;
