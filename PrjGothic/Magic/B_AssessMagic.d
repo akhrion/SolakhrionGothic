@@ -192,7 +192,7 @@ func void B_AssessMagic_Heal()
 	{
 		if(
 			Npc_GetStateTime(self) % 2
-		&&	self.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_ISHEALEDONITERAT
+		&&	self.aivar[AIV_FREEMAN] & AIV_ITEROCCUR_ISHEALEDONITERAT
 		)
 		{
 			self.aivar[AIV_FREEMAN] -= AIV_ITEROCCUR_ISHEALEDONITERAT;
@@ -200,7 +200,7 @@ func void B_AssessMagic_Heal()
 		}
 		else if(
 			!(Npc_GetStateTime(self) % 2)
-		&&	!(self.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_ISHEALEDONITERAT)
+		&&	!(self.aivar[AIV_FREEMAN] & AIV_ITEROCCUR_ISHEALEDONITERAT)
 		)
 		{
 			self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_ITEROCCUR_ISHEALEDONITERAT;

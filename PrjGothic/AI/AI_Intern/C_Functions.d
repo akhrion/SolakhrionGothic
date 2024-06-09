@@ -1226,7 +1226,7 @@ func void Npc_RescaleProtections(var C_Npc npc)
 
 func int Npc_IsHealedOnIterat(var C_Npc npc)
 {
-	if(npc.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_ISHEALEDONITERAT)
+	if(npc.aivar[AIV_FREEMAN] & AIV_ITEROCCUR_ISHEALEDONITERAT)
 	{
 		return true;
 	};
@@ -1456,7 +1456,7 @@ func int C_IsSecondPassed()
 {
 	if(
 		Npc_GetStateTime(self) % 2
-	&&	self.aivar[AIV_FREEMAN] && AIV_FREEMAN_TIMEITERATORSECOND
+	&&	self.aivar[AIV_FREEMAN] & AIV_FREEMAN_TIMEITERATORSECOND
 	)
     {
 		self.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TIMEITERATORSECOND;
@@ -1464,11 +1464,25 @@ func int C_IsSecondPassed()
     }
 	else if(
 		!(Npc_GetStateTime(self) % 2)
-	&&	!(self.aivar[AIV_FREEMAN] && AIV_FREEMAN_TIMEITERATORSECOND)
+	&&	!(self.aivar[AIV_FREEMAN] & AIV_FREEMAN_TIMEITERATORSECOND)
 	)
 	{
 		self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_FREEMAN_TIMEITERATORSECOND;
 		return true;
 	};
 	return false;
+};
+func void Npc_Poisoned_DecreaseHP()
+{
+	if(Npc_GetHP(self) > NPCPOISONEDMINIMALHP + POISONDAMAGE)
+	{
+		Npc_DecreaseHP(self,POISONDAMAGE);
+	};
+};
+func void Npc_Poisoned()
+{
+	if(self.aivar[AIV_FREEMAN] & AIV_FREEMAN_POISONED)
+	{
+		Npc_Poisoned_DecreaseHP();
+	};
 };

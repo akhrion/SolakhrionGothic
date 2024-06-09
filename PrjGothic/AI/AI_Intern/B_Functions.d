@@ -712,7 +712,7 @@ func int PC_SummonSomeone()
 			!(Npc_GetStateTime(self) % PC_Knowledge_Demon_Existence)
 		)
 		{
-			if(self.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_DEMON_EXISTENCE){return LOOP_CONTINUE;};
+			if(self.aivar[AIV_FREEMAN] & AIV_ITEROCCUR_DEMON_EXISTENCE){return LOOP_CONTINUE;};
 			self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_ITEROCCUR_DEMON_EXISTENCE;
 			Npc_DecreaseMana(hero,PC_Mana_Sustain_Demon);
 			if(Npc_GetMana(hero) < PC_Mana_Sustain_Demon)
@@ -736,7 +736,7 @@ func int PC_SummonSomeone()
 			Npc_ChangeAttribute(self,ATR_HITPOINTS,-1);
 			// AI_Teleport(self,other.wp);//akhmod 20240607210246 should to implement
 		}
-		else if(self.aivar[AIV_FREEMAN] && AIV_ITEROCCUR_DEMON_EXISTENCE)
+		else if(self.aivar[AIV_FREEMAN] & AIV_ITEROCCUR_DEMON_EXISTENCE)
 		{
 			self.aivar[AIV_FREEMAN] -= AIV_ITEROCCUR_DEMON_EXISTENCE;
 		};
