@@ -49,6 +49,7 @@ func void ZS_Talk()
 	{
 		B_ReactToMemory();
 	};
+	// init_variables();
 	B_AssignAmbientInfos(self);
 	self.aivar[AIV_FINDABLE] = TRUE;
 	other.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(self);
@@ -81,6 +82,7 @@ func void ZS_Talk_End()
 {
 	PrintDebugNpc(PD_ZS_FRAME,"ZS_Talk_End");
 	C_StopLookAt(self);
+	AI_OutputSVM_Overlay(self,hero,"BASDWDDD");
 	if(!InfoManager_HasFinished())
 	{
 		self.aivar[AIV_INVINCIBLE] = FALSE;

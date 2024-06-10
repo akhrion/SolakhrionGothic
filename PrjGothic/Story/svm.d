@@ -2141,5 +2141,9 @@ instance SVM_19(C_SVM)
 	Smalltalk24 = "SVM_2_Smalltalk24";	//...давай поговорим о чем-нибудь еще...
 };
 
+instance SVM_20(C_SVM)
+{
+	Help = "BASDWDDD";	//Чипи чипи чапа чапа дуби дуби даба даба ту ту ту ту..
+};
 
-const int SVM_MODULES = 20;
+const int SVM_MODULES = 21;
