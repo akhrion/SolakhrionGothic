@@ -67,7 +67,7 @@ instance TPL_1480_TEMPLER(Npc_Default)
 	EquipItem(self,ItMw_2H_Sword_Light_01);
 	EquipItem(self,ItRw_Crossbow_01);
 	CreateInvItems(self,ItAmBolt,20);
-	CreateInvItem(self,ItFoSoup);
+	CreateInvItem(self,ItFoWurzelsuppe);
 	CreateInvItem(self,ItMiJoint_1);
 	daily_routine = rtn_start_1480;
 };

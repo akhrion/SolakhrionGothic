@@ -66,7 +66,7 @@ func void update_mp_cat_list()
 	};
 	if(MP2RECIPE == TRUE)
 	{
-		if(Npc_HasItems(hero,ItFo_Plants_RavenHerb_01) >= 1)
+		if(Npc_HasItems(hero,ItFo_Plants_Ravenkraut) >= 1)
 		{
 			Info_AddChoice(pc_alchemy_cat_mp,"Экстракт магической энергии.",pc_potionalchemy_mp2_info);
 		}
@@ -105,7 +105,7 @@ func void update_perm_cat_list()
 	};
 	if(STRRECIPE == TRUE)
 	{
-		if((Npc_HasItems(hero,ItFo_Plants_mountainmoos_02) >= 1) && (Npc_HasItems(hero,ItFo_Plants_Stoneroot_02) >= 1) && (Npc_HasItems(hero,ItFo_Plants_Flameberry_01) >= 1))
+		if((Npc_HasItems(hero,ItFo_Plants_Grabmoos_01) >= 1) && (Npc_HasItems(hero,ItFo_Plants_Dragonroot_01) >= 1) && (Npc_HasItems(hero,ItFo_Plants_Flameberry_01) >= 1))
 		{
 			Info_AddChoice(pc_alchemy_cat_perm,"Эссенция силы.",pc_potionalchemy_str_info);
 		}
@@ -116,7 +116,7 @@ func void update_perm_cat_list()
 	};
 	if(DEXRECIPE == TRUE)
 	{
-		if((Npc_HasItems(hero,ItFo_Plants_mountainmoos_02) >= 1) && (Npc_HasItems(hero,ItFo_Plants_Trollberrys_01) >= 1) && (Npc_HasItems(hero,ItFo_Plants_RavenHerb_02) >= 1))
+		if((Npc_HasItems(hero,ItFo_Plants_Grabmoos_01) >= 1) && (Npc_HasItems(hero,ItFo_Plants_Trollcherry) >= 1) && (Npc_HasItems(hero,ItFo_Plants_Dunkelkraut) >= 1))
 		{
 			Info_AddChoice(pc_alchemy_cat_perm,"Эссенция ловкости.",pc_potionalchemy_dex_info);
 		}
@@ -127,7 +127,7 @@ func void update_perm_cat_list()
 	};
 	if(MPMAXRECIPE == TRUE)
 	{
-		if((Npc_HasItems(hero,ItFo_Plants_mountainmoos_01) >= 1) && (Npc_HasItems(hero,ItFo_Plants_Nightshadow_02) >= 1))
+		if((Npc_HasItems(hero,ItFo_Plants_mountainmoos_01) >= 1) && (Npc_HasItems(hero,ItFo_Plants_Moonshadow) >= 1))
 		{
 			Info_AddChoice(pc_alchemy_cat_perm,"Эссенция силы духа.",pc_potionalchemy_mpmax_info);
 		}
@@ -138,7 +138,7 @@ func void update_perm_cat_list()
 	};
 	if(HPMAXRECIPE == TRUE)
 	{
-		if((Npc_HasItems(hero,ItFo_Plants_mountainmoos_01) >= 1) && (Npc_HasItems(hero,ItFo_Plants_OrcHerb_02) >= 1))
+		if((Npc_HasItems(hero,ItFo_Plants_mountainmoos_01) >= 1) && (Npc_HasItems(hero,ItFo_Plants_OakLeaf) >= 1))
 		{
 			Info_AddChoice(pc_alchemy_cat_perm,"Эссенция жизни.",pc_potionalchemy_hpmax_info);
 		}
@@ -155,7 +155,7 @@ func void update_special_cat_list()
 	Info_AddChoice(pc_alchemy_cat_special,DIALOG_BACK,pc_alchemy_cat_special_back);
 	if(FORTUNORECIPE == TRUE)
 	{
-		if((Npc_HasItems(hero,itfo_plants_deadleaf) >= 1) && ((Npc_HasItems(hero,SpecialWater) >= 1) || ((Npc_HasItems(hero,ItFo_Plants_Bloodwood_01) >= 1) && (Npc_HasItems(hero,ItMi_Alchemy_Alcohol_01) >= 1))))
+		if((Npc_HasItems(hero,ItFo_Plants_Deadleaf) >= 1) && ((Npc_HasItems(hero,SpecialWater) >= 1) || ((Npc_HasItems(hero,ItFo_Plants_Bloodwood_01) >= 1) && (Npc_HasItems(hero,ItMi_Alchemy_Alcohol_01) >= 1))))
 		{
 			Info_AddChoice(pc_alchemy_cat_special,"Лечебное зелье Фортуно.",pc_potionalchemy_yberion_info);
 		}
@@ -520,7 +520,7 @@ func void pc_potionalchemy_mp2_info()
 		PrintScreen("Закончились чистые флаконы.",-1,45,"font_old_10_white.tga",5);
 		AI_StopProcessInfos(self);
 	};
-	Npc_RemoveInvItems(self,ItFo_Plants_RavenHerb_01,1);
+	Npc_RemoveInvItems(self,ItFo_Plants_Ravenkraut,1);
 	CreateInvItem(self,ItFo_Potion_Mana_02);
 	AI_Wait(self,2);
 	PrintScreen("Получен экстракт магической энергии.",-1,-1,"font_old_10_white.tga",2);
@@ -559,7 +559,7 @@ func void pc_potionalchemy_mpmax_info()
 		AI_StopProcessInfos(self);
 	};
 	Npc_RemoveInvItems(self,ItFo_Plants_mountainmoos_01,1);
-	Npc_RemoveInvItems(self,ItFo_Plants_Nightshadow_02,1);
+	Npc_RemoveInvItems(self,ItFo_Plants_Moonshadow,1);
 	CreateInvItem(self,ItFo_Potion_Mana_Perma_01);
 	AI_Wait(self,2);
 	PrintScreen("Получена эссенция силы духа.",-1,-1,"font_old_10_white.tga",2);
@@ -579,7 +579,7 @@ func void pc_potionalchemy_hpmax_info()
 		AI_StopProcessInfos(self);
 	};
 	Npc_RemoveInvItems(self,ItFo_Plants_mountainmoos_01,1);
-	Npc_RemoveInvItems(self,ItFo_Plants_OrcHerb_02,1);
+	Npc_RemoveInvItems(self,ItFo_Plants_OakLeaf,1);
 	CreateInvItem(self,ItFo_Potion_Health_Perma_01);
 	AI_Wait(self,2);
 	PrintScreen("Получена эссенция жизни.",-1,-1,"font_old_10_white.tga",2);
@@ -598,9 +598,9 @@ func void pc_potionalchemy_dex_info()
 		PrintScreen("Закончились чистые флаконы.",-1,45,"font_old_10_white.tga",5);
 		AI_StopProcessInfos(self);
 	};
-	Npc_RemoveInvItems(self,ItFo_Plants_mountainmoos_02,1);
-	Npc_RemoveInvItems(self,ItFo_Plants_Trollberrys_01,1);
-	Npc_RemoveInvItems(self,ItFo_Plants_RavenHerb_02,1);
+	Npc_RemoveInvItems(self,ItFo_Plants_Grabmoos_01,1);
+	Npc_RemoveInvItems(self,ItFo_Plants_Trollcherry,1);
+	Npc_RemoveInvItems(self,ItFo_Plants_Dunkelkraut,1);
 	CreateInvItem(self,ItFo_Potion_Dex_01);
 	AI_Wait(self,2);
 	PrintScreen("Получена эссенция ловкости.",-1,-1,"font_old_10_white.tga",2);
@@ -619,8 +619,8 @@ func void pc_potionalchemy_str_info()
 		PrintScreen("Закончились чистые флаконы.",-1,45,"font_old_10_white.tga",5);
 		AI_StopProcessInfos(self);
 	};
-	Npc_RemoveInvItems(self,ItFo_Plants_mountainmoos_02,1);
-	Npc_RemoveInvItems(self,ItFo_Plants_Stoneroot_02,1);
+	Npc_RemoveInvItems(self,ItFo_Plants_Grabmoos_01,1);
+	Npc_RemoveInvItems(self,ItFo_Plants_Dragonroot_01,1);
 	Npc_RemoveInvItems(self,ItFo_Plants_Flameberry_01,1);
 	CreateInvItem(self,ItFo_Potion_Strength_01);
 	AI_Wait(self,2);
@@ -720,7 +720,7 @@ func void pc_potionalchemy_booze_info()
 
 func void pc_potionalchemy_yberion_info()
 {
-	Npc_RemoveInvItems(self,itfo_plants_deadleaf,1);
+	Npc_RemoveInvItems(self,ItFo_Plants_Deadleaf,1);
 	if(Npc_HasItems(hero,SpecialWater))
 	{
 		Npc_RemoveInvItems(self,SpecialWater,1);
@@ -860,14 +860,14 @@ func void pc_stomp_cat1_2()
 
 func void pc_stomp_cat1_3()
 {
-	if(!Npc_HasItems(hero,ItFo_Plants_mushroom_01))
+	if(!Npc_HasItems(hero,ItFo_Plants_Hollenpilz))
 	{
 		PrintScreen("Недостаточно ингредиентов.",-1,45,"font_old_10_white.tga",2);
 	}
 	else
 	{
 		Npc_RemoveInvItems(self,ItMi_Plants_Swampherb_01,1);
-		Npc_RemoveInvItems(self,ItFo_Plants_mushroom_01,1);
+		Npc_RemoveInvItems(self,ItFo_Plants_Hollenpilz,1);
 		CreateInvItem(self,ItMiJoint_3);
 		AI_Wait(self,2);
 		PrintScreen("Получен 'Зов мечты'.",-1,-1,"font_old_10_white.tga",2);

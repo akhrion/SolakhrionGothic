@@ -1,81 +1,4 @@
 
-const int Value_Bugmeat = 2;
-const int HP_Bugmeat = 4;
-const int Value_Apfel = 4;
-const int HP_Apfel = 8;
-const int Value_Weintrauben = 6;
-const int HP_Weintrauben = 8;
-const int Value_Wasser = 2;
-const int HP_Wasser = 10;
-const int Value_Bier = 10;
-const int HP_Bier = 3;
-const int Value_Wein = 12;
-const int HP_Wein = 5;
-const int Value_Reisschnaps = 14;
-const int HP_Reisschnaps = 7;
-const int Value_Reis = 4;
-const int HP_Reis = 10;
-const int Value_Wurzelsuppe = 2;
-const int HP_Wurzelsuppe = 7;
-const int Value_Ragout = 4;
-const int HP_Ragout = 9;
-const int Value_CrawlerSuppe = 10;
-const int HP_CrawlerSuppe = 15;
-const int Value_FleischRoh = 4;
-const int HP_FleischRoh = 6;
-const int Value_Brot = 8;
-const int HP_Brot = 12;
-const int Value_Kдse = 10;
-const int HP_Kдse = 15;
-const int Value_Fleisch = 8;
-const int HP_Fleisch = 15;
-const int Value_Schinken = 12;
-const int HP_Schinken = 18;
-const int Value_Waldbeeren = 4;
-const int HP_Waldbeeren = 10;
-const int Value_Flammendorn = 6;
-const int HP_Flammendorn = 12;
-const int Value_Seraphis = 6;
-const int HP_Seraphis = 5;
-const int Value_Velayis = 8;
-const int HP_Velayis = 16;
-const int Value_Bergmoos = 50;
-const int HP_Bergmoos = 18;
-const int Value_Grabmoos = 70;
-const int HP_Grabmoos = 20;
-const int Value_Nachtschatten = 10;
-const int HP_Nachtschatten = 22;
-const int Value_Mondschatten = 10;
-const int HP_Mondschatten = 24;
-const int Value_Orkblatt = 12;
-const int HP_Orkblatt = 26;
-const int Value_Eichenblatt = 14;
-const int HP_Eichenblatt = 28;
-const int Value_Hцllenpilz = 2;
-const int HP_Hцllenpilz = 6;
-const int Value_Sklavenbrot = 8;
-const int HP_Sklavenbrot = 15;
-const int Value_Heilkrдuter1 = 14;
-const int HP_Heilkrдuter1 = 30;
-const int Value_Heilkrдuter2 = 18;
-const int HP_Heilkrдuter2 = 39;
-const int Value_Heilkrдuter3 = 24;
-const int HP_Heilkrдuter3 = 49;
-const int Value_Trollkirsche = 10;
-const int HP_Trollkirsche = -20;
-const int Value_Blutbuche = 2;
-const int Mana_Blutbuche = 5;
-const int Value_Turmeiche = 8;
-const int Mana_Turmeiche = 10;
-const int Value_Rabenkraut = 12;
-const int Mana_Rabenkraut = 15;
-const int Value_Dunkelkraut = 16;
-const int Mana_Dunkelkraut = 20;
-const int Value_Steimwurzel = 20;
-const int Mana_Steinwurzel = 25;
-const int Value_Drachenwurzel = 20;
-const int Mana_Drachenwurzel = 30;
-
 instance ItAt_Meatbug_01(C_Item)
 {
 	name = "Мясо жука";
@@ -105,7 +28,7 @@ instance ItFoApple(C_Item)
 	name = "Яблоко";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Apfel;
+	value = Value_Apple;
 	visual = "ItFo_Apple_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "FOOD";
@@ -114,7 +37,7 @@ instance ItFoApple(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Apfel;
 	text[5] = NAME_Value;
-	count[5] = Value_Apfel;
+	count[5] = Value_Apple;
 };
 
 
@@ -129,7 +52,7 @@ instance ItFo_wineberrys_01(C_Item)
 	name = "Виноградная гроздь";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Weintrauben;
+	value = Value_Wineberry;
 	visual = "ItFo_wineberrys_01.3ds";
 	on_state[0] = Usewineberrys;
 	scemeName = "FOOD";
@@ -137,7 +60,7 @@ instance ItFo_wineberrys_01(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Weintrauben;
 	text[5] = NAME_Value;
-	count[5] = Value_Weintrauben;
+	count[5] = Value_Wineberry;
 };
 
 
@@ -175,7 +98,7 @@ instance ItFoMutton(C_Item)
 	name = "Жареное мясо";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Fleisch;
+	value = Value_Mutton;
 	visual = "ItFo_CookedMutton_01.3ds";
 	scemeName = "MEAT";
 	on_state[0] = UseMutton;
@@ -183,7 +106,7 @@ instance ItFoMutton(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Fleisch;
 	text[5] = NAME_Value;
-	count[5] = Value_Fleisch;
+	count[5] = Value_Mutton;
 };
 
 
@@ -198,7 +121,7 @@ instance ItFoMuttonRaw(C_Item)
 	name = "Сырое мясо";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_FleischRoh;
+	value = Value_MuttonRaw;
 	visual = "ItFo_RawMutton_01.3ds";
 	scemeName = "MEAT";
 	on_state[0] = UseMuttonRaw;
@@ -206,7 +129,7 @@ instance ItFoMuttonRaw(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_FleischRoh;
 	text[5] = NAME_Value;
-	count[5] = Value_FleischRoh;
+	count[5] = Value_MuttonRaw;
 };
 
 
@@ -221,7 +144,7 @@ instance ItFo_mutton_01(C_Item)
 	name = "Окорок";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Schinken;
+	value = Value_mutton_01;
 	visual = "ItFo_mutton_01.3ds";
 	scemeName = "FOODHUGE";
 	on_state[0] = UseMutton1;
@@ -229,7 +152,7 @@ instance ItFo_mutton_01(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Schinken;
 	text[5] = NAME_Value;
-	count[5] = Value_Schinken;
+	count[5] = Value_mutton_01;
 };
 
 
@@ -244,7 +167,7 @@ instance ItFoCheese(C_Item)
 	name = "Сыр";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Kдse;
+	value = Value_Cheese;
 	visual = "ItFo_Cheese_01.3ds";
 	scemeName = "FOODHUGE";
 	on_state[0] = UseCheese;
@@ -252,7 +175,7 @@ instance ItFoCheese(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Kдse;
 	text[5] = NAME_Value;
-	count[5] = Value_Kдse;
+	count[5] = Value_Cheese;
 };
 
 
@@ -267,7 +190,7 @@ instance ItFoRice(C_Item)
 	name = "Рис";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Reis;
+	value = Value_Rice;
 	visual = "ItFo_Rice_01.3ds";
 	scemeName = "RICE";
 	on_state[0] = UseRice;
@@ -275,7 +198,7 @@ instance ItFoRice(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Reis;
 	text[5] = NAME_Value;
-	count[5] = Value_Reis;
+	count[5] = Value_Rice;
 };
 
 
@@ -285,7 +208,7 @@ func void UseRice()
 };
 
 
-instance ItFoSoup(C_Item)
+instance ItFoWurzelsuppe(C_Item)
 {
 	name = "Суп из кореньев";
 	mainflag = ITEM_KAT_FOOD;
@@ -313,7 +236,7 @@ instance ItFoMeatbugragout(C_Item)
 	name = "Рагу из жуков";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Ragout;
+	value = Value_Meatbugragout;
 	visual = "ItFo_Meatbugragout_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "RICE";
@@ -322,7 +245,7 @@ instance ItFoMeatbugragout(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Ragout;
 	text[5] = NAME_Value;
-	count[5] = Value_Ragout;
+	count[5] = Value_Meatbugragout;
 };
 
 
@@ -337,7 +260,7 @@ instance ItFoCrawlersoup(C_Item)
 	name = "Суп с мясом ползунов";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_CrawlerSuppe;
+	value = Value_Crawlersoup;
 	visual = "ItFo_Crawlersoup_01.3ds";
 	material = MAT_LEATHER;
 	on_state[0] = UseCrawlersoup;
@@ -346,7 +269,7 @@ instance ItFoCrawlersoup(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_CrawlerSuppe;
 	text[5] = NAME_Value;
-	count[5] = Value_CrawlerSuppe;
+	count[5] = Value_Crawlersoup;
 };
 
 
@@ -361,22 +284,24 @@ instance ItFo_Potion_Water_01(C_Item)
 	name = "Вода";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Wasser;
+	value = Value_Water;
 	visual = "ItFo_Potion_Water_01.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseWaterPotion;
 	scemeName = "POTION";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Wasser;
+	count[1] = HP_Water;
 	text[5] = NAME_Value;
-	count[5] = Value_Wasser;
+	count[5] = Value_Water;
 };
 
 
 func void UseWaterPotion()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wasser);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Water);
+	//Ускоряет регенерацию ХП на час.
+	//Если вода не чистая, то есть возможность заболеть.
 };
 
 
@@ -385,7 +310,7 @@ instance ItFoBeer(C_Item)
 	name = "Пиво";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Bier;
+	value = Value_Beer;
 	visual = "ItFo_Beer_01.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseBooze;
@@ -394,7 +319,7 @@ instance ItFoBeer(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Reisschnaps;
 	text[5] = NAME_Value;
-	count[5] = Value_Bier;
+	count[5] = Value_Beer;
 };
 
 instance ItFoWine(C_Item)
@@ -402,7 +327,7 @@ instance ItFoWine(C_Item)
 	name = "Вино";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Wein;
+	value = Value_Wine;
 	visual = "ItFo_Wine_01.3ds";
 	material = MAT_LEATHER;
 	on_state[0] = UseBooze;
@@ -411,7 +336,7 @@ instance ItFoWine(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Reisschnaps;
 	text[5] = NAME_Value;
-	count[5] = Value_Wein;
+	count[5] = Value_Wine;
 };
 
 instance ItFoBooze(C_Item)
@@ -447,7 +372,7 @@ instance ItFo_Plants_Berrys_01(C_Item)
 	name = "Лесная ягода";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Waldbeeren;
+	value = Value_Plants_Berrys_01;
 	visual = "ItFo_Plants_Berrys_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = UseBerrys;
@@ -456,7 +381,7 @@ instance ItFo_Plants_Berrys_01(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Waldbeeren;
 	text[5] = NAME_Value;
-	count[5] = Value_Waldbeeren;
+	count[5] = Value_Plants_Berrys_01;
 };
 
 
@@ -472,7 +397,7 @@ instance ItFo_Plants_Flameberry_01(C_Item)
 	name = "Огненная ягода";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Flammendorn;
+	value = Value_Plants_Flameberry_01;
 	visual = "ItFo_Plants_Flameberry_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Useflame;
@@ -481,7 +406,7 @@ instance ItFo_Plants_Flameberry_01(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Flammendorn;
 	text[5] = NAME_Value;
-	count[5] = Value_Flammendorn;
+	count[5] = Value_Plants_Flameberry_01;
 };
 
 
@@ -547,27 +472,27 @@ instance ItFo_Plants_mountainmoos_01(C_Item)
 	name = "Горный мох";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Bergmoos;
+	value = Value_Plants_mountainmoos_01;
 	visual = "ItFo_Plants_mountainmoos_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Usemoos;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Bergmoos;
+	count[1] = HP_mountainmoos_01;
 	text[5] = NAME_Value;
-	count[5] = Value_Bergmoos;
+	count[5] = Value_Plants_mountainmoos_01;
 };
 
 
 func void Usemoos()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Bergmoos);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_mountainmoos_01);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем мох.");
 };
 
 
-instance ItFo_Plants_mountainmoos_02(C_Item)
+instance ItFo_Plants_Grabmoos_01(C_Item)
 {
 	name = "Могильный мох";
 	mainflag = ITEM_KAT_FOOD;
@@ -597,47 +522,47 @@ instance ItFo_Plants_Nightshadow_01(C_Item)
 	name = "Ночная тьма";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Nachtschatten;
+	value = Value_Plants_Nightshadow_01;
 	visual = "ItFo_Plants_Nightshadow_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Usenight;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Nachtschatten;
+	count[1] = HP_Nightshadow;
 	text[5] = NAME_Value;
-	count[5] = Value_Nachtschatten;
+	count[5] = Value_Plants_Nightshadow_01;
 };
 
 
 func void Usenight()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Nachtschatten);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Nightshadow);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем ночную тьму.");
 };
 
 
-instance ItFo_Plants_Nightshadow_02(C_Item)
+instance ItFo_Plants_Moonshadow(C_Item)
 {
 	name = "Лунная тень";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Mondschatten;
+	value = Value_Plants_Moonshadow;
 	visual = "ItFo_Plants_Moonshadow.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Usemoon;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_Mana;
-	count[1] = HP_Mondschatten;
+	count[1] = HP_Moonshadow;
 	text[5] = NAME_Value;
-	count[5] = Value_Mondschatten;
+	count[5] = Value_Plants_Moonshadow;
 };
 
 
 func void Usemoon()
 {
-	Npc_ChangeAttribute(self,ATR_MANA,HP_Mondschatten);
+	Npc_ChangeAttribute(self,ATR_MANA,HP_Moonshadow);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем лунную тень.");
 };
 
@@ -647,77 +572,78 @@ instance ItFo_Plants_OrcHerb_01(C_Item)
 	name = "Орочий лист";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Orkblatt;
+	value = Value_Plants_OrcHerb_01;
 	visual = "ItFo_Plants_OrcHerb_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Useorc;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Orkblatt;
+	count[1] = HP_OrcHerb;
 	text[5] = NAME_Value;
-	count[5] = Value_Orkblatt;
+	count[5] = Value_Plants_OrcHerb_01;
 };
 
 
 func void Useorc()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Orkblatt);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_OrcHerb);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем орочий лист.");
 };
 
 
-instance ItFo_Plants_OrcHerb_02(C_Item)
+instance ItFo_Plants_OakLeaf(C_Item)
 {
 	name = "Дубовый лист";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Eichenblatt;
+	value = Value_Plants_OakLeaf;
 	visual = "ItFo_Plants_OakHerb.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Useorc2;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Eichenblatt;
+	count[1] = HP_OakLeaf;
 	text[5] = NAME_Value;
-	count[5] = Value_Eichenblatt;
+	count[5] = Value_Plants_OakLeaf;
 };
 
 
 func void Useorc2()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Eichenblatt);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_OakLeaf);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем дубовый лист.");
 };
 
 
-instance ItFo_Plants_mushroom_01(C_Item)
+instance ItFo_Plants_Hollenpilz(C_Item)
 {
+	//akhWorkQuest
 	name = "Адский гриб";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Hцllenpilz;
+	value = Value_Plants_Hollenpilz;
 	visual = "ItFo_Plants_mushroom_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Usemush;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Hцllenpilz;
+	count[1] = HP_Hollenpilz;
 	text[5] = NAME_Value;
-	count[5] = Value_Hцllenpilz;
+	count[5] = Value_Plants_Hollenpilz;
 };
 
 
 func void Usemush()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Hцllenpilz);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Hollenpilz);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем адский гриб.");
 };
 
 
-instance ItFo_Plants_mushroom_02(C_Item)
+instance ItFo_Plants_Sklavenbrot(C_Item)
 {
 	name = "Рабский хлеб";
 	mainflag = ITEM_KAT_FOOD;
@@ -747,22 +673,22 @@ instance ItFo_Plants_Herb_01(C_Item)
 	name = "Целебная трава";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Heilkrдuter1;
+	value = Value_Plants_Herb_01;
 	visual = "ItFo_Plants_Herb_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = UsePlants1;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Heilkrдuter1;
+	count[1] = HP_Plants_Herb_01;
 	text[5] = NAME_Value;
-	count[5] = Value_Heilkrдuter1;
+	count[5] = Value_Plants_Herb_01;
 };
 
 
 func void UsePlants1()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Heilkrдuter1);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Plants_Herb_01);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем целебную траву.");
 };
 
@@ -772,22 +698,22 @@ instance ItFo_Plants_Herb_02(C_Item)
 	name = "Целебное растение";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Heilkrдuter2;
+	value = Value_Plants_Herb_02;
 	visual = "ItFo_Plants_Herb_02.3ds";
 	material = MAT_WOOD;
 	on_state[0] = UsePlants2;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Heilkrдuter2;
+	count[1] = HP_Plants_Herb_02;
 	text[5] = NAME_Value;
-	count[5] = Value_Heilkrдuter2;
+	count[5] = Value_Plants_Herb_02;
 };
 
 
 func void UsePlants2()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Heilkrдuter2);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Plants_Herb_02);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем целебную траву.");
 };
 
@@ -797,22 +723,22 @@ instance ItFo_Plants_Herb_03(C_Item)
 	name = "Целебный корень";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Heilkrдuter3;
+	value = Value_Plants_Herb_03;
 	visual = "ItFo_Plants_Herb_03.3ds";
 	material = MAT_WOOD;
 	on_state[0] = UsePlants3;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Heilkrдuter3;
+	count[1] = HP_Plants_Herb_03;
 	text[5] = NAME_Value;
-	count[5] = Value_Heilkrдuter3;
+	count[5] = Value_Plants_Herb_03;
 };
 
 
 func void UsePlants3()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Heilkrдuter3);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Plants_Herb_03);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем лечебную траву.");
 };
 
@@ -822,22 +748,22 @@ instance ItFo_Plants_Bloodwood_01(C_Item)
 	name = "Семена бука";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Blutbuche;
+	value = Value_Plants_Bloodwood_01;
 	visual = "ItFo_Plants_Bloodwood_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Useblood;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_Mana;
-	count[1] = Mana_Blutbuche;
+	count[1] = Mana_Plants_Bloodwood_01;
 	text[5] = NAME_Value;
-	count[5] = Value_Blutbuche;
+	count[5] = Value_Plants_Bloodwood_01;
 };
 
 
 func void Useblood()
 {
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Blutbuche);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Plants_Bloodwood_01);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем семена бука.");
 };
 
@@ -847,7 +773,7 @@ instance ItFo_Plants_Towerwood_01(C_Item)
 	name = "Соты шершня";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = 100;
+	value = Value_Plants_Towerwood_01;
 	visual = "ItFo_Plants_Honey_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = usehoneycomb;
@@ -856,7 +782,7 @@ instance ItFo_Plants_Towerwood_01(C_Item)
 	text[1] = "Трофей настоящего путешественника.";
 	text[2] = "Содержат вкусный мед!";
 	text[5] = NAME_Value;
-	count[5] = 100;
+	count[5] = Value_Plants_Towerwood_01;
 };
 
 
@@ -906,32 +832,32 @@ func void usehoneycomb()
 };
 
 
-instance ItFo_Plants_RavenHerb_01(C_Item)
+instance ItFo_Plants_Ravenkraut(C_Item)
 {
 	name = "Воронья трава";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Rabenkraut;
+	value = Value_Ravenkraut;
 	visual = "ItFo_Plants_RavenHerb_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Useraven;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_Mana;
-	count[1] = Mana_Rabenkraut;
+	count[1] = Mana_Ravenkraut;
 	text[5] = NAME_Value;
-	count[5] = Value_Rabenkraut;
+	count[5] = Value_Ravenkraut;
 };
 
 
 func void Useraven()
 {
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Rabenkraut);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Ravenkraut);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем воронью траву.");
 };
 
 
-instance ItFo_Plants_RavenHerb_02(C_Item)
+instance ItFo_Plants_Dunkelkraut(C_Item)
 {
 	name = "Темный лист";
 	mainflag = ITEM_KAT_FOOD;
@@ -961,96 +887,96 @@ instance ItFo_Plants_Stoneroot_01(C_Item)
 	name = "Каменный корень";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Steimwurzel;
+	value = Value_Plants_Stoneroot_01;
 	visual = "ItFo_Plants_Stoneroot_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Useroot;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_Mana;
-	count[1] = Mana_Steinwurzel;
+	count[1] = Mana_Plants_Stoneroot_01;
 	text[5] = NAME_Value;
-	count[5] = Value_Steimwurzel;
+	count[5] = Value_Plants_Stoneroot_01;
 };
 
 
 func void Useroot()
 {
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Steinwurzel);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Plants_Stoneroot_01);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем каменный корень.");
 };
 
 
-instance ItFo_Plants_Stoneroot_02(C_Item)
+instance ItFo_Plants_Dragonroot_01(C_Item)
 {
 	name = "Драконий корень";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Drachenwurzel;
+	value = Value_Plants_Dragonroot_01;
 	visual = "ItFo_Plants_Dragonroot.3ds";
 	material = MAT_WOOD;
 	on_state[0] = Useroot2;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_Mana;
-	count[1] = Mana_Drachenwurzel;
+	count[1] = Mana_Plants_Dragonroot_01;
 	text[5] = NAME_Value;
-	count[5] = Value_Drachenwurzel;
+	count[5] = Value_Plants_Dragonroot_01;
 };
 
 
 func void Useroot2()
 {
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Drachenwurzel);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Plants_Dragonroot_01);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем драконий корень.");
 };
 
 
-instance ItFo_Plants_Trollberrys_01(C_Item)
+instance ItFo_Plants_Trollcherry(C_Item)
 {
 	name = "Вишня троллей";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Trollkirsche;
+	value = Value_Plants_Trollcherry;
 	visual = "ItFo_Plants_Trollberrys_01.3ds";
 	material = MAT_WOOD;
 	on_state[0] = UseTrollberrys;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Trollkirsche;
+	count[1] = HP_Plants_Trollcherry;
 	text[5] = NAME_Value;
-	count[5] = Value_Trollkirsche;
+	count[5] = Value_Plants_Trollcherry;
 };
 
 
 func void UseTrollberrys()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Trollkirsche);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Plants_Trollcherry);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем вишню троллей.");
 };
 
 
-instance ITFO_PLANTS_DEADLEAF(C_Item)
+instance ItFo_Plants_Deadleaf(C_Item)
 {
 	name = "Мертвый лист";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = 50;
+	value = Value_Plants_Deadleaf;
 	visual = "ItFo_Plants_Deadleaf.3ds";
 	material = MAT_WOOD;
 	on_state[0] = usedeadleaf;
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_Mana;
-	count[1] = 35;
+	count[1] = Mana_Plants_Deadleaf;
 	text[5] = NAME_Value;
-	count[5] = 50;
+	count[5] = Value_Plants_Deadleaf;
 };
 
 
 func void usedeadleaf()
 {
-	Npc_ChangeAttribute(self,ATR_MANA,35);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Plants_Deadleaf);
 };
 

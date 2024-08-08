@@ -13,6 +13,7 @@ instance VLK_520_Buddler(Npc_Default)
 	attribute[ATR_MANA] = 0;
 	attribute[ATR_HITPOINTS_MAX] = 64;
 	attribute[ATR_HITPOINTS] = 64;
+	attribute[ATR_REGENERATEHP] = 1;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",3,1,"Hum_Head_Thief",68,2,-1);

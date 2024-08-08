@@ -119,7 +119,7 @@ instance DIA_Snaf_ZutatenSuccess(C_Info)
 
 func int DIA_Snaf_ZutatenSuccess_Condition()
 {
-	if((Snaf_Zutaten == LOG_RUNNING) && (Npc_HasItems(other,ItFo_Plants_mushroom_01) >= 5) && (Npc_HasItems(other,ItAt_Meatbug_01) >= 3))
+	if((Snaf_Zutaten == LOG_RUNNING) && (Npc_HasItems(other,ItFo_Plants_Hollenpilz) >= 5) && (Npc_HasItems(other,ItAt_Meatbug_01) >= 3))
 	{
 		return 1;
 	};
@@ -132,7 +132,7 @@ func void DIA_Snaf_ZutatenSuccess_Info()
 {
 	AI_Output(other,self,"DIA_Snaf_ZutatenSuccess_15_00");	//Я достал все ингредиенты, посмотри.
 	b_printtrademsg1("Отданы адские грибы и мясо жуков.");
-	Npc_RemoveInvItems(hero,ItFo_Plants_mushroom_01,5);
+	Npc_RemoveInvItems(hero,ItFo_Plants_Hollenpilz,5);
 	Npc_RemoveInvItems(hero,ItAt_Meatbug_01,3);
 	if(Wld_IsTime(8,0,22,0) && (Npc_GetDistToWP(self,"OCR_CAULDRON_2") < 230))
 	{

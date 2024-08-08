@@ -21,7 +21,7 @@ instance TPL_1439_GorNaDrak(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	Npc_SetTalentSkill(self,NPC_TALENT_2H,2);
 	EquipItem(self,ItMw_2H_Sword_Light_04);
-	CreateInvItem(self,ItFoSoup);
+	CreateInvItem(self,ItFoWurzelsuppe);
 	CreateInvItem(self,ItMiJoint_1);
 	daily_routine = Rtn_start_1439;
 };

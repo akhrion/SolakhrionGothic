@@ -324,11 +324,11 @@ func void B_ChooseSoup(var C_Npc self)
 {
 	PrintDebugNpc(PD_TA_DETAIL,"B_ChooseSoup");
 	self.aivar[AIV_ITEMSTATUS] = TA_IT_SOUP;
-	if(Npc_HasItems(self,ItFoSoup) == 0)
+	if(Npc_HasItems(self,ItFoWurzelsuppe) == 0)
 	{
-		CreateInvItem(self,ItFoSoup);
+		CreateInvItem(self,ItFoWurzelsuppe);
 	};
-	AI_UseItemToState(self,ItFoSoup,0);
+	AI_UseItemToState(self,ItFoWurzelsuppe,0);
 	self.aivar[AIV_ITEMFREQ] = 1;
 };
 
@@ -461,7 +461,7 @@ func void B_ClearItem(var C_Npc self)
 	}
 	else if(self.aivar[AIV_ITEMSTATUS] == TA_IT_SOUP)
 	{
-		AI_UseItemToState(self,ItFoSoup,-1);
+		AI_UseItemToState(self,ItFoWurzelsuppe,-1);
 	}
 	else if(self.aivar[AIV_ITEMSTATUS] == TA_IT_RICE)
 	{

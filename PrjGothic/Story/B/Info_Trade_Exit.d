@@ -41,8 +41,9 @@ func void Trade_After_Info()
     AI_StopProcessInfos(self);
 };
 
-func void Trade_Started()
+func void Trade_Started()//работает
 {
+    G_ItemValue();
     return;
    	PC_WasTrade = true;
 	Trade_After.npc = Hlp_GetInstanceID(self);

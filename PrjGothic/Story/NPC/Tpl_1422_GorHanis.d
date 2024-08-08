@@ -28,7 +28,7 @@ instance Tpl_1422_GorHanis(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,2);
 	EquipItem(self,itmw_gorhanis);
 	EquipItem(self,ItMi_Amulet_Psi_01);
-	CreateInvItem(self,ItFoSoup);
+	CreateInvItem(self,ItFoWurzelsuppe);
 	CreateInvItem(self,ItMiJoint_1);
 	CreateInvItems(self,ItFo_Potion_Health_01,10);
 	daily_routine = Rtn_start_1422;

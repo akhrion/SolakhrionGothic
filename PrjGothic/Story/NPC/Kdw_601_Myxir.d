@@ -25,7 +25,7 @@ instance Kdw_601_Myxir(Npc_Default)
 	CreateInvItem(self,ItFo_Potion_Health_02);
 	CreateInvItem(self,ItFo_Potion_Mana_03);
 	CreateInvItem(self,ItFo_Plants_Flameberry_01);
-	CreateInvItem(self,ItFo_Plants_RavenHerb_01);
+	CreateInvItem(self,ItFo_Plants_Ravenkraut);
 	daily_routine = Rtn_start_601;
 };
 

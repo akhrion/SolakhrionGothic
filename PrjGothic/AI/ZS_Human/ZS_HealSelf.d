@@ -65,9 +65,9 @@ func int ZS_HealSelf_Loop()
 				AI_PlayAni(self,"T_RICE_S0_2_STAND");
 				self.aivar[AIV_ITEMSTATUS] = 6;
 			}
-			else if(Npc_HasItems(self,ItFoSoup))
+			else if(Npc_HasItems(self,ItFoWurzelsuppe))
 			{
-				AI_UseItemToState(self,ItFoSoup,0);
+				AI_UseItemToState(self,ItFoWurzelsuppe,0);
 				AI_PlayAni(self,"T_RICE_S0_2_STAND");
 				self.aivar[AIV_ITEMSTATUS] = 7;
 			}
@@ -141,7 +141,7 @@ func int ZS_HealSelf_Loop()
 			}
 			else if(self.aivar[AIV_ITEMSTATUS] == 7)
 			{
-				Npc_RemoveInvItem(self,ItFoSoup);
+				Npc_RemoveInvItem(self,ItFoWurzelsuppe);
 				Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wurzelsuppe);
 			}
 			else if(self.aivar[AIV_ITEMSTATUS] == 8)

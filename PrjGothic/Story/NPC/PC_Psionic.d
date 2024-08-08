@@ -22,7 +22,7 @@ instance PC_Psionic(Npc_Default)
 	aivar[AIV_IMPORTANT] = TRUE;
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,2);
 	EquipItem(self,Streitschlichter);
-	CreateInvItem(self,ItFoSoup);
+	CreateInvItem(self,ItFoWurzelsuppe);
 	CreateInvItems(self,ItFo_Potion_Health_02,3);
 	daily_routine = Rtn_start_4;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;

@@ -231,7 +231,7 @@ instance DIA_FORTUNO_DEADLEAFFOUND(C_Info)
 
 func int dia_fortuno_deadleaffound_condition()
 {
-	if(Npc_KnowsInfo(hero,dia_fortuno_help) && Npc_HasItems(other,itfo_plants_deadleaf) && (CorAngar_FindHerb == LOG_RUNNING))
+	if(Npc_KnowsInfo(hero,dia_fortuno_help) && Npc_HasItems(other,ItFo_Plants_Deadleaf) && (CorAngar_FindHerb == LOG_RUNNING))
 	{
 		return 1;
 	};
@@ -259,7 +259,7 @@ func void dia_fortuno_deadleaffound_info()
 		AI_Output(other,self,"DIA_Orry_GuardGate_No_15_00");	//Еще нет.
 		AI_Output(self,other,"DIA_Fortuno_SaveYberion_10");	//Хм, тогда я сам приготовлю зелье... Подожди...
 		b_printtrademsg1("Отдан Мертвый лист.");
-		Npc_RemoveInvItems(hero,itfo_plants_deadleaf,1);
+		Npc_RemoveInvItems(hero,ItFo_Plants_Deadleaf,1);
 		AI_UseMob(self,"LAB",1);
 		AI_Wait(self,13);
 		AI_UseMob(self,"LAB",-1);

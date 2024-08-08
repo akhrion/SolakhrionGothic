@@ -67,7 +67,7 @@ instance PC_Nyul(Npc_Default)
 	CreateInvItems(self,ItArScrollShrink,20);
 	CreateInvItems(self,ItFo_mutton_01,20);
 	CreateInvItems(self,ItFoBeer,20);
-	CreateInvItems(self,ItFo_Plants_Trollberrys_01,20);
+	CreateInvItems(self,ItFo_Plants_Trollcherry,20);
 	CreateInvItems(self,ItKeLockpick,20);
 	CreateInvItems(self,ItLsTorch,20);
 	CreateInvItems(self,ItMiNugget,1000);
@@ -112,7 +112,7 @@ instance Nyul_16(Npc_Default)
 	CreateInvItems(self,ItArScrollWindfist,10);
 	CreateInvItems(self,ItFo_mutton_01,20);
 	CreateInvItems(self,ItFoBeer,20);
-	CreateInvItems(self,ItFo_Plants_Trollberrys_01,20);
+	CreateInvItems(self,ItFo_Plants_Trollcherry,20);
 	CreateInvItems(self,ItKeLockpick,30);
 	CreateInvItems(self,ItLsTorch,30);
 	CreateInvItems(self,ItMiNugget,1000);
@@ -159,7 +159,7 @@ instance Nyul_21(Npc_Default)
 	CreateInvItems(self,ItArScrollWindfist,10);
 	CreateInvItems(self,ItFo_mutton_01,20);
 	CreateInvItems(self,ItFoBeer,20);
-	CreateInvItems(self,ItFo_Plants_Trollberrys_01,20);
+	CreateInvItems(self,ItFo_Plants_Trollcherry,20);
 	CreateInvItems(self,ItKeLockpick,30);
 	CreateInvItems(self,ItLsTorch,30);
 	CreateInvItems(self,ItMiNugget,1000);

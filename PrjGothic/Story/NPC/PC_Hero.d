@@ -313,22 +313,22 @@ func void use_alchemykit()
 	CreateInvItems(self,ItFo_Plants_Herb_02,5);
 	CreateInvItems(self,ItFo_Plants_Herb_03,5);
 	CreateInvItems(self,ItFo_Plants_Seraphis_01,5);
-	CreateInvItems(self,ItFo_Plants_RavenHerb_01,5);
+	CreateInvItems(self,ItFo_Plants_Ravenkraut,5);
 	CreateInvItems(self,ItFo_Plants_Stoneroot_01,5);
 	CreateInvItems(self,ItFo_Plants_mountainmoos_01,5);
-	CreateInvItems(self,ItFo_Plants_mushroom_01,5);
-	CreateInvItems(self,ItFo_Plants_Nightshadow_02,5);
-	CreateInvItems(self,ItFo_Plants_OrcHerb_02,5);
-	CreateInvItems(self,ItFo_Plants_mountainmoos_02,5);
-	CreateInvItems(self,ItFo_Plants_Trollberrys_01,5);
-	CreateInvItems(self,ItFo_Plants_RavenHerb_02,5);
-	CreateInvItems(self,ItFo_Plants_Stoneroot_02,5);
+	CreateInvItems(self,ItFo_Plants_Hollenpilz,5);
+	CreateInvItems(self,ItFo_Plants_Moonshadow,5);
+	CreateInvItems(self,ItFo_Plants_OakLeaf,5);
+	CreateInvItems(self,ItFo_Plants_Grabmoos_01,5);
+	CreateInvItems(self,ItFo_Plants_Trollcherry,5);
+	CreateInvItems(self,ItFo_Plants_Dunkelkraut,5);
+	CreateInvItems(self,ItFo_Plants_Dragonroot_01,5);
 	CreateInvItems(self,ItFo_Plants_Flameberry_01,5);
 	CreateInvItems(self,ItAt_Crawlerqueen,9);
 	CreateInvItems(self,ItMi_Plants_Swampherb_01,18);
 	CreateInvItems(self,ItMi_Alchemy_Alcohol_01,5);
 	CreateInvItems(self,ItFo_Plants_Bloodwood_01,5);
-	CreateInvItems(self,itfo_plants_deadleaf,5);
+	CreateInvItems(self,ItFo_Plants_Deadleaf,5);
 };
 
 

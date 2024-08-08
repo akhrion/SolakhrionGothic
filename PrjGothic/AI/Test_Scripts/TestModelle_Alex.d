@@ -82,7 +82,7 @@ instance Babe_Rockefeller(Npc_Default)
 	CreateInvItems(self,ItFoMutton,20);
 	CreateInvItems(self,ItFoCheese,5);
 	CreateInvItems(self,ItFoRice,5);
-	CreateInvItems(self,ItFoSoup,5);
+	CreateInvItems(self,ItFoWurzelsuppe,5);
 	CreateInvItems(self,ItFoMeatbugragout,5);
 	CreateInvItems(self,ItFoCrawlersoup,5);
 	CreateInvItems(self,ItFoBooze,10);

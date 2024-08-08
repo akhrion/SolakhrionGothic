@@ -162,6 +162,32 @@ func int tern(var int exp, var int r1, var int r2)
 	return r2;
 };
 
+var int flags;
+const int sqrt_MIN = 1;
+const int sqrt_MAX = 2;
+func int sqrt_cb(var int a,var int d)
+{
+    if(flags == (sqrt_MIN|sqrt_MAX)){flags = 0;return tern(d*d<a, d, d-1);};
+    // print(1,a,d)
+    if(d*d < a)
+	{
+        flags = flags | sqrt_MAX;
+        return sqrt_cb(a,d+1);
+	};
+    // print(2,a,d)
+    if(d*d > a)
+	{
+        flags = flags | sqrt_MIN;
+        return sqrt_cb(a,d-1);
+	};
+    return d;
+};
+func int sqrt(var int a)
+{
+    return sqrt_cb(a,a/10);
+};
+// print(sqrt(900))
+
 //Возвращает положительное число.
 func int abs(var int i)
 {

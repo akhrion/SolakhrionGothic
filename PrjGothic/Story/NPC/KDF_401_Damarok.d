@@ -29,7 +29,7 @@ instance KDF_401_Damarok(Npc_Default)
 	CreateInvItems(self,ItFo_Plants_Herb_01,2);
 	CreateInvItems(self,ItFo_Plants_Herb_02,5);
 	CreateInvItems(self,ItFo_Plants_Herb_03,3);
-	CreateInvItems(self,ItFo_Plants_Nightshadow_02,2);
+	CreateInvItems(self,ItFo_Plants_Moonshadow,2);
 	CreateInvItems(self,ItMiFlask,5);
 	daily_routine = Rtn_start_401;
 };

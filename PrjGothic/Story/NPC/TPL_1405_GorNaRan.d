@@ -24,7 +24,7 @@ instance TPL_1405_GorNaRan(Npc_Default)
 	EquipItem(self,ItMw_2H_Sword_Light_02);
 	EquipItem(self,ItRw_Crossbow_01);
 	CreateInvItems(self,ItAmBolt,30);
-	CreateInvItem(self,ItFoSoup);
+	CreateInvItem(self,ItFoWurzelsuppe);
 	CreateInvItem(self,ItMiJoint_1);
 	daily_routine = Rtn_start_1405;
 };
@@ -68,7 +68,7 @@ instance TPL_1490_GORNARAN(Npc_Default)
 	EquipItem(self,ItMw_2H_Sword_Light_02);
 	EquipItem(self,ItRw_Crossbow_01);
 	CreateInvItems(self,ItAmBolt,30);
-	CreateInvItem(self,ItFoSoup);
+	CreateInvItem(self,ItFoWurzelsuppe);
 	CreateInvItem(self,ItMiJoint_1);
 	daily_routine = rtn_start_1490;
 };

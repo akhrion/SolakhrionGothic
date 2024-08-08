@@ -21,7 +21,7 @@ instance TPL_1415_Templer(Npc_Default)
 	fight_tactic = FAI_HUMAN_Strong;
 	Npc_SetTalentSkill(self,NPC_TALENT_2H,1);
 	EquipItem(self,ItMw_2H_Sword_Light_02);
-	CreateInvItem(self,ItFoSoup);
+	CreateInvItem(self,ItFoWurzelsuppe);
 	CreateInvItem(self,ItMiJoint_1);
 	daily_routine = Rtn_start_1415;
 };

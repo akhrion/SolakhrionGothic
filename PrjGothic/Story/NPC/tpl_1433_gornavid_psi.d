@@ -22,7 +22,7 @@ instance TPL_1433_GORNAVID_PSI(Npc_Default)
 	fight_tactic = FAI_HUMAN_Strong;
 	Npc_SetTalentSkill(self,NPC_TALENT_2H,1);
 	EquipItem(self,ItMw_2H_Sword_Light_01);
-	CreateInvItem(self,ItFoSoup);
+	CreateInvItem(self,ItFoWurzelsuppe);
 	CreateInvItem(self,ItMiJoint_1);
 	daily_routine = rtn_start_14331;
 };

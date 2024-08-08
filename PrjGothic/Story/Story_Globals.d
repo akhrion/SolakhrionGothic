@@ -479,6 +479,8 @@ var int PC_HasNecromancySkill;
 var int PC_NecromancySkillValue;
 const int PC_ChanceToSkillsImproveInBattle = 5;
 var int PC_WasTrade;
+var int PC_LastTradeTimestamp;//для понимания насколько сильно могли измениться цены с последнего посещения торговца
+
 
 //PC ATTRIBUTES
 var int PC_ATR_STR;
@@ -487,6 +489,7 @@ var int PC_ATR_INT;
 var int PC_ATR_LUC;
 var int PC_ATR_MP;
 var int PC_ATR_HP;
+var int PC_Stamina;
 
 var int PC_DexBuff_1H;
 var int PC_DexBuff_2H;
@@ -541,8 +544,18 @@ const int PC_Mana_Sustain_Demon = 5;
 
 const int PC_IDLETIME = 120;
 var int PC_Idle;
-//OVERLAY COORDINATES
+var int PC_MovementSpeed;
+var int PC_LastDistToSpeedCenter;
 
+var int PC_LastDistToSpeedCoord0;
+var int PC_LastDistToSpeedCoordX;
+var int PC_LastDistToSpeedCoordY;
+var int PC_LastDistToSpeedCoordZ;
+
+const int IRL_COEFFICIENT_MOVEMENTSPEED = 25;
+const int MAXWALKINGSPEED = 6;
+
+//OVERLAY COORDINATES
 const int OVERLAY_TARGET_ISIMMORTAL_Y = 12;
 const int OVERLAY_BODYSTATE_AIV_ABILITY_Y = 14;
 const int OVERLAY_BODYSTATE_HERO_Y = 16;
@@ -551,10 +564,12 @@ const int OVERLAY_BODYSTATE_DODGE_Y = 20;
 var int OVERLAY_TargetKnowledge;
 const int OVERLAY_TargetKnowledge_Y = 74;
 const int OVERLAY_TARGET_DISTANCE_Y = 76;
+const int OVERLAY_Stamina_Y = 78;
 const int OVERLAY_ATR_STR_Y = 80;
 const int OVERLAY_ATR_DEX_Y = 82;
 const int OVERLAY_ATR_INT_Y = 84;
 const int OVERLAY_ATR_LUC_Y = 86;
+const int OVERLAY_PCMOVEMENTSPEED_Y = 90;
 const int OVERLAY_AIMING_ACCURACY_Y = 36;
 const int OVERLAY_AIMING_DAMAGE_Y = 38;
 
@@ -569,6 +584,8 @@ func void init_NPC_variables()
     ||  !PC_ATR_LUC
     ||  !PC_ATR_MP
     ||  !PC_ATR_HP
+    ||  !PC_Stamina
+    ||  !PC_LastDistToSpeedCenter
     )
     {
         PC_ATR_STR = hero.attribute[ATR_STRENGTH];
@@ -577,12 +594,141 @@ func void init_NPC_variables()
         PC_ATR_LUC = 22;
         PC_ATR_MP = hero.attribute[ATR_MANA_MAX];
         PC_ATR_HP = hero.attribute[ATR_HITPOINTS_MAX];
+        PC_Stamina = 100;
+        PC_LastDistToSpeedCenter = Npc_GetDistToWP(hero,"OC1");
     }
     else
     {
         init_NPC_vars = true;
     };
 };
+
+
+var int Value_Bugmeat;
+const int HP_Bugmeat = 4;
+var int Value_Apple;
+const int HP_Apfel = 8;
+var int Value_Wineberry;
+const int HP_Weintrauben = 8;
+var int Value_Water;
+const int HP_Water = 10;
+var int Value_Beer;
+const int HP_Bier = 3;
+var int Value_Wine;
+const int HP_Wein = 5;
+var int Value_Reisschnaps;
+const int HP_Reisschnaps = 7;
+var int Value_Rice;
+const int HP_Reis = 10;
+var int Value_Wurzelsuppe;
+const int HP_Wurzelsuppe = 7;
+var int Value_Meatbugragout;
+const int HP_Ragout = 9;
+var int Value_Crawlersoup;
+const int HP_CrawlerSuppe = 15;
+var int Value_MuttonRaw;
+const int HP_FleischRoh = 6;
+var int Value_Brot;
+const int HP_Brot = 12;
+var int Value_Cheese;
+const int HP_Kдse = 15;
+var int Value_Mutton;
+const int HP_Fleisch = 15;
+var int Value_mutton_01;
+const int HP_Schinken = 18;
+var int Value_Plants_Berrys_01;
+const int HP_Waldbeeren = 10;
+var int Value_Plants_Flameberry_01;
+const int HP_Flammendorn = 12;
+var int Value_Seraphis;
+const int HP_Seraphis = 5;
+var int Value_Velayis;
+const int HP_Velayis = 16;
+var int Value_Plants_mountainmoos_01;
+const int HP_mountainmoos_01 = 18;
+var int Value_Grabmoos;
+const int HP_Grabmoos = 20;
+var int Value_Plants_Nightshadow_01;
+const int HP_Nightshadow = 22;
+var int Value_Plants_Moonshadow;
+const int HP_Moonshadow = 24;
+var int Value_Plants_OrcHerb_01;
+const int HP_OrcHerb = 26;
+var int Value_Plants_OakLeaf;
+const int HP_OakLeaf = 28;
+var int Value_Plants_Hollenpilz;
+const int HP_Hollenpilz = 6;
+var int Value_Sklavenbrot;
+const int HP_Sklavenbrot = 15;
+var int Value_Plants_Herb_01;
+const int HP_Plants_Herb_01 = 30;
+var int Value_Plants_Herb_02;
+const int HP_Plants_Herb_02 = 39;
+var int Value_Plants_Herb_03;
+const int HP_Plants_Herb_03 = 49;
+var int Value_Plants_Trollcherry;
+const int HP_Plants_Trollcherry = -20;
+var int Value_Plants_Bloodwood_01;
+var int Value_Plants_Towerwood_01;
+const int Mana_Plants_Bloodwood_01 = 5;
+var int Value_Turmeiche;
+const int Mana_Turmeiche = 10;
+var int Value_Ravenkraut;
+const int Mana_Ravenkraut = 15;
+var int Value_Dunkelkraut;
+const int Mana_Dunkelkraut = 20;
+var int Value_Plants_Deadleaf;
+const int Mana_Plants_Deadleaf = 35;
+var int Value_Plants_Stoneroot_01;
+const int Mana_Plants_Stoneroot_01 = 25;
+var int Value_Plants_Dragonroot_01;
+const int Mana_Plants_Dragonroot_01 = 30;
+
+func void InitFoodPrice()
+{
+	Value_Bugmeat = 2;
+	Value_Apple = 4;
+	Value_Wineberry = 6;
+	Value_Water = 2;
+	Value_Beer = 10;
+	Value_Wine = 12;
+	Value_Reisschnaps = 14;
+	Value_Rice = 4;
+	Value_Wurzelsuppe = 2;
+	Value_Meatbugragout = 4;
+	Value_Crawlersoup = 10;
+	Value_MuttonRaw = 4;
+	Value_Brot = 8;
+	Value_Cheese = 10;
+	Value_Mutton = 8;
+	Value_mutton_01 = 12;
+	Value_Plants_Berrys_01 = 4;
+	Value_Plants_Flameberry_01 = 6;
+	Value_Seraphis = 6;
+	Value_Velayis = 8;
+	Value_Plants_mountainmoos_01 = 50;
+	Value_Grabmoos = 70;
+	Value_Plants_Nightshadow_01 = 10;
+	Value_Plants_Moonshadow = 10;
+	Value_Plants_OrcHerb_01 = 12;
+	Value_Plants_OakLeaf = 14;
+	Value_Plants_Hollenpilz = 2;
+	Value_Sklavenbrot = 8;
+	Value_Plants_Herb_01 = 14;
+	Value_Plants_Herb_02 = 18;
+	Value_Plants_Herb_03 = 24;
+	Value_Plants_Trollcherry = 10;
+	Value_Plants_Bloodwood_01 = 2;
+	Value_Plants_Towerwood_01 = 100;
+	Value_Turmeiche = 8;
+	Value_Ravenkraut = 12;
+	Value_Dunkelkraut = 16;
+    Value_Plants_Deadleaf = 50;
+	Value_Plants_Stoneroot_01 = 20;
+	Value_Plants_Dragonroot_01 = 20;
+};
+
+
 func void init_variables()
 {
     PC_Knowledge_Scavenger = 80;
@@ -590,6 +736,7 @@ func void init_variables()
     PC_Knowledge_Human = 50;
     SPL_FIREBALL_TIME_PER_MANA_BASIC = 750;//устарела, заменена
     PC_Knowledge_Demon_Existence = 2;
+    InitFoodPrice();
     if(PC_WeaponHand == 0)
     {
         PC_WeaponHand = PC_WeaponHandOne;

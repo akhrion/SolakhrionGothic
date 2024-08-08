@@ -24,7 +24,7 @@ instance TPL_1400_GorNaBar(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_2H,1);
 	CreateInvItem(self,ItMi_Amulet_Psi_01);
 	EquipItem(self,ItMw_2H_Sword_Light_03);
-	CreateInvItem(self,ItFoSoup);
+	CreateInvItem(self,ItFoWurzelsuppe);
 	CreateInvItem(self,ItMiJoint_3);
 	CreateInvItem(self,ItLsTorch);
 	daily_routine = Rtn_start_1400;
