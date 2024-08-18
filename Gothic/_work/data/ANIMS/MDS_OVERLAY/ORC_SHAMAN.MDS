@@ -1,0 +1,234 @@
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Model ("Orc")
+{
+
+
+	meshAndTree ("Orc_Body.asc"	DONT_USE_MESH)
+
+	aniEnum
+	{
+			modelTag	("DEF_HIT_LIMB"	"zs_RightHand")
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// Bewegungs-Modi
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+// Damit der 2H-Slot des Schamanen auf dem Rücken hängt und nicht an der Seite!
+// ---------------------------------------------------------------------------------------------------------------
+//	WALK-Mode
+			ani			("s_Walk"				1	"s_Walk"		0.1	0.1	MI	"Orc_WalkAmbient_OS_01.asc"			F	0	50	FPS:10)
+			{
+				*eventSFX	(1	"ORC_AMBIENT"	EMPTY_SLOT	)
+			}
+
+			ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Orc_WalkLoop_OS_01.asc"			F	1	9	)
+			ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Orc_WalkLoop_OS_01.asc"			F	10	32	)
+			{
+				*eventSFXGrnd	(10	"Run")
+				*eventSFX	(11	"ORC_AMBIENT_SHORT"	EMPTY_SLOT	)
+				*eventSFXGrnd	(21	"Run")
+			}
+
+			ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Orc_WalkLoop_OS_01.asc"			F	33	40	)
+			{
+				*eventSFXGrnd	(40	"Run")
+			}
+
+			aniBlend	("t_WalkR_2_Walk"			"s_Walk"		0.0	0.1)
+
+			ani			("t_Walk_2_WalkBL"		1	"s_WalkBL"		0.0	0.0	M.	"Orc_WalkLoop_B_OS_01.asc"			R	33	40	)
+
+			ani			("s_WalkBL"				1	"s_WalkBL"		0.0	0.0	M.	"Orc_WalkLoop_B_OS_01.asc"			R	9	32	)
+			ani			("t_WalkBL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Orc_WalkLoop_B_OS_01.asc"			R	1	8	)
+			aniBlend	("t_WalkBR_2_Walk"			"s_Walk"		0.0	0.1)
+
+//	RUN-Mode
+//			ani			("s_Run"				1	"s_Run"			0.1	0.1	MI	"Orc_Ready_Mag_OS_01.asc"			F	1	1)
+			ani			("s_Run"				1	"s_Run"			0.1	0.1	MI	"Orc_RunAmbient_OS_01.asc"			F	0	50  FPS:10)
+			{
+				*eventSFX	(1	"ORC_AMBIENT"	EMPTY_SLOT	)
+			}
+			ani			("t_Run_2_RunL"			1	"s_RunL"		0.0	0.0	M.	"Orc_RunLoop+JumpBack_OS_01.asc"	F	0	11	)
+			ani			("s_RunL"				1	"s_RunL"		0.0	0.1	M.	"Orc_RunLoop+JumpBack_OS_01.asc"	F	12	31	)
+			{
+				*eventSFX	(13	"ORC_AMBIENT_SHORT"	EMPTY_SLOT	)
+				*eventSFXGrnd	(12	"Run")
+				*eventSFXGrnd	(21	"Run")
+			}
+
+			ani			("t_RunL_2_Run"			1	"s_Run"			0.0	0.0	M.	"Orc_RunLoop+JumpBack_OS_01.asc"	F	33	38	)
+			aniBlend	("t_RunR_2_Run"				"s_Run"			0.0	0.05)
+
+			ani			("t_JumpB"				1	"s_Run"			0.0	0.0	M.	"Orc_RunLoop+JumpBack_OS_01.asc"	F	40	54	)
+			{
+				*eventSFXGrnd  (49 "Run")
+				*eventSFXGrnd  (53 "Run")
+			}
+
+//	TRANSITIONS
+			ani			("t_Run_2_Walk"			1	"s_Walk"		0.1	0.1	M.	"Orc_Run2Walk_OS_01.asc"	F	0	12	)
+			aniAlias	("t_Walk_2_Run"			1	"s_Run"			0.1	0.1	M.	"t_Run_2_Walk"				R)
+
+// MAG
+			ani			("t_Run_2_Mag"			1	"s_Mag"			0.1 0.0 M.	"Orc_Ready_Mag_OS_01.asc"		F	1	5)
+			ani			("s_Mag"				1	"s_Mag"			0.0 0.0 M.	"Orc_Ready_Mag_OS_01.asc"		F	5	5)
+			ani			("t_Mag_2_MagRun"		1	"s_MagRun"		0.0 0.1 M.	"Orc_Ready_Mag_OS_01.asc"		F	5	30)
+			{
+				*eventTag		(20 "DEF_FIGHTMODE"	"MAG")
+			}
+
+			ani			("t_MagRun_2_Mag"		1	"s_Mag"			0.1 0.0 M.	"Orc_Ready_Mag_OS_01.asc"		R	5	30)
+			{
+				*eventTag		(20 "DEF_FIGHTMODE"	"")
+			}
+			aniAlias	("t_Mag_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_Mag"				R)
+
+//	Mag-RUN
+			ani			("s_MagRun"					1	"s_MagRun"		0.1 0.1 MI	"Orc_Amb_MagRun_OS_01.asc"	F	0	50	FPS:10)
+			ani			("t_MagRun_2_MagRunL"		1	"s_MagRunL"		0.0	0.0	M.	"Orc_MagRun_OS_01.asc"		F	1	12)
+
+//	Mag-Run-Loop
+			ani			("s_MagRunL"				1	"s_MagRunL"		0.0	0.0	M.	"Orc_MagRun_OS_01.asc"		F	12	32)
+
+			ani			("t_MagRunL_2_MagRun"		1	"s_MagRun"		0.0	0.1	M.	"Orc_MagRun_OS_01.asc"		F	32	39)
+			aniBlend	("t_MagRunR_2_MagRun"			"s_MagRun"		0.3	0.3)
+
+			ani			("t_MagJumpB"			1	"s_MagRun"		0.1	0.1	M.	"Orc_MagJumpBack_OS_01.asc"	F	0	14)
+			{
+				*eventSFXGrnd  (9 "Run")
+				*eventSFXGrnd  (13 "Run")
+			}
+
+//	Mag-WALK
+			aniAlias	("s_MagWalk"				1	"s_MagWalk"		0.1	0.1	M.	"s_MagRun"					F)
+
+			ani			("t_MagWalk_2_MagWalkL"		1	"s_MagWalkL"	0.0	0.0	M.	"Orc_MagWalk_OS_01.asc"		F	0	9)
+
+//	Mag-Walk-Loop
+			ani			("s_MagWalkL"				1	"s_MagWalkL"	0.0	0.0	M.	"Orc_MagWalk_OS_01.asc"		F	9	33)
+
+			ani			("t_MagWalkL_2_MagWalk"		1	"s_MagWalk"		0.0	0.0	M.	"Orc_MagWalk_OS_01.asc"		F	33	39)
+			aniBlend	("t_MagWalkR_2_MagWalk"			"s_MagWalk"		0.2	0.2)
+
+//	Mag-Walk Backwards Movement
+			aniBlend	("t_MagWalk_2_MagWalkBL"		"s_MagWalkBL"	0.2	0.2)
+
+//	Mag-Walk-Loop backwards
+			aniAlias	("s_MagWalkBL"				1	"s_MagWalkBL"	0.0	0.0	M.	"s_MagWalkL"			R)
+
+			aniBlend	("t_MagWalkBL_2_MagWalk"		"s_MagWalk"		0.2	0.2)
+			aniBlend	("t_MagWalkBR_2_MagWalk"		"s_MagWalk"		0.2	0.2)
+
+// JUMP
+			ani		("t_MagRunL_2_Jump"			1	"s_Jump"		0.0	0.1	MF	"Orc_MagRunJump_OS_01.asc"		F	0	19	)
+			aniAlias	("t_MagRunR_2_Jump"			1	"s_Jump"		0.1	0.1	MF	"t_MagRunL_2_Jump"			F)
+
+//	MAGIC TURNING
+			ani			("t_MagRunTurnL"			20	"t_MagRunTurnL"	0.2	0.2	M.	"Orc_MagTurnL_OS_01.asc"		F	0	25)
+			{
+				*eventSFXGrnd	(6	"Turn")
+				*eventSFXGrnd	(18	"Turn")
+			}
+			ani			("t_MagRunTurnR"			20	"t_MagRunTurnR"	0.2	0.2	M.	"Orc_MagTurnR_OS_01.asc"		R	0	25)
+			{
+				*eventSFXGrnd	(6	"Turn")
+				*eventSFXGrnd	(18	"Turn")
+			}
+
+			aniAlias	("t_MagWalkTurnL"			20	"t_MagWalkTurnL"	0.2	0.2	M.	"t_MagRunTurnL"			F)
+			aniAlias	("t_MagWalkTurnR"			20	"t_MagWalkTurnR"	0.2	0.2	M.	"t_MagRunTurnR"			F)
+
+//	MAGIC STRAFING
+			ani			("t_MagRunStrafeL"			1	"t_MagRunStrafeL"		0.1	0.1	M.	"Orc_MagStrafeL_OS_01.asc"	F	0	20)
+			ani			("t_MagRunStrafeR"			1	"t_MagRunStrafeR"		0.1	0.1	M.	"Orc_MagStrafeR_OS_01.asc"	F	0	20)
+
+			aniAlias	("t_MagWalkStrafeL"			1	"t_MagWalkStrafeL"		0.1	0.1	M.	"t_MagRunStrafeL"		F)
+			aniAlias	("t_MagWalkStrafeR"			1	"t_MagWalkStrafeR"		0.1	0.1	M.	"t_MagRunStrafeR"		F)
+
+//////////////////////
+//	MAGIC ATTACKS
+//////////////////////
+
+//	Fireball, Thunderball, 
+			ani			("t_MagRun_2_FiBCast"		1	"s_FiBCast"		0.1 0.0 M.	"Orc_MagCast_OS_01.asc"		F	1	8)
+			ani			("s_FiBCast"				1	"s_FiBCast"		0.0 0.1 M.	"Orc_MagCast_OS_01.asc"		F	9	34)
+			aniAlias	("t_FibCast_2_Stand"		1	""				0.1	0.1 M.	"t_MagRun_2_FiBCast"		R)
+
+			ani			("t_FiBCast_2_FiBShoot"		1	"s_FiBShoot"	0.1 0.0 M.	"Orc_MagCast_OS_01.asc"		F	35	39)
+			ani			("s_FiBShoot"				1	"s_FiBShoot"	0.0 0.0 M.	"Orc_MagCast_OS_01.asc"		F	40	40)
+			ani			("t_FiBShoot_2_Stand"		1	""				0.0 0.1 M.	"Orc_MagCast_OS_01.asc"		F	41	49)
+
+// Chain-Lightning
+			aniAlias	("t_MagRun_2_LinShoot"		1	"s_LinShoot"	0.1	0.0	M.	"t_FiBCast_2_FiBShoot"		F)
+			aniAlias	("s_LinShoot"				1	"s_LinShoot"	0.0	0.1	M.	"s_FiBShoot"				F)
+			aniAlias	("t_LinShoot_2_Stand"		1	""				0.0	0.1	M.	"t_FiBShoot_2_Stand"		F)
+
+// Pyrokinesis
+			aniAlias			("t_MagRun_2_PyrShoot"		1	"s_PyrShoot"	0.1	0.0	M.	"t_FiBCast_2_FiBShoot"		F)
+			aniAlias			("s_PyrShoot"				1	"s_PyrShoot"	0.0	0.0	M.	"s_FiBShoot"				F)
+			aniAlias			("t_PyrShoot_2_Stand"		1	""				0.0	0.1	M.	"t_FiBShoot_2_Stand"		F)
+
+// STUMBLE (für Treffer im Kampf)
+			ani			("t_Stumble"			1	""				0.1 0.1 M.	"Orc_Stumble_OS_01.asc"		F	0	15	)
+			{
+				*eventSFX	(1	"ORC_HURT"	EMPTY_SLOT	)
+				*eventSFXGrnd	(11	"Run")
+				*eventSFXGrnd	(14	"Run")
+			}
+
+			ani			("t_StumbleB"			1	""				0.1 0.1 M.	"Orc_Stumble_B_OS_01.asc"		F	0	15	)
+			{
+				*eventSFX	(1	"ORC_HURT"	EMPTY_SLOT	)
+				*eventSFXGrnd	(8	"Run")
+				*eventSFXGrnd	(14	"Run")
+			}
+
+///////////////////////
+// MAGIC VICTIMS
+///////////////////////
+// Feuerschaden allgemein, z.B. Fireball, Pyrokinesis, ...
+			ani	("s_Fire_Victim"			1	"s_Fire_Victim"			0.0	0.0	M.	"Orc_Stumble_OS_01.asc"		F	2	2)
+
+// Lightning, Chainlightning, Thunderbolt, Thunderball
+			ani	("t_Stand_2_Lightning_Victim"		1	"s_Lightning_Victim"	0.0	0.0	M.	"Orc_Stumble_OS_01.asc"		F	0	1)
+			ani	("s_Lightning_Victim"			1	"s_Lightning_Victim"	0.0	0.0	M.	"Orc_Stumble_OS_01.asc"		F	2	2)
+
+// IceCube, IceWave
+			ani	("t_Stand_2_Freeze_Victim"	1	"s_Freeze_Victim"		0.1	0.0	M.	"Orc_Stumble_B_OS_01.asc"	F	1	3)
+			ani	("s_Freeze_Victim"		1	"s_Freeze_Victim"		0.0	0.0	M.	"Orc_Stumble_B_OS_01.asc"	F	4	4)
+
+// DIE
+
+			ani	("t_Dead"				1	"s_Dead"		0.1 0.0 M.	"Orc_Dead_OS_01.asc"		F	 1	46)
+			{
+				*eventSFX	(2	"ORC_DIE"	EMPTY_SLOT	)
+				*eventSFX	(25	"M_FALL_HUGE"	EMPTY_SLOT	)
+			}
+			ani	("s_Dead"				1	"s_Dead"		0.0 0.0 M.	"Orc_Dead_OS_01.asc"		F	47	47)
+
+			ani	("t_DeadB"				1	"s_DeadB"		0.1 0.0 M.	"Orc_Dead_B_OS_01.asc"		F	 0	38)
+			{
+				*eventSFX	(1	"ORC_DIE"	EMPTY_SLOT	)
+				*eventSFX	(32	"M_FALL_HUGE"	EMPTY_SLOT	)
+			}
+			ani	("s_DeadB"				1	"s_DeadB"		0.0 0.0 M.	"Orc_Dead_B_OS_01.asc"		F	39	39)
+
+// Beten
+			ani		("t_Stand_2_Pray"		1	"s_Pray"		0.1	0.0	M.	"Orc_Idol_OS_01.asc"			F	1	69)
+			{
+				*eventTag		(1 "DEF_FIGHTMODE"	"")
+			}
+			ani		("s_Pray"			1	"s_Pray"		0.0	0.0	M.	"Orc_Idol_OS_01.asc"			F	70	70)
+			ani		("t_Pray_Random"		1	"s_Pray"		0.1	0.1	M.	"Orc_Idol_OS_01.asc"			F	71	146)
+			aniAlias	("t_Pray_2_Stand"		1	""			0.1	0.1	M.	"t_Stand_2_Pray"				R)
+
+		}
+}
