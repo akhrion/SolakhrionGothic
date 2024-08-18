@@ -46,21 +46,6 @@ func void B_CheckStolenTrophy()
 	B_AssessTheft();
 };
 
-func void B_RandomQuest()
-{
-	//entrypoint B_AssessSC()
-	if(
-		Info_RQ_Beggar.npc == -1
-	&&	self.guild == GIL_VLK
-    &&	self.aivar[AIV_BEGGAR] < getTimestamp()
-    &&	Random_IsProcM(1)
-	)
-	{
-		Info_RQ_Beggar.npc = Hlp_GetInstanceID(self);
-		AI_SetWalkmode(self,NPC_RUN);
-        AI_GotoNpc(self,hero);
-	};
-};
 
 func void B_AssessSC()
 {

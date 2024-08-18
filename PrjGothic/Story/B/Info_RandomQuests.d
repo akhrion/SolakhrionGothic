@@ -1,3 +1,31 @@
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+/////////////Функция отвечает за рандомные квесты, события, ивенты, дейлики..
+//////////////////////////////////////////////////////////////////////////////////
+func void B_RandomQuest()
+{
+	//entrypoint B_AssessSC()
+	if(
+		!Quest_IsAssigned(Info_RQ_Beggar)
+	&&	self.guild == GIL_VLK
+    &&	self.aivar[AIV_BEGGAR] < getTimestamp()
+    &&	Hlp_Random(1000) < 10
+	)
+	{
+		Quest_AssignTo(Info_RQ_Beggar,self);
+		AI_SetWalkmode(self,NPC_RUN);
+        AI_GotoNpc(self,hero);
+	};
+};
+
+
+
+const int npcInstanceID = 0;
+const int npcLoyality = 1;
+var int beg534[2];
+var int beg520[2];
 instance Info_RQ_Beggar(C_Info)
 {
     nr = 99;
@@ -8,35 +36,44 @@ instance Info_RQ_Beggar(C_Info)
 };
 func int Info_RQ_Beggar_Condition()
 {
-    // if(
-    //     self.aivar[AIV_BEGGAR] < getTimestamp()
-    // &&  self.guild == GIL_VLK
-    // // &&  Random_IsProc(1);
-    // )
-    // {
-    //     PrintSIS(self.name,self.aivar[AIV_BEGGAR],"");
-        // self.aivar[AIV_BEGGAR] = getTimestamp() + BEGGAR_FREQ;
-        return true;
-    // };
-    // return false;
+    return true;
 };
 func void Info_RQ_Beggar_Info()
 {
     AI_Output(self,other,"Info_RQ_Beggar_NULL_00"); //У тебя не найдётся немного руды, хотябы кусочка?
     Info_ClearChoices(Info_RQ_Beggar);
     Info_AddChoice(Info_RQ_Beggar,"Пошел прочь, иди в шахту и работай!",Info_RQ_Beggar_NO);
+    Info_AddChoice(Info_RQ_Beggar,"Извини, у меня нет руды.",Info_RQ_Beggar_SORRY);
     if(Npc_HasItems(hero,ItMiNugget))
     {
         Info_AddChoice(Info_RQ_Beggar,"Да, конечно вот возьми.",Info_RQ_Beggar_YES);
     };
-    Info_RQ_Beggar.npc = -1;
+    AI_SetWalkmode(self,NPC_WALK);
+    Quest_DeAssign(Info_RQ_Beggar);
 };
 func void Info_RQ_Beggar_YES()
 {
+    if(534 == self.id)
+    {
+        Print("aaaa");
+        beg534[npcLoyality] +=1;
+    };
+    if(520 == self.id)
+    {
+        Print("bbbb");
+        beg520[npcLoyality] +=1;
+    };
     AI_Output(other,self,"Info_RQ_Beggar_YES_NULL_00"); //Да, конечно вот возьми.
     AI_Output(self,other,"Info_RQ_Beggar_YES_NULL_01"); //Спасибо тебе большое.
     Npc_RemoveInvItem(other,ItMiNugget);
     CreateInvItem(self,ItMiNugget);
+    self.aivar[AIV_BEGGAR] = getTimestamp() + BEGGAR_FREQ;
+    AI_StopProcessInfos(self);
+};
+func void Info_RQ_Beggar_SORRY()
+{
+    AI_Output(other,self,"Info_RQ_Beggar_SORRY_NULL_00"); //Извини, у меня нет руды.
+    AI_Output(self,other,"Info_RQ_Beggar_SORRY_NULL_01"); //Ну ладно, может в следующий раз.
     self.aivar[AIV_BEGGAR] = getTimestamp() + BEGGAR_FREQ;
     AI_StopProcessInfos(self);
 };

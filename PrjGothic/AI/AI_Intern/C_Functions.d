@@ -1025,7 +1025,7 @@ func int Random_IsProc(var int percent)
 	if(percent > 99){return true;};
 	return !Hlp_Random(100 / percent);
 };
-func int Random_IsProcM(var int prob)
+func int Random_IsProcM(var int prob)// какой фигни я только не накуралешу, когда руки делают, а мозг спит
 {
 	if(prob < 1){return false;};
 	if(prob > 9999){return true;};
@@ -1748,4 +1748,16 @@ func void PC_DialDamageToMonster()
 			PC_ImproveSkills();
 		};
 	};
+};
+func int Quest_IsAssigned(var C_Info quest)
+{
+	return !(quest.npc == -1);
+};
+func void Quest_AssignTo(var C_Info quest, var C_Npc npc)
+{
+	quest.npc = Hlp_GetInstanceID(npc);
+};
+func void Quest_DeAssign(var C_Info quest)
+{
+	quest.npc = -1;
 };
