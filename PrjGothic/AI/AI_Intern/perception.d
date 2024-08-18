@@ -50,6 +50,7 @@ func void InitPerceptions()
 
 func void GuardPerception()
 {
+	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_AssessOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_AssessEnemy);
 	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSC);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTER,B_AssessFighter);
@@ -79,6 +80,7 @@ func void GuardPerception()
 
 func void ObservingPerception()
 {
+	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_AssessOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_AssessEnemy);
 	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSC);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTER,B_AssessFighter);
@@ -108,6 +110,7 @@ func void ObservingPerception()
 
 func void OccupiedPerception()
 {
+	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_AssessOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,ZS_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessSC);
 	Npc_PercEnable(self,PERC_ASSESSTHREAT,B_AssessFighter);

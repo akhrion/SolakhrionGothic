@@ -65,8 +65,8 @@ func void B_CombatReactToDamage()
 	PrintDebugNpc(PD_ZS_FRAME,"B_CombatReactToDamage");
 	PrintGlobals(PD_ZS_Check);
 
-
-
+	PrintSIS(self.name,0," я был ударен в бою");
+	Npc_GotDamage_Edge(self,other);
 	if(
 		self.guild == GIL_KDF
 	&&	Npc_GetDistToNpc(self,other) < HAI_DIST_MELEE

@@ -152,7 +152,7 @@ func int ZS_MM_AssessEnemy_loop()
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_AssessEnemy_loop");
 	if(Npc_GetDistToNpc(self,other) > self.aivar[AIV_MM_PercRange])
 	{
-		return 1;
+		return LOOP_END;
 	};
 	if((Npc_GetDistToNpc(self,other) <= self.aivar[AIV_MM_PercRange]) && (Npc_GetDistToNpc(self,other) > self.aivar[AIV_MM_DrohRange]))
 	{
@@ -189,19 +189,16 @@ func int ZS_MM_AssessEnemy_loop()
 		{
 			AI_GotoNpc(self,other);
 		};
-	}
-	else
-	{
-		Npc_SetStateTime(self,0);
 	};
 	if(Npc_GetDistToNpc(self,other) <= self.aivar[AIV_MM_AttackRange])
 	{
+		PrintSIS(self.name,32,other.name);
 		Npc_SetTarget(self,other);
 		Npc_ClearAIQueue(self);
 		AI_Standup(self);
 		AI_StartState(self,ZS_MM_Attack,0,"");
 	};
-	return 0;
+	return LOOP_CONTINUE;
 };
 
 func void ZS_MM_AssessEnemy_end()
@@ -216,15 +213,9 @@ func void B_MM_ReactToDamage()
 	
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToDamage");
 	PrintGlobals(PD_MST_CHECK);
-	if(Npc_IsPlayer(other))
-	{
-		if(Npc_IsReceiveDamage(self,other))
-		{
-			PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон монстру.");
-			PC_ImproveSkills();
-		};
-		Npc_SetTarget(self,other);
-	};
+
+	Npc_GotDamage_Edge(self,other);
+	PC_DialDamageToMonster();
 
 	self.aivar[AIV_PLUNDERED] = PRIO_ATTACKER;
 	if(C_PreyToPredator(self,other))
@@ -249,6 +240,12 @@ func void B_MM_ReactToOthersDamage()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToOthersDamage");
 	B_MM_DeSynchronize();
+	// Print("B_MM_ReactToOthersDamage");
+	// PrintSIS(other.name,0,self.name);
+	// PrintSIS(victim.name,1,self.name);
+	
+	Npc_GotDamage_Edge(victim,self);
+
 	if(C_PreyToPredator(self,other))
 	{
 		Npc_SetTarget(self,other);
@@ -294,6 +291,7 @@ func void B_MM_ReactToCombatDamage()
 	Print("ReactToCombatDamage");
 	
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToCombatDamage");
+	Npc_GotDamage_Edge(self,other);
 	self.aivar[AIV_MM_TEMP_PRIO] = PRIO_ATTACKER;
 	if(C_PreyToPredator(self,other))
 	{
@@ -301,16 +299,9 @@ func void B_MM_ReactToCombatDamage()
 		Npc_ClearAIQueue(self);
 		AI_StartState(self,ZS_MM_Flee,0,"");
 	};
-	
-	if(Npc_IsPlayer(other))
-	{
-//		ReactInBattle_Scavenger_Invisible();
-		if(Npc_IsReceiveDamage(self,other))
-		{
-			PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон монстру.");
-			PC_ImproveSkills();
-		};
-	};
+
+	PC_DialDamageToMonster();
+
 	if(
 		Npc_IsInFightMode(other,FMODE_MELEE)
 	||	Npc_IsInFightMode(other,FMODE_FIST)
@@ -322,10 +313,12 @@ func void B_MM_ReactToCombatDamage()
 
 func void ZS_MM_Attack()
 {
+	Print("zs_mm_attack");
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Attack");
 	PrintGlobals(PD_MST_DETAIL);
 	Npc_SetPercTime(self,1);
 	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
+	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
 
 	if(C_NpcIsMonsterMage(self))
 	{
@@ -348,6 +341,7 @@ func void ZS_MM_Attack()
 	AI_SetWalkMode(self,NPC_RUN);
 	Npc_GetTarget(self);
 	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	// Npc_SendPassivePerc(self,PERC_ASSESSOTHERSDAMAGE,other,self);
 	if(Npc_IsPlayer(other))
 	{
 		PC_Handler_Invoke();
@@ -357,10 +351,16 @@ func void ZS_MM_Attack()
 func int ZS_MM_Attack_Loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Attack_Loop");
+	// Print("ZS_MM_Attack_Loop");
+
+
+	Print(IntToString(Npc_GetTarget(self)));
+	B_Cycle_NPC();
+	Print(IntToString(Npc_GetTarget(self)));
 	if(other.attribute[ATR_HITPOINTS] <= 0)
 	{
 		B_MM_AssessBody();
-		return 1;
+		return LOOP_END;
 	};
 	if(self.aivar[AIV_MM_PARTYMEMBER])
 	{
@@ -374,35 +374,38 @@ func int ZS_MM_Attack_Loop()
 	};
 	Npc_GetTarget(self);
 	
-	
 
 	if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
 	{
-		if(
-			Hlp_GetInstanceID(self) == Hlp_GetInstanceID(SummonedByPC_SkeletonShield)
-		&&	Npc_IsPlayer(other)
-		)
-		{
-			Print("ОШИБКА скелет атакует мастера!");
+		// if(
+		// 	Hlp_GetInstanceID(self) == Hlp_GetInstanceID(SummonedByPC_SkeletonShield)
+		// &&	Npc_IsPlayer(other)
+		// )
+		// {
+		// 	Print("ОШИБКА скелет атакует мастера!");
 			
-			if(Npc_GetNextTarget(self))
-			{
-				Print("есть новая цель");
+		// 	if(Npc_GetNextTarget(self))
+		// 	{
+		// 		Print("есть новая цель");
 				
-				PrintDebugString(PD_MST_CHECK,"...есть новая цель: ",other.name);
-			}
-			else
-			{
-				Print("доступных целей нет!");
-				PrintDebugNpc(PD_MST_CHECK,"...доступных целей нет!");
-				return LOOP_END;
-			};
-		};
+		// 		PrintDebugString(PD_MST_CHECK,"...есть новая цель: ",other.name);
+		// 	}
+		// 	else
+		// 	{
+		// 		Print("доступных целей нет!");
+		// 		PrintDebugNpc(PD_MST_CHECK,"...доступных целей нет!");
+		// 		return LOOP_END;
+		// 	};
+		// };
+		// if(Npc_IsSummonedByPC(self))
+		// {
+		// 	PrintSIS("имя цели: ",0,other.name);
+		// };
 
-			if(Npc_IsSummonedByPC(self))
-			{
-				PrintSIS("имя цели: ",0,other.name);
-			};
+
+
+		// Print("!C_NpcIsDown");
+
 		PrintDebugNpc(PD_MST_LOOP,"...Ziel vorhanden!");
 		if(C_BodyStateContains(other,BS_RUN) || C_BodyStateContains(other,BS_JUMP))
 		{
@@ -410,16 +413,19 @@ func int ZS_MM_Attack_Loop()
 			if(Npc_GetStateTime(self) > self.aivar[AIV_MM_FollowTime])
 			{
 				PrintDebugNpc(PD_MST_CHECK,"...Ziel schon zu lange verfolgt!");
-				return 1;
+				return LOOP_END;
 			};
 		}
 		else if(C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE))
 		{
 			if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 			{
-				return 1;
+				return LOOP_END;
 			};
 		};
+
+
+
 		if(
 			self.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST
 		&&	Npc_GetDistToNpc(self,other) > 800
@@ -427,8 +433,13 @@ func int ZS_MM_Attack_Loop()
 		{
 			AI_Teleport(self,Npc_GetNearestWP(other));
 		};
+
+
+
 		if(other.aivar[AIV_INVINCIBLE] == FALSE)
 		{
+			Print("AI_Attack");
+			Npc_SetStateTime(self,0);
 			AI_Attack(self);
 		};
 	}
@@ -500,6 +511,7 @@ func void ZS_MM_Flee()
 func int ZS_MM_Flee_Loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Flee_Loop");
+	B_Cycle_NPC();
 	if(Npc_GetDistToNpc(self,other) < 2000)
 	{
 		AI_Flee(self);
@@ -519,8 +531,12 @@ func void ZS_MM_Flee_End()
 
 func void B_MM_AssessWarn()
 {
-	Print("B_MM_AssessWarn");
+	// Print("B_MM_AssessWarn");
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessWarn");
+	// Print(other.name);
+	// Print(self.name);
+	// Print(victim.name);
+	B_Cycle_NPC();
 	if(C_PreyToPredator(self,other))
 	{
 		Npc_SetTarget(self,other);
@@ -607,6 +623,7 @@ func void ZS_MM_Rtn_Default()
 func void ZS_MM_Rtn_Default_loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Default_loop");
+	B_Cycle_NPC();
 };
 
 func void ZS_MM_Rtn_Default_end()
@@ -617,6 +634,7 @@ func void ZS_MM_Rtn_Default_end()
 func void B_MM_AssessEnemy_Sleep()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessEnemy_Sleep");
+	B_Cycle_NPC();
 	if(C_BodyStateContains(self,BS_LIE))
 	{
 		if(Npc_GetDistToNpc(self,other) < 200)
@@ -634,9 +652,9 @@ func void B_MM_AssessQuietSound()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessQuietSound");
 	PrintGlobals(PD_ZS_FRAME);
-	return;
-	Print("B_MM_AssessQuietSound");
+	// Print("B_MM_AssessQuietSound");
 	B_Cycle_NPC();
+	return;
 	if(Snd_GetDistToSource(self) > 1000)
 	{
 		PrintDebugNpc(PD_ZS_FRAME,"... to far");
@@ -682,6 +700,7 @@ func void B_MM_AssessQuietSound()
 func void B_MM_AssessQuietSound_Sleep()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessQuietSound_Sleep");
+	B_Cycle_NPC();
 	if(Npc_GetDistToNpc(self,other) <= self.aivar[AIV_MM_DrohRange])
 	{
 		if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
@@ -719,6 +738,7 @@ func void ZS_MM_Rtn_Sleep()
 func void ZS_MM_Rtn_Sleep_loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Sleep_loop");
+	B_Cycle_NPC();
 	if(!Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) && (self.aivar[AIV_MM_SleepStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
@@ -757,6 +777,7 @@ func int ZS_MM_Rtn_Roam_loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Roam_loop");
+	B_Cycle_NPC();
 	if(!Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],0) && (self.aivar[AIV_MM_RoamStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
@@ -839,6 +860,7 @@ func void ZS_MM_Rtn_Rest_Loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Rest_Loop");
+	B_Cycle_NPC();
 	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],0) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
@@ -900,6 +922,7 @@ func void ZS_MM_Rtn_EatGround()
 func void ZS_MM_Rtn_EatGround_Loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_EatGround_Loop");
+	B_Cycle_NPC();
 	if(!Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],0) && (self.aivar[AIV_MM_EatGroundStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
@@ -934,6 +957,7 @@ func void ZS_MM_Rtn_Wusel_loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Wusel_loop");
+	B_Cycle_NPC();
 	if(!Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_MM_WuselEnd],0) && (self.aivar[AIV_MM_WuselStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
@@ -988,6 +1012,7 @@ func int ZS_MM_Summoned_loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Summoned_loop");
 	PrintGlobals(PD_MST_DETAIL);
+	B_Cycle_NPC();
 	if(Npc_GetNextTarget(self))
 	{
 		PrintDebugNpc(PD_MST_CHECK,"...neuer Gegner gefunden");

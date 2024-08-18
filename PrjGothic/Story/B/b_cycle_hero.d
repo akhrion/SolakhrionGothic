@@ -1,3 +1,74 @@
+func int PC_GetMovementSpeed()
+{
+	var string lastNearWP;
+	var int lastWPDist;
+	var int curWPDist;
+	var int passedDist;
+
+	curWPDist = Npc_GetDistToWP(hero,lastNearWP);
+	passedDist = abs(curWPDist - lastWPDist);
+	PC_MovementSpeed = passedDist / IRL_COEFFICIENT_MOVEMENTSPEED;
+	if(!Hlp_StrCmp(Npc_GetNearestWP(hero),lastNearWP))
+	{
+		lastNearWP = Npc_GetNearestWP(hero);
+		lastWPDist = Npc_GetDistToWP(hero,lastNearWP);
+	}
+	else
+	{
+		lastWPDist = curWPDist;
+	};
+
+	return abs(PC_MovementSpeed) / IRL_COEFFICIENT_MOVEMENTSPEED;
+};
+func void PC_Stamina_f()
+{
+	return;
+	if(PC_Stamina < 1)
+	{
+		AI_Wait(hero,1);
+	};
+	if(PC_Stamina < 100)
+	{
+		if(Npc_GetBodyState(hero) == BS_STAND)
+		{
+			PC_Stamina += 10;
+		};
+		if(
+			!(hero.aivar[AIV_FREEMAN] & AIV_FREEMAN_RUNHEAVY)
+		&&	PC_Stamina < 90)
+		{
+			Print("AIV_FREEMAN_RUNHEAVY");
+			hero.aivar[AIV_FREEMAN] = hero.aivar[AIV_FREEMAN] | AIV_FREEMAN_RUNHEAVY;
+			Mdl_ApplyOverlayMds(hero,"humans_runheavy.mds");
+			if(hero.aivar[AIV_FREEMAN] & AIV_FREEMAN_RUNNORMAL)
+			{
+				hero.aivar[AIV_FREEMAN] = hero.aivar[AIV_FREEMAN] - AIV_FREEMAN_RUNNORMAL;
+				Mdl_RemoveOverlayMds(hero,"HUMANS_RUNNORMAL.MDS");
+			};
+		};
+		PC_Stamina += 1;
+	};
+	if(
+		!(hero.aivar[AIV_FREEMAN] & AIV_FREEMAN_RUNNORMAL)
+	&&	PC_Stamina > 90)
+	{
+		Print("AIV_FREEMAN_RUNNORMAL");
+		hero.aivar[AIV_FREEMAN] = hero.aivar[AIV_FREEMAN] | AIV_FREEMAN_RUNNORMAL;
+		Mdl_ApplyOverlayMds(hero,"HUMANS_RUNNORMAL.MDS");
+		if(hero.aivar[AIV_FREEMAN] & AIV_FREEMAN_RUNHEAVY)
+		{
+			hero.aivar[AIV_FREEMAN] = hero.aivar[AIV_FREEMAN] - AIV_FREEMAN_RUNHEAVY;
+			Mdl_RemoveOverlayMds(hero,"humans_runheavy.mds");
+			Mdl_ApplyOverlayMds(hero,"HUMANS_1HST1_x3.MDS");
+		};
+	};
+
+	if(Npc_GetBodyState(hero) == BS_RUN)
+	// if(PC_GetMovementSpeed() > MAXWALKINGSPEED)
+	{
+		PC_Stamina -= 3;
+	};
+};
 func void PC_Forging_Furnace()
 {
 	if(
@@ -123,6 +194,13 @@ func void PC_Mana_PartymemberInvoked()
 		// {
 		// 	PC_Partymember_Demon_Invoked_Count_Info();
 		// };
+	};
+};
+func void PC_HP()
+{
+	if(PC_HpWasChanged())
+	{
+		PC_ATR_HP = Npc_GetHP(hero);
 	};
 };
 func void PC_Mana()
@@ -383,7 +461,8 @@ func void PC_Bashed()
 };
 
 func void b_cycle02_hero()
-{	
+{
+	return;
 	if(Npc_IsDead(hero)){return;};
 	PC_Bowman();
 	NPC_Dodge(hero);
@@ -570,11 +649,19 @@ func void overlay()
 		msgSI("Знание цели ",OVERLAY_TargetKnowledge,0,OVERLAY_TargetKnowledge_Y,1);
 		msgSI("Dist to target: ",Npc_GetDistToPlayer(other),0,OVERLAY_TARGET_DISTANCE_Y,1);
 	};
+	msgSI("Стойкость ",PC_Stamina,0,OVERLAY_Stamina_Y,1);
 	msgSI("Сила ",PC_ATR_STR,0,OVERLAY_ATR_STR_Y,1);
 	msgSI("Ловкость ",PC_ATR_DEX,0,OVERLAY_ATR_DEX_Y,1);
 	msgSI("Интеллект ",PC_ATR_INT,0,OVERLAY_ATR_INT_Y,1);
 	msgSI("Удача ",PC_ATR_LUC,0,OVERLAY_ATR_LUC_Y,1);
+	msgSI("Скорость движения ",PC_MovementSpeed,0,OVERLAY_PCMOVEMENTSPEED_Y,1);
+	if(Npc_IsWounded(hero))
+	{
+		msg("Кровотечение",OVERLAY_Wounded_X,OVERLAY_Wounded_Y,1);
+	};
 };
+
+
 func void b_cycle_hero()
 {
 	if(Npc_IsDead(hero)){return;};
@@ -586,7 +673,11 @@ func void b_cycle_hero()
 	PC_Recovering();
 	PC_Dialog_InputManual_Show();
 	PC_Idling();
+	PC_HP();
 	PC_Mana();
+	PC_Stamina_f();
+	PC_GetMovementSpeed();
+	Npc_Wounded(hero);
 	overlay();
 
 	if(PC_IsReceivedBacksideDamage){PC_IsReceivedBacksideDamage = false;};//per second reset	
@@ -599,5 +690,5 @@ func void b_cycle_hero()
 func void b_cycle60_hero()
 {
 	if(Npc_IsDead(hero)){return;};
-
+	// temporalEffects60(hero);
 };

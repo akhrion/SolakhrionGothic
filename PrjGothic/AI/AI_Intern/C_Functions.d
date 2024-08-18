@@ -1472,17 +1472,280 @@ func int C_IsSecondPassed()
 	};
 	return false;
 };
-func void Npc_Poisoned_DecreaseHP()
+func int PC_HpWasChanged()
 {
-	if(Npc_GetHP(self) > NPCPOISONEDMINIMALHP + POISONDAMAGE)
+	if(Npc_IsDead(hero)){return false;};
+	if(PC_ATR_HP == Npc_GetHP(hero)){return false;};
+	return true;
+};
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////ФУНКЦИИ ОТВЕЧАЮЩИЕ ЗА СОСТОЯНИЯ, СТАТУС НПС (КРОВОТЕЧЕНИЕ, ОТРАВЛЕНИЕ, БОЛЕЗНЬ..)
+////////////////////////БАФЫ, ДЕБАФЫ
+////////////////////////////////////////////////////////////////////////////////
+
+func void Npc_Poisoned_DecreaseHP(var C_Npc npc)
+{
+	if(Npc_GetHP(npc) > NPCPOISONEDMINIMALHP + POISONDAMAGE)
 	{
-		Npc_DecreaseHP(self,POISONDAMAGE);
+		Npc_DecreaseHP(npc,POISONDAMAGE);
 	};
 };
-func void Npc_Poisoned()
+func void Npc_Poisoned(var C_Npc npc)		//если цель отравлена, то она будет получать урон при каждом вызове этой функции
 {
-	if(self.aivar[AIV_FREEMAN] & AIV_FREEMAN_POISONED)
+	if(npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_POISONED)
 	{
-		Npc_Poisoned_DecreaseHP();
+		Npc_Poisoned_DecreaseHP(npc);
+	};
+};
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+func int Npc_IsWounded(var C_Npc npc)		//возвращает true если npc ранен
+{
+	if(npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_WOUNDED)
+	{
+		return true;
+	};
+	return false;
+};
+func void Npc_Wounded_DecreaseHP(var C_Npc npc)
+{
+	if(Npc_GetHP(npc) > NPCWOUNDEDMINIMALHP + WOUNDDAMAGE)
+	{
+		Npc_DecreaseHP(npc,WOUNDDAMAGE);
+	};
+};
+func void Npc_Wounded(var C_Npc npc)		//если цель ранена, то получает урон на каждом вызове функции
+{
+	if(npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_WOUNDED)
+	{
+		Npc_Wounded_DecreaseHP(npc);
+	};
+};
+func void Wound_SetTo(var C_Npc npc)
+{
+	npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_WOUNDED;
+};
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////ФУНКЦИИ ОТВЕЧАЮЩИЕ ЗА ОРУЖИЕ
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////ФУНКЦИИ ЩТВЕЧАЮЩИЕ ЗА ОБНАЖЁННОЕ ОРУЖИЕ
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////ФУНКЦИИ ВОЗВРАЩАЮЩИЕ ТИП УРОНА ОБНАЖЁННОГО ОРУЖИЯ
+////////////////////////////////////////////////////////////////////////////////
+func int Npc_GetReadiedWeapon_DamageType(var C_Npc npc)
+{
+	item = Npc_GetReadiedWeapon(npc);
+	return item.damagetype;
+};
+func int Npc_GetReadiedWeapon_DamageType_IsEdge(var C_Npc npc)
+{
+	item = Npc_GetReadiedWeapon(npc);
+	if(item.damagetype & DAM_EDGE){return true;};
+	return false;
+};
+
+////////////////////////
+////////////////////////
+////////////////////////
+func void Npc_GotDamage_Edge(var C_Npc vict, var C_Npc attacker)
+{
+	if(C_NpcIsMonster(attacker))
+	{
+		if(attacker.damagetype & DAM_EDGE)
+		{
+			Wound_SetTo(vict);
+		};
+	}
+	else
+	{
+		if(Npc_GetReadiedWeapon_DamageType_IsEdge(attacker))
+		{
+			Wound_SetTo(vict);
+		};
+	};
+};
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////ФУНКЦИИ ОТВЕЧАЮЩИЕ ЗА УНИКАЛЬНОЕ ПОВЕДЕНИЕ НПС
+////////////////////////////////////////////////////////////////////////////////
+func void SpecBehavior()
+{
+	// if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPFLY)
+	// {
+	// 	if(!Npc_IsInState(self,ZS_MM_Attack))
+	// 	{
+	// 		var int swampsharkFound;
+	// 		swampsharkFound = Wld_DetectNpc(self,Swampshark,ZS_MM_Attack,-1);
+	// 		if(swampsharkFound && !Npc_IsDead(other))
+	// 		{
+	// 			Npc_GetTarget(other);
+	// 			Npc_SetTarget(self,other);
+	// 			AI_StartState(self,ZS_MM_Attack,0,"");
+	// 		};
+	// 	};
+	// };
+	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
+	{
+		// Print("ID_SWAMPSHARK");
+		if(
+			Npc_IsInState(self,ZS_MM_Attack) || Npc_WasInState(self,ZS_MM_Attack)
+		||	Npc_IsInState(self,ZS_MM_Attack_Loop) || Npc_WasInState(self,ZS_MM_Attack_Loop)
+		)
+		{
+			// Print("ID_SWAMPSHARK ZS_MM_Attack");
+			if(Npc_IsDead(Swampfly_01))
+			{
+				// Print("ID_SWAMPSHARK ZS_MM_Attack Wld_InsertNpc");
+				Wld_InsertNpc(Swampfly_01,self.wp);
+			}
+			else if(Npc_GetDistToNpc(Swampfly_01,other) > 2000)
+			{
+				// Print("ID_SWAMPSHARK ZS_MM_Attack AI_Teleport");
+				AI_Teleport(Swampfly_01,self.wp);
+			};
+			if(Npc_IsDead(Swampfly_02))
+			{
+				Wld_InsertNpc(Swampfly_02,self.wp);
+			}
+			else if(Npc_GetDistToNpc(Swampfly_02,other) > 2000)
+			{
+				AI_Teleport(Swampfly_02,self.wp);
+			};
+			PrintSIS(self.name,0,other.name);
+			if(!Npc_GetTarget(self)){Npc_SetTarget(self,other);};
+		};
+	};
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////УЛУЧШЕНИЕ СПОСОБНОСТЕЙ ГГ
+////////////////////////////////////////////////////////////////////////////////
+func void PC_ImproveSkills()
+{
+	return;
+	//20240509 akhRework: Функция устарела. Требуется реворк.
+	var int chance;
+	//С ростом уровня ГГ прокачка замедляется
+	if(Hlp_Random(hero.level + 1))
+	{
+		return;
+	};
+	if(chance)
+	{
+		if(!Random_IsProc(chance))
+		{
+			chance +=1;
+			return;
+		};
+	}
+	else
+	{
+		return;
+	};
+	// B_GiveXP(hero.exp_next - hero.exp);
+	chance = PC_ChanceToSkillsImproveInBattle;
+	if(Npc_IsInFightMode(hero,FMODE_MAGIC))
+	{
+		return;
+	};
+	if(Npc_IsInFightMode(hero,FMODE_FIST))
+	{
+		hero.attribute[ATR_STRENGTH] += 2;
+		return;
+	};
+
+	var C_Item weapon;
+	weapon = Npc_GetReadiedWeapon(hero);
+	if(Item_IsMeleeWeapon(weapon))
+	{
+		hero.attribute[ATR_STRENGTH] += 1;
+		if(Item_GetWeaponHand(weapon) == PC_WeaponHandOne)
+		{
+			Npc_SetTalentValue(hero,NPC_TALENT_1H,Npc_GetTalentValue(hero,NPC_TALENT_1H) + 1);
+			if(
+				Npc_GetTalentSkill(hero,NPC_TALENT_1H) == 0
+			&&	Npc_GetTalentValue(hero,NPC_TALENT_1H) >= 10
+			)
+			{
+				Npc_SetTalentSkill(hero,NPC_TALENT_1H,1);
+			};
+		}
+		else
+		{
+			Npc_SetTalentValue(hero,NPC_TALENT_2H,Npc_GetTalentValue(hero,NPC_TALENT_2H) + 1);
+			if(
+				Npc_GetTalentSkill(hero,NPC_TALENT_2H) == 0
+			&&	Npc_GetTalentValue(hero,NPC_TALENT_2H) >= 10
+			)
+			{
+				Npc_SetTalentSkill(hero,NPC_TALENT_2H,1);
+			};
+		};
+	}
+	else
+	{
+		hero.attribute[ATR_DEXTERITY] += 1;
+		if(Item_IsBow(weapon))
+		{
+			Npc_SetTalentValue(hero,NPC_TALENT_BOW,Npc_GetTalentValue(hero,NPC_TALENT_BOW) + 1);
+			if(
+				Npc_GetTalentSkill(hero,NPC_TALENT_BOW) == 0
+			&&	Npc_GetTalentValue(hero,NPC_TALENT_BOW) >= 10
+			)
+			{
+				Npc_SetTalentSkill(hero,NPC_TALENT_BOW,1);
+			};
+		}
+		else
+		{
+			Npc_SetTalentValue(hero,NPC_TALENT_CROSSBOW,Npc_GetTalentValue(hero,NPC_TALENT_CROSSBOW) + 1);
+			if(
+				Npc_GetTalentSkill(hero,NPC_TALENT_CROSSBOW) == 0
+			&&	Npc_GetTalentValue(hero,NPC_TALENT_CROSSBOW) >= 10
+			)
+			{
+				Npc_SetTalentSkill(hero,NPC_TALENT_CROSSBOW,1);
+			};
+		};
+	};
+};
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////ФУНКЦИИ ОТВЕЧАЮЩИЕ ЗА НАНЕСЕНИЕ УРОНА
+////////////////////////////////////////////////////////////////////////////////
+func void PC_DialDamageToMonster()
+{
+	if(Npc_IsPlayer(other))
+	{
+		if(Npc_IsReceiveDamage(self,other))
+		{
+			PrintDebugNpc(PD_MST_FRAME,"ГГ смог нанести урон монстру.");
+			PC_ImproveSkills();
+		};
 	};
 };

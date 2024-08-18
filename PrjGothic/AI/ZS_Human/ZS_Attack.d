@@ -4,6 +4,7 @@ func void ZS_Attack()
 	PrintDebugNpc(PD_ZS_FRAME,"ZS_Attack");
 	C_ZSInit();
 	PrintGlobals(PD_ZS_FRAME);
+	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_AssessOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMURDER,B_CombatAssessMurder);
 	Npc_PercEnable(self,PERC_ASSESSDEFEAT,B_CombatAssessDefeat);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_CombatReactToDamage);
@@ -25,6 +26,7 @@ func void ZS_Attack()
 
 func int ZS_Attack_Loop()
 {
+	B_Cycle_NPC();
 	if(self.npcType != Npctype_ROGUE)
 	{
 //		PrintSIS("ZS_Attack_Loop",0,self.name);
@@ -165,7 +167,6 @@ func int ZS_Attack_Loop()
 	if(other.aivar[AIV_INVINCIBLE] == FALSE)
 	{
 		AI_Attack(self);
-		PC_ReceivedBacksideDamage();
 	}
 	else
 	{
