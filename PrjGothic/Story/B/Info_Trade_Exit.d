@@ -44,6 +44,7 @@ func void Trade_After_Info()
 func void Trade_Started()//работает
 {
     G_ItemValue();
+    giTrade +=1;
     return;
    	PC_WasTrade = true;
 	Trade_After.npc = Hlp_GetInstanceID(self);
