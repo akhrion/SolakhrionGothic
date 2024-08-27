@@ -1631,7 +1631,7 @@ func void SpecBehavior()
 			if(Npc_IsDead(Swampfly_01))
 			{
 				// Print("ID_SWAMPSHARK ZS_MM_Attack Wld_InsertNpc");
-				Wld_InsertNpc(Swampfly_01,swampshark.wp);
+				Wld_InsertNpc(Swampfly_01,Npc_GetNearestWP(swampshark));
 			}
 			else if(Npc_GetDistToNpc(Swampfly_01,swampshark) > 2000)
 			{
@@ -1639,9 +1639,11 @@ func void SpecBehavior()
 				AI_Teleport(Swampfly_01,swampshark.wp);
 			};
 			if(!Npc_GetTarget(self)){Npc_SetTarget(self,swampsharkTarget);};
+			PrintSIS(Npc_GetNearestWP(swampshark),Npc_GetTarget(self),other.name);
+
 			if(Npc_IsDead(Swampfly_02))
 			{
-				Wld_InsertNpc(Swampfly_02,swampshark.wp);
+				Wld_InsertNpc(Swampfly_02,Npc_GetNearestWP(swampshark));
 			}
 			else if(Npc_GetDistToNpc(Swampfly_02,swampshark) > 2000)
 			{
