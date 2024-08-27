@@ -1597,17 +1597,28 @@ func void SpecBehavior()
 	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPFLY)
 	{
 		Print("шершонь");
-		// if(!Npc_IsInState(self,ZS_MM_Attack))
-	// 	{
-	// 		var int swampsharkFound;
-	// 		swampsharkFound = Wld_DetectNpc(self,Swampshark,ZS_MM_Attack,-1);
-	// 		if(swampsharkFound && !Npc_IsDead(other))
-	// 		{
+		AI_Dodge(self);
+		if(!(
+			Npc_IsInState(self,ZS_MM_Attack)
+		||	Npc_WasInState(self,ZS_MM_Attack)
+		))
+		{
+			Print("asd");
+			var int swampsharkFound;
+			Npc_PerceiveAll(self);
+			// swampsharkFound = Wld_DetectNpc(self,Swampshark,ZS_MM_Attack,-1);
+			// Print(other.name);
+			if(
+				Wld_DetectNpc(self,Swampshark,ZS_MM_Attack,-1)
+			// && !Npc_IsDead(other)
+			)
+			{
+				PrintSIS("other.name  ",0,other.name);
 	// 			Npc_GetTarget(other);
 	// 			Npc_SetTarget(self,other);
 	// 			AI_StartState(self,ZS_MM_Attack,0,"");
-	// 		};
-	// 	};
+			};
+		};
 	};
 	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
 	{
@@ -1632,7 +1643,8 @@ func void SpecBehavior()
 			if(Npc_IsDead(Swampfly_01))
 			{
 				// Print("ID_SWAMPSHARK ZS_MM_Attack Wld_InsertNpc");
-				Wld_InsertNpc(Swampfly_01,Npc_GetNearestWP(swampshark));
+				// Wld_InsertNpc(Swampfly_01,Npc_GetNearestWP(swampshark));
+				Wld_InsertNpc(Swampfly_01,"OW_PATH_BLOODFLY09_SPAWN01");
 				self = Hlp_GetNpc(swampshark);
 			}
 			else if(Npc_GetDistToNpc(Swampfly_01,swampshark) > 2000)
@@ -1640,10 +1652,10 @@ func void SpecBehavior()
 				// Print("ID_SWAMPSHARK ZS_MM_Attack AI_Teleport");
 				AI_Teleport(Swampfly_01,Npc_GetNearestWP(swampshark));
 			};
-			var C_Npc swampfly01;
-			swampfly01 = Hlp_GetNpc(Swampfly_01);
-			if(!Npc_GetTarget(swampfly01)){Npc_SetTarget(swampfly01,swampsharkTarget);};
-			other = Hlp_GetNpc(swampsharkTarget);
+			// var C_Npc swampfly01;
+			// swampfly01 = Hlp_GetNpc(Swampfly_01);
+			// if(!Npc_GetTarget(swampfly01)){Npc_SetTarget(swampfly01,swampsharkTarget);};
+			// other = Hlp_GetNpc(swampsharkTarget);
 			// PrintSIS(Npc_GetNearestWP(swampshark),Npc_GetTarget(self),other.name);
 
 			return;

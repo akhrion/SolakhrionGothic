@@ -1,6 +1,7 @@
 
 func int C_PreyToPredator(var C_Npc prey,var C_Npc predator)
 {
+	Print("preytopredator");
 	PrintDebugNpc(PD_MST_FRAME,"C_PreyToPredator");
 	if(other.level >= self.level * 2)
 	{
@@ -352,6 +353,7 @@ func int ZS_MM_Attack_Loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Attack_Loop");
 	// Print("ZS_MM_Attack_Loop");
+	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
 
 
 	// Print(IntToString(Npc_GetTarget(self)));
@@ -510,6 +512,8 @@ func void ZS_MM_Flee()
 
 func int ZS_MM_Flee_Loop()
 {
+	return LOOP_END;
+	Print("ZS_MM_Flee");
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Flee_Loop");
 	B_Cycle_NPC();
 	if(Npc_GetDistToNpc(self,other) < 2000)
@@ -562,6 +566,27 @@ func void B_MM_AssessWarn()
 			};
 		};
 	};
+
+
+
+
+
+	if(
+		self.aivar[AIV_MM_REAL_ID] == ID_SWAMPFLY
+	&&	other.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK
+	)
+	{
+		if(Npc_IsInState(other,ZS_MM_Attack))
+		{
+			Npc_SetTarget(self,victim);
+			Npc_ClearAIQueue(self);
+			AI_Standup(self);
+			AI_StartState(self,ZS_MM_Attack,0,"");
+		};
+	};
+
+
+
 };
 
 func void ZS_MM_AllScheduler()
