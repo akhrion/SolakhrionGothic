@@ -1,14 +1,9 @@
-func int G_ItemValue_Food_Swing(var int slot)                       //плавающая цена Еды
+func int G_ItemValue_Food_Swing(var int startTime, var int hoursPassedLastTrade, var int slot)      //плавающая цена Еды
 {                           //реализована смена цены при каждом диалоге с торговцем
                             //НЕОБХОДИМО ПРИВЯЗАТЬ СМЕНУ ЦЕНЫ КО ВРЕМЕНИ, ЧТО-БЫ ЦЕНА МЕНЯЛАСЬ ПЛАВНЕЕ И ЛОГИЧНЕЕ
 
-    var int time;
-    time = getTimestamp();
-    if(time - PC_LastTradeTimestamp < 60)       //Если с предыдущего изменения цен (имеется ввиду полная отработка этой функции)
-    {                                           // не прошло одного игрового часа, то функция прервётся.
-        return false;
-    };
-
+    if(!hoursPassedLastTrade){return false;};
+    
 
 
 
@@ -17,9 +12,29 @@ func int G_ItemValue_Food_Swing(var int slot)                       //плавающая 
     amount = Npc_GetInvItemBySlot(other,INV_FOOD,slot);
     if(amount)                                                                 //если кол-во предметов не 0
     {
-        newCost = getPercentFromInteger(item.value,Hlp_Random(300)+10);        //наметить цену в процентах от текущей в диапазоне 10% - 300%
+        if(item.value < 25)     //решение проблемы изменения цен дешёвых товаров
+        {
+            if(!Hlp_Random(3))
+            {
+                newCost = item.value + 1;
+            }
+            else if(!Hlp_Random(2))
+            {
+                newCost = item.value - 1;
+                if(newCost < 1){newCost = 1;};
+            };
+        }
+        else
+        {
+            newCost = getPercentFromInteger(item.value,Hlp_Random(12)+95);        //наметить цену в процентах от текущей 
+                                                                                //  в диапазоне 95% - 106% -> ((12)+95)
+            if(item.value - newCost == 1){newCost = item.value;};              //решение проблемы округлений в меньшую сторону #1
+            if(item.value > newCost){newCost = newCost + 1;};                  //решение проблемы округлений в меньшую сторону #2
+        };
 
 
+        Log_CreateTopic("Стоимость товаров",LOG_NOTE);
+        Log_AddEntry("Стоимость товаров", ConcatStrings(item.name, IntToString(newCost)));
         if(Hlp_GetInstanceID(item) == Hlp_GetInstanceID(ItFoApple))         //регистрация предмета
         {
             Value_Apple = newCost;                                    //переинициализация глобальной переменной указывающей на цену предмета
@@ -174,24 +189,32 @@ func int G_ItemValue_Food_Swing(var int slot)                       //плавающая 
         }
         else
         {
-            return G_ItemValue_Food_Swing(slot+1);                  //НЕ найден зарегистрированный предмет - рекурсия с переходом к следующему слоту в инвентаре
+            return G_ItemValue_Food_Swing(startTime, hoursPassedLastTrade, slot+1);                  //НЕ найден зарегистрированный предмет - рекурсия с переходом к следующему слоту в инвентаре
         };
 
 
         item.value = newCost;                                       //переинициализация цены экземпляра
         item.count[5] = newCost;                                    //установить новую цену в описание экземпляра
-        return G_ItemValue_Food_Swing(slot+1);                      //найден зарегистрированный предмет - рекурсия с переходом к следующему слоту в инвентаре
+        return G_ItemValue_Food_Swing(startTime, hoursPassedLastTrade, slot+1);                      //найден зарегистрированный предмет - рекурсия с переходом к следующему слоту в инвентаре
     };
 
+    G_ItemValue_Food_Swing(startTime, hoursPassedLastTrade-1, 0);      //если с последнего трейда прошло несколько часов, то функция вызывается снова
+                                                            // с нулевого слота
+                                                            //количество таких вызовов будет равняться количеству пройденных часов
+                                                            //после этого функция завершится окончательно.
 
-
-
-    PC_LastTradeTimestamp = time;
-    return false;
+    PC_LastTradeTimestamp = startTime;
+    return true;
 };
 func void G_ItemValue_Food()        //отвечает за цену сЪестных припасов
 {
-    G_ItemValue_Food_Swing(0);
+    var int time;
+    time = getTimestamp();
+    G_ItemValue_Food_Swing(
+        time,
+        (time - PC_LastTradeTimestamp) / 60,
+        0
+    );
 };
 
 
