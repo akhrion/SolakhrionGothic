@@ -91,7 +91,8 @@ instance Stt_311_Fisk_WhistlersSword(C_Info)
 
 func int Stt_311_Fisk_WhistlersSword_Condition()
 {
-	if((FISK_REFUSETRADE == FALSE) && (Fisk_ForgetSword == FALSE) && (Whistler_BuyMySword == LOG_RUNNING) && (Fisk_SwordSold == FALSE))
+	// if((FISK_REFUSETRADE == FALSE) && (Fisk_ForgetSword == FALSE) && (Whistler_BuyMySword == LOG_RUNNING) && (Fisk_SwordSold == FALSE))
+	if(true)
 	{
 		return 1;
 	};
@@ -112,6 +113,10 @@ func void Stt_311_Fisk_WhistlersSword_Info()
 func void Stt_311_Fisk_WhistlersSword_BACK()
 {
 	AI_Output(other,self,"Org_826_Mordrag_WhistlersSword_BACK_15_00");	//В другой раз.
+	if(Fisk_ForgetSword)
+	{
+		AI_Output(self,other,"Org_826_Mordrag_WhistlersSword_BACK_NULL_01");	//Ага, после дождичка в четверг..
+	};
 	Info_ClearChoices(Stt_311_Fisk_WhistlersSword);
 };
 
@@ -123,6 +128,21 @@ func void Stt_311_Fisk_WhistlersSword_Fault()
 	AI_Output(self,other,"Stt_311_Fisk_WhistlersSword_Fault_12_03");	//Что, опять мало? Может, повысить до тысячи? Тоже неплохо. Но, знаешь, я подумал, что я не буду его продавать. Он мне самому пригодится!
 	Fisk_ForgetSword = TRUE;
 	Info_ClearChoices(Stt_311_Fisk_WhistlersSword);
+	Info_AddChoice(Stt_311_Fisk_WhistlersSword,"А ну живо давай сюда меч или я тебе жопу надеру!",Stt_311_Fisk_WhistlersSword_Threat);
+	Info_AddChoice(Stt_311_Fisk_WhistlersSword,"В другой раз.",Stt_311_Fisk_WhistlersSword_BACK);
+};
+
+func void Stt_311_Fisk_WhistlersSword_Threat()
+{
+	AI_Output(other,self,"Stt_311_Fisk_WhistlersSword_Threat_NULL_00");	//А ну живо давай сюда меч или я тебе жопу надеру!
+	AI_Output(self,other,"Stt_311_Fisk_WhistlersSword_Threat_NULL_01");	//Хотелось-бы на это посмотреть.
+	Info_ClearChoices(Stt_311_Fisk_WhistlersSword);
+	AI_StopProcessInfos(hero);
+	if(Npc_GetStr(other) > 30)	//Если ГГ силён, то Фиск сам начинает атаку, в противном случае просто продолжит свой распорядок, не видя угрозы в ГГ.
+	{
+		Npc_SetTarget(self,other);
+		AI_StartState(self,ZS_Attack,0,"");
+	};
 };
 
 func void Stt_311_Fisk_WhistlersSword_TakeIt()
@@ -396,3 +416,51 @@ func void stt_311_fisk_letmehelp_info()
 	AI_StopProcessInfos(self);
 };
 
+instance STT_311_FISK_FoodValueChanges(C_Info)
+{
+	npc = STT_311_FISK;
+	condition = STT_311_FISK_FoodValueChanges_Condition;
+	information = STT_311_FISK_FoodValueChanges_Info;
+	important = 0;
+	permanent = 0;
+	description = "Странно, но почему-то на еду цена часто меняется, а на оружие - нет..";
+};
+func int STT_311_FISK_FoodValueChanges_Condition()
+{
+	if(giTrade > 5)
+	{
+		return TRUE;
+	};
+	return false;
+};
+func void STT_311_FISK_FoodValueChanges_Info()
+{
+	AI_Output(other,self,"STT_311_FISK_FoodValueChanges_Why_NULL_00");	//Странно, но почему-то на еду цена часто меняется, а на оружие - нет..
+	AI_Output(self,other,"STT_311_FISK_FoodValueChanges_Why_NULL_01");	//Разумеется парень, люди часто едят, а в колонии не такто просто найти нормальную еду, если ты конечно не охотник, да и тем нередко приходится попотеть. Именно поэтому торговля с королем так важна.
+
+
+	//Ты кажется многое знаешь об охоте, а ты можешь меня чему-то научить?
+	//фиск: Что? Неет! Я занимаюсь только торговлей, если тебя интересует охота, то обратись к Диего или Кавалорну, может быть к Фингерсу.. я давно с ним не общался, но думаю он тебе тоже поможет.
+
+	//ГГ:Я знаю Кавалорна (ложь)
+	//Фиск:Лучше него врятли кто-то есть, в нашей колонии.
+	AI_Output(self,other,"STT_311_FISK_FoodValueChanges_Why_NULL_02");	//А оружие
+	//Фиск:Здесь в лагере, оружие тебе ни к чему. Стражники - надежная защита. И если ты не будешь нарываться, то внутри тебя никто не тронет.
+	//А если тронет?
+	//Фиск:А если тронет то обратись к Флетчеру или Шакалу и если на тебе вины нет, то они быстро все уладят. Нам в лагере смутьяны ни к чему. Особенно те, которые трогают тех, кто платит за защиту.
+	//Ты тоже платишь?
+	//Фиск: Здесь все платят.. все, кому не нужны проблемы. Стражники наша защита, их задача - защищать лагерь. Мне кажется это должно быть понятно и ежу.
+	//Фиск: Ты мне показался смышленым..
+	//Я смышленый.
+	//Фиск: Ну-ну.
+
+	AI_Output(other,self,"STT_311_FISK_FoodValueChanges_Why_NULL_03");	//Но ведь у стражников нет проблем с едой? Я слышал, что люди Гомеза ни в чем не нуждаются.
+	if(hero.guild == GIL_STT)
+	{
+		AI_Output(self,other,"STT_311_FISK_FoodValueChanges_Why_NULL_04");	//Стражники.. стражники это.. ну не стоит их сравнивать с нами с призраками и уж тем более с рудокопами. Конечно у них есть и хорошее оружие, и еда - возможно даже что-то со стола баронов перепадает.
+	}
+	else
+	{
+		AI_Output(self,other,"STT_311_FISK_FoodValueChanges_Why_NULL_05");	//Стражники.. стражники это.. ну конечно-же у них есть все! Это-же тебе не рудокопы какие-то. Что за глупые вопросы..
+	};
+};
