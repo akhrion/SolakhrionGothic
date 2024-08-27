@@ -1594,8 +1594,9 @@ func void Npc_IWasLightedByOther()
 ////////////////////////////////////////////////////////////////////////////////
 func void SpecBehavior()
 {
-	// if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPFLY)
-	// {
+	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPFLY)
+	{
+		Print("шершонь");
 	// 	if(!Npc_IsInState(self,ZS_MM_Attack))
 	// 	{
 	// 		var int swampsharkFound;
@@ -1607,7 +1608,7 @@ func void SpecBehavior()
 	// 			AI_StartState(self,ZS_MM_Attack,0,"");
 	// 		};
 	// 	};
-	// };
+	};
 	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
 	{
 		// Print("ID_SWAMPSHARK");
