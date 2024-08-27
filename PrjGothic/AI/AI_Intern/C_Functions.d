@@ -1597,7 +1597,7 @@ func void SpecBehavior()
 	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPFLY)
 	{
 		Print("шершонь");
-		// if(!Npc_IsInState(self,ZS_MM_Attack))?????
+		// if(!Npc_IsInState(self,ZS_MM_Attack))
 	// 	{
 	// 		var int swampsharkFound;
 	// 		swampsharkFound = Wld_DetectNpc(self,Swampshark,ZS_MM_Attack,-1);
