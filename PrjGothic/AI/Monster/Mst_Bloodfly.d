@@ -11,9 +11,9 @@ prototype Mst_Default_Bloodfly(C_Npc)
 	attribute[ATR_HITPOINTS] = 50;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 15;
+	protection[PROT_BLUNT] = 35;
 	protection[PROT_EDGE] = 15;
-	protection[PROT_POINT] = 8;
+	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_FLY] = 0;
 	protection[PROT_MAGIC] = 0;
@@ -25,8 +25,8 @@ prototype Mst_Default_Bloodfly(C_Npc)
 	aivar[AIV_MM_PercRange] = 1200;
 	aivar[AIV_MM_DrohRange] = 1000;
 	aivar[AIV_MM_AttackRange] = 700;
-	aivar[AIV_MM_DrohTime] = 5;
-	aivar[AIV_MM_FollowTime] = 5;
+	aivar[AIV_MM_DrohTime] = 1;
+	aivar[AIV_MM_FollowTime] = 15;
 	aivar[AIV_MM_FollowInWater] = TRUE;
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_WuselStart] = OnlyRoutine;
@@ -48,9 +48,35 @@ instance Bloodfly(Mst_Default_Bloodfly)
 
 instance HelpBrothers_Bloodfly(Mst_Default_Bloodfly)
 {
+	name[0] = "Злобный шершень";
 	Set_Bloodfly_Visuals();
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItAt_Bloodfly_01,2);
-	name[0] = "Злобный шершень";
+};
+
+instance Swampfly_01(Mst_Default_Bloodfly)
+{
+	name[0] = "Болотный шершень";
+	aivar[AIV_MM_REAL_ID] = ID_SWAMPFLY;
+	attribute[ATR_STRENGTH] = 30;
+	protection[PROT_BLUNT] = 35;
+	protection[PROT_EDGE] = 15;
+	protection[PROT_FIRE] = 35;
+	Set_Bloodfly_Visuals();
+	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItAt_Bloodfly_01,2);
+};
+
+instance Swampfly_02(Mst_Default_Bloodfly)
+{
+	name[0] = "Болотный шершень";
+	aivar[AIV_MM_REAL_ID] = ID_SWAMPFLY;
+	attribute[ATR_STRENGTH] = 30;
+	protection[PROT_BLUNT] = 35;
+	protection[PROT_EDGE] = 15;
+	protection[PROT_FIRE] = 35;
+	Set_Bloodfly_Visuals();
+	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItAt_Bloodfly_01,2);
 };
 

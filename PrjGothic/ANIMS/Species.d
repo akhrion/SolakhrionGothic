@@ -29,7 +29,7 @@ instance Gil_Values(C_GILVALUES)
 	slide_angle[GIL_BLOODFLY] = 75;
 	disable_autoroll[GIL_BLOODFLY] = 0;
 	surface_align[GIL_BLOODFLY] = 0;
-	turn_speed[GIL_BLOODFLY] = 130;
+	turn_speed[GIL_BLOODFLY] = 350;
 	falldown_height[GIL_BLOODFLY] = 9999;
 	falldown_damage[GIL_BLOODFLY] = 0;
 	fight_range_base[GIL_BLOODFLY] = 80;
@@ -295,14 +295,14 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_fist[GIL_SLF] = 140;
 	swim_time[GIL_SKELETON] = 0;
 	dive_time[GIL_SKELETON] = 0;
-	water_depth_knee[GIL_SKELETON] = 80;
-	water_depth_chest[GIL_SKELETON] = 150;
+	water_depth_knee[GIL_SKELETON] = 1180;
+	water_depth_chest[GIL_SKELETON] = 11150;
 	step_height[GIL_SKELETON] = 60;
 	jumplow_height[GIL_SKELETON] = 105;
 	jumpmid_height[GIL_SKELETON] = 205;
 	jumpup_height[GIL_SKELETON] = 300;
 	slide_angle[GIL_SKELETON] = 45;
-	turn_speed[GIL_SKELETON] = 180;
+	turn_speed[GIL_SKELETON] = 300;
 	climb_heading_angle[GIL_SKELETON] = 45;
 	climb_horiz_angle[GIL_SKELETON] = 30;
 	climb_ground_angle[GIL_SKELETON] = 30;

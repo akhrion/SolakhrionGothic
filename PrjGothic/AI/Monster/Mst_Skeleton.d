@@ -25,7 +25,7 @@ prototype Mst_Default_Skeleton(C_Npc)
 	aivar[AIV_MM_DrohRange] = 1500;
 	aivar[AIV_MM_AttackRange] = 1500;
 	aivar[AIV_MM_DrohTime] = 0;
-	aivar[AIV_MM_FollowTime] = 5;
+	aivar[AIV_MM_FollowTime] = 25;
 	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
 };

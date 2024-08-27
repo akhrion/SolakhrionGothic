@@ -1574,7 +1574,17 @@ func void Npc_GotDamage_Edge(var C_Npc vict, var C_Npc attacker)
 	};
 };
 
-
+func void Npc_IWasLightedByOther()
+{
+	if(
+        Npc_IsPlayer(other)
+    &&  Npc_GetTalentSkill(other,NPC_TALENT_MAGE) > 2
+    &&  Npc_GetActiveSpell(other) == SPL_LIGHT
+    )
+    {
+        Wld_PlayEffect("SPELLFX_LIGHT",self,self,1,0,0,0);
+    };
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -1629,6 +1639,7 @@ func void SpecBehavior()
 			if(!Npc_GetTarget(self)){Npc_SetTarget(self,other);};
 		};
 	};
+	Npc_IWasLightedByOther();
 };
 
 

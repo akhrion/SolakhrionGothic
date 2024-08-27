@@ -354,6 +354,44 @@ func void B_SetNpcType(var int npcInstance,var int newNpctype)
 	npc.npcType = newNpctype;
 };
 
+func void B_SetNpcHaste(var int npcInstance,var int seconds)
+{
+	var C_Npc npc;
+	PrintDebugNpc(PD_ZS_DETAIL,"B_SetNpcHaste");
+
+	npc = Hlp_GetNpc(npcInstance);
+
+
+	if(Npc_IsPlayer(npc))
+	{
+		PC_Temporal_Haste_TimeEnd_Timestamp = getTimestamp() + IRLSecToGameMin(seconds);
+		npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_HASTE1;
+	};
+	Mdl_ApplyOverlayMdsTimed(npc,"HUMANS_SPRINT.MDS",seconds * 1000);
+};
+//функция отслеживает HASTE-флаг у нпс
+//на момент реализации в этом нет смысла, однако
+//потенциально по этому флагу можно отслеживать - находится-ли НПС в ускореной анимации
+func void Haste(var C_Npc npc)
+{
+	if(Npc_IsPlayer(npc))
+	{
+		if(npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_HASTE1)
+		{
+			var int ctime;
+			ctime = getTimestamp();
+			if(ctime < PC_Temporal_Haste_TimeEnd_Timestamp)
+			{
+				return;
+			}
+			else
+			{
+				npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_HASTE1;
+			};
+		};
+
+	};
+};
 
 var string screenmessage;
 var string screenmessage2;
@@ -680,6 +718,8 @@ func void PC_ReceivedBacksideDamage()
 {
 	PrintDebugNpc(PD_ZS_LOOP,"Если получивший урон не является игроком - скип.");
 	PrintDebugNpc(PD_ZS_LOOP,"Если урон уже получен - скип.");
+	return;//инициация была перенесена из zs_attack в PC_GotDamage
+	//однако адаптация не была проведена - нужно адаптировать переменные -> victim к примеру
 	if(
 		!Npc_IsPlayer(other)
 	||	PC_IsReceivedBacksideDamage
