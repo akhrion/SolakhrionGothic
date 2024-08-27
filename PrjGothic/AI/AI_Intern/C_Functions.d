@@ -1619,7 +1619,7 @@ func void SpecBehavior()
 		var int swampsharkTargetInst;
 		var C_Npc swampsharkTarget;
 		swampsharkTargetInst = Hlp_GetInstanceID(other);
-		swampsharkTarget = Hlp_GetNpc(swampsharkTargetInst);
+		swampsharkTarget = Hlp_GetNpc(other);
 
 
 		if(
@@ -1632,14 +1632,20 @@ func void SpecBehavior()
 			{
 				// Print("ID_SWAMPSHARK ZS_MM_Attack Wld_InsertNpc");
 				Wld_InsertNpc(Swampfly_01,Npc_GetNearestWP(swampshark));
+				self = Hlp_GetNpc(swampshark);
 			}
 			else if(Npc_GetDistToNpc(Swampfly_01,swampshark) > 2000)
 			{
 				// Print("ID_SWAMPSHARK ZS_MM_Attack AI_Teleport");
-				AI_Teleport(Swampfly_01,swampshark.wp);
+				AI_Teleport(Swampfly_01,Npc_GetNearestWP(swampshark));
 			};
-			if(!Npc_GetTarget(self)){Npc_SetTarget(self,swampsharkTarget);};
-			PrintSIS(Npc_GetNearestWP(swampshark),Npc_GetTarget(self),other.name);
+			var C_Npc swampfly01;
+			swampfly01 = Hlp_GetNpc(Swampfly_01);
+			// if(!Npc_GetTarget(swampfly01)){Npc_SetTarget(swampfly01,swampsharkTarget);};
+			// PrintSIS(Npc_GetNearestWP(swampshark),Npc_GetTarget(self),other.name);
+
+			return;
+
 
 			if(Npc_IsDead(Swampfly_02))
 			{
@@ -1647,11 +1653,13 @@ func void SpecBehavior()
 			}
 			else if(Npc_GetDistToNpc(Swampfly_02,swampshark) > 2000)
 			{
-				AI_Teleport(Swampfly_02,swampshark.wp);
+				AI_Teleport(Swampfly_02,Npc_GetNearestWP(swampshark));
 			};
-			PrintSIS(self.name,0,swampsharkTarget.name);
 			if(!Npc_GetTarget(self)){Npc_SetTarget(self,swampsharkTarget);};
+			PrintSIS(self.name,0,swampsharkTarget.name);
+			AI_StartState(self,ZS_MM_Attack,0,"");
 		};
+		Npc_SetTarget(swampshark,swampsharkTarget);
 	};
 	Npc_IWasLightedByOther();
 };
