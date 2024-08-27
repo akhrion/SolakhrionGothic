@@ -1614,7 +1614,7 @@ func void SpecBehavior()
 		var int swampsharkInst;
 		var C_Npc swampshark;
 		swampsharkInst = Hlp_GetInstanceID(self);
-		swampshark = Hlp_GetNpc(swampsharkInst);
+		swampshark = Hlp_GetNpc(self);
 
 		var int swampsharkTargetInst;
 		var C_Npc swampsharkTarget;
