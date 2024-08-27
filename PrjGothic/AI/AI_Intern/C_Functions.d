@@ -1641,7 +1641,7 @@ func void SpecBehavior()
 			};
 			var C_Npc swampfly01;
 			swampfly01 = Hlp_GetNpc(Swampfly_01);
-			// if(!Npc_GetTarget(swampfly01)){Npc_SetTarget(swampfly01,swampsharkTarget);};
+			if(!Npc_GetTarget(swampfly01)){Npc_SetTarget(swampfly01,swampsharkTarget);};
 			// PrintSIS(Npc_GetNearestWP(swampshark),Npc_GetTarget(self),other.name);
 
 			return;
