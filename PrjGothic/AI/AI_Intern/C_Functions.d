@@ -1761,3 +1761,13 @@ func void Quest_DeAssign(var C_Info quest)
 {
 	quest.npc = -1;
 };
+func void DAILYHELLO()
+{
+	if(DAILYHELLOUSER)
+	{
+		DAILYHELLOUSER = 0;
+		PrintScreen("Добрый день игрок! Урачной тебе игры ;)",-1,_YPOS_MESSAGE_LEVELUP,"font_old_20_white.tga",_TIME_MESSAGE_LEVELUP);
+		Snd_Play("LevelUp");
+	};
+};
+

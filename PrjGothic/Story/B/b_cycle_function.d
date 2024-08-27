@@ -1,7 +1,6 @@
 func void b_cycle02_function_om()
 {
 	b_cycle02_hero();
-	B_Cycle_NPC();
 	Wld_SendTrigger("CYCLE02_TRIGGER_OM");
 };
 func void b_cycle_function_om()
@@ -26,7 +25,6 @@ func void b_cycle60_function_om()
 func void b_cycle02_function()
 {
 	b_cycle02_hero();
-	B_Cycle_NPC();
 	Wld_SendTrigger("CYCLE02_TRIGGER");
 };
 func void b_cycle_function()

@@ -44,11 +44,11 @@ const int ManaMax_Extrakt = 10;
 const int Value_ManaMaxElixier = 1500;
 const int ManaMax_Elixier = 15;
 const int Value_Haste1 = 100;
-const int Time_Haste1 = 60000;
+const int Time_Haste1 = 60;
 const int Value_Haste2 = 200;
-const int Time_Haste2 = 120000;
+const int Time_Haste2 = 120;
 const int Value_Haste3 = 500;
-const int Time_Haste3 = 300000;
+const int Time_Haste3 = 300;
 
 instance ItFo_Potion_Mana_01(C_Item)
 {
@@ -222,6 +222,30 @@ func void UseHealth3Potion()
 {
 	PrintDebugNpc(PD_ITEM_MOBSI,"UseHealthPotion");
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Elixier);
+};
+
+
+instance ItFo_Potion_Health_04(C_Item)
+{
+	name = NAME_Trank;
+	mainflag = ITEM_KAT_POTIONS;
+	flags = ITEM_MULTI;
+	value = Value_HpElixier;
+	visual = "ItFo_Potion_Health_03.3ds";
+	material = MAT_GLAS;
+	on_state[0] = UseHealth4Potion;
+	scemeName = "POTIONFAST";
+	description = "Зелье второй жизни";
+	text[5] = NAME_Value;
+	count[5] = Value_HpElixier * 10;
+};
+
+
+func void UseHealth4Potion()
+{
+	PrintDebugNpc(PD_ITEM_MOBSI,"UseHealthPotion");
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,
+						Npc_GetHPMax(self) - Npc_GetHP(self));
 };
 
 
@@ -621,7 +645,7 @@ instance ItFo_Potion_Haste_01(C_Item)
 	description = "Зелье скорости";
 	text[1] = "Увеличивает скорость движения.";
 	text[3] = NAME_Duration;
-	count[3] = Time_Haste1 / 60000;
+	count[3] = Time_Haste1;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -629,7 +653,7 @@ instance ItFo_Potion_Haste_01(C_Item)
 
 func void UseHastePotion()
 {
-	Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_Haste1);
+	B_SetNpcHaste(self,Time_Haste1);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я стал быстрее.");
 };
 
@@ -647,7 +671,7 @@ instance ItFo_Potion_Haste_02(C_Item)
 	description = "Зелье быстроты";
 	text[1] = "Увеличивает скорость движения.";
 	text[3] = NAME_Duration;
-	count[3] = Time_Haste2 / 60000;
+	count[3] = Time_Haste2;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -655,7 +679,7 @@ instance ItFo_Potion_Haste_02(C_Item)
 
 func void UseHastePotion2()
 {
-	Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_Haste2);
+	B_SetNpcHaste(self,Time_Haste2);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я стал быстрее.");
 };
 
@@ -673,7 +697,7 @@ instance ItFo_Potion_Haste_03(C_Item)
 	description = "Зелье спешки";
 	text[1] = "Увеличивает скорость движения.";
 	text[3] = NAME_Duration;
-	count[3] = Time_Haste3 / 60000;
+	count[3] = Time_Haste3;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -681,7 +705,7 @@ instance ItFo_Potion_Haste_03(C_Item)
 
 func void UseHastePotion3()
 {
-	Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_Haste3);
+	B_SetNpcHaste(self,Time_Haste3);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я стал быстрее.");
 };
 

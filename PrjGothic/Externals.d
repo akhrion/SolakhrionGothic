@@ -56,9 +56,9 @@ func void PrintISI(var int _i,var string _str,var int _ii)
 {
 	Print(ConcatStrings(
 		ConcatStrings(
-			IntToString(item.flags),_str
+			IntToString(_i),_str
 		),
-		IntToString(ITEM_2HD_SWD)
+		IntToString(_ii)
 	));
 };
 func void PrintSI(var string str_, var int i_){
@@ -416,5 +416,11 @@ func int t(var int flags_, var int cat_)
 	//cat_ не найдена
 	return 0;
 };
+
+func int IRLSecToGameMin(var int seconds)
+{
+	return seconds / 4;
+};
+
 
 //Функции ниже, можно удалять

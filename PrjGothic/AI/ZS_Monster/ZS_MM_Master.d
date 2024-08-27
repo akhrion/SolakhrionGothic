@@ -354,9 +354,9 @@ func int ZS_MM_Attack_Loop()
 	// Print("ZS_MM_Attack_Loop");
 
 
-	Print(IntToString(Npc_GetTarget(self)));
+	// Print(IntToString(Npc_GetTarget(self)));
 	B_Cycle_NPC();
-	Print(IntToString(Npc_GetTarget(self)));
+	// Print(IntToString(Npc_GetTarget(self)));
 	if(other.attribute[ATR_HITPOINTS] <= 0)
 	{
 		B_MM_AssessBody();
@@ -438,7 +438,7 @@ func int ZS_MM_Attack_Loop()
 
 		if(other.aivar[AIV_INVINCIBLE] == FALSE)
 		{
-			Print("AI_Attack");
+			// Print("AI_Attack");
 			Npc_SetStateTime(self,0);
 			AI_Attack(self);
 		};

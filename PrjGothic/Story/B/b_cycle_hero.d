@@ -665,6 +665,7 @@ func void overlay()
 func void b_cycle_hero()
 {
 	if(Npc_IsDead(hero)){return;};
+	DAILYHELLO();
 	if(Npc_IsDead(ScavengerAgressive_1))
 	{
 		Print("SCAVENGER WAS SPAWNED..");
@@ -690,5 +691,6 @@ func void b_cycle_hero()
 func void b_cycle60_hero()
 {
 	if(Npc_IsDead(hero)){return;};
+	Haste(hero);
 	// temporalEffects60(hero);
 };

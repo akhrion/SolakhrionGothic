@@ -401,6 +401,9 @@ const int SPWN_MAX_ATATIME_Swampherb_01 = 20;
 const int SPWN_Chanse_Swampherb_01 = 10;
 var int SPWN_Cur_Swampherb_01;
 var int PC_Has_Swampherb;
+
+//AKHRION MOD
+var int giTrade;   //открывает реплику у торговцев, после нескольких трейдов
 //при подобной реализации будут баги:
 //вопервых переменные будут сбрасываться к изначальным после перезахода в игру
 //во вторых и третьих при перезагрузке или новой игре, переменные будут сохранять свои значения
@@ -501,6 +504,15 @@ const int PC_DexBuff_Bow_Quality = 100;
 const int PC_DexBuff_CrossBow_Quality = 70;
 const int Chanse_Bash_Club = 20;
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////Подсчитывают общее количество монстров в игре
+////////////////////////////////////////////////////////////////////////////////////////////////
+var int gCounter_Scavengers;
+var int gCounter_Wolfs;
+var int gCounter_Snappers;
+
 var int PC_HasTorchs;
 var int PC_IsTorchBurning;
 
@@ -528,6 +540,10 @@ var int PC_Count_Swordrawhot;
 
 var int PC_Damage_Bow;
 var int PC_IsReceivedBacksideDamage;
+var int gPC_LastDamageRecieved;
+
+
+
 
 var int PC_Knowledge_Scavenger;
 var int PC_Knowledge_Wolf;
@@ -572,6 +588,9 @@ const int OVERLAY_ATR_LUC_Y = 86;
 const int OVERLAY_PCMOVEMENTSPEED_Y = 90;
 const int OVERLAY_AIMING_ACCURACY_Y = 36;
 const int OVERLAY_AIMING_DAMAGE_Y = 38;
+
+const int OVERLAY_Wounded_Y = 90;
+const int OVERLAY_Wounded_X = 20;
 
 var int init_NPC_vars;
 var int overlay_loaded;
@@ -729,18 +748,7 @@ func void InitFoodPrice()
 };
 
 
-func void init_variables()
-{
-    PC_Knowledge_Scavenger = 80;
-    PC_Knowledge_Wolf = 20;
-    PC_Knowledge_Human = 50;
-    SPL_FIREBALL_TIME_PER_MANA_BASIC = 750;//устарела, заменена
-    PC_Knowledge_Demon_Existence = 2;
-    InitFoodPrice();
-    if(PC_WeaponHand == 0)
-    {
-        PC_WeaponHand = PC_WeaponHandOne;
-//        PC_HasNecromancySkill = true;
-//        PC_NecromancySkillValue = 1;
-    };
-};
+var int PC_Temporal_Haste_TimeEnd_Timestamp;
+
+
+

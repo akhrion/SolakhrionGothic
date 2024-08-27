@@ -1,11 +1,15 @@
 
 func void B_AssessQuietSound()
 {
+	PrintDebugNpc(PD_ZS_FRAME,"B_AssessQuietSound");
+	PrintGlobals(PD_ZS_FRAME);
+
+
 	B_AssessRogue();
 	B_Cycle_NPC();
 	Theft(self,other);
-	PrintDebugNpc(PD_ZS_FRAME,"B_AssessQuietSound");
-	PrintGlobals(PD_ZS_FRAME);
+
+
 	if(Npc_GetDistToItem(self,item) > PERC_DIST_DIALOG)
 	{
 		PrintDebugNpc(PD_ZS_FRAME,"... to far");

@@ -1,3 +1,54 @@
+func void NG_InitVariables()        //Variables initialisation on New Game starting
+{
+    PC_Knowledge_Scavenger = 0;
+    PC_Knowledge_Wolf = 0;
+    PC_Knowledge_Human = 20;
+    SPL_FIREBALL_TIME_PER_MANA_BASIC = 750;//устарела, заменена
+    PC_Knowledge_Demon_Existence = 2;
+    DAILYHELLOUSER = 0;
+
+
+    InitFoodPrice();
+    if(PC_WeaponHand == 0)
+    {
+        PC_WeaponHand = PC_WeaponHandOne;
+//        PC_HasNecromancySkill = true;
+//        PC_NecromancySkillValue = 1;
+    };
+};
+
+
+
+
+func void LOADING_InitVariables_PC()    //По сути эту функцию можно вызывать из LOADING_InitVariables() поскольку для ГГ есть персональная переменная hero
+{
+};
+
+
+
+func void LOADING_InitVariables()   //Variables initialisation on a Loading game
+{
+};
+
+func void LOADING_InitHaste_PC()
+{
+	if(hero.aivar[AIV_FREEMAN] & AIV_FREEMAN_HASTE1)
+	{
+		var int ctime;
+		ctime = getTimestamp();
+		if(ctime < PC_Temporal_Haste_TimeEnd_Timestamp)
+		{
+			Mdl_ApplyOverlayMdsTimed(hero,"HUMANS_SPRINT.MDS",
+				(PC_Temporal_Haste_TimeEnd_Timestamp - ctime) * 1000 * 4);
+		}
+		else
+		{
+			hero.aivar[AIV_FREEMAN] -= AIV_FREEMAN_HASTE1;
+		};
+	};
+};
+
+
 
 func void Startup_Sub_Psicamp()
 {
@@ -1964,6 +2015,8 @@ func void init_world()
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	initplayerbody(3);
+	LOADING_InitVariables();
+	LOADING_InitHaste_PC();
 };
 
 func void startup_world()
@@ -1977,10 +2030,13 @@ func void startup_world()
 	Startup_Sub_Surface();
 	init_world();
 	PlayVideo("INTRO.BIK");
+
+	NG_InitVariables();
+
 	b_cycle02_function();
 	b_cycle_function();
 	b_cycle60_function();
-	init_variables();
+
 	RUSSOBITMFIXV13 = TRUE;
 	FIX_VERSION_SAVE = FIX_VERSION_START;
 };

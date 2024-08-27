@@ -63,6 +63,7 @@ const int ID_FIREGOLEM = 32;
 const int ID_ICEGOLEM = 33;
 const int ID_MEATBUG = 34;
 const int ID_ZOMBIE = 35;
+const int ID_SWAMPFLY = 36;
 const int AIV_MM_PARTYMEMBER = 23;
 const int AIV_MM_DEATHINVGIVEN = 24;
 const int MID_CANYONTROLL = 5000;

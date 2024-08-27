@@ -281,3 +281,5 @@ const int UNDEFINED = 0;
 
 const int PC_DIALOG_INPUTMANUAL_SHOW_X = 0;
 const int PC_DIALOG_INPUTMANUAL_SHOW_Y = 50;
+
+const int DAILYHELLOUSER = 1;
