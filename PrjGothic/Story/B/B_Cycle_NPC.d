@@ -28,7 +28,6 @@ func void B_Cycle_NPC()
         return;
     };
 
-    PrintSIS("scavengers amount: ",nearCounter_Scavengers,"");
 
     var C_Npc npc;
     npc = Hlp_GetNpc(self);
