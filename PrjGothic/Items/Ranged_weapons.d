@@ -446,6 +446,8 @@ instance ItRw_Crossbow_01(C_Item)
 	damageTotal = 45 * AKH_BOWMANLINE_MULTIPLIER;
 	damagetype = DAM_POINT;
 	munition = ItAmBolt;
+	change_atr[2] = ATR_DEXTERITY;
+	change_value[2] = -25;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = 25;
 	visual = "ItRwCrossbow1.mms";
@@ -741,3 +743,21 @@ func void useurizelbow()
 	CreateInvItems(self,itamarrow_magic,100 - Npc_HasItems(self,itamarrow_magic));
 };
 
+instance ItAmBoltPack(C_Item)
+{
+	name = "Пакет Арбалетных болтов";
+	mainflag = ITEM_KAT_MUN;
+	flags = ITEM_CROSSBOW | ITEM_MULTI;
+	value = 200;
+	visual = "ItAm_Bolt_01.3ds";
+	material = MAT_WOOD;
+	scemeName = "USEFAKEITEM";
+	on_state[0] = useboltpack;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+func void useboltpack()
+{
+	CreateInvItems(self,ItAmBolt,100);
+};
