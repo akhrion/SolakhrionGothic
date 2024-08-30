@@ -751,7 +751,7 @@ instance ItAmBoltPack(C_Item)
 	value = 200;
 	visual = "ItAm_Bolt_01.3ds";
 	material = MAT_WOOD;
-	scemeName = "USEFAKEITEM";
+	scemeName = "MAP";
 	on_state[0] = useboltpack;
 	description = name;
 	text[5] = NAME_Value;
