@@ -142,7 +142,7 @@ instance ItMw_1H_Sledgehammer_01(C_Item)
 
 instance ItMw_1H_Mace_Light_01(C_Item)
 {
-	name = "Палица";
+	name = "Булава";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
