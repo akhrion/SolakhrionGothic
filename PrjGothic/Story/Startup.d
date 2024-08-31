@@ -1,3 +1,9 @@
+func void GameRules_f()
+{
+	Log_CreateTopic(GAMERULES,LOG_NOTE);
+	Log_AddEntry(GAMERULES,"");
+	Log_AddEntry(GAMERULES,"Ловкость: Отражает вероятность попадания из стрелкового оружия - 100 ловкости = 100% попадания.");
+};
 func void NG_InitVariables()        //Variables initialisation on New Game starting
 {
     PC_Knowledge_Scavenger = 0;
@@ -15,6 +21,7 @@ func void NG_InitVariables()        //Variables initialisation on New Game start
 //        PC_HasNecromancySkill = true;
 //        PC_NecromancySkillValue = 1;
     };
+	GameRules_f();
 };
 
 

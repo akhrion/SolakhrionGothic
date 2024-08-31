@@ -77,3 +77,4 @@ const string THELISTFORNC = "Список припасов";
 const string KDWLETTER = "Посланник магов Воды";
 const string KDFLETTER = "Письмо из внешнего мира";
 const string RATFORDMAPS = "Карта для охотника";
+const string GAMERULES = "<ИГРОВЫЕ ПРАВИЛА И УСЛОВНОСТИ>";
