@@ -709,6 +709,8 @@ instance ItMw_1H_Sword_01(C_Item)
 	damageTotal = 20;
 	damagetype = DAM_EDGE;
 	range = 100;
+	change_atr[2] = ATR_STRENGTH;
+	change_value[2] = -100;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 20;
 	visual = "ItMw_1H_Sword_01.3DS";

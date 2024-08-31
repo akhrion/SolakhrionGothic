@@ -447,7 +447,7 @@ instance ItRw_Crossbow_01(C_Item)
 	damagetype = DAM_POINT;
 	munition = ItAmBolt;
 	change_atr[2] = ATR_DEXTERITY;
-	change_value[2] = -25;
+	change_value[2] = -100;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = 25;
 	visual = "ItRwCrossbow1.mms";
@@ -759,5 +759,6 @@ instance ItAmBoltPack(C_Item)
 };
 func void useboltpack()
 {
+	Print(item.name);
 	CreateInvItems(self,ItAmBolt,100);
 };
