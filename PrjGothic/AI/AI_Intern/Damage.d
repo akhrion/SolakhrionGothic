@@ -12,9 +12,10 @@
 // item - орудие убийства (может быть null)
 func int OnDamage_Hit(var int damageTotal)
 {
+    Print(item.name);
 	if(Npc_IsPlayer(self))
 	{
-		return 152;
+		return -152;
 	};
     if(Npc_IsPlayer(victim))
     {
