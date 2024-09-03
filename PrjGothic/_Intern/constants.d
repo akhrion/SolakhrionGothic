@@ -12,6 +12,7 @@ const int ATR_REGENERATEMANA = 7;
 const int ATR_INDEX_MAX = 8;
 const int NPC_FLAG_FRIEND = 1;
 const int NPC_FLAG_IMMORTAL = 2;
+const int NPC_FLAG_NFOCUS = 1 << 18;	//При поддержке zNoFocusFlag.vdf делает НПС антаргет.
 const int FMODE_NONE = 0;
 const int FMODE_FIST = 1;
 const int FMODE_MELEE = 2;
