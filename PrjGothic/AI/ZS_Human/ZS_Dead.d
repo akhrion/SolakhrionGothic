@@ -26,13 +26,17 @@ func void ZS_Dead()
 		B_ExchangeRoutine(GRD_251_Kirgo,"START");
 		B_ExchangeRoutine(Sld_729_Kharim,"START");
 	};
-	if(Npc_IsPlayer(self) && (PLAYERINARENA == TRUE))
+	if(Npc_IsPlayer(self))
 	{
-		PLAYERINARENA = FALSE;
-		Wld_SendTrigger("OC_ARENA_GATE");
-		B_ExchangeRoutine(Tpl_1422_GorHanis,"START");
-		B_ExchangeRoutine(GRD_251_Kirgo,"START");
-		B_ExchangeRoutine(Sld_729_Kharim,"START");
+		cDeath +=1;
+		if(PLAYERINARENA == TRUE)
+		{
+			PLAYERINARENA = FALSE;
+			Wld_SendTrigger("OC_ARENA_GATE");
+			B_ExchangeRoutine(Tpl_1422_GorHanis,"START");
+			B_ExchangeRoutine(GRD_251_Kirgo,"START");
+			B_ExchangeRoutine(Sld_729_Kharim,"START");
+		};
 	};
 	if(Npc_IsPlayer(other) || (C_NpcIsHuman(other) && other.aivar[AIV_PARTYMEMBER]) || (C_NpcIsMonster(other) && other.aivar[AIV_MM_PARTYMEMBER]))
 	{

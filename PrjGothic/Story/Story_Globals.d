@@ -747,6 +747,12 @@ func void InitFoodPrice()
 	Value_Plants_Dragonroot_01 = 20;
 };
 
+var int iSaves;
+var int iLoadings;
+var int iDeath;
+const int cSaves = 0;
+const int cLoadings = 0;
+const int cDeath = 0;
 
 var int PC_Temporal_Haste_TimeEnd_Timestamp;
 

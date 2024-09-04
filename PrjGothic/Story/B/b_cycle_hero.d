@@ -692,5 +692,6 @@ func void b_cycle60_hero()
 {
 	if(Npc_IsDead(hero)){return;};
 	Haste(hero);
+	Counters();
 	// temporalEffects60(hero);
 };
