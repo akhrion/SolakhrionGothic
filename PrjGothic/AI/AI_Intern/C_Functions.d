@@ -1235,6 +1235,11 @@ func int Npc_IsHealedOnIterat(var C_Npc npc)
 
 func void Npc_InitParameters(var C_Npc npc)
 {
+	//entrypoints:
+	//CharacterHelper
+	//B_Cycle_NPC
+	//B_GiveXP
+	
 	if(akh_Mod)
 	{
 		if(
