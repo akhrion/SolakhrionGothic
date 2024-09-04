@@ -1,9 +1,10 @@
 func void GameRules_f()
 {
 	Log_CreateTopic(GAMERULES,LOG_NOTE);
-	Log_AddEntry(GAMERULES,"");
 	Log_AddEntry(GAMERULES,"Ловкость: Отражает вероятность попадания из стрелкового оружия - 100 ловкости = 100% попадания.");
+	Log_AddEntry(GAMERULES,"Тип урона: У разного оружия разный тип урона. К тому-же он может быть смешанным и получается, хотя у выбранного вами оружия потенциальный урон и больше - это не значит, что цель получит урона больше. Ориентируйтесь на внешний вид оружия, что-бы понять какой у него урон превалирует.");
 };
+
 func void NG_InitVariables()        //Variables initialisation on New Game starting
 {
     PC_Knowledge_Scavenger = 0;
@@ -35,6 +36,7 @@ func void LOADING_InitVariables_PC()    //По сути эту функцию можно вызывать из 
 
 func void LOADING_InitVariables()   //Variables initialisation on a Loading game
 {
+	cLoadings +=1;
 };
 
 func void LOADING_InitHaste_PC()
@@ -2024,6 +2026,7 @@ func void init_world()
 	initplayerbody(3);
 	LOADING_InitVariables();
 	LOADING_InitHaste_PC();
+	GameAchivements();
 };
 
 func void startup_world()
