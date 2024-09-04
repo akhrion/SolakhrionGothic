@@ -8,7 +8,7 @@ func int Spell_Logic_Fireball(var int manaInvested)
 		var int magPower;
 		if(!magPower)
 		{
-			Print("init");
+			Print("akh_Mod init");
 			magPower = self.attribute[ATR_MANA] * Npc_GetTalentSkill(self,NPC_TALENT_MAGE);
 			Npc_GetTarget(self);
 			Spl_Mana_For_Target_Death = other.attribute[ATR_HITPOINTS] / Spell_Fireball.damage_per_level +1;
