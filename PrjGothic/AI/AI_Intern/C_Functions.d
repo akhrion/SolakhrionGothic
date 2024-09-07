@@ -1,3 +1,48 @@
+func void Npc_ClearImmortal(var int npcInstance)
+{
+	var C_Npc npc;
+	PrintDebugNpc(PD_ZS_DETAIL,"Npc_ClearImmortal");
+	npc = Hlp_GetNpc(npcInstance);
+	if(npc.flags & NPC_FLAG_IMMORTAL)
+	{
+		npc.flags = npc.flags - NPC_FLAG_IMMORTAL;
+	};
+};
+
+func void Npc_SetImmortal(var int npcInstance,var int bool)
+{
+	var C_Npc npc;
+	PrintDebugNpc(PD_ZS_DETAIL,"Npc_SetImmortal");
+	npc = Hlp_GetNpc(npcInstance);
+
+	if(
+		bool
+	&&	((npc.flags & NPC_FLAG_IMMORTAL) == 0)
+	)
+	{
+		npc.flags = npc.flags | NPC_FLAG_IMMORTAL;
+	}
+	else if(
+		!bool
+	&&	npc.flags & NPC_FLAG_IMMORTAL
+	)
+	{
+		npc.flags = npc.flags - NPC_FLAG_IMMORTAL;
+	};
+};
+
+func int Npc_IsUntargetable(var C_Npc npc)
+{
+	return npc.flags & NPC_FLAG_NFOCUS;
+};
+func void Npc_MakeTargetable(var C_Npc npc)
+{
+	if(npc.flags & NPC_FLAG_NFOCUS){npc.flags -= NPC_FLAG_NFOCUS;};
+};
+func void Npc_MakeUnTargetable(var C_Npc npc)
+{
+	if(!Npc_IsUntargetable(npc)){npc.flags = npc.flags | NPC_FLAG_NFOCUS;};
+};
 
 func int C_AmIStronger(var C_Npc slf,var C_Npc oth)
 {
@@ -1206,6 +1251,7 @@ func void Npc_RescaleMana(var C_Npc npc)
 
 func void Npc_RescaleProtections(var C_Npc npc)
 {
+	//Атрибут Сила прибавляется к защите от дробящего урона
 	if(Npc_HasEquippedArmor(npc))
 	{
 		var C_Item armor;
@@ -1239,7 +1285,7 @@ func void Npc_InitParameters(var C_Npc npc)
 	//CharacterHelper
 	//B_Cycle_NPC
 	//B_GiveXP
-	
+
 	if(akh_Mod)
 	{
 		if(
@@ -1274,10 +1320,10 @@ func void Npc_InitParameters(var C_Npc npc)
 			};
 			return;
 		};
-		Npc_RescaleMana(npc);
+		// Npc_RescaleMana(npc);
 		Npc_RescaleHitpoints(npc);
 		Npc_RescaleProtections(npc);
-		Npc_RescaleCriticalChance(npc);
+		// Npc_RescaleCriticalChance(npc);
 	};
 };
 func int Npc_GetMagicPower(var C_Npc npc)
@@ -1599,6 +1645,21 @@ func void Npc_IWasLightedByOther()
 ////////////////////////////////////////////////////////////////////////////////
 func void SpecBehavior()
 {
+	if(
+        self.guild == GIL_SCAVENGER
+    )
+    {
+        if(self.spawnDelay)
+        {
+            self.spawnDelay -=1;
+        }
+        else
+        {
+			Npc_SetImmortal(self,false);
+            Npc_MakeTargetable(self);
+        };
+    };
+
 	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPFLY)
 	{
 		Print("шершонь");
@@ -1822,4 +1883,3 @@ func void DAILYHELLO()
 		Snd_Play("LevelUp");
 	};
 };
-

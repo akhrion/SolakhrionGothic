@@ -49,6 +49,7 @@ func void ZS_Dead()
 			B_LevelUp_NPC(other);
 		};
 	};
+	ezRespawn();
 	if(C_NpcIsMonster(self))
 	{
 		B_GiveDeathInv();

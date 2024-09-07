@@ -1,7 +1,7 @@
 
 func int C_PreyToPredator(var C_Npc prey,var C_Npc predator)
 {
-	Print("preytopredator");
+	// Print("preytopredator");
 	PrintDebugNpc(PD_MST_FRAME,"C_PreyToPredator");
 	if(other.level >= self.level * 2)
 	{
@@ -588,10 +588,56 @@ func void B_MM_AssessWarn()
 
 
 };
+func void ZS_ezRespawn_EatGround()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_ezRespawn_EatGround");
+	Npc_SetPercTime(self,2);
+	self.aivar[AIV_PLUNDERED] = PRIO_PREY;
+	Npc_PercEnable(self,PERC_ASSESSBODY,B_MM_AssessBody);
+	AI_SetWalkMode(self,NPC_WALK);
+	B_MM_DeSynchronize();
+	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == FALSE)
+	{
+		AI_GotoWP(self,self.wp);
+	};
+	if(Wld_IsFPAvailable(self,"FP_ROAM"))
+	{
+		AI_GotoFP(self,"FP_ROAM");
+	};
+	AI_PlayAni(self,"T_STAND_2_EAT");
+	Mdl_ApplyRandomAni(self,"S_EAT","R_ROAM1");
+	Mdl_ApplyRandomAni(self,"S_EAT","R_ROAM2");
+	Mdl_ApplyRandomAni(self,"S_EAT","R_ROAM3");
+	Mdl_ApplyRandomAniFreq(self,"S_EAT",8);
+};
+
+func void ZS_ezRespawn_EatGround_Loop()
+{
+	PrintDebugNpc(PD_MST_LOOP,"ZS_ezRespawn_EatGround_Loop");
+	B_Cycle_NPC();
+	if(!Npc_IsUntargetable(self))
+	{
+		AI_StartState(self,ZS_MM_AllScheduler,1,"");
+	};
+	if(!Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],0) && (self.aivar[AIV_MM_EatGroundStart] != OnlyRoutine))
+	{
+		AI_StartState(self,ZS_MM_AllScheduler,1,"");
+	};
+};
+
+func void ZS_ezRespawn_EatGround_End()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_ezRespawn_EatGround_End");
+	AI_PlayAni(self,"T_EAT_2_STAND");
+};
 
 func void ZS_MM_AllScheduler()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_AllScheduler");
+	if(Npc_IsUntargetable(self))
+	{
+		AI_StartState(self,ZS_ezRespawn_EatGround,0,"");
+	};
 	if(Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) || (self.aivar[AIV_MM_SleepStart] == OnlyRoutine))
 	{
 		// Print("ZS_MM_Rtn_Sleep");

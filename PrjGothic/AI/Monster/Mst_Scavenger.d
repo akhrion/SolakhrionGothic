@@ -33,6 +33,7 @@ prototype Mst_Default_Scavenger(C_Npc)
 	aivar[AIV_MM_SleepEnd] = 6;
 	aivar[AIV_MM_EatGroundStart] = 6;
 	aivar[AIV_MM_EatGroundEnd] = 22;
+	spawnDelay = 60;
 };
 
 func void Set_Scavenger_Visuals()
