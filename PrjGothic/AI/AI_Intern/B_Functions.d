@@ -340,9 +340,9 @@ func void B_ClearImmortal(var int npcInstance)
 	var C_Npc npc;
 	PrintDebugNpc(PD_ZS_DETAIL,"B_ClearImmortal");
 	npc = Hlp_GetNpc(npcInstance);
-	if(npc.flags == NPC_FLAG_IMMORTAL)
+	if(npc.flags & NPC_FLAG_IMMORTAL)
 	{
-		npc.flags = 0;
+		npc.flags = npc.flags - NPC_FLAG_IMMORTAL;
 	};
 };
 
