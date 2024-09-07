@@ -94,6 +94,45 @@ func void ZS_MM_EatBody_end()
 	AI_PlayAni(self,"T_EAT_2_STAND");
 };
 
+func void ZS_MM_EatLureMeat()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_EatLureMeat");
+	Npc_SetPercTime(self,1);
+	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
+	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
+	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
+	Npc_PercEnable(self,PERC_OBSERVEINTRUDER,B_MM_ObserveIntruder);
+	Npc_PercEnable(self,PERC_ASSESSENEMY,B_MM_ObserveIntruder);
+	// Wld_DetectItem(self,ITEM_KAT_FOOD);
+	AI_GotoItem(self,item);
+	AI_PlayAni(self,"T_STAND_2_EAT");
+};
+
+func int ZS_MM_EatLureMeat_loop()
+{
+	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_EatLureMeat_loop");
+	Print("ZS_MM_EatLureMeat");
+	if(Npc_GetStateTime(self) > 5)
+	{
+		Wld_RemoveItem(ItFoMuttonRaw);
+		// if(Wld_DetectItem(self,ITEM_KAT_FOOD))
+		// {
+		// 	if(Hlp_GetInstanceID(item) == Hlp_GetInstanceID(ItFoMuttonRaw))
+		// 	{
+
+		// 	};
+		// };
+		return LOOP_END;
+	};
+	return LOOP_CONTINUE;
+};
+
+func void ZS_MM_EatLureMeat_end()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_EatLureMeat_end");
+	AI_PlayAni(self,"T_EAT_2_STAND");
+};
+
 func void B_MM_AssessEnemy()
 {
 
@@ -855,15 +894,27 @@ func int ZS_MM_Rtn_Roam_loop()
 	};
 	if(self.aivar[AIV_MM_REAL_ID] == ID_WOLF)
 	{
-		if(Wld_DetectItem(self,ITEM_KAT_FOOD))
+		if(
+			Wld_DetectItem(self,ITEM_KAT_FOOD)
+		)
 		{
-			PrintSIS("Food founded..",0,item.name);
-
-			return LOOP_CONTINUE;
-		}
-		else
-		{
-			var int i;
+			if(Hlp_StrCmp(item.name,ItFoMuttonRaw.name))
+			{
+				PrintSIS("Food founded..",Hlp_StrCmp(item.name,ItFoMuttonRaw.name),item.name);
+				if(Npc_GetDistToItem(self,item) > 100)
+				{
+					Npc_ClearAIQueue(self);
+					AI_GotoItem(self,item);
+					Print("ZS_MM_EatLureMeat_Start");
+					AI_StartState(self,ZS_MM_EatLureMeat,0,"");
+					return LOOP_CONTINUE;
+				}
+				else
+				{
+					Print("ZS_MM_EatLureMeat_Start...........");
+					AI_StartState(self,ZS_MM_EatLureMeat,0,"");
+				};
+			};
 		};
 	};
 	if(Hlp_Random(100) <= 20)
@@ -965,7 +1016,7 @@ func void ZS_MM_Rtn_EatGround()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_EatGround");
 	Npc_SetPercTime(self,2);
-	self.aivar[AIV_PLUNDERED] = PRIO_PREY;
+	self.aivar[AIV_MM_TEMP_PRIO] = PRIO_PREY;
 	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_ReactToOthersDamage);
