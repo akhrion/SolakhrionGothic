@@ -62,7 +62,9 @@ func void DropLure()
 
 func void DropLure_ItFoMuttonRaw()
 {
-	AI_DropItem(self,ItFoMuttonRaw);
+	CreateInvItem(self,ItBlankMuttonRaw);
+	AI_DropItem(self,ItBlankMuttonRaw);
+	Npc_RemoveInvItem(self,ItFoMuttonRaw);
 	PC_MenuClose(MOBSI_PC_MenuEND);
 };
 

@@ -132,6 +132,20 @@ instance ItFoMuttonRaw(C_Item)
 	count[5] = Value_MuttonRaw;
 };
 
+instance ItBlankMuttonRaw(C_Item)
+{
+	name = "Сырое мясо (приманка)";
+	mainflag = ITEM_KAT_NONE;
+	value = 0;
+	visual = "ItFo_RawMutton_01.3ds";
+	scemeName = "MEAT";
+	description = name;
+	text[1] = NAME_Bonus_HP;
+	count[1] = -HP_FleischRoh;
+	text[5] = NAME_Value;
+	count[5] = Value_MuttonRaw;
+};
+
 
 func void UseMuttonRaw()
 {
