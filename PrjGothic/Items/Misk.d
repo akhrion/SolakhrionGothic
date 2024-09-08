@@ -879,6 +879,23 @@ func void usefakeitem2()
 
 
 
+instance GameObject_OpenActionsMenu(C_Item)
+{
+	name = "Открыть меню действий";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItMw_1H_Sword_Short_01.3DS";
+	material = MAT_LEATHER;
+	scemeName = "MAP";
+	on_state[0] = UseGameObject_OpenActionsMenu;
+	description = name;
+};
+func void UseGameObject_OpenActionsMenu()
+{
+	PC_MenuOpen(MOBSI_PC_Menu);
+};
+
 instance ChangeWeaponHand(C_Item)
 {
 	name = "Изменить хват оружия";

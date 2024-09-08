@@ -39,12 +39,47 @@ func int PC_Menu_Condition()
 };
 func void PC_Menu_Info()
 {
-    if(hero.attribute[ATR_STRENGTH] > 20)
+	Info_AddChoice(PC_Menu,"ЗАКРЫТЬ.",PC_Menu_EXIT_Info);
+    if(
+		// функция возвращающая ИСТИНА если персонаж имеет разбираемый предмет
+		hero.attribute[ATR_STRENGTH] > 20
+	)
     {
         Info_AddChoice(PC_Menu,"Разобрать предмет",Disassemble_NailMace);
-
     };
+	Info_AddChoice(PC_Menu,"Бросить приманку",DropLure);
 };
+
+
+
+func void DropLure()
+{
+	if(Npc_HasItems(self,ItFoMuttonRaw))
+	{
+		Info_AddChoice(PC_Menu,"Бросить сырое мясо",DropLure_ItFoMuttonRaw);
+	};
+};
+
+func void DropLure_ItFoMuttonRaw()
+{
+	var int amount;
+	amount = Npc_HasItems(self,ItFoMuttonRaw);
+	AI_DropItem(self,ItFoMuttonRaw);
+
+	var int amountLost;
+	amountLost = amount - Npc_HasItems(self,ItFoMuttonRaw);
+
+	var int debugAmount;
+	debugAmount = amountLost - 1;
+	CreateInvItems(self,ItFoMuttonRaw,debugAmount);
+
+	PC_MenuClose(MOBSI_PC_MenuEND);
+};
+
+
+
+
+
 func void Disassemble_NailMace()
 {
     Npc_RemoveInvItem(hero,ItMw_1H_Nailmace_01);
