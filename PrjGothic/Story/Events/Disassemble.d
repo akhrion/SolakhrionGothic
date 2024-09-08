@@ -62,17 +62,7 @@ func void DropLure()
 
 func void DropLure_ItFoMuttonRaw()
 {
-	var int amount;
-	amount = Npc_HasItems(self,ItFoMuttonRaw);
 	AI_DropItem(self,ItFoMuttonRaw);
-
-	var int amountLost;
-	amountLost = amount - Npc_HasItems(self,ItFoMuttonRaw);
-
-	var int debugAmount;
-	debugAmount = amountLost - 1;
-	CreateInvItems(self,ItFoMuttonRaw,debugAmount);
-
 	PC_MenuClose(MOBSI_PC_MenuEND);
 };
 
