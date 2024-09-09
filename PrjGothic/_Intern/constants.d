@@ -284,3 +284,5 @@ const int PC_DIALOG_INPUTMANUAL_SHOW_X = 0;
 const int PC_DIALOG_INPUTMANUAL_SHOW_Y = 50;
 
 const int DAILYHELLOUSER = 1;
+
+const int DIST_AI_GotoItem = 240;		//Тестировалось на волках.. они не подходят к объекту ближе чем на 220. Чтобы запомнить эту величину и не дебажить повторно 5 часов, была создана эта константа. Изменение этой константы не влияет на функцию AI_GotoItem. Реальная дистанция функция AI_GotoItem контролируется движком, а я не могу на него повлиять.
