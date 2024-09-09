@@ -114,13 +114,16 @@ func int ZS_MM_EatLureMeat_loop()
 	PrintI(Npc_GetStateTime(self));
 	if(Npc_GetStateTime(self) > 5)
 	{
+		//Анимация поедания длится долго
 		Npc_PerceiveAll(self);
 		if(
 			Wld_DetectItem(self,ITEM_KAT_FOOD)
 		)
 		{
+			//Поиск еды
 			if(Hlp_IsItem(item,ItBlankMuttonRaw))
 			{
+				//Удаление еды и завершение анимации
 				Wld_RemoveItem(item);
 				return LOOP_END;
 			};
@@ -870,24 +873,34 @@ func void ZS_MM_MoveToFoundedFood()
 	Npc_SetPercTime(self,1);
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();
-	Npc_PerceiveAll(self);
 };
 func int ZS_MM_MoveToFoundedFood_Loop()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_MoveToFoundedFood_Loop");
 	B_Cycle_NPC();
-	var int bs;
-	bs = Npc_GetBodyState(self);
 	if(Npc_GetStateTime(self) > 10)
 	{
 		return LOOP_END;
 	};
-	if(
-		Npc_GetStateTime(self) > 2
-	&&	bs == BS_STAND
-	)
+	Npc_PerceiveAll(self);
+	if(Wld_DetectItem(self,ITEM_KAT_FOOD))
 	{
-		AI_StartState(self,ZS_MM_EatLureMeat,0,"");
+		//Поиск еды
+		if(
+			Hlp_IsItem(item,ItBlankMuttonRaw)
+		)
+		{
+			//Найдено мясо
+			if(Npc_GetDistToItem(self,item) > DIST_AI_GotoItem)
+			{
+				AI_GotoItem(self,item);
+			}
+			else
+			{
+				AI_StartState(self,ZS_MM_EatLureMeat,0,"");
+				return LOOP_END;
+			};
+		};
 	};
 	return LOOP_CONTINUE;
 };
@@ -932,29 +945,25 @@ func int ZS_MM_Rtn_Roam_loop()
 		Npc_PerceiveAll(self);
 		if(Wld_DetectItem(self,ITEM_KAT_FOOD))
 		{
-			// if(Hlp_StrCmp(item.name,ItBlankMuttonRaw.name))
+			//Волк ищет еду
 			if(
 				Hlp_IsValidItem(item)
 			&&	Hlp_IsItem(item,ItBlankMuttonRaw)
-				// Hlp_GetInstanceID(item) == Hlp_GetInstanceID(ItBlankMuttonRaw)
 			)
 			{
-				PrintSIS("wolf dropped..",Hlp_GetInstanceID(item),item.name);
-				// PrintSIS("Food founded..",Hlp_StrCmp(item.name,ItFoMuttonRaw.name),item.name);
+				//Волк нашёл еду
 				if(Npc_GetDistToItem(self,item) > DIST_AI_GotoItem)
 				{
-					// Npc_ClearAIQueue(self);
+					//Волк идёт к еде, которая далеко
 					AI_GotoItem(self,item);
-					// Wld_RemoveItem(item);
-					// AI_Wait(self,5);
-					// AI_StartState(self,ZS_MM_MoveToFoundedFood,0,"");
-					PrintSIS("wolf GotoItem..",0,item.name);
-					return LOOP_CONTINUE;
+					AI_StartState(self,ZS_MM_MoveToFoundedFood,0,"");
+					return LOOP_END;
 				}
 				else
 				{
-					Print("ZS_MM_EatLureMeat_Start...........");
+					//Волк ест
 					AI_StartState(self,ZS_MM_EatLureMeat,0,"");
+					return LOOP_END;
 				};
 			};
 		};
