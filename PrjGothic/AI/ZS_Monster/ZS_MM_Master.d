@@ -943,6 +943,7 @@ func int ZS_MM_Rtn_Roam_loop()
 	};
 	if(self.aivar[AIV_MM_REAL_ID] == ID_WOLF)
 	{
+		Npc_RandomizeHungry(self);
 		Npc_PerceiveAll(self);
 		if(
 			Npc_IsHungry(self)
