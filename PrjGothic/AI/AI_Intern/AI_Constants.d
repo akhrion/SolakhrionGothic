@@ -66,6 +66,7 @@ const int AIV_FREEMAN_HASTE1 = 1 << 7;
 const int AIV_FREEMAN_RUNHEAVY = 1 << 8;
 const int AIV_FREEMAN_RUNNORMAL = 1 << 9;
 const int AIV_FREEMAN_WOUNDED = 1 << 10;
+const int AIV_FREEMAN_HUNGRY = 1 << 11;
 const int npctype_ambient = 0;
 const int npctype_main = 1;
 const int npctype_guard = 2;

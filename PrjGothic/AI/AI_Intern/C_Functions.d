@@ -1885,5 +1885,16 @@ func void DAILYHELLO()
 };
 func int Npc_IsHungry(var C_Npc npc)
 {
-	return Hlp_Random(10) < 1;
+	if(
+		npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_HUNGRY == 0
+	)
+	{
+		if(Hlp_Random(100) < HUNGRY_PROBABILITY)
+		{
+			npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_HUNGRY;
+			return true;
+		};
+		return false;
+	};
+	return true;
 };
