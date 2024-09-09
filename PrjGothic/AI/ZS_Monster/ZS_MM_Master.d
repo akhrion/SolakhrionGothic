@@ -943,7 +943,10 @@ func int ZS_MM_Rtn_Roam_loop()
 	if(self.aivar[AIV_MM_REAL_ID] == ID_WOLF)
 	{
 		Npc_PerceiveAll(self);
-		if(Wld_DetectItem(self,ITEM_KAT_FOOD))
+		if(
+			Npc_IsHungry(self)
+		&&	Wld_DetectItem(self,ITEM_KAT_FOOD)
+		)
 		{
 			//Волк ищет еду
 			if(

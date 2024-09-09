@@ -1883,3 +1883,7 @@ func void DAILYHELLO()
 		Snd_Play("LevelUp");
 	};
 };
+func int Npc_IsHungry(var C_Npc npc)
+{
+	return Hlp_Random(10) < 1;
+};
