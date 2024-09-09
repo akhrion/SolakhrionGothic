@@ -1886,7 +1886,7 @@ func void DAILYHELLO()
 func int Npc_IsHungry(var C_Npc npc)
 {
 	if(
-		npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_HUNGRY == 0
+		(npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_HUNGRY) == 0
 	)
 	{
 		if(Hlp_Random(100) < HUNGRY_PROBABILITY)
@@ -1897,4 +1897,18 @@ func int Npc_IsHungry(var C_Npc npc)
 		return false;
 	};
 	return true;
+};
+func void Npc_SetHungry(var C_Npc npc, var int bool)
+{
+	if(bool)
+	{
+		if(!Npc_IsHungry(npc))
+		{
+			npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_HUNGRY;
+		};
+	}
+	else if(Npc_IsHungry(npc))
+	{
+		npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_HUNGRY;
+	};
 };

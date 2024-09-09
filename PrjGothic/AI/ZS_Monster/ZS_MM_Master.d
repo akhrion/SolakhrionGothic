@@ -125,6 +125,7 @@ func int ZS_MM_EatLureMeat_loop()
 			{
 				//Удаление еды и завершение анимации
 				Wld_RemoveItem(item);
+				Npc_SetHungry(self,false);
 				return LOOP_END;
 			};
 		};
