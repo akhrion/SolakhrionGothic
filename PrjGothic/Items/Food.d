@@ -135,7 +135,7 @@ instance ItFoMuttonRaw(C_Item)
 instance ItBlankMuttonRaw(C_Item)
 {
 	name = "Сырое мясо (приманка)";
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_FOOD;
 	value = 0;
 	visual = "ItFo_RawMutton_01.3ds";
 	scemeName = "MEAT";

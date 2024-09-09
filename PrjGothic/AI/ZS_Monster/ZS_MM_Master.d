@@ -103,25 +103,17 @@ func void ZS_MM_EatLureMeat()
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_OBSERVEINTRUDER,B_MM_ObserveIntruder);
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_MM_ObserveIntruder);
-	// Wld_DetectItem(self,ITEM_KAT_FOOD);
-	AI_GotoItem(self,item);
+	Npc_PerceiveAll(self);
 	AI_PlayAni(self,"T_STAND_2_EAT");
 };
 
 func int ZS_MM_EatLureMeat_loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_EatLureMeat_loop");
-	Print("ZS_MM_EatLureMeat");
-	if(Npc_GetStateTime(self) > 5)
+	B_Cycle_NPC();
+	if(Npc_GetStateTime(self) > 10)
 	{
-		Wld_RemoveItem(ItFoMuttonRaw);
-		// if(Wld_DetectItem(self,ITEM_KAT_FOOD))
-		// {
-		// 	if(Hlp_GetInstanceID(item) == Hlp_GetInstanceID(ItFoMuttonRaw))
-		// 	{
-
-		// 	};
-		// };
+		Wld_RemoveItem(ItBlankMuttonRaw);
 		return LOOP_END;
 	};
 	return LOOP_CONTINUE;
@@ -861,6 +853,40 @@ func void ZS_MM_Rtn_Sleep_end()
 	AI_PlayAniBS(self,"T_SLEEP_2_STAND",BS_STAND);
 };
 
+func void ZS_MM_MoveToFoundedFood()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_MoveToFoundedFood");
+	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
+	Npc_SetPercTime(self,1);
+	AI_SetWalkMode(self,NPC_WALK);
+	B_MM_DeSynchronize();
+	Npc_PerceiveAll(self);
+};
+func int ZS_MM_MoveToFoundedFood_Loop()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_MoveToFoundedFood_Loop");
+	B_Cycle_NPC();
+	var int bs;
+	bs = Npc_GetBodyState(self);
+	if(Npc_GetStateTime(self) > 10)
+	{
+		return LOOP_END;
+	};
+	if(
+		Npc_GetStateTime(self) > 2
+	&&	bs == BS_STAND
+	)
+	{
+		AI_StartState(self,ZS_MM_EatLureMeat,0,"");
+	};
+	return LOOP_CONTINUE;
+};
+func void ZS_MM_MoveToFoundedFood_End()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_MoveToFoundedFood_End");
+};
+
+
 func void ZS_MM_Rtn_Roam()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_Roam");
@@ -894,20 +920,22 @@ func int ZS_MM_Rtn_Roam_loop()
 	};
 	if(self.aivar[AIV_MM_REAL_ID] == ID_WOLF)
 	{
-		if(
-			Wld_DetectItem(self,ITEM_KAT_FOOD)
-		)
+		if(Wld_DetectItem(self,ITEM_KAT_FOOD))
 		{
-			if(Hlp_StrCmp(item.name,ItFoMuttonRaw.name))
+			// if(Hlp_StrCmp(item.name,ItBlankMuttonRaw.name))
+			if(
+				Hlp_IsValidItem(item)
+			&&	Hlp_IsItem(item,ItBlankMuttonRaw)
+				// Hlp_GetInstanceID(item) == Hlp_GetInstanceID(ItBlankMuttonRaw)
+			)
 			{
-				PrintSIS("Food founded..",Hlp_StrCmp(item.name,ItFoMuttonRaw.name),item.name);
-				if(Npc_GetDistToItem(self,item) > 100)
+				// PrintSIS("Food founded..",Hlp_StrCmp(item.name,ItFoMuttonRaw.name),item.name);
+				if(Npc_GetDistToItem(self,item) > DIST_AI_GotoItem)
 				{
 					Npc_ClearAIQueue(self);
 					AI_GotoItem(self,item);
-					Print("ZS_MM_EatLureMeat_Start");
-					AI_StartState(self,ZS_MM_EatLureMeat,0,"");
-					return LOOP_CONTINUE;
+					PrintSIS("aaaaaaaaaaaa",0,item.name);
+					AI_StartState(self,ZS_MM_MoveToFoundedFood,0,"");
 				}
 				else
 				{

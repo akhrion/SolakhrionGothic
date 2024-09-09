@@ -39,6 +39,7 @@ func int PC_Menu_Condition()
 };
 func void PC_Menu_Info()
 {
+	Info_ClearChoices(PC_Menu);
 	Info_AddChoice(PC_Menu,"ЗАКРЫТЬ.",PC_Menu_EXIT_Info);
     if(
 		// функция возвращающая ИСТИНА если персонаж имеет разбираемый предмет
