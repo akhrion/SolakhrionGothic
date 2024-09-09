@@ -103,7 +103,6 @@ func void ZS_MM_EatLureMeat()
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_OBSERVEINTRUDER,B_MM_ObserveIntruder);
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_MM_ObserveIntruder);
-	Npc_PerceiveAll(self);
 	AI_PlayAni(self,"T_STAND_2_EAT");
 };
 
@@ -111,10 +110,21 @@ func int ZS_MM_EatLureMeat_loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_EatLureMeat_loop");
 	B_Cycle_NPC();
-	if(Npc_GetStateTime(self) > 10)
+
+	PrintI(Npc_GetStateTime(self));
+	if(Npc_GetStateTime(self) > 5)
 	{
-		Wld_RemoveItem(ItBlankMuttonRaw);
-		return LOOP_END;
+		Npc_PerceiveAll(self);
+		if(
+			Wld_DetectItem(self,ITEM_KAT_FOOD)
+		)
+		{
+			if(Hlp_IsItem(item,ItBlankMuttonRaw))
+			{
+				Wld_RemoveItem(item);
+				return LOOP_END;
+			};
+		};
 	};
 	return LOOP_CONTINUE;
 };
@@ -923,19 +933,20 @@ func int ZS_MM_Rtn_Roam_loop()
 		if(Wld_DetectItem(self,ITEM_KAT_FOOD))
 		{
 			// if(Hlp_StrCmp(item.name,ItBlankMuttonRaw.name))
-			PrintSIS("wolf dropped..",Hlp_GetInstanceID(item),item.name);
 			if(
 				Hlp_IsValidItem(item)
 			&&	Hlp_IsItem(item,ItBlankMuttonRaw)
 				// Hlp_GetInstanceID(item) == Hlp_GetInstanceID(ItBlankMuttonRaw)
 			)
 			{
+				PrintSIS("wolf dropped..",Hlp_GetInstanceID(item),item.name);
 				// PrintSIS("Food founded..",Hlp_StrCmp(item.name,ItFoMuttonRaw.name),item.name);
 				if(Npc_GetDistToItem(self,item) > DIST_AI_GotoItem)
 				{
-					Npc_ClearAIQueue(self);
+					// Npc_ClearAIQueue(self);
 					AI_GotoItem(self,item);
-					AI_Wait(self,5);
+					// Wld_RemoveItem(item);
+					// AI_Wait(self,5);
 					// AI_StartState(self,ZS_MM_MoveToFoundedFood,0,"");
 					PrintSIS("wolf GotoItem..",0,item.name);
 					return LOOP_CONTINUE;
