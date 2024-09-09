@@ -902,7 +902,6 @@ func void ZS_MM_Rtn_Roam()
 	Npc_PercEnable(self,PERC_ASSESSBODY,B_MM_AssessBody);
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();
-	Npc_PerceiveAll(self);
 	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == FALSE)
 	{
 		AI_GotoWP(self,self.wp);
@@ -920,9 +919,11 @@ func int ZS_MM_Rtn_Roam_loop()
 	};
 	if(self.aivar[AIV_MM_REAL_ID] == ID_WOLF)
 	{
+		Npc_PerceiveAll(self);
 		if(Wld_DetectItem(self,ITEM_KAT_FOOD))
 		{
 			// if(Hlp_StrCmp(item.name,ItBlankMuttonRaw.name))
+			PrintSIS("wolf dropped..",Hlp_GetInstanceID(item),item.name);
 			if(
 				Hlp_IsValidItem(item)
 			&&	Hlp_IsItem(item,ItBlankMuttonRaw)
@@ -934,8 +935,10 @@ func int ZS_MM_Rtn_Roam_loop()
 				{
 					Npc_ClearAIQueue(self);
 					AI_GotoItem(self,item);
-					PrintSIS("aaaaaaaaaaaa",0,item.name);
-					AI_StartState(self,ZS_MM_MoveToFoundedFood,0,"");
+					AI_Wait(self,5);
+					// AI_StartState(self,ZS_MM_MoveToFoundedFood,0,"");
+					PrintSIS("wolf GotoItem..",0,item.name);
+					return LOOP_CONTINUE;
 				}
 				else
 				{
@@ -972,12 +975,14 @@ func int ZS_MM_Rtn_Roam_loop()
 			AI_PlayAni(self,"R_ROAM3");
 		};
 	};
-	return LOOP_END;
+	return LOOP_CONTINUE;
+	// return LOOP_END;
 };
 
 func void ZS_MM_Rtn_Roam_end()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_Roam_end");
+	PrintSIS("wolf ZS_MM_Rtn_Roam_end..",0,item.name);
 };
 
 func void ZS_MM_Rtn_Rest()
