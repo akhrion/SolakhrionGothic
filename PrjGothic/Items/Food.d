@@ -19,6 +19,7 @@ instance ItAt_Meatbug_01(C_Item)
 
 func void UseBugmeat()
 {
+	Food_ChangeNpcRegen(item,self);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Bugmeat);
 };
 
@@ -43,7 +44,8 @@ instance ItFoApple(C_Item)
 
 func void UseApple()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Apfel);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Apfel);
 };
 
 
@@ -66,7 +68,8 @@ instance ItFo_wineberrys_01(C_Item)
 
 func void Usewineberrys()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Weintrauben);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Weintrauben);
 };
 
 
@@ -89,7 +92,8 @@ instance ItFoLoaf(C_Item)
 
 func void UseLoaf()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Brot);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Brot);
 };
 
 
@@ -112,7 +116,8 @@ instance ItFoMutton(C_Item)
 
 func void UseMutton()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Fleisch);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Fleisch);
 };
 
 
@@ -149,7 +154,8 @@ instance ItBlankMuttonRaw(C_Item)
 
 func void UseMuttonRaw()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_FleischRoh);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_FleischRoh);
 };
 
 
@@ -172,7 +178,8 @@ instance ItFo_mutton_01(C_Item)
 
 func void UseMutton1()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Schinken);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Schinken);
 };
 
 
@@ -195,7 +202,8 @@ instance ItFoCheese(C_Item)
 
 func void UseCheese()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Kдse);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Kдse);
 };
 
 
@@ -218,7 +226,8 @@ instance ItFoRice(C_Item)
 
 func void UseRice()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Reis);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Reis);
 };
 
 
@@ -241,7 +250,8 @@ instance ItFoWurzelsuppe(C_Item)
 
 func void UseSoup()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wurzelsuppe);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wurzelsuppe);
 };
 
 
@@ -265,7 +275,8 @@ instance ItFoMeatbugragout(C_Item)
 
 func void UseMeatbugragout()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Ragout);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Ragout);
 };
 
 
@@ -289,7 +300,8 @@ instance ItFoCrawlersoup(C_Item)
 
 func void UseCrawlersoup()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_CrawlerSuppe);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_CrawlerSuppe);
 };
 
 
@@ -313,7 +325,8 @@ instance ItFo_Potion_Water_01(C_Item)
 
 func void UseWaterPotion()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Water);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Water);
 	//Ускоряет регенерацию ХП на час.
 	//Если вода не чистая, то есть возможность заболеть.
 };
@@ -377,7 +390,8 @@ func void UseBooze()
 	{
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_DRUNKEN.MDS",50000);
 	};
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Reisschnaps);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Reisschnaps);
 };
 
 
@@ -401,8 +415,9 @@ instance ItFo_Plants_Berrys_01(C_Item)
 
 func void UseBerrys()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Waldbeeren);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем ягоду.");
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Waldbeeren);
 };
 
 
@@ -426,8 +441,9 @@ instance ItFo_Plants_Flameberry_01(C_Item)
 
 func void Useflame()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Flammendorn);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем огненную ягоду.");
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Flammendorn);
 };
 
 
@@ -652,7 +668,8 @@ instance ItFo_Plants_Hollenpilz(C_Item)
 
 func void Usemush()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Hollenpilz);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Hollenpilz);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем адский гриб.");
 };
 
@@ -677,7 +694,8 @@ instance ItFo_Plants_Sklavenbrot(C_Item)
 
 func void Usemush2()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Sklavenbrot);
+	Food_ChangeNpcRegen(item,self);
+	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Sklavenbrot);
 	PrintDebugNpc(PD_ITEM_MOBSI,"Я ем рабский хлеб.");
 };
 

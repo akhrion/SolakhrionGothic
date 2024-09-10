@@ -1503,6 +1503,8 @@ func int GetL(var int goal)
     //     totalSpend += price
     // print(goal,totalSpend)
 };
+
+//entryPoint B_Cycle_NPC()
 func int C_IsSecondPassed()
 {
 	if(
@@ -1523,6 +1525,80 @@ func int C_IsSecondPassed()
 	};
 	return false;
 };
+
+//entryPoint B_Cycle60_NPC()
+//Функция вызывается из циклической функции B_Cycle60_NPC()
+func int C_IsMinutePassed()
+{
+	if(self.aivar[AIV_FREEMAN] & AIV_FREEMAN_TIMEITERATORMINUTE06)
+	{
+		self.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TIMEITERATORMINUTE06;
+	}
+	else
+	{
+		self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_FREEMAN_TIMEITERATORMINUTE06;
+		return false;
+	};
+
+
+	if(self.aivar[AIV_FREEMAN] & AIV_FREEMAN_TIMEITERATORMINUTE05)
+	{
+		self.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TIMEITERATORMINUTE05;
+	}
+	else
+	{
+		self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_FREEMAN_TIMEITERATORMINUTE05;
+		return false;
+	};
+
+
+	if(self.aivar[AIV_FREEMAN] & AIV_FREEMAN_TIMEITERATORMINUTE04)
+	{
+		self.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TIMEITERATORMINUTE04;
+	}
+	else
+	{
+		self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_FREEMAN_TIMEITERATORMINUTE04;
+		return false;
+	};
+
+
+	if(self.aivar[AIV_FREEMAN] & AIV_FREEMAN_TIMEITERATORMINUTE03)
+	{
+		self.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TIMEITERATORMINUTE03;
+	}
+	else
+	{
+		self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_FREEMAN_TIMEITERATORMINUTE03;
+		return false;
+	};
+
+
+	if(self.aivar[AIV_FREEMAN] & AIV_FREEMAN_TIMEITERATORMINUTE02)
+	{
+		self.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TIMEITERATORMINUTE02;
+	}
+	else
+	{
+		self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_FREEMAN_TIMEITERATORMINUTE02;
+		return false;
+	};
+
+
+	if(self.aivar[AIV_FREEMAN] & AIV_FREEMAN_TIMEITERATORMINUTE01)
+	{
+		self.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TIMEITERATORMINUTE01;
+	}
+	else
+	{
+		self.aivar[AIV_FREEMAN] = self.aivar[AIV_FREEMAN] | AIV_FREEMAN_TIMEITERATORMINUTE01;
+		return false;
+	};
+
+
+	return true;
+};
+
 func int PC_HpWasChanged()
 {
 	if(Npc_IsDead(hero)){return false;};
@@ -1908,4 +1984,44 @@ func void Npc_RandomizeHungry(var C_Npc npc)
 	{
 		Npc_SetHungry(npc,true);
 	};
+};
+func int Food_GetRegen(var C_Item itm)
+{
+	return itm.count[1];
+};
+func int Npc_GetRegen(var C_Npc npc)
+{
+	return npc.attribute[ATR_REGENERATEHP];
+};
+func void Npc_SetRegen(var C_Npc npc, var int regen)
+{
+	npc.attribute[ATR_REGENERATEHP] = regen;
+};
+func void Npc_RegenerationDecreasePerSecond(var C_Npc npc)
+{
+	if(Npc_GetHPMax(npc) > Npc_GetRegen(npc))
+	{
+		npc.attribute[ATR_REGENERATEHP] +=1;
+	};
+};
+//Предполагается использование этой функции из C_Item.on_state
+func void Food_ChangeNpcRegen(var C_Item itm, var C_Npc npc)
+{
+	var int npcRegen;
+	npcRegen = Npc_GetRegen(npc);
+	var int foodRegen;
+	foodRegen = Food_GetRegen(itm);
+
+	if((npcRegen - foodRegen) > 0)
+	{
+		Npc_SetRegen(npc, npcRegen - foodRegen);
+	}
+	else
+	{
+		Npc_SetRegen(npc,1);
+	};
+};
+func void Npc_Regeneration(var C_Npc npc)
+{
+	Npc_RegenerationDecreasePerSecond(npc);
 };

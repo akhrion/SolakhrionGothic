@@ -19,6 +19,17 @@ func void LOADING_InitHaste_NPC()
     //ПОДДЕРЖКА ХАСТЫ НА НПС (после перезагрузки) ПОКА НЕ РЕАЛИЗОВАНА
 };
 
+func void B_Cycle60_NPC()
+{
+    if(!C_IsMinutePassed())
+    {
+        return;
+    };
+    Print("B_Cycle60_NPC");
+    Npc_Regeneration(self);
+};
+
+
 
 func void B_Cycle_NPC()
 {
@@ -34,4 +45,8 @@ func void B_Cycle_NPC()
     Npc_Poisoned(self);
     Npc_Wounded(self);
     SpecBehavior();
+
+
+    B_Cycle60_NPC();
 };
+
