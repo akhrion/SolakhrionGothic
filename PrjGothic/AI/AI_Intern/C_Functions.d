@@ -31,6 +31,29 @@ func void Npc_SetImmortal(var int npcInstance,var int bool)
 	};
 };
 
+func int Npc_IsRespawning(var C_Npc npc)
+{
+	return npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_RESPAWNING;
+};
+func void Npc_SetRespawning(var C_Npc npc, var int bool)
+{
+	if(bool)
+	{
+		if(
+			Npc_IsRespawning(npc) == false
+		)
+		{
+			npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_RESPAWNING;
+		};
+	}
+	else if(Npc_IsRespawning(npc))
+	{
+		npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_RESPAWNING;
+		Npc_SetImmortal(self,false);
+		Npc_MakeTargetable(self);
+	};
+};
+
 func int Npc_IsUntargetable(var C_Npc npc)
 {
 	return npc.flags & NPC_FLAG_NFOCUS;
@@ -1721,20 +1744,14 @@ func void Npc_IWasLightedByOther()
 ////////////////////////////////////////////////////////////////////////////////
 func void SpecBehavior()
 {
-	if(
-        self.guild == GIL_SCAVENGER
-    )
-    {
-        if(self.spawnDelay)
-        {
-            self.spawnDelay -=1;
-        }
-        else
-        {
-			Npc_SetImmortal(self,false);
-            Npc_MakeTargetable(self);
-        };
-    };
+	if(self.spawnDelay)
+	{
+		self.spawnDelay -=1;
+	}
+	else
+	{
+		Npc_SetRespawning(self,false);
+	};
 
 	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPFLY)
 	{

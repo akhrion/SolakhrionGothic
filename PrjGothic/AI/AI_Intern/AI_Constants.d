@@ -73,6 +73,7 @@ const int AIV_FREEMAN_TIMEITERATORMINUTE03 = 1 << 14;
 const int AIV_FREEMAN_TIMEITERATORMINUTE04 = 1 << 15;
 const int AIV_FREEMAN_TIMEITERATORMINUTE05 = 1 << 16;
 const int AIV_FREEMAN_TIMEITERATORMINUTE06 = 1 << 17;
+const int AIV_FREEMAN_RESPAWNING = 1 << 18;
 const int npctype_ambient = 0;
 const int npctype_main = 1;
 const int npctype_guard = 2;

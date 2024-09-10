@@ -1,12 +1,3 @@
-var int nearCounter_Scavengers;
-func void testWld_DetectNpc()
-{
-    if(!(self.guild == GIL_SCAVENGER)){return;};
-    nearCounter_Scavengers +=1;
-};
-
-
-
 
 func void LOADING_InitVariables_NPC(var C_Npc npc)
 {
@@ -35,7 +26,6 @@ func void B_Cycle_NPC()
 {
     if(!C_IsSecondPassed())
     {
-        if(nearCounter_Scavengers){nearCounter_Scavengers = 0;};
         return;
     };
 

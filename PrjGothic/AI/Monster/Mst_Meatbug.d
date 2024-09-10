@@ -21,6 +21,7 @@ prototype Mst_Default_Meatbug(C_Npc)
 	damagetype = DAM_EDGE;
 	senses = SENSE_SMELL;
 	senses_range = 500;
+	spawnDelay = 20;
 	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_WuselStart] = OnlyRoutine;

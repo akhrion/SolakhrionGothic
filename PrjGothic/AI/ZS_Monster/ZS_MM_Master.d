@@ -660,10 +660,7 @@ func void ZS_ezRespawn_EatGround_Loop()
 {
 	PrintDebugNpc(PD_MST_LOOP,"ZS_ezRespawn_EatGround_Loop");
 	B_Cycle_NPC();
-	if(!Npc_IsUntargetable(self))
-	{
-		AI_StartState(self,ZS_MM_AllScheduler,1,"");
-	};
+
 	if(!Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],0) && (self.aivar[AIV_MM_EatGroundStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
@@ -679,9 +676,10 @@ func void ZS_ezRespawn_EatGround_End()
 func void ZS_MM_AllScheduler()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_AllScheduler");
-	if(Npc_IsUntargetable(self))
+	if(Npc_IsRespawning(self))
 	{
-		AI_StartState(self,ZS_ezRespawn_EatGround,0,"");
+		if(self.guild == GIL_SCAVENGER){AI_StartState(self,ZS_ezRespawn_EatGround,0,"");};
+		if(self.guild == GIL_MEATBUG){AI_StartState(self,ZS_MM_Rtn_Wusel,0,"");};
 	};
 	if(Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) || (self.aivar[AIV_MM_SleepStart] == OnlyRoutine))
 	{
@@ -1118,6 +1116,7 @@ func void ZS_MM_Rtn_EatGround_End()
 func void ZS_MM_Rtn_Wusel()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_Wusel");
+	Print("ZS_MM_Rtn_Wusel");
 	Npc_SetPercTime(self,1);
 	Npc_PercEnable(self,PERC_ASSESSCASTER,B_AssessCaster);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_ReactToDamage);
@@ -1133,15 +1132,18 @@ func void ZS_MM_Rtn_Wusel()
 	};
 };
 
-func void ZS_MM_Rtn_Wusel_loop()
+func int ZS_MM_Rtn_Wusel_loop()
 {
 	var int randomMove;
 	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_Rtn_Wusel_loop");
 	B_Cycle_NPC();
+
 	if(!Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_MM_WuselEnd],0) && (self.aivar[AIV_MM_WuselStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
+		return LOOP_END;
 	};
+
 	if(Hlp_Random(100) <= 20)
 	{
 		if(Wld_IsNextFPAvailable(self,"FP_ROAM"))
@@ -1169,6 +1171,7 @@ func void ZS_MM_Rtn_Wusel_loop()
 			AI_PlayAni(self,"R_ROAM3");
 		};
 	};
+	return LOOP_CONTINUE;
 };
 
 func void ZS_MM_Rtn_Wusel_end()
