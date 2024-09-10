@@ -44,6 +44,8 @@ func void Npc_SetRespawning(var C_Npc npc, var int bool)
 		)
 		{
 			npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_RESPAWNING;
+			Npc_MakeUnTargetable(self);
+			Npc_SetImmortal(self,true);
 		};
 	}
 	else if(Npc_IsRespawning(npc))

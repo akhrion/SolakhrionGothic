@@ -1,8 +1,6 @@
 func void ezRespawn()
 {
     Wld_InsertNpc(Hlp_GetInstanceID(self),self.wp);
-    Npc_MakeUnTargetable(self);
-    Npc_SetImmortal(self,true);
     Npc_SetRespawning(self,true);
 
     if(self.guild == GIL_MEATBUG)
