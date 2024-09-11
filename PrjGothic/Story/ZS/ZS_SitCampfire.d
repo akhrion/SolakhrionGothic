@@ -30,6 +30,7 @@ func void ZS_SitCampfire()
 func void ZS_SitCampfire_loop()
 {
 	Recovering_ByCampfire(self);
+	B_Cycle_NPC();
 	AI_Wait(self,1);
 };
 
