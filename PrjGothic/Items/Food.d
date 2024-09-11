@@ -116,6 +116,10 @@ instance ItFoMutton(C_Item)
 
 func void UseMutton()
 {
+	if(Npc_GetRegen(self) < 5)
+	{
+		Npc_SetHungry(self,false);
+	};
 	Food_ChangeNpcRegen(item,self);
 	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Fleisch);
 };
