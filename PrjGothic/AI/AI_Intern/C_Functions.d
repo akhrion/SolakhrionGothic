@@ -31,6 +31,22 @@ func void Npc_SetImmortal(var int npcInstance,var int bool)
 	};
 };
 
+
+func int Npc_IsUntargetable(var C_Npc npc)
+{
+	return npc.flags & NPC_FLAG_NFOCUS;
+};
+func void Npc_MakeTargetable(var C_Npc npc)
+{
+	if(npc.flags & NPC_FLAG_NFOCUS){npc.flags -= NPC_FLAG_NFOCUS;};
+};
+func void Npc_MakeUnTargetable(var C_Npc npc)
+{
+	if(!Npc_IsUntargetable(npc)){npc.flags = npc.flags | NPC_FLAG_NFOCUS;};
+};
+
+
+
 func int Npc_IsRespawning(var C_Npc npc)
 {
 	return npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_RESPAWNING;
@@ -54,19 +70,6 @@ func void Npc_SetRespawning(var C_Npc npc, var int bool)
 		Npc_SetImmortal(self,false);
 		Npc_MakeTargetable(self);
 	};
-};
-
-func int Npc_IsUntargetable(var C_Npc npc)
-{
-	return npc.flags & NPC_FLAG_NFOCUS;
-};
-func void Npc_MakeTargetable(var C_Npc npc)
-{
-	if(npc.flags & NPC_FLAG_NFOCUS){npc.flags -= NPC_FLAG_NFOCUS;};
-};
-func void Npc_MakeUnTargetable(var C_Npc npc)
-{
-	if(!Npc_IsUntargetable(npc)){npc.flags = npc.flags | NPC_FLAG_NFOCUS;};
 };
 
 func int C_AmIStronger(var C_Npc slf,var C_Npc oth)
