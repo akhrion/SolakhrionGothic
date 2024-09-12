@@ -116,10 +116,7 @@ instance ItFoMutton(C_Item)
 
 func void UseMutton()
 {
-	if(Npc_GetRegen(self) < 5)
-	{
-		Npc_SetHungry(self,false);
-	};
+	Npc_SetHungry(self,false);
 	Food_ChangeNpcRegen(item,self);
 	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Fleisch);
 };
@@ -182,6 +179,7 @@ instance ItFo_mutton_01(C_Item)
 
 func void UseMutton1()
 {
+	Npc_SetHungry(self,false);
 	Food_ChangeNpcRegen(item,self);
 	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Schinken);
 };
@@ -231,6 +229,7 @@ instance ItFoRice(C_Item)
 func void UseRice()
 {
 	Food_ChangeNpcRegen(item,self);
+	Npc_SetHungry(self,false);
 	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Reis);
 };
 
@@ -254,6 +253,7 @@ instance ItFoWurzelsuppe(C_Item)
 
 func void UseSoup()
 {
+	Npc_SetHungry(self,false);
 	Food_ChangeNpcRegen(item,self);
 	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wurzelsuppe);
 };
@@ -280,6 +280,7 @@ instance ItFoMeatbugragout(C_Item)
 func void UseMeatbugragout()
 {
 	Food_ChangeNpcRegen(item,self);
+	Npc_SetHungry(self,false);
 	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Ragout);
 };
 

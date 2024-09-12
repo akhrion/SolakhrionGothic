@@ -2047,3 +2047,85 @@ func void Npc_Regeneration(var C_Npc npc)
 {
 	Npc_RegenerationDecreasePerSecond(npc);
 };
+
+func int Human_HasDailyFood(var C_Npc npc)
+{
+	if(
+		Npc_HasItems(npc,ItFoMeatbugragout)
+	||	Npc_HasItems(npc,ItFoMutton)
+	||	Npc_HasItems(npc,ItFo_mutton_01)
+	||	Npc_HasItems(npc,ItFoRice)
+	||	Npc_HasItems(npc,ItFoWurzelsuppe)
+	)
+	{
+		return true;
+	};
+	return false;
+};
+
+func void Human_EatDailyFood(var C_Npc npc)
+{
+	if(C_BodyStateContains(npc,BS_ITEMINTERACT)){return;};
+	if(C_NpcBelongsToOldCamp(npc))
+	{
+		AI_UseItem(npc,ItFoMeatbugragout);
+	};
+};
+
+func int Npc_IsNpc(var C_Npc npc, var C_Npc npc2)
+{
+	return Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(npc2);
+};
+
+func void Human_DailyBehavior(var C_Npc npc)
+{
+	if(!C_NpcIsHuman(npc)){return;};
+
+	Npc_RandomizeHungry(npc);
+	if(Npc_IsHungry(npc))
+	{
+		if(
+			Human_HasDailyFood(npc)
+		)
+		{
+			Human_EatDailyFood(npc);
+		}
+		else if(C_NpcBelongsToOldCamp(npc))
+		{
+			if(Npc_IsNpc(npc,VLK_581_Snaf))
+			{
+				CreateInvItem(npc,ItFoMeatbugragout);
+			}
+			else
+			{
+				if(Hlp_IsValidNpc(VLK_581_Snaf))
+				{
+					if(Npc_GetDistToNpc(npc,VLK_581_Snaf) > 600)
+					{
+						AI_GotoNpc(npc,VLK_581_Snaf);
+					}
+					else
+					{
+						CreateInvItem(npc,ItFoMeatbugragout);
+					};
+				}
+				else
+				{
+					//Покормите меня
+				};
+			};
+		}
+		else if(C_NpcBelongsToNewCamp(npc))
+		{
+
+		}
+		else if(C_NpcBelongsToPsiCamp(npc))
+		{
+
+		}
+		else
+		{
+			Npc_SetHungry(npc,false);
+		};
+	};
+};

@@ -34,6 +34,8 @@ func void B_Cycle_NPC()
     Npc_InitParameters(self);
     Npc_Poisoned(self);
     Npc_Wounded(self);
+
+    Human_DailyBehavior(self);
     SpecBehavior();
 
 

@@ -23,6 +23,7 @@ func int ZS_StandAround_Loop()
 {
 	var int choice;
 	PrintDebugNpc(PD_TA_LOOP,"ZS_StandAround_Loop");
+	B_Cycle_NPC();
 	if(Npc_WasInState(self,ZS_Smalltalk))
 	{
 		B_GotoFP(self,"SMALLTALK");
