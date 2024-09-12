@@ -5,15 +5,15 @@ prototype Mst_Default_Molerat(C_Npc)
 	guild = GIL_MOLERAT;
 	aivar[AIV_MM_REAL_ID] = ID_MOLERAT;
 	level = 5;
-	attribute[ATR_STRENGTH] = 8;
+	attribute[ATR_STRENGTH] = 28;
 	attribute[ATR_DEXTERITY] = 8;
-	attribute[ATR_HITPOINTS_MAX] = 40;
-	attribute[ATR_HITPOINTS] = 40;
+	attribute[ATR_HITPOINTS_MAX] = 80;
+	attribute[ATR_HITPOINTS] = 80;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 8;
-	protection[PROT_EDGE] = 8;
-	protection[PROT_POINT] = 5;
+	protection[PROT_BLUNT] = 28;
+	protection[PROT_EDGE] = 18;
+	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 5;
 	protection[PROT_FLY] = 0;
 	protection[PROT_MAGIC] = 0;
@@ -30,6 +30,7 @@ prototype Mst_Default_Molerat(C_Npc)
 	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RoamStart] = OnlyRoutine;
+	spawnDelay = 90;
 };
 
 func void Set_Molerat_Visuals()
@@ -55,7 +56,8 @@ instance Molerat(Mst_Default_Molerat)
 instance YMolerat(Mst_Default_Molerat)
 {
 	name[0] = "Молодой кротокрыс";
-	level = 4;
+	aivar[AIV_MM_REAL_ID] = ID_YMOLERAT;
+	level = 2;
 	attribute[ATR_STRENGTH] = 5;
 	attribute[ATR_DEXTERITY] = 5;
 	attribute[ATR_HITPOINTS_MAX] = 40;
@@ -67,5 +69,6 @@ instance YMolerat(Mst_Default_Molerat)
 	Mdl_SetModelScale(self,0.8,0.8,0.8);
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,1);
+	spawnDelay = 60;
 };
 

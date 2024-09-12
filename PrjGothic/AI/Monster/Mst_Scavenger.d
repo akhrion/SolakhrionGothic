@@ -4,14 +4,14 @@ prototype Mst_Default_Scavenger(C_Npc)
 	name[0] = "Падальщик";
 	guild = GIL_SCAVENGER;
 	aivar[AIV_MM_REAL_ID] = ID_SCAVENGER;
-	level = 5;
-	attribute[ATR_STRENGTH] = 8;
-	attribute[ATR_DEXTERITY] = 8;
+	level = 4;
+	attribute[ATR_STRENGTH] = 28;
+	attribute[ATR_DEXTERITY] = 28;
 	attribute[ATR_HITPOINTS_MAX] = 40;
 	attribute[ATR_HITPOINTS] = 40;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 9;
+	protection[PROT_BLUNT] = 19;
 	protection[PROT_EDGE] = 9;
 	protection[PROT_POINT] = 5;
 	protection[PROT_FIRE] = 0;
@@ -80,7 +80,8 @@ instance Scavenger_Invisible(Mst_Default_Scavenger)
 instance YScavenger(Mst_Default_Scavenger)
 {
 	name[0] = "Молодой падальщик";
-	level = 4;
+	aivar[AIV_MM_REAL_ID] = ID_YSCAVENGER;
+	level = 1;
 	attribute[ATR_STRENGTH] = 6;
 	attribute[ATR_DEXTERITY] = 6;
 	attribute[ATR_HITPOINTS_MAX] = 35;
@@ -92,5 +93,6 @@ instance YScavenger(Mst_Default_Scavenger)
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,1);
+	spawnDelay = 60;
 };
 

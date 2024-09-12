@@ -48,6 +48,7 @@ instance Lurker(Mst_Default_Lurker)
 instance DamLurker(Mst_Default_Lurker)
 {
 	name[0] = "Ўныг с плотины";
+	aivar[AIV_MM_REAL_ID] = ID_DAMLURKER;
 	id = mid_damlurker;
 	level = 20;
 	Set_Lurker_Visuals();
