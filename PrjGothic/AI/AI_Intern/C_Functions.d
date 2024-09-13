@@ -2169,7 +2169,7 @@ func void Human_DailyBehavior(var C_Npc npc)
 
 func int Npc_IsDodge(var C_Npc npc)
 {
-    if(Hlp_Random(100) < Npc_GetDex(npc))
+    if(Hlp_Random(300) < Npc_GetDex(npc))
     {
         return true;
     };
