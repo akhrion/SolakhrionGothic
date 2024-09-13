@@ -2188,10 +2188,23 @@ func void Npc_NotTraining(var C_Npc npc)
 {
 	if(
 		!Npc_IsTraining(npc)
-	&&	Npc_GetStr(npc) > ATTRIBUTESCAP_STR_NORMAL
 	)
 	{
-		Npc_DecreaseStr(npc,1);
+		if(
+			(
+				npc.guild == GIL_GRD
+			||	npc.guild == GIL_SLD
+			||	npc.guild == GIL_TPL
+			)
+			&&	Npc_GetStr(npc) > ATTRIBUTESCAP_STR_STRONG
+		)
+		{
+			Npc_DecreaseStr(npc,1);
+		}
+		else if(Npc_GetStr(npc) > ATTRIBUTESCAP_STR_NORMAL)
+		{
+			Npc_DecreaseStr(npc,1);
+		};
 	};
 };
 func void Npc_SetTraining(var C_Npc npc, var int bool)
