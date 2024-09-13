@@ -15,11 +15,8 @@
 // item - орудие убийства (может быть null)
 func int OnDamage_Hit(var int damageTotal)
 {
-    if(Hlp_Random(100) < Npc_GetDex(victim))
-    {
-        return 0;
-    };
-
+    if(Npc_IsDodge(victim)){return 0;};
+    Npc_Training(self);
     // Print(item.name);
 	// if(Npc_IsPlayer(self))
 	// {

@@ -16,8 +16,9 @@ func void B_Cycle60_NPC()
     {
         return;
     };
-    Print("B_Cycle60_NPC");
     Npc_Regeneration(self);
+    Npc_NotTraining(self);
+    Npc_SetTraining(self,false);
 };
 
 

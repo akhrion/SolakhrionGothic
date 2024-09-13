@@ -401,6 +401,14 @@ const int SPWN_MAX_ATATIME_Swampherb_01 = 20;
 const int SPWN_Chanse_Swampherb_01 = 10;
 var int SPWN_Cur_Swampherb_01;
 var int PC_Has_Swampherb;
+const int ATTRIBUTESCAP_STR_LOW = 1;
+const int ATTRIBUTESCAP_STR_WEAK = 10;
+const int ATTRIBUTESCAP_STR_NORMAL = 30;
+const int ATTRIBUTESCAP_STR_STRONG = 70;
+const int ATTRIBUTESCAP_STR_KILOSTRONG = 150;
+const int ATTRIBUTESCAP_STR_MEGASTRONG = 300;
+
+
 
 //AKHRION MOD
 var int giTrade;   //открывает реплику у торговцев, после нескольких трейдов

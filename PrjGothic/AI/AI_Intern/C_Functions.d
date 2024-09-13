@@ -1029,6 +1029,14 @@ func int Npc_GetHPPcnt(var C_NPC npc)
 {
 	return npc.attribute[ATR_HITPOINTS] * 100 / npc.attribute[ATR_HITPOINTS_MAX];
 };
+func void Npc_DecreaseStr(var C_Npc npc_, var int str)
+{
+	npc_.attribute[ATR_STRENGTH] -= str;
+};
+func void Npc_IncreaseStr(var C_Npc npc_, var int str)
+{
+	npc_.attribute[ATR_STRENGTH] += str;
+};
 func void Npc_IncreaseDex(var C_Npc npc_, var int dex)
 {
 	npc_.attribute[ATR_DEXTERITY] += dex;
@@ -2156,5 +2164,58 @@ func void Human_DailyBehavior(var C_Npc npc)
 		{
 			Npc_SetHungry(npc,false);
 		};
+	};
+};
+
+func int Npc_IsDodge(var C_Npc npc)
+{
+    if(Hlp_Random(100) < Npc_GetDex(npc))
+    {
+        return true;
+    };
+	return false;
+};
+
+func int Npc_IsTraining(var C_Npc npc)
+{
+	if(npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_TRAINING)
+	{
+		return true;
+	};
+	return false;
+};
+func void Npc_NotTraining(var C_Npc npc)
+{
+	if(
+		!Npc_IsTraining(npc)
+	&&	Npc_GetStr(npc) > ATTRIBUTESCAP_STR_NORMAL
+	)
+	{
+		Npc_DecreaseStr(npc,1);
+	};
+};
+func void Npc_SetTraining(var C_Npc npc, var int bool)
+{
+	if(bool)
+	{
+		if(!Npc_IsTraining(npc))
+		{
+			npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_TRAINING;
+		};
+	}
+	else if(Npc_IsTraining(npc))
+	{
+		npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TRAINING;
+	};
+};
+func void Npc_Training(var C_Npc npc)
+{
+	if(!Npc_IsTraining(npc))
+	{
+		Npc_SetTraining(npc,true);
+	};
+	if(Hlp_Random(100) > Npc_GetStr(npc))
+	{
+		Npc_IncreaseStr(npc,1);
 	};
 };
