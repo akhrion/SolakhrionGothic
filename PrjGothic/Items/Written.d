@@ -79,6 +79,7 @@ instance ItWr_Book_Circle_02(C_Item)
 
 func void UseItWr_Book_Circle_02()
 {
+	if(!Npc_IsPlayer(self)){return;};
 	var int nDocID;
 	var string Text_1;
 	Text_1 = ConcatStrings(NAME_Manakosten,IntToString(SPL_HEALING_HP_PER_MP));

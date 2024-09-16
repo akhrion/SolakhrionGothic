@@ -36,7 +36,12 @@ instance Sld_735_Soeldner(Npc_Default)
 func void Rtn_start_735()
 {
 	TA_Sleep(20,55,7,5,"NC_HUT08_IN");
-	TA_PracticeSword(7,5,20,55,"NC_WATERFALL_TOP01");
+
+
+
+	TA_PracticeSword(7,5,10,5,"NC_WATERFALL_TOP01");
+	TA_WashSelf(10,5,15,55,"NC_WASH_03");
+	TA_PracticeSword(15,55,20,55,"NC_WATERFALL_TOP01");
 };
 
 func void Rtn_FMTaken_735()

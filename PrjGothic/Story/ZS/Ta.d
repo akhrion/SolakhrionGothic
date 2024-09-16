@@ -134,6 +134,11 @@ func void TA_ReadBook(var int start_h,var int start_m,var int stop_h,var int sto
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_ReadBook,waypoint);
 };
 
+func void TA_ReadBookSelf(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
+{
+	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_ReadBookSelf,waypoint);
+};
+
 func void TA_PracticeMagic(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
 {
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_PracticeMagic,waypoint);

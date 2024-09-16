@@ -18,6 +18,7 @@ func void ZS_CookForMe_Loop()
 {
 	var int randomizer;
 	PrintDebugNpc(PD_TA_LOOP,"ZS_CookForMe_Loop");
+	B_Cycle_NPC();
 	randomizer = Hlp_Random(20);
 	if(Npc_GetStateTime(self) >= (100 + randomizer))
 	{

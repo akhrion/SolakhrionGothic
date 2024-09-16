@@ -447,6 +447,7 @@ func void Startup_Sub_Newcamp()
 	Wld_InsertNpc(SLD_708_Soeldner,"NC_DAM");
 	Wld_InsertNpc(Sld_709_Cord,"NC_DAM");
 	Wld_InsertNpc(SLD_710_Soeldner,"NC_DAM");
+	Wld_InsertNpc(SLD_711_Cara,"NC_DAM");
 	Wld_InsertNpc(SLD_720_Soeldner,"NC_DAM");
 	Wld_InsertNpc(SLD_723_Soeldner,"NC_DAM");
 	Wld_InsertNpc(SLD_726_Soeldner,"NC_DAM");

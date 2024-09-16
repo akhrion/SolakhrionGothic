@@ -38,7 +38,9 @@ instance SLD_733_Soeldner(Npc_Default)
 
 func void Rtn_start_733()
 {
-	TA_Boss(6,30,22,15,"NC_LO_11");
-	TA_Boss(22,15,6,30,"NC_LO_11");
+	TA_Boss(6,30,17,50,"NC_LO_11");
+    TA_SitAround(17,50,19,50,"NC_LO_11");
+	TA_Stand(19,50,21,30,"NC_LO_11");
+	TA_Boss(21,30,6,30,"NC_LO_11");
 };
 
