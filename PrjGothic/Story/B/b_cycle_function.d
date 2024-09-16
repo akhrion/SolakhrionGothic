@@ -86,7 +86,6 @@ func void b_cycle_function()
 	// if(!Hlp_IsValidNpc(hero))
 	if(!Npc_IsDead(hero))
 	{
-		PrintScreenSIS("Wld_IsFPAvailable: ",Wld_IsFPAvailable(hero,"FP_ROAM_OW_MEATBUG_03_03"),"",50,52,1);
 		b_cycle_hero();
 		SpawnPlants();
 		if(

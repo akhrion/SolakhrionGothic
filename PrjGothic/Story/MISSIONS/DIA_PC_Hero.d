@@ -17,8 +17,8 @@ func int PC_BS_Sit_Condition()
 };
 func void PC_BS_Sit_Info()
 {
-    AI_PlayAniBS(self,"T_STAND_2_SIT",BS_SIT);
-    AI_StopProcessInfos(self);
-    self.aivar[AIV_INVINCIBLE] = FALSE;
-    PLAYER_MOBSI_PRODUCTION = MOBSI_PC_BS_ChangeEnd;
+	AI_PlayAniBS(self,"T_STAND_2_SIT",BS_SIT);
+	AI_StopProcessInfos(self);
+	self.aivar[AIV_INVINCIBLE] = FALSE;
+	PLAYER_MOBSI_PRODUCTION = MOBSI_PC_BS_ChangeEnd;
 };
