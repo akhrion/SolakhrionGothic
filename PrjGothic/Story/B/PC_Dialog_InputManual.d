@@ -1291,5 +1291,6 @@ func void akhQuestTest_Info()
 func void PC_Dialog_InputManual(var C_Npc slf)
 {
     PC_Dialog_InputManual_ResetVars();
+    Info_EXIT.npc = Hlp_GetInstanceID(slf);
     PC_Dialog_InputManual_00.npc = Hlp_GetInstanceID(slf);
 };

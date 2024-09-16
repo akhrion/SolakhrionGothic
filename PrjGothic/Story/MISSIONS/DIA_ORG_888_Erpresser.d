@@ -152,25 +152,3 @@ func void Info_BereitsAufsMaul_Info()
 };
 
 
-instance Info_Exit(C_Info)
-{
-	npc = ORG_888_Erpresser;
-	nr = 999;
-	condition = Info_Exit_Condition;
-	information = Info_Exit_Info;
-	important = 0;
-	permanent = 1;
-	description = DIALOG_ENDE;
-};
-
-
-func int Info_Exit_Condition()
-{
-	return 1;
-};
-
-func void Info_Exit_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
