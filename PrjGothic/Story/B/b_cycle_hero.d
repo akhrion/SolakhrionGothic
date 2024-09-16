@@ -622,7 +622,10 @@ func void PC_Idling()
 		{
 			PC_Idle +=1;
 		}
-		else if(PC_Idle == PC_IDLETIME)
+		else if(
+			PC_Idle == PC_IDLETIME
+		&&	Hlp_Random(100) < 2
+		)
 		{
 			AI_PlayAniBS(hero,"T_STAND_2_SIT",BS_SIT);
 		};
@@ -643,8 +646,13 @@ func void overlay()
 {
 	// if(overlay_loaded < 5){return;};
 	// msgSI("Знание цели ",Npc_GetTalentValue(hero,NPC_TALENT_1H),0,OVERLAY_TargetKnowledge_Y,1);
+
+
 	if(Npc_GetTarget(hero))
 	{
+		msgSI("ID: ",other.id,60,2,1);
+
+
 		OVERLAY_TargetKnowledge = PC_Knowledge();
 		msgSI("Знание цели ",OVERLAY_TargetKnowledge,0,OVERLAY_TargetKnowledge_Y,1);
 		msgSI("Dist to target: ",Npc_GetDistToPlayer(other),0,OVERLAY_TARGET_DISTANCE_Y,1);
