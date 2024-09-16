@@ -2127,7 +2127,11 @@ func void Human_DailyBehavior(var C_Npc npc)
 		{
 			Human_EatDailyFood(npc);
 		}
-		else if(C_NpcBelongsToOldCamp(npc))
+		else if(
+			C_NpcBelongsToOldCamp(npc)
+		&&	npc.guild == GIL_VLK
+		&&	npc.guild == GIL_STT
+		)
 		{
 			if(Npc_IsNpc(npc,VLK_581_Snaf))
 			{
@@ -2231,4 +2235,35 @@ func void Npc_Training(var C_Npc npc)
 	{
 		Npc_IncreaseStr(npc,1);
 	};
+};
+
+
+
+func void Npc_SetHigh(var C_Npc npc,var float high)
+{
+	Mdl_SetModelScale(npc,1,high,1);
+};
+func void Npc_SetWidth(var C_Npc npc,var float width)
+{
+	Mdl_SetModelScale(npc,width,1,1);
+};
+func void Npc_SetDepth(var C_Npc npc,var float depth)
+{
+	Mdl_SetModelScale(npc,1,1,depth);
+};
+func void Npc_SetMovementSpeed(var C_Npc npc,var float speed)
+{
+	Mdl_SetModelScale(npc,1,1,speed);
+};
+
+
+func void HumanVisual_SetMageWomen(var C_Npc npc)
+{
+	Npc_SetWidth(npc,0.8);
+	Mdl_SetModelFatness(npc,-3);
+};
+
+func int Npc_HasBook(var C_Npc npc)
+{
+	return Npc_HasItems(npc,ItWr_Book_Circle_02);
 };
