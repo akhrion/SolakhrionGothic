@@ -31,6 +31,7 @@ func void B_GuardItemsAssessTheft()
 				};
 				if(C_AmIStronger(self,other))
 				{
+					//akhwork
 					AI_Standup(self);
 					AI_StartState(self,ZS_CatchThief,0,"");
 				}
