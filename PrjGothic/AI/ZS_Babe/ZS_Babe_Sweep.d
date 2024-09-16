@@ -16,6 +16,7 @@ func void ZS_Babe_Sweep()
 	if(Wld_IsFPAvailable(self,"SWEEP"))
 	{
 		AI_GotoFP(self,"SWEEP");
+		Bab_PutOn_Bikini();
 		AI_UseItemToState(self,ItMiBrush,1);
 	};
 };
@@ -29,6 +30,7 @@ func void ZS_Babe_Sweep_Loop()
 func void ZS_Babe_Sweep_End()
 {
 	PrintDebugNpc(PD_TA_FRAME,"ZS_Babe_Sweep_End");
+	Bab_PutOn_DefaultCloth();
 	AI_UseItemToState(self,ItMiBrush,-1);
 };
 

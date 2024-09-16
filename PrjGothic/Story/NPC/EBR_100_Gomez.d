@@ -28,7 +28,7 @@ instance EBR_100_Gomez(Npc_Default)
 	EquipItem(self,Amulett_der_Macht);
 	EquipItem(self,Schutzring_Total2);
 	fight_tactic = FAI_HUMAN_MASTER;
-	daily_routine = Rtn_PreStart_100;
+	daily_routine = Rtn_Start_100;
 };
 
 

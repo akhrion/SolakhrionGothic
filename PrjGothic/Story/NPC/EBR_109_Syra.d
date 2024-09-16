@@ -20,6 +20,8 @@ instance EBR_109_Syra(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	CreateInvItem(self,ItMiBrush);
 	CreateInvItem(self,ItMiWedel);
+	CreateInvItem(self,Bab_Bikini);
+	CreateInvItem(self,Bab_Naked);
 	daily_routine = Rtn_start_109;
 };
 

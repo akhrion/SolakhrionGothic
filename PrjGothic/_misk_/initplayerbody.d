@@ -1230,22 +1230,180 @@ instance BAB_ARMOR_BIKINI(C_Item)
 	visual_skin = 1;
 	material = MAT_LEATHER;
 };
-instance t0(C_Item)
+
+
+
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+instance Bab_Naked(C_Item)
 {
-	name = "Женская одежда 0";
+	name = "Обнажиться";
 	mainflag = ITEM_KAT_ARMOR;
 	wear = WEAR_TORSO;
+	
+	value = 0;
+
+	on_equip = Bab_BecomeNature;
+	on_unequip = Bab_PutOn_DefaultCloth;
+	
 	visual = "vobbox.3ds";
-	visual_change = "Bab_ARMOR.asc";
+	visual_change = "Bab_body_Naked0.asc";
 	visual_skin = 0;
 };
+
+func void Bab_BecomeNature()
+{
+	if(self.id == 108)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",3,1,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 109)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",3,1,"Bab_Head_Hair1",1,0,0);
+	}
+	else if(self.id == 110)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",3,1,"Bab_Head_Hair1",2,0,0);
+	}
+	else if(self.id == 1205)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",3,3,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 1207)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",3,0,"Bab_Head_Hair1",0,0,0);
+	};
+};
+func void UnEquip_Bab_Naked()
+{
+	if(self.id == 108)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",0,1,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 109)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",1,1,"Bab_Head_Hair1",1,0,0);
+	}
+	else if(self.id == 110)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",2,1,"Bab_Head_Hair1",2,0,0);
+	}
+	else if(self.id == 1205)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",0,3,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 1207)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",0,0,"Bab_Head_Hair1",0,0,0);
+	};
+};
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+
+
+instance Bab_Bikini(C_Item)
+{
+	name = "Бикини";
+	mainflag = ITEM_KAT_ARMOR;
+	wear = WEAR_TORSO;
+	
+	value = 1;
+
+	on_equip = Bab_PutOn_Bikini;
+	on_unequip = Bab_PutOn_DefaultCloth;
+	
+	visual = "vobbox.3ds";
+	visual_change = "Bab_body_Naked0.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+};
+
+func void Bab_PutOn_Bikini()
+{
+	if(self.id == 108)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",4,1,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 109)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",4,1,"Bab_Head_Hair1",1,0,0);
+	}
+	else if(self.id == 110)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",4,1,"Bab_Head_Hair1",2,0,0);
+	}
+	else if(self.id == 1205)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",4,3,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 1207)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",4,0,"Bab_Head_Hair1",0,0,0);
+	};
+};
+func void UnEquip_Bab_Bikini()
+{
+	if(self.id == 108)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",0,1,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 109)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",1,1,"Bab_Head_Hair1",1,0,0);
+	}
+	else if(self.id == 110)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",2,1,"Bab_Head_Hair1",2,0,0);
+	}
+	else if(self.id == 1205)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",0,3,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 1207)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",0,0,"Bab_Head_Hair1",0,0,0);
+	};
+};
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+func void Bab_PutOn_DefaultCloth()
+{
+	if(self.id == 108)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",0,1,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 109)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",1,1,"Bab_Head_Hair1",1,0,0);
+	}
+	else if(self.id == 110)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",2,1,"Bab_Head_Hair1",2,0,0);
+	}
+	else if(self.id == 1205)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",0,3,"Bab_Head_Hair1",0,0,0);
+	}
+	else if(self.id == 1207)
+	{
+		Mdl_SetVisualBody(self,"Bab_body_Naked0",0,0,"Bab_Head_Hair1",0,0,0);
+	};
+};
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+
+
 instance t1(C_Item)
 {
 	name = "Женская одежда 1";
 	mainflag = ITEM_KAT_ARMOR;
 	wear = WEAR_TORSO;
 	visual = "vobbox.3ds";
-	visual_change = "Bab_ARMOR.asc";
+	visual_change = "Bab_body_Naked0.asc";
 	visual_skin = 1;
 };
 instance t2(C_Item)
@@ -1254,7 +1412,7 @@ instance t2(C_Item)
 	mainflag = ITEM_KAT_ARMOR;
 	wear = WEAR_TORSO;
 	visual = "vobbox.3ds";
-	visual_change = "Bab_ARMOR.asc";
+	visual_change = "Bab_body_Naked0.asc";
 	visual_skin = 2;
 };
 instance t3(C_Item)
@@ -1263,7 +1421,7 @@ instance t3(C_Item)
 	mainflag = ITEM_KAT_ARMOR;
 	wear = WEAR_TORSO;
 	visual = "vobbox.3ds";
-	visual_change = "Bab_ARMOR.asc";
+	visual_change = "Bab_body_Naked0.asc";
 	visual_skin = 3;
 };
 

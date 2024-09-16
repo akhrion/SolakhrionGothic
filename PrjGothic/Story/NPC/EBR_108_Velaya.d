@@ -15,11 +15,13 @@ instance EBR_108_Velaya(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 40;
 	attribute[ATR_HITPOINTS] = 40;
 	Mdl_SetVisual(self,"BABE.MDS");
-	Mdl_SetVisualBody(self,"Bab_body_Naked0",0,1,"Bab_Head_Hair1",0,DEFAULT,BAB_ARMOR_BIKINI);
+	Mdl_SetVisualBody(self,"Bab_body_Naked0",0,1,"Bab_Head_Hair1",0,DEFAULT,-1);
 	aivar[AIV_IMPORTANT] = TRUE;
 	fight_tactic = FAI_HUMAN_COWARD;
 	CreateInvItem(self,ItMiBrush);
 	CreateInvItem(self,ItMiWedel);
+	CreateInvItem(self,Bab_Bikini);
+	CreateInvItem(self,Bab_Naked);
 	daily_routine = Rtn_start_108;
 };
 

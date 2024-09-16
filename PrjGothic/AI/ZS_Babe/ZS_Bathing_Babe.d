@@ -17,6 +17,7 @@ func void ZS_Bathing_Babe()
 			item = Npc_GetEquippedArmor(self);
 			self.bodymass = Hlp_GetInstanceID(item);
 			AI_UnequipArmor(self);
+			Bab_BecomeNature();
 		};
 		AI_UseMob(self,"BATHTUB",1);
 		Mdl_ApplyRandomAni(self,"S_BATHTUB_S1","T_BATHTUB_RANDOM1");
@@ -40,6 +41,6 @@ func void ZS_Bathing_Babe_End()
 	if(self.bodymass)
 	{
 		AI_EquipArmor(self,self.bodymass);
+		Bab_PutOn_DefaultCloth();
 	};
 };
-
