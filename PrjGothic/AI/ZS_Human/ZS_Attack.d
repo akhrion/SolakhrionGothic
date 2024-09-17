@@ -48,6 +48,7 @@ func int ZS_Attack_Loop()
 		self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
 		if(Npc_GetNextTarget(self))
 		{
+			Print("new target");
 			if(Npc_IsPlayer(other))
 			{
 				if(

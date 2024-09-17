@@ -62,6 +62,7 @@ func void Npc_SetRespawning(var C_Npc npc, var int bool)
 			npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_RESPAWNING;
 			Npc_MakeUnTargetable(npc);
 			Npc_SetImmortal(npc,true);
+			npc.aivar[AIV_INVINCIBLE] = true;
 		};
 	}
 	else if(Npc_IsRespawning(npc))
@@ -69,6 +70,7 @@ func void Npc_SetRespawning(var C_Npc npc, var int bool)
 		npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_RESPAWNING;
 		Npc_SetImmortal(npc,false);
 		Npc_MakeTargetable(npc);
+		if(npc.aivar[AIV_INVINCIBLE]){npc.aivar[AIV_INVINCIBLE] = false;};
 	};
 };
 
