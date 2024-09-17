@@ -648,6 +648,8 @@ func void overlay()
 	// msgSI("Знание цели ",Npc_GetTalentValue(hero,NPC_TALENT_1H),0,OVERLAY_TargetKnowledge_Y,1);
 
 
+	msgSI("My BodyState: ",Npc_GetBodyState(hero),0,72,1);
+
 	if(Npc_GetTarget(hero))
 	{
 		msgSI("ID: ",other.id,60,2,1);
@@ -657,6 +659,7 @@ func void overlay()
 		msgSI("Знание цели ",OVERLAY_TargetKnowledge,0,OVERLAY_TargetKnowledge_Y,1);
 		msgSI("Dist to target: ",Npc_GetDistToPlayer(other),0,OVERLAY_TARGET_DISTANCE_Y,1);
 	};
+
 	msgSI("Стойкость ",PC_Stamina,0,OVERLAY_Stamina_Y,1);
 	msgSI("Сила ",PC_ATR_STR,0,OVERLAY_ATR_STR_Y,1);
 	msgSI("Ловкость ",PC_ATR_DEX,0,OVERLAY_ATR_DEX_Y,1);
