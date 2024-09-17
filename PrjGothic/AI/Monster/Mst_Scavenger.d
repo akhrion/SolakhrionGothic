@@ -2,6 +2,7 @@
 prototype Mst_Default_Scavenger(C_Npc)
 {
 	name[0] = "Падальщик";
+	npcType = Npctype_Animal;
 	guild = GIL_SCAVENGER;
 	aivar[AIV_MM_REAL_ID] = ID_SCAVENGER;
 	level = 4;

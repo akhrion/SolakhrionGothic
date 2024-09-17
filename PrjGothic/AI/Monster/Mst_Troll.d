@@ -2,6 +2,7 @@
 prototype Mst_Default_Troll(C_Npc)
 {
 	name[0] = "Тролль";
+	npcType = Npctype_Animal;
 	guild = GIL_TROLL;
 	aivar[AIV_MM_REAL_ID] = ID_TROLL;
 	level = 200;

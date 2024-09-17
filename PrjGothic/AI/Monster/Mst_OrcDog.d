@@ -2,6 +2,7 @@
 prototype Mst_Default_OrcDog(C_Npc)
 {
 	name[0] = "Орочья собака";
+	npcType = Npctype_Animal;
 	guild = GIL_ORCDOG;
 	aivar[AIV_MM_REAL_ID] = ID_BLACKWOLF;
 	level = 12;

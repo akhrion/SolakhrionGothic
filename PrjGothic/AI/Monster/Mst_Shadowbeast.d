@@ -2,6 +2,7 @@
 prototype Mst_Default_Shadowbeast(C_Npc)
 {
 	name[0] = "ћракорис";
+	npcType = Npctype_Animal;
 	guild = GIL_SHADOWBEAST;
 	aivar[AIV_MM_REAL_ID] = ID_SHADOWBEAST;
 	level = 40;

@@ -2,6 +2,7 @@
 prototype Mst_Default_Lurker(C_Npc)
 {
 	name[0] = "Ўныг";
+	npcType = Npctype_Animal;
 	guild = GIL_LURKER;
 	aivar[AIV_MM_REAL_ID] = ID_LURKER;
 	level = 17;

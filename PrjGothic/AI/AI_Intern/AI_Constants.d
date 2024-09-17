@@ -84,6 +84,7 @@ const int NpcType_MINE_Guard = 5;
 const int NPCTYPE_OW_AMBIENT = 6;
 const int npctype_ow_guard = 7;
 const int Npctype_ROGUE = 8;
+const int Npctype_Animal = 9;
 const int FAI_MONSTER_MASTER = 1;
 const int FAI_HUMAN_COWARD = 2;
 const int FAI_HUMAN_Strong = 3;

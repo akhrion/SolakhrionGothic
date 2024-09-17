@@ -77,27 +77,10 @@ func void Npc_SetRespawning(var C_Npc npc, var int bool)
 // у существа нет иной цели, кроме поиска пищи и выживания
 func int Npc_IsAnimal(var C_Npc npc)
 {
-	if(
-		npc.aivar[AIV_MM_REAL_ID] == ID_BLACKGOBBO
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_BLACKWOLF
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_BLOODFLY
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_BLOODHOUND
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_MEATBUG
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_MOLERAT
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_YMOLERAT
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_GOBBO
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_LURKER
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_MINECRAWLER
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_ORCDOG
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_SCAVENGER
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_YSCAVENGER
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_SNAPPER
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_TROLL
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_WARAN
-	||	npc.aivar[AIV_MM_REAL_ID] == ID_WOLF
-	){return true;};
+	if(npc.npcType == Npctype_Animal)
+	{
+		return true;
+	};
 	return false;
 };
 

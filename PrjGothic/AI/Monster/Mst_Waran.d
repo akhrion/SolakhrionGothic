@@ -2,6 +2,7 @@
 prototype Mst_Default_Waran(C_Npc)
 {
 	name[0] = "ящерица";
+	npcType = Npctype_Animal;
 	guild = GIL_WARAN;
 	aivar[AIV_MM_REAL_ID] = ID_WARAN;
 	level = 8;

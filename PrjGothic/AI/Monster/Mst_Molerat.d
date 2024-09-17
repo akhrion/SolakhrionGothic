@@ -2,6 +2,7 @@
 prototype Mst_Default_Molerat(C_Npc)
 {
 	name[0] = "Кротокрыс";
+	npcType = Npctype_Animal;
 	guild = GIL_MOLERAT;
 	aivar[AIV_MM_REAL_ID] = ID_MOLERAT;
 	level = 5;

@@ -1,7 +1,6 @@
 func void ezRespawn()
 {
     if(!Npc_IsAnimal(self)){return;};//akhwork
-    Print("aaaaaaaaa");
     Wld_InsertNpc(Hlp_GetInstanceID(self),self.wp);
     Npc_SetRespawning(self,true);
 

@@ -2,6 +2,7 @@
 prototype Mst_Default_Snapper(C_Npc)
 {
 	name[0] = "Глорх";
+	npcType = Npctype_Animal;
 	guild = GIL_SNAPPER;
 	aivar[AIV_MM_REAL_ID] = ID_SNAPPER;
 	level = 22;

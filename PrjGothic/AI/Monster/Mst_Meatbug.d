@@ -2,6 +2,7 @@
 prototype Mst_Default_Meatbug(C_Npc)
 {
 	name[0] = "ћ€сной жук";
+	npcType = Npctype_Animal;
 	guild = GIL_MEATBUG;
 	aivar[AIV_MM_REAL_ID] = ID_MEATBUG;
 	level = 1;
