@@ -42,8 +42,8 @@ func void B_CheckStolenEquipment()
 
 func void B_CheckStolenTrophy()
 {
-	Npc_GetInvItem(hero,ItFoMuttonRaw);
-	B_AssessTheft();
+	// Npc_GetInvItem(hero,ItFoMuttonRaw);
+	// B_AssessTheft();
 };
 
 
@@ -108,8 +108,8 @@ func void B_AssessSC()
 			};
 		};
 		B_CheckStolenEquipment();
+		B_CheckStolenTrophy();
 	};
-	B_CheckStolenTrophy();
 	B_RandomQuest();
 	if((hero.aivar[AIV_GUARDPASSAGE_STATUS] == AIV_GPS_FIRSTWARN) || (hero.aivar[AIV_GUARDPASSAGE_STATUS] == AIV_GPS_LASTWARN))
 	{
