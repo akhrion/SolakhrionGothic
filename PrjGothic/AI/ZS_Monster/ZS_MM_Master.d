@@ -507,20 +507,24 @@ func int ZS_MM_Attack_Loop()
 			Npc_PerceiveAll(self);
 			Npc_GetNextTarget(self);
 			PrintGlobals(PD_ZS_DETAIL);
-			if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
+			if(
+				Hlp_IsValidNpc(other)
+			&&	!C_NpcIsDown(other)
+			&&	!Npc_IsRespawning(other)
+			)
 			{
-			if(Npc_IsSummonedByPC(self))
-			{
-				Print("ПОИСК НОВОЙ ЦЕЛИ.. новая цель найдена");
-			};
+				if(Npc_IsSummonedByPC(self))
+				{
+					Print("ПОИСК НОВОЙ ЦЕЛИ.. новая цель найдена");
+				};
 				PrintDebugString(PD_MST_CHECK,"...neues Ziel gefunden: ",other.name);
 			}
 			else
 			{
-			if(Npc_IsSummonedByPC(self))
-			{
-				Print("ПОИСК НОВОЙ ЦЕЛИ.. доступных целей нет!");
-			};
+				if(Npc_IsSummonedByPC(self))
+				{
+					Print("ПОИСК НОВОЙ ЦЕЛИ.. доступных целей нет!");
+				};
 				PrintDebugNpc(PD_MST_CHECK,"...kein Neues Ziel vorhanden!");
 				return LOOP_END;
 			};

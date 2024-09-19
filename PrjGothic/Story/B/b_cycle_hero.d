@@ -330,6 +330,16 @@ func void PC_SitCampfire()
 };
 func void PC_Test()
 {
+
+	if(!PC_HasNecromancySkill)
+	{
+		PC_HasNecromancySkill = 1;
+	};
+	if(!PC_NecromancySkillValue)
+	{
+		PC_NecromancySkillValue = 1;
+	};
+	return;
 	Print(FloatToString(Focus_Ranged.npc_range2));
 	if(
 		hero.level == 10
@@ -691,6 +701,8 @@ func void b_cycle_hero()
 	PC_GetMovementSpeed();
 	Npc_Wounded(hero);
 	overlay();
+	// PC_Test();
+
 
 	if(PC_IsReceivedBacksideDamage){PC_IsReceivedBacksideDamage = false;};//per second reset	
 	if(PC_Forging_Incandescence_IsStopped)

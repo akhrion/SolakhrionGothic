@@ -69,6 +69,14 @@ func void PrintSI(var string str_, var int i_){
 		)
 	);
 };
+func void PrintSS(var string str_, var string str2_){
+	Print(
+		ConcatStrings(
+			str_,
+			str2_
+		)
+	);
+};
 func void PrintSIS(var string _s1, var int _i, var string _s2)
 {
 	Print(

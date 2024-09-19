@@ -155,7 +155,7 @@ instance SummonedByPC_Skeleton(Mst_Default_Skeleton)
 	Npc_SetToFightMode(self,itmw_skeleton_sword);
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
 	senses = SENSE_HEAR | SENSE_SEE;
-	start_aistate = ZS_MM_SummonedByPC;
+	start_aistate = ZS_MM_SummonedByPC_Skeleton;
 	aivar[AIV_HASDEFEATEDSC] = 300;
 	aivar[AIV_ISLOOKING] = 5;
 	aivar[AIV_MOVINGMOB] = TRUE;
@@ -173,10 +173,10 @@ instance SummonedByPC_SkeletonShield(Mst_Default_Skeleton)
 
 	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 10;
 	senses = SENSE_HEAR | SENSE_SEE;
-	start_aistate = ZS_MM_SummonedByPC;
-	aivar[AIV_HASDEFEATEDSC] = 300;
-	aivar[AIV_ISLOOKING] = 1;
-	aivar[AIV_MOVINGMOB] = TRUE;
+	start_aistate = ZS_MM_SummonedByPC_Skeleton;
+	aivar[AIV_MM_DistToMaster] = 300;
+	aivar[AIV_MM_TimeLooseHP] = 1;
+	aivar[AIV_MM_PARTYMEMBER] = TRUE;
 };
 
 instance SummonedByNPC_Skeleton(Mst_Default_Skeleton)

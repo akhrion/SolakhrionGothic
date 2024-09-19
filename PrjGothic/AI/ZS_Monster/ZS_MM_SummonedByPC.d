@@ -24,7 +24,7 @@ func int ZS_MM_SummonedByPC_Loop()
 			return LOOP_END;
 		};
 	}
-	else if(Npc_GetStateTime(self) > self.aivar[AIV_ISLOOKING])
+	else if(Npc_GetStateTime(self) > self.aivar[AIV_MM_TimeLooseHP])
 	{
 		if(
 			self.aivar[AIV_MM_REAL_ID] == ID_DEMON
@@ -69,6 +69,92 @@ func void ZS_MM_SummonedByPC_End()
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_SummonedByPC_End");
 };
 
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+func void ZS_MM_SummonedByPC_Skeleton()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_SummonedByPC_Skeleton");
+	Npc_SetTempAttitude(self,ATT_FRIENDLY);
+	Npc_SetAttitude(self,ATT_FRIENDLY);
+	Npc_PercEnable(self,PERC_ASSESSENEMY,B_SummonedByPC_AssessEnemy);
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_SummonedByPC_AssessSC);
+	Npc_PercEnable(self,PERC_ASSESSFIGHTSOUND,B_MM_SummonedByPCAssessOthersDamage);
+	Npc_SetPercTime(self,0.5);
+	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
+	Npc_PercEnable(self,PERC_ASSESSDAMAGE,ZS_MM_Attack);
+	AI_Standup(self);
+};
+func void Skeleton_SummonedByPC_LoosingHP()
+{
+	if(Npc_GetStateTime(self) > self.aivar[AIV_MM_TimeLooseHP])
+	{
+		Npc_ChangeAttribute(self,ATR_HITPOINTS,-1);
+		Npc_SetStateTime(self,0);
+	};
+};
+func int ZS_MM_SummonedByPC_Skeleton_Loop()
+{
+	PrintDebugNpc(PD_MST_LOOP,"ZS_MM_SummonedByPC_Skeleton_Loop");
+	PrintGlobals(PD_MST_DETAIL);
+
+	Skeleton_SummonedByPC_LoosingHP();
+
+	if(Npc_GetNextTarget(self))
+	{
+		if(Npc_IsRespawning(other))
+		{
+			// Print("Цель в состоянии респавнинга!");
+		}
+		else if(Npc_GetDistToNpc(self,other) > 500)
+		{
+			Print("Цель слишком далеко.");
+		}
+		else if(Npc_IsPlayer(other))
+		{
+			PrintDebugNpc(PD_MST_CHECK,"...Игрок наш мастер!");
+			Print("...Игрок наш мастер!");
+		}
+		else
+		{
+			PrintDebugNpc(PD_MST_CHECK,"...neuer Gegner gefunden");
+			Print("...нашёл нового противника");
+			Npc_SetTarget(self,other);
+			Npc_ClearAIQueue(self);
+			AI_StartState(self,ZS_MM_Attack,0,"");
+		};
+	};
+	if(
+		!Npc_IsInState(self,ZS_MM_Attack)
+	||	!Npc_WasInState(self,zs_mm_attack)
+	)
+	{
+		if(Npc_GetDistToNpc(self,hero) > self.aivar[AIV_PARTYMEMBER_FOLLOWDIST])
+		{
+			Print("Цель для поражения не найдена, а я далеко от ГГ!");
+			AI_GotoNpc(self,hero);
+		}
+		else if(!Npc_CanSeeNpc(self,hero))
+		{
+			Print("Цель для поражения не найдена, а я близко к ГГ!");
+			AI_TurnToNPC(self,hero);
+			AI_TurnToNPC(self,hero);
+			AI_TurnToNPC(self,hero);
+		};
+	};
+	return LOOP_CONTINUE;
+};
+
+func void ZS_MM_SummonedByPC_Skeleton_End()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_SummonedByPC_Skeleton_End");
+};
+
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
 func void B_SummonedByPC_AssessSC()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_SummonedByPC_AssessSC");
@@ -83,21 +169,29 @@ func void B_SummonedByPC_AssessEnemy()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_SummonedByPC_AssessEnemy");
 	PrintGlobals(PD_MST_CHECK);
-	if(!other.aivar[AIV_PARTYMEMBER] && (other.npcType != npctype_friend))
+	// PrintSS("asdad: ",other.name);
+	if(
+		!Npc_IsRespawning(other)
+	&&	!other.aivar[AIV_PARTYMEMBER]
+	&&	(other.npcType != npctype_friend))
 	{
-		Print("B_SummonedByPC_AssessEnemy");
+		Print("aaaaaaaaaaaaaaaaaaaaaaaaa");
 		AI_StartState(self,ZS_MM_Attack,0,"");
 	};
 };
 
 func void B_MM_SummonedByPCAssessOthersDamage()
 {
+	return;
 	Print("B_MM_SummonedByPCAssessOthersDamage");
 	var C_Npc her;
 	var C_Npc rock;
 	her = Hlp_GetNpc(PC_Hero);
 	rock = Hlp_GetNpc(PC_Rockefeller);
-	if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(her)) || (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(rock)))
+	if(
+		(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(her))
+	|| (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(rock))
+	)
 	{
 		if(!Npc_IsInState(self,ZS_MM_Attack))
 		{
