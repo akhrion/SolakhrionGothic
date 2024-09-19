@@ -359,7 +359,7 @@ func void B_MM_ReactToCombatDamage()
 
 func void ZS_MM_Attack()
 {
-	Print("zs_mm_attack");
+	// Print("zs_mm_attack");
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Attack");
 	PrintGlobals(PD_MST_DETAIL);
 	Npc_SetPercTime(self,1);

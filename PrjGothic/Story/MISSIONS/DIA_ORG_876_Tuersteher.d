@@ -99,10 +99,14 @@ func void DIA_Org_876_Bribe_10Erz()
 	AI_Output(other,self,"DIA_Org_876_Bribe_10Erz_15_00");	//Ну, 10 кусков.
 	if(Npc_HasItems(other,ItMiNugget) >= 10)
 	{
+		Show_TradeMsg_SIS("У вас отобрали ",10," руды");
+		Npc_GiveItemsToOther(other,ItMiNugget,self,10);
 		AI_Output(self,other,"DIA_Org_876_Bribe_10Erz_06_01");	//Десять кусков? За это я разрешу тебе сделать вторую попытку.
 	}
 	else
 	{
+		Show_TradeMsg_SIS("У вас отобрали ",Npc_HasItems(other,ItMiNugget)," руды");
+		Npc_GiveItemsToOther(other,ItMiNugget,self,Npc_HasItems(other,ItMiNugget));
 		AI_Output(self,other,"DIA_Org_876_Bribe_10Erz_06_02");	//Да? И где эти десять кусков?
 	};
 	AI_StopProcessInfos(self);
@@ -117,6 +121,8 @@ func void DIA_Org_876_Bribe_50Erz()
 	}
 	else
 	{
+		Show_TradeMsg_SIS("У вас отобрали ",Npc_HasItems(other,ItMiNugget)," руды");
+		Npc_GiveItemsToOther(other,ItMiNugget,self,Npc_HasItems(other,ItMiNugget));
 		AI_Output(self,other,"DIA_Org_876_Bribe_50Erz_06_02");	//Да? Что-то я не вижу пятидесяти кусков.
 	};
 	AI_StopProcessInfos(self);

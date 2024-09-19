@@ -24,9 +24,12 @@ func void B_AssessRogue()
 
 func void B_AssessEnemy()
 {
-	B_AssessRogue();
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessEnemy");
 	PrintGlobals(PD_ZS_Check);
+
+	if(Npc_IsRespawning(other)){return;};
+
+	B_AssessRogue();
 	if(Npc_CanSeeNpcFreeLOS(self,other))
 	{
 		if(C_NpcIsHuman(other))

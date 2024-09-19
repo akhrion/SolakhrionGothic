@@ -27,10 +27,6 @@ func void ZS_Attack()
 func int ZS_Attack_Loop()
 {
 	B_Cycle_NPC();
-	if(self.npcType != Npctype_ROGUE)
-	{
-//		PrintSIS("ZS_Attack_Loop",0,self.name);
-	};
 	
 	var int countPursuitCycles;
 	PrintDebugNpc(PD_ZS_LOOP,"ZS_Attack_Loop");
@@ -44,11 +40,11 @@ func int ZS_Attack_Loop()
 	if(C_NpcIsDown(other) || !Hlp_IsValidNpc(other))
 	{
 		PrintDebugNpc(PD_ZS_Check,"...Ziel ist kampf-unfдhig oder ungьltig!");
+		// Print("...Цель неспособна к бою или недействительна!");
 		Npc_PerceiveAll(self);
 		self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
 		if(Npc_GetNextTarget(self))
 		{
-			Print("new target");
 			if(Npc_IsPlayer(other))
 			{
 				if(
@@ -56,25 +52,34 @@ func int ZS_Attack_Loop()
 				||	Npc_GetPermAttitude(self,other) == ATT_HOSTILE
 				)
 				{
-					Print("Перевызов защиты");
+					// Print("Перевызов защиты");
 					
 					PC_Handler_Invoke();
 				};
 			};           
-			if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other) && Npc_CanSeeNpcFreeLOS(self,other) && !C_OtherIsToleratedEnemy(self,other))
+			if(
+				Hlp_IsValidNpc(other)
+			&& !C_NpcIsDown(other)
+			&& Npc_CanSeeNpcFreeLOS(self,other)
+			&& !C_OtherIsToleratedEnemy(self,other)
+			&& !Npc_IsRespawning(other)
+			)
 			{
 				PrintDebugString(PD_ZS_Check,"...neues Ziel gefunden: ",other.name);
+				// PrintSS("...нашел новую цель: ",other.name);
 			}
 			else
 			{
 				PrintDebugNpc(PD_ZS_Check,"...kein Neues Ziel vorhanden!");
+				// Print("...новая цель не может быть атакована!");
 				return LOOP_END;
 			};
 		}
 		else
 		{
 			PrintDebugNpc(PD_ZS_Check,"...KEIN neues Ziel gefunden!");
-			return LOOP_END;
+			// Print("...Новых целей не найдено!");
+			return LOOP_CONTINUE;
 		};
 	};
 	if(Npc_GetStateTime(self) > 2)
@@ -82,10 +87,11 @@ func int ZS_Attack_Loop()
 		if(!Npc_IsInFightMode(self,FMODE_FAR) && !Npc_IsInFightMode(self,FMODE_MAGIC) && !(Npc_IsInFightMode(other,FMODE_FAR) && !Npc_IsInFightMode(other,FMODE_MAGIC)))
 		{
 			PrintDebugNpc(PD_ZS_Check,"...WEDER NSC noch Gegner fьhren Fernkampfwaffen!");
+			// Print("НИ NPC, ни враги не владеют оружием дальнего боя!");
 			if((Npc_GetDistToNpc(self,other) > HAI_DIST_ABORT_MELEE) && (self.aivar[AIV_LASTHITBYRANGEDWEAPON] == FALSE))
 			{
 				PrintDebugNpc(PD_ZS_Check,"...Gegner auЯerhalb Nahkampfreichweite & letzter Treffer nicht durch Fernkampfwaffe!");
-				PrintDebugNpc(PD_ZS_Check,"...Враги вне зоны ближнего боя & последний удар не из оружия дальнего боя!");
+				// Print("...Враги вне зоны ближнего боя & последний удар не из оружия дальнего боя!");
 				B_FullStop(self);
 				PrintGlobals(PD_ZS_Check);
 				if(C_NpcIsHuman(other))
@@ -99,18 +105,35 @@ func int ZS_Attack_Loop()
 					};
 				};
 				return LOOP_END;
+			}
+			else
+			{
+				// Print("Враги в зоне ближнего боя, либо я получил удар из оружия дальнего боя!");
+				if(Npc_IsRespawning(other))
+				{
+					return LOOP_END;
+				};
 			};
 		}
 		else
 		{
 			PrintDebugNpc(PD_ZS_Check,"...entweder NSC oder Gegner FЬHREN Fernkampfwaffen!");
+			// Print("либо NPC, либо враги СОХРАНЯЮТ оружие дальнего боя!");
 			if(Npc_GetDistToNpc(self,other) > HAI_DIST_ABORT_RANGED)
 			{
 				PrintDebugNpc(PD_ZS_Check,"...Gegner auЯerhalb Fernkampfreichweite!");
+				// Print("Враги вне досягаемости!");
 				B_FullStop(self);
 				return LOOP_END;
 			};
+			if(Npc_IsRespawning(other))
+			{
+				return LOOP_END;
+			};
 		};
+
+
+
 		countPursuitCycles = countPursuitCycles + 1;
 		if(Npc_IsPlayer(other) && (C_BodyStateContains(other,BS_RUN) || C_BodyStateContains(other,BS_JUMP)) && !Npc_IsInFightMode(self,FMODE_FAR) && !Npc_IsInFightMode(self,FMODE_MAGIC) && (C_GetAttackReason(self) != AIV_AR_INTRUDER))
 		{
@@ -136,6 +159,9 @@ func int ZS_Attack_Loop()
 		{
 			countPursuitCycles = 0;
 		};
+
+
+
 		PrintGlobals(PD_ZS_DETAIL);
 		Npc_ClearAIQueue(self);
 		B_SelectWeapon(self,other);
@@ -144,6 +170,7 @@ func int ZS_Attack_Loop()
 	};
 	if((self.npcType == npctype_ambient) || (self.npcType == NPCTYPE_OW_AMBIENT) || (self.npcType == Npctype_MINE_Ambient) || (self.fight_tactic == FAI_HUMAN_COWARD))
 	{
+		Print("3");
 		if((self.fight_tactic == FAI_HUMAN_COWARD) && (self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] / 2)))
 		{
 			PrintDebugNpc(PD_ZS_Check,"...coward flees!");
@@ -165,7 +192,10 @@ func int ZS_Attack_Loop()
 			AI_StartState(self,ZS_Flee,0,"");
 		};
 	};
-	if(other.aivar[AIV_INVINCIBLE] == FALSE)
+	if(
+		other.aivar[AIV_INVINCIBLE] == FALSE
+	&&	Npc_IsRespawning(other) == FALSE
+	)
 	{
 		AI_Attack(self);
 	}
