@@ -50,7 +50,7 @@ func int OnDamage_Hit(var int damageTotal)
     
     Weapon_ProjectileSave(item,victim);
     Weapon_Deterioration(item);
-    Npc_Training(self);
+    Npc_Training(self,item);
     // Print(item.name);
 	// if(Npc_IsPlayer(self))
 	// {

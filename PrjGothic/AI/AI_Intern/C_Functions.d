@@ -768,6 +768,14 @@ func int C_NpcHasWeapon(var C_Npc slf,var int category)
 	return FALSE;
 };
 
+func int Item_IsMunition(var C_Item itm)
+{
+	if(itm.mainflag == ITEM_KAT_MUN)
+	{
+		return true;
+	};
+	return false;
+};
 func int Item_IsMeleeWeapon(var C_Item _itm)
 {
 	if(_itm.mainflag == ITEM_KAT_NF)
@@ -1023,6 +1031,10 @@ func void Npc_DecreaseStr(var C_Npc npc_, var int str)
 func void Npc_IncreaseStr(var C_Npc npc_, var int str)
 {
 	npc_.attribute[ATR_STRENGTH] += str;
+};
+func void Npc_DecreaseDex(var C_Npc npc_, var int dex)
+{
+	npc_.attribute[ATR_DEXTERITY] -= dex;
 };
 func void Npc_IncreaseDex(var C_Npc npc_, var int dex)
 {
@@ -2196,6 +2208,13 @@ func void Npc_NotTraining(var C_Npc npc)
 		{
 			Npc_DecreaseStr(npc,1);
 		};
+
+
+
+		if(Npc_GetDex(npc) > ATTRIBUTESCAP_DEX_NORMAL)
+		{
+			Npc_DecreaseDex(npc,1);
+		};
 	};
 };
 func void Npc_SetTraining(var C_Npc npc, var int bool)
@@ -2212,15 +2231,25 @@ func void Npc_SetTraining(var C_Npc npc, var int bool)
 		npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TRAINING;
 	};
 };
-func void Npc_Training(var C_Npc npc)
+func void Npc_Training(var C_Npc npc, var C_Item itm)
 {
 	if(!Npc_IsTraining(npc))
 	{
 		Npc_SetTraining(npc,true);
 	};
-	if(Hlp_Random(100) > Npc_GetStr(npc))
+	if(Item_IsMeleeWeapon(itm))
 	{
-		Npc_IncreaseStr(npc,1);
+		if(Hlp_Random(100) > Npc_GetStr(npc))
+		{
+			Npc_IncreaseStr(npc,1);
+		};
+	}
+	else if(Item_IsMunition(itm))
+	{
+		if(Hlp_Random(100) > Npc_GetDex(npc))
+		{
+			Npc_IncreaseDex(npc,1);
+		};
 	};
 };
 
