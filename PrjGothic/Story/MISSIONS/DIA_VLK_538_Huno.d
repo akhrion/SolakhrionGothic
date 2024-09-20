@@ -206,6 +206,37 @@ func void DIA_Huno_LEARNSMITH_Info()
 };
 
 
+instance DIA_Huno_RestoreWeapon(C_Info)
+{
+	npc = VLK_538_Huno;
+	nr = 2;
+	condition = DIA_Huno_RestoreWeapon_Condition;
+	information = DIA_Huno_RestoreWeapon_Info;
+	permanent = 1;
+	important = 0;
+	description = "Можешь восстановить это оружие?";
+};
+
+func int DIA_Huno_RestoreWeapon_Condition()
+{
+	if(Npc_HasEquippedMeleeWeapon(other))
+	{
+		return true;
+	};
+	return false;
+};
+func void DIA_Huno_RestoreWeapon_Info()
+{
+	var C_Item itm;
+	itm = Npc_GetEquippedMeleeWeapon(other);
+	var int iItm;
+	iItm = Hlp_GetInstanceID(itm);
+	AI_UnequipWeapons(other);
+	Npc_RemoveInvItem(other,iItm);
+	CreateInvItem(other,iItm);
+};
+
+
 instance DIA_Huno_BUYSMITH(C_Info)
 {
 	npc = VLK_538_Huno;

@@ -586,13 +586,13 @@ instance ItMw_1H_LightGuardsSword_03(C_Item)
 
 instance ItMw_1H_Mace_01(C_Item)
 {
-	name = "“€жела€ булава";
+	name = "Ћысый моргенштерн";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
 	value = 55;
 	damageTotal = 23;
-	damagetype = DAM_BLUNT;
+	damagetype = DAM_BLUNT | DAM_POINT;
 	range = 100;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 23;
@@ -609,7 +609,7 @@ instance ItMw_1H_Mace_01(C_Item)
 
 instance ItMw_1H_Mace_02(C_Item)
 {
-	name = "Ѕулава с шипами";
+	name = "ѕалица с шипами";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
@@ -637,8 +637,8 @@ instance ItMw_1H_Mace_03(C_Item)
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
 	value = 65;
-	damageTotal = 26;
-	damagetype = DAM_BLUNT;
+	damageTotal = 30;
+	damagetype = DAM_BLUNT | DAM_POINT;
 	range = 100;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 26;
@@ -660,8 +660,10 @@ instance ItMw_1H_Mace_04(C_Item)
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
 	value = 70;
-	damageTotal = 29;
-	damagetype = DAM_BLUNT;
+	damage[DAM_INDEX_BLUNT] = 30;
+	damage[DAM_INDEX_POINT] = 10;
+	damageTotal = damage[DAM_INDEX_BLUNT] + damage[DAM_INDEX_POINT];
+	damagetype = DAM_BLUNT | DAM_POINT;
 	range = 100;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 29;
@@ -710,7 +712,7 @@ instance ItMw_1H_Sword_01(C_Item)
 	damagetype = DAM_EDGE;
 	range = 100;
 	change_atr[2] = ATR_STRENGTH;
-	change_value[2] = -100;
+	change_value[2] = -20;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 20;
 	visual = "ItMw_1H_Sword_01.3DS";

@@ -1,3 +1,26 @@
+//С каждым ударом по противнику оружие приходит всё в большую непригодность.
+func void Weapon_Deterioration(var C_Item itm)
+{
+    if(itm.mainflag != ITEM_KAT_NF){return;};
+    if(itm.damage[DAM_INDEX_POINT])
+    {
+        itm.damage[DAM_INDEX_POINT] -=3;
+    };
+    if(itm.damage[DAM_INDEX_EDGE])
+    {
+        itm.damage[DAM_INDEX_EDGE] -=2;
+    };
+    if(itm.damage[DAM_INDEX_BLUNT])
+    {
+        itm.damage[DAM_INDEX_BLUNT] -=1;
+    };
+    itm.count[2] = (
+        itm.damage[DAM_INDEX_POINT]
+    +   itm.damage[DAM_INDEX_EDGE]
+    +   itm.damage[DAM_INDEX_BLUNT]
+    );
+};
+
 //ФУНКЦИИ ОТВЕЦАЮЩИЕ ЗА ОБРАБОТКУ УРОНА
 //на данный момент они здесь не все
 //просто одну добавил
@@ -16,6 +39,9 @@
 func int OnDamage_Hit(var int damageTotal)
 {
     if(Npc_IsDodge(victim)){return 0;};
+    
+    Weapon_ProjectileSave(item);
+    Weapon_Deterioration(item);
     Npc_Training(self);
     // Print(item.name);
 	// if(Npc_IsPlayer(self))
