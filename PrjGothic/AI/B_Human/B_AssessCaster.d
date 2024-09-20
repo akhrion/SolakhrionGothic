@@ -3,6 +3,8 @@ func void B_AssessCaster()
 {
 	PrintDebugNpc(PD_ZS_FRAME,"B_AssessCaster");
 	PrintGlobals(PD_ZS_Check);
+	if(Npc_IsRespawning(self)){return;};
+
 	if(!Npc_IsPlayer(other))
 	{
 		PrintDebugNpc(PD_ZS_Check,"...Zauberer NICHT der Spieler!");

@@ -212,6 +212,9 @@ func void B_AssessMagic()
 {
 	PrintGlobals(PD_MAGIC);
 	PrintDebugNpc(PD_MAGIC,"B_AssessMagic");
+	if(Npc_IsRespawning(self)){return;};
+
+
 	if(Npc_GetActiveSpell(other) == SPL_FIREBOLT)
 	{
 		B_AssessMagic_Firebolt();

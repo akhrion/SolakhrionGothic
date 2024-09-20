@@ -144,6 +144,8 @@ func void B_MM_AssessEnemy()
 
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessEnemy");
 //	Print("B_MM_AssessEnemy");
+	if(Npc_IsRespawning(self)){return;};
+
 	if((Npc_GetDistToNpc(self,other) < self.aivar[AIV_MM_PercRange]) && Npc_CanSeeNpcFreeLOS(self,other))
 	{
 		if(C_PreyToPredator(other,self))
@@ -255,8 +257,8 @@ func void ZS_MM_AssessEnemy_end()
 
 func void B_MM_ReactToDamage()
 {
-	Print("reacttodamage");
-	
+	if(Npc_IsRespawning(self)){return;};
+
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToDamage");
 	PrintGlobals(PD_MST_CHECK);
 
@@ -285,6 +287,8 @@ func void B_MM_ReactToDamage()
 func void B_MM_ReactToOthersDamage()
 {
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_ReactToOthersDamage");
+	if(Npc_IsRespawning(self)){return;};
+
 	B_MM_DeSynchronize();
 	// Print("B_MM_ReactToOthersDamage");
 	// PrintSIS(other.name,0,self.name);
@@ -584,8 +588,10 @@ func void ZS_MM_Flee_End()
 
 func void B_MM_AssessWarn()
 {
-	// Print("B_MM_AssessWarn");
 	PrintDebugNpc(PD_MST_FRAME,"B_MM_AssessWarn");
+	if(Npc_IsRespawning(self)){return;};
+
+	// Print("B_MM_AssessWarn");
 	// Print(other.name);
 	// Print(self.name);
 	// Print(victim.name);
