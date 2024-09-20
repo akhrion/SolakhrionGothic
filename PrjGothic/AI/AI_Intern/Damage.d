@@ -1,3 +1,11 @@
+//Стрелы и болты попавшие в противника, могут остаться у него в инвентаре.
+//Если не сломаются..
+func void Weapon_ProjectileSave(var C_Item itm,var C_Npc vict)
+{
+    if(itm.mainflag != ITEM_KAT_MUN){return;};
+    CreateInvItem(vict,Hlp_GetInstanceID(itm));
+};
+
 //С каждым ударом по противнику оружие приходит всё в большую непригодность.
 func void Weapon_Deterioration(var C_Item itm)
 {
@@ -40,7 +48,7 @@ func int OnDamage_Hit(var int damageTotal)
 {
     if(Npc_IsDodge(victim)){return 0;};
     
-    Weapon_ProjectileSave(item);
+    Weapon_ProjectileSave(item,victim);
     Weapon_Deterioration(item);
     Npc_Training(self);
     // Print(item.name);
