@@ -14,14 +14,10 @@ instance SLD_711_Cara(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 140;
 	attribute[ATR_HITPOINTS] = 140;
 	Mdl_SetVisual(self,"HUMANS.MDS");
-	Mdl_SetVisualBody(self,"hum_body_Naked0",0,3,"Bab_Head_Hair1",2,DEFAULT,sld_armor_m);
+	Mdl_SetVisualBody(self,"hum_body_Naked0",0,1,"Bab_Head_Hair1",4,DEFAULT,sld_armor_m);
     Npc_SetWidth(self,0.8);
     Mdl_SetModelFatness(self,-1);
 
-	// Mdl_SetVisualBody(self,"hum_body_Naked0",0,0,"Bab_Head_Hair1",4,DEFAULT,kdw_armor_l);
-    // HumanVisual_SetMageWomen(self);
-
-	// Mdl_SetVisualBody(self,"Bab_body_Naked0",1,2,"Bab_Head_Hair1",4,DEFAULT,-1);
 	aivar[AIV_IMPORTANT] = TRUE;
 	fight_tactic = FAI_HUMAN_MASTER;
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,2);
