@@ -1,5 +1,5 @@
 
-func void Npc_GiveItemsToOther(var C_Npc giver,var C_Item itm,var C_Npc taker,var int amount)
+func void Npc_GiveItemsToOther(var C_Npc giver,var C_Item itm,var int amount,var C_Npc taker)
 {
 	var int iItem;
 	iItem = Hlp_GetInstanceID(itm);
