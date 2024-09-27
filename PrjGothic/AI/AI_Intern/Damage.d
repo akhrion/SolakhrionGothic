@@ -29,6 +29,12 @@ func void Weapon_Deterioration(var C_Item itm)
     );
 };
 
+//Влияет на получаемый урон ночью
+func int Night_Damage(var int damageTotal)
+{
+    return damageTotal;
+};
+
 //ФУНКЦИИ ОТВЕЦАЮЩИЕ ЗА ОБРАБОТКУ УРОНА
 //на данный момент они здесь не все
 //просто одну добавил
@@ -47,6 +53,10 @@ func void Weapon_Deterioration(var C_Item itm)
 func int OnDamage_Hit(var int damageTotal)
 {
     if(Npc_IsDodge(victim)){return 0;};
+    if(IsNight())
+    {
+        return Night_Damage(damageTotal);
+    };
     
     Weapon_ProjectileSave(item,victim);
     Weapon_Deterioration(item);

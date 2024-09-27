@@ -2283,3 +2283,11 @@ func int Npc_HasBook(var C_Npc npc)
 {
 	return Npc_HasItems(npc,ItWr_Book_Circle_02);
 };
+func int IsNight()
+{
+	if(Wld_IsTime(22,0,6,0))
+	{
+		return true;
+	};
+	return false;
+};
