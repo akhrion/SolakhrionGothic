@@ -1,9 +1,20 @@
 //Стрелы и болты попавшие в противника, могут остаться у него в инвентаре.
 //Если не сломаются..
-func void Weapon_ProjectileSave(var C_Item itm,var C_Npc vict)
+func void Weapon_ProjectileSave(var C_Item itm,var C_Npc attacker,var C_Npc vict)
 {
     if(itm.mainflag != ITEM_KAT_MUN){return;};
-    CreateInvItem(vict,Hlp_GetInstanceID(itm));
+    if(Hlp_Random(100) < Npc_GetDex(attacker))
+    {
+        CreateInvItem(vict,Hlp_GetInstanceID(itm));
+    }
+    else
+    {
+        CreateInvItem(vict,ItMiArrowHead);
+        if(Hlp_Random(100) < Npc_GetDex(attacker))
+        {
+            CreateInvItem(vict,ItMiArrowShaft);
+        };
+    };
 };
 
 //С каждым ударом по противнику оружие приходит всё в большую непригодность.
@@ -58,7 +69,7 @@ func int OnDamage_Hit(var int damageTotal)
         return Night_Damage(damageTotal);
     };
     
-    Weapon_ProjectileSave(item,victim);
+    Weapon_ProjectileSave(item,self,victim);
     Weapon_Deterioration(item);
     Npc_Training(self,item);
     // Print(item.name);

@@ -21,6 +21,7 @@ instance PC_Hero(Npc_Default)
 	Mdl_SetVisualBody(self,"hum_body_Naked0",4,1,"Hum_Head_Pony",9,0,-1);
 	CreateInvItem(self,ItWr_Fire_Letter_01);
 	CreateInvItem(self,ChangeWeaponHand);
+	CreateInvItem(self,GameObject_OpenActionsMenu);
 	SetTestItems();
 	SetTestSkils();
 	SetTestAttributes();

@@ -20,3 +20,17 @@ func void Show_TradeMsg_SIS(var string msg,var int amount,var string msg2)
 		ConcatStrings(ConcatStrings(msg,IntToString(amount)),msg2),
 	-1,37,"FONT_OLD_10_WHITE.TGA",3);
 };
+func void Show_TradeMsgT(var string msg, var int seconds)
+{
+	PrintScreen(msg,-1,37,"FONT_OLD_10_WHITE.TGA",seconds);
+};
+func void Show_TradeMsg_SIT(var string msg,var int amount,var int seconds)
+{
+	PrintScreen(ConcatStrings(msg,IntToString(amount)),-1,37,"FONT_OLD_10_WHITE.TGA",seconds);
+};
+func void Show_TradeMsg_SIST(var string msg,var int amount,var string msg2,var int seconds)
+{
+	PrintScreen(
+		ConcatStrings(ConcatStrings(msg,IntToString(amount)),msg2),
+	-1,37,"FONT_OLD_10_WHITE.TGA",seconds);
+};

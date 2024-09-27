@@ -1,6 +1,8 @@
 
 const int Value_MobsiItem = 2;
 const int Value_Nail = 1;
+const int Value_ArrowHead = 4;
+const int Value_ArrowShaft = 1;
 const int Value_SwordBlade = 50;
 const int Value_SwordBladeHot = 50;
 const int Value_SwordRawHot = 40;
@@ -248,6 +250,31 @@ instance ItMiSwordblade(C_Item)
 	value = Value_SwordBlade;
 	visual = "ItMi_SmithSword_Blade_01.3DS";
 	material = MAT_METAL;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMiArrowHead(C_Item)
+{
+	name = "Наконечник стрелы";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_ArrowHead;
+	visual = "ItAm_Arrow_01.3ds";
+	material = MAT_WOOD;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+instance ItMiArrowShaft(C_Item)
+{
+	name = "Древко стрелы";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_ArrowShaft;
+	visual = "ItAm_Arrow_01.3ds";
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

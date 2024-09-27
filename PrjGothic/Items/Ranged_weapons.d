@@ -556,7 +556,7 @@ instance ItAmArrow(C_Item)
 	name = "Стрела";
 	mainflag = ITEM_KAT_MUN;
 	flags = ITEM_BOW | ITEM_MULTI;
-	value = 2;
+	value = 10;
 	visual = "ItAm_Arrow_01.3ds";
 	material = MAT_WOOD;
 	scemeName = "USEFAKEITEM";

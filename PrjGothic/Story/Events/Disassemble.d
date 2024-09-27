@@ -48,6 +48,13 @@ func void PC_Menu_Info()
     {
         Info_AddChoice(PC_Menu,"Разобрать предмет",Disassemble_NailMace);
     };
+	if(
+		//я достаточно ловок, что-бы попробовать что-то собрать своими руками
+		Npc_GetDex(self) >= 30
+	)
+	{
+		Info_AddChoice(PC_Menu,"Собрать предмет",Assemble_Item);
+	};
 	Info_AddChoice(PC_Menu,"Бросить приманку",DropLure);
 };
 
@@ -71,6 +78,135 @@ func void DropLure_ItFoMuttonRaw()
 
 
 
+
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+func void Assemble_Item()
+{
+	var int Knowledge_ItemAssembly;
+	Info_ClearChoices(PC_Menu);
+	Info_AddChoice(PC_Menu,"ЗАКРЫТЬ.",PC_Menu_EXIT_Info);
+	if(
+		Npc_HasItems(self,ItMiArrowShaft) && Npc_HasItems(self,ItMiArrowHead)
+	)
+	{
+		Knowledge_ItemAssembly = true;
+		if(Npc_HasItems(self,ItMiArrowShaft) > 1 && Npc_HasItems(self,ItMiArrowHead) > 1)
+		{
+			Info_AddChoice(PC_Menu,"Собрать все стрелы",Assemble_Item_Arrows);
+		};
+		Info_AddChoice(PC_Menu,"Собрать стрелу",Assemble_Item_Arrow);
+	};
+	if(!Knowledge_ItemAssembly)
+	{
+		Show_TradeMsgT("Знать-бы еще что я такого могу собрать..",5);
+		PC_MenuClose(MOBSI_PC_MenuEND);
+	};
+};
+
+
+func int private_Assemble_Item_Arrows(
+	var int arrowsLeft,
+	var int arrowsCreated,
+	var int dexterity
+)
+{
+	if(!arrowsLeft)
+	{
+		return arrowsCreated;
+	};
+	if(Hlp_Random(100) < dexterity)
+	{
+		arrowsCreated +=1;
+	};
+	return private_Assemble_Item_Arrows(
+		arrowsLeft - 1,
+		arrowsCreated,
+		dexterity
+	);
+};
+func void Assemble_Item_Arrows()
+{
+	// Show_TradeMsgT("Ничего не произошло, кажется эта функция еще не реализована. Ждем..",7);
+	var int arrowHeads;
+	var int arrowShafts;
+	arrowHeads = Npc_HasItems(self,ItMiArrowHead);
+	arrowShafts = Npc_HasItems(self,ItMiArrowShaft);
+
+	var int arrowsCanBeProduced;
+	arrowsCanBeProduced = tern(arrowHeads < arrowShafts, arrowHeads, arrowShafts);
+
+	var int arrowsCreated;
+	arrowsCreated = private_Assemble_Item_Arrows(arrowsCanBeProduced,0,Npc_GetDex(self));
+
+	var int arrowShaftsBroked;
+	arrowShaftsBroked = arrowsCanBeProduced - arrowsCreated;
+
+	Npc_RemoveInvItems(self,ItMiArrowShaft, arrowsCreated + arrowShaftsBroked);
+	Npc_RemoveInvItems(self,ItMiArrowHead, arrowsCreated);
+	CreateInvItems(self,ItAmArrow,arrowsCreated);
+
+	var int lastDigit;
+	lastDigit = arrowsCreated%10;
+	if(
+		lastDigit == 9
+	||	lastDigit == 8
+	||	lastDigit == 7
+	||	lastDigit == 6
+	||	lastDigit == 5
+	||	lastDigit == 0
+	)
+	{
+		Show_TradeMsg_SIS("+",arrowsCreated," Стрел");
+	}
+	else if(
+		lastDigit == 4
+	||	lastDigit == 3
+	||	lastDigit == 2
+	)
+	{
+		Show_TradeMsg_SIS("+",arrowsCreated," Стрелы");
+	}
+	else
+	{
+		Show_TradeMsg_SIS("+",arrowsCreated," Стрела");
+	};
+
+	PC_MenuClose(MOBSI_PC_MenuEND);
+};
+
+func void Assemble_Item_Arrow()
+{
+	var int ArrowShaftBrokeCounter;			//переменная для ачивки, если игрок сломал много стрел к ряду
+	if(Hlp_Random(100) < Npc_GetDex(self))
+	{
+		Npc_RemoveInvItem(self,ItMiArrowShaft);
+		Npc_RemoveInvItem(self,ItMiArrowHead);
+		CreateInvItem(self,ItAmArrow);
+		ArrowShaftBrokeCounter =0;
+		Show_TradeMsg("+1 Стрела");
+	}
+	else
+	{
+		if(ArrowShaftBrokeCounter == 10)
+		{
+			Log_CreateTopic(ACHIEVEMENTS,LOG_NOTE);
+			Log_AddEntry(ACHIEVEMENTS,"Не получилось, но я сломал ещё одно древко - это тоже достижение или..");
+		}
+		else
+		{
+			ArrowShaftBrokeCounter +=1;
+		};
+		Show_TradeMsgT("Не получилось и я сломал древко..",5);
+		Npc_RemoveInvItem(self,ItMiArrowShaft);
+	};
+	Assemble_Item();
+};
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 
 
 func void Disassemble_NailMace()
