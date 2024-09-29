@@ -15,6 +15,7 @@ const int Value_Joint3 = 16;
 const int Value_Laute = 10;
 const int Value_Erzbrocken = 1;
 const int Value_Fackel = 2;
+const int Value_LockpickPack = 100;
 const int Value_Sumpfkraut = 4;
 const int Value_Pfeife = 4;
 const int Value_Rasiermesser = 2;
@@ -47,6 +48,26 @@ instance ItKeLockpick(C_Item)
 	text[5] = NAME_Value;
 	count[5] = Value_Dietrich;
 };
+
+instance ItMiLockpickPACK(C_Item)
+{
+	name = "Пакет с отмычками";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MISSION | ITEM_MULTI;
+	value = Value_LockpickPack;
+	visual = "ItMi_Packet.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAPSEALED";
+	on_state[0] = UseLockpickPack;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+func void UseLockpickPack()
+{
+	CreateInvItems(self,ItKeLockpick,10);
+};
+
 
 instance ItKeKey1(C_Item)
 {

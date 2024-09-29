@@ -700,6 +700,7 @@ func void b_cycle_hero()
 	PC_Stamina_f();
 	PC_GetMovementSpeed();
 	Npc_Wounded(hero);
+	G_MonkeyLock();
 	overlay();
 	// PC_Test();
 

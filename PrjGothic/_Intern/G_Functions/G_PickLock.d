@@ -6,6 +6,7 @@ func void G_PickLock(var int bSuccess,var int bBrokenOpen)
 	var int strYPos;
 	strSoundFX = _STR_INVALID;
 	strMessage = _STR_INVALID;
+	G_MonkeyLock_RemoveBroken();
 	if(bSuccess)
 	{
 		if(bBrokenOpen)
@@ -26,6 +27,7 @@ func void G_PickLock(var int bSuccess,var int bBrokenOpen)
 		strSoundFX = _STR_SOUND_PICKLOCK_BROKEN;
 		strMessage = _STR_MESSAGE_PICKLOCK_BROKEN;
 		strYPos = _YPOS_MESSAGE_PICKLOCK_BROKEN;
+		G_MonkeyLock_PickLockBroked();
 	}
 	else
 	{

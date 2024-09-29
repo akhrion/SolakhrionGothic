@@ -574,6 +574,14 @@ func void ch_diff_info()
 {
 	Info_ClearChoices(ch_diff);
 	Info_AddChoice(ch_diff,DIALOG_BACK,ch_diff_back);
+	if(bMonkeyLock_Mod_IsOn)
+	{
+		Info_AddChoice(ch_diff,"Выключи обезьяньи замки",ch_MonkeyLock_TurnOff);
+	}
+	else
+	{
+		Info_AddChoice(ch_diff,"Включи замки для обезьян",ch_MonkeyLock_TurnOn);
+	};
 	if(DIFF_HARD == TRUE)
 	{
 		Info_AddChoice(ch_diff,"Модификация akh",ch_akh_mod);
@@ -592,6 +600,15 @@ func void ch_diff_info()
 		Info_AddChoice(ch_diff,"Повышенная",ch_diff_hard);
 		Info_AddChoice(ch_diff,"Стандартная (включено)",ch_diff_standart);
 	};
+};
+
+func void ch_MonkeyLock_TurnOn()
+{
+	bMonkeyLock_Mod_IsOn = true;
+};
+func void ch_MonkeyLock_TurnOff()
+{
+	bMonkeyLock_Mod_IsOn = false;
 };
 
 func void ch_diff_back()
