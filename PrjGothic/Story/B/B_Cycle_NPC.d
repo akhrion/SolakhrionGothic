@@ -22,6 +22,17 @@ func void B_Cycle60_NPC()
 };
 
 
+func void Npc_CheckMyCloth(var C_Npc npc)
+{
+    item = Npc_GetEquippedArmor(npc);
+    if(
+        npc.bodymass != Hlp_GetInstanceID(item)
+    &&  npc.bodymass != -1
+    )
+    {
+        npc.bodymass = Hlp_GetInstanceID(item);
+    };
+};
 
 func void B_Cycle_NPC()
 {
@@ -35,6 +46,7 @@ func void B_Cycle_NPC()
     Npc_InitParameters(self);
     Npc_Poisoned(self);
     Npc_Wounded(self);
+    Npc_CheckMyCloth(self);
 
     Human_DailyBehavior(self);
     SpecBehavior();
