@@ -2320,3 +2320,19 @@ func int Npc_IsWeak(var C_Npc enemy,var C_Npc me)
 	};
 	return false;
 };
+func void C_ALotOfTimeWasting(var int minutesPassed)
+{	
+	var int hPassed;
+	var int hAll;
+	hPassed = minutesPassed/60;
+	hAll = getCurDayHours() + hPassed;
+	
+	var int minPassed;
+	var int minAll;
+	var int minWork;
+	minPassed = minutesPassed%60;
+	minAll = getCurHourMinutes() + minPassed;
+	minWork = minAll % 60;
+
+	Wld_SetTime(hAll,minWork);
+};

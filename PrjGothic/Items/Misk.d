@@ -3,6 +3,8 @@ const int Value_MobsiItem = 2;
 const int Value_Nail = 1;
 const int Value_ArrowHead = 4;
 const int Value_ArrowShaft = 1;
+const int Value_ArrowHeadPack = 1000;
+const int Value_ArrowShaftPack = 1000;
 const int Value_SwordBlade = 50;
 const int Value_SwordBladeHot = 50;
 const int Value_SwordRawHot = 40;
@@ -66,6 +68,44 @@ instance ItMiLockpickPACK(C_Item)
 func void UseLockpickPack()
 {
 	CreateInvItems(self,ItKeLockpick,10);
+};
+
+
+instance ItMiArrowHeadPACK(C_Item)
+{
+	name = "Пакет с наконечниками для стрел";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MISSION | ITEM_MULTI;
+	value = Value_ArrowHeadPack;
+	visual = "ItMi_Packet.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAPSEALED";
+	on_state[0] = UseArrowHeadPack;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+func void UseArrowHeadPack()
+{
+	CreateInvItems(self,ItMiArrowHead,100);
+};
+instance ItMiArrowShaftPACK(C_Item)
+{
+	name = "Связка древок для стрел";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MISSION | ITEM_MULTI;
+	value = Value_ArrowShaftPack;
+	visual = "ItMi_Packet.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAPSEALED";
+	on_state[0] = UseArrowShaftPack;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+func void UseArrowShaftPack()
+{
+	CreateInvItems(self,ItMiArrowShaft,100);
 };
 
 

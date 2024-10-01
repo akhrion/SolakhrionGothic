@@ -106,23 +106,37 @@ func void Assemble_Item()
 	};
 };
 
-
+var int Assemble_Item_Arrows_ShaftsRemaining;
 func int private_Assemble_Item_Arrows(
 	var int arrowsLeft,
 	var int arrowsCreated,
 	var int dexterity
 )
 {
-	if(!arrowsLeft)
+	if(
+		!arrowsLeft
+	||	!Assemble_Item_Arrows_ShaftsRemaining
+	)
 	{
 		return arrowsCreated;
 	};
 	if(Hlp_Random(100) < dexterity)
 	{
 		arrowsCreated +=1;
+		arrowsLeft -=1;
+		G_Training(CRAFTING_ARROW);
+	}
+	else
+	{
+		//вероятность получить занозу
+		if(Hlp_Random(Npc_GetDex(self)))
+		{
+			Npc_DecreaseHP(self,1);
+		};
 	};
+	Assemble_Item_Arrows_ShaftsRemaining -=1;
 	return private_Assemble_Item_Arrows(
-		arrowsLeft - 1,
+		arrowsLeft,
 		arrowsCreated,
 		dexterity
 	);
@@ -130,10 +144,12 @@ func int private_Assemble_Item_Arrows(
 func void Assemble_Item_Arrows()
 {
 	// Show_TradeMsgT("Ничего не произошло, кажется эта функция еще не реализована. Ждем..",7);
+	//settime в зависимости от количества произведённых стрел
 	var int arrowHeads;
 	var int arrowShafts;
 	arrowHeads = Npc_HasItems(self,ItMiArrowHead);
 	arrowShafts = Npc_HasItems(self,ItMiArrowShaft);
+	Assemble_Item_Arrows_ShaftsRemaining = arrowShafts;
 
 	var int arrowsCanBeProduced;
 	arrowsCanBeProduced = tern(arrowHeads < arrowShafts, arrowHeads, arrowShafts);
@@ -141,13 +157,20 @@ func void Assemble_Item_Arrows()
 	var int arrowsCreated;
 	arrowsCreated = private_Assemble_Item_Arrows(arrowsCanBeProduced,0,Npc_GetDex(self));
 
-	var int arrowShaftsBroked;
-	arrowShaftsBroked = arrowsCanBeProduced - arrowsCreated;
+	var int arrowShaftsUsed;
+	arrowShaftsUsed = arrowShafts - Assemble_Item_Arrows_ShaftsRemaining;
 
-	Npc_RemoveInvItems(self,ItMiArrowShaft, arrowsCreated + arrowShaftsBroked);
+	C_ALotOfTimeWasting(arrowShaftsUsed);
+
+	Npc_RemoveInvItems(self,ItMiArrowShaft, arrowShaftsUsed);
 	Npc_RemoveInvItems(self,ItMiArrowHead, arrowsCreated);
 	CreateInvItems(self,ItAmArrow,arrowsCreated);
 
+
+
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 	var int lastDigit;
 	lastDigit = arrowsCreated%10;
 	if(
@@ -173,7 +196,37 @@ func void Assemble_Item_Arrows()
 	{
 		Show_TradeMsg_SIS("+",arrowsCreated," Стрела");
 	};
-
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+	lastDigit = Assemble_Item_Arrows_ShaftsRemaining%10;
+	if(
+		lastDigit == 9
+	||	lastDigit == 8
+	||	lastDigit == 7
+	||	lastDigit == 6
+	||	lastDigit == 5
+	||	lastDigit == 0
+	||	(lastDigit > 10 && lastDigit < 20)
+	)
+	{
+		Show_TradeMsg_SIS_Row("Израсходовано ",arrowShaftsUsed," Древок Стрел",20);
+	}
+	else if(
+		lastDigit == 4
+	||	lastDigit == 3
+	||	lastDigit == 2
+	)
+	{
+		Show_TradeMsg_SIS_Row("Израсходовано ",arrowShaftsUsed," Древка Стрелы",20);
+	}
+	else
+	{
+		Show_TradeMsg_SIS_Row("Израсходовано ",arrowShaftsUsed," Древко Стрелы",20);
+	};
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 	PC_MenuClose(MOBSI_PC_MenuEND);
 };
 
