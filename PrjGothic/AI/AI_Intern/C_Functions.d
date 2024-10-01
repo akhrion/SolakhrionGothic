@@ -1737,6 +1737,12 @@ func int Npc_GetReadiedWeapon_DamageType(var C_Npc npc)
 	item = Npc_GetReadiedWeapon(npc);
 	return item.damagetype;
 };
+func int Npc_GetReadiedWeapon_DamageType_IsBlunt(var C_Npc npc)
+{
+	item = Npc_GetReadiedWeapon(npc);
+	if(item.damagetype & DAM_BLUNT){return true;};
+	return false;
+};
 func int Npc_GetReadiedWeapon_DamageType_IsEdge(var C_Npc npc)
 {
 	item = Npc_GetReadiedWeapon(npc);
@@ -1751,15 +1757,31 @@ func void Npc_GotDamage_Edge(var C_Npc vict, var C_Npc attacker)
 {
 	if(C_NpcIsMonster(attacker))
 	{
+		// Монстр
 		if(attacker.damagetype & DAM_EDGE)
 		{
+			// С клыками и когтями.. ну или клювом.. или жалом.. аа короче.
+			if(attacker.aivar[AIV_MM_REAL_ID] != ID_WOLF)
+			{
+				// Не волк
+				if(Hlp_Random(10) > 0)
+				{
+					return;
+				};
+			};
 			Wound_SetTo(vict);
 		};
 	}
 	else
 	{
+		//Ударивший меня - человек
 		if(Npc_GetReadiedWeapon_DamageType_IsEdge(attacker))
 		{
+			// С режущим оружием
+			if(Hlp_Random(10) > 0)
+			{
+				return;
+			};
 			Wound_SetTo(vict);
 		};
 	};
@@ -2253,8 +2275,6 @@ func void Npc_Training(var C_Npc npc, var C_Item itm)
 	};
 };
 
-
-
 func void Npc_SetHigh(var C_Npc npc,var float high)
 {
 	Mdl_SetModelScale(npc,1,high,1);
@@ -2288,6 +2308,15 @@ func int IsNight()
 	if(Wld_IsTime(22,0,6,0))
 	{
 		return true;
+	};
+	return false;
+};
+
+func int Npc_IsWeak(var C_Npc enemy,var C_Npc me)
+{
+	if((Npc_GetStr(enemy) * 3) < Npc_GetStr(me))
+	{
+		return false;
 	};
 	return false;
 };
