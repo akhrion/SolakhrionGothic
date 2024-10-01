@@ -172,6 +172,10 @@ func void UseHealthPotion()
 {
 	PrintDebugNpc(PD_ITEM_MOBSI,"UseHealthPotion");
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Essenz);
+	if(Npc_IsPlayer(self))
+	{
+		F_VisualChange_Fingal_RemoveFromPC();
+	};
 };
 
 
@@ -197,6 +201,10 @@ func void UseHealth2Potion()
 {
 	PrintDebugNpc(PD_ITEM_MOBSI,"UseHealthPotion");
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Extrakt);
+	if(Npc_IsPlayer(self))
+	{
+		F_VisualChange_Fingal_RemoveFromPC();
+	};
 };
 
 
@@ -222,6 +230,10 @@ func void UseHealth3Potion()
 {
 	PrintDebugNpc(PD_ITEM_MOBSI,"UseHealthPotion");
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Elixier);
+	if(Npc_IsPlayer(self))
+	{
+		F_VisualChange_Fingal_RemoveFromPC();
+	};
 };
 
 
@@ -246,6 +258,11 @@ func void UseHealth4Potion()
 	PrintDebugNpc(PD_ITEM_MOBSI,"UseHealthPotion");
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,
 						Npc_GetHPMax(self) - Npc_GetHP(self));
+	
+	if(Npc_IsPlayer(self))
+	{
+		F_VisualChange_Fingal_RemoveFromPC();
+	};
 };
 
 

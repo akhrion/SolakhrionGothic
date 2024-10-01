@@ -663,6 +663,8 @@ func void overlay()
 	if(Npc_GetTarget(hero))
 	{
 		msgSI("ID: ",other.id,60,2,1);
+		item = Npc_GetEquippedArmor(other);
+		msgSI("Armor ID: ",Hlp_GetInstanceID(item),60,4,1);
 
 
 		OVERLAY_TargetKnowledge = PC_Knowledge();
@@ -701,6 +703,7 @@ func void b_cycle_hero()
 	PC_GetMovementSpeed();
 	Npc_Wounded(hero);
 	G_MonkeyLock();
+	G_VisualChange_Fingal_RemoveFromPC();
 	overlay();
 	// PC_Test();
 

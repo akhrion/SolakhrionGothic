@@ -26,46 +26,79 @@ const int VALUE_VLK_ARMOR_L = 250;
 const int VALUE_VLK_ARMOR_M = 500;
 const int VALUE_SFB_ARMOR_L = 250;
 
+const int inxInitPlayerBody_Refresh = 3;
+
 func void initplayerbody(var int equipment)
 {
 	var C_Item armor;
+	var int texbody;
+	var int texhead;
+	var int texskin;
+
+	//Дефолтный цвет кожи для ГГ
+	texskin = TEX_Skin_PC_Def;
+
+	//Есть-ли на лице ГГ фингал
+	if(PC_HasFingal)
+	{
+		texhead = TEX_Head_PC_Fingal;
+	}
+	else
+	{
+		texhead = TEX_Head_PC_Def;
+	};
+
+
 	if(equipment == 0)
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",4,1,"Hum_Head_Pony",9,0,-1);
+		//Броня закрывает торс, текстура торса по умолчанию
+		texbody = TEX_Body_PC_Def;
 	}
 	else if(equipment == 1)
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",0,1,"Hum_Head_Pony",9,0,-1);
+		//Броня оголяет торс, применяется текстура оголённого торса
+		texbody = TEX_Body_PC_NakedTorso;
+	}
+	else if(equipment == 2)
+	{
+		//Броня закрывает торс частично, текстура с крестовыми полосками на груди.. или лямками от трусов..
+		//да ладно ладно, шутки это всё.. не рычи.
+		texbody = TEX_Body_PC_StripedTorso;
 	}
 	else if(equipment == 3)
 	{
+		//Честно говоря не понимаю как оно может не поддерживаться, если в скриптах установлены все переменные
+		//Если только кто-то специально переключит RUSSOBITMFIXV13 в false.. но кому это надо и главное зачем..
 		if((RUSSOBITMFIXV13 == FALSE) && Npc_KnowsInfo(hero,Info_Diego_Gamestart))
 		{
 			PrintScreen("Загруженное сохранение не поддерживается!",50,43,"font_old_10_white.tga",5);
 			PrintScreen("Пожалуйста, начните новую игру.",50,40,"font_old_10_white.tga",5);
 			hero.attribute[ATR_HITPOINTS] = (hero.attribute[ATR_HITPOINTS] - hero.attribute[ATR_HITPOINTS]) + 10;
+			return;
 		}
 		else if(Npc_HasEquippedArmor(hero))
 		{
 			armor = Npc_GetEquippedArmor(hero);
 			if((Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(nov_armor_l)) || (Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(nov_armor_m)) || (Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(nov_armor_h)))
 			{
-				Mdl_SetVisualBody(hero,"hum_body_Naked0",0,1,"Hum_Head_Pony",9,0,-1);
+				texbody = TEX_Body_PC_NakedTorso;
 			}
 			else if((Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(tpl_armor_l)) || (Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(tpl_armor_m)) || (Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(tpl_armor_h)))
 			{
-				Mdl_SetVisualBody(hero,"hum_body_Naked0",0,1,"Hum_Head_Pony",9,0,-1);
+				texbody = TEX_Body_PC_NakedTorso;
 			}
 			else if((Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(stt_armor_m)) || (Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(stt_armor_h)) || (Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(grd_armor_l)))
 			{
-				Mdl_SetVisualBody(hero,"hum_body_Naked0",0,1,"Hum_Head_Pony",9,0,-1);
+				texbody = TEX_Body_PC_NakedTorso;
 			}
 			else if(Hlp_GetInstanceID(armor) == Hlp_GetInstanceID(sld_armor_l))
 			{
-				Mdl_SetVisualBody(hero,"hum_body_Naked0",0,5,"Hum_Head_Pony",11,0,-1);
+				texbody = TEX_Body_PC_StripedTorso;
 			};
 		};
 	};
+	// PrintSIS("текстура фингала ",texhead,"");
+	Mdl_SetVisualBody(hero,"hum_body_Naked0",texbody,texskin,"Hum_Head_Pony",texhead,0,-1);
 };
 
 func void equip_psi_armor()
@@ -94,10 +127,18 @@ func void equip_sld_armor()
 	{
 		AI_PlayAni(self,"T_PLUNDER");
 		Snd_Play("BACKPACK_HANDLE");
-		Mdl_SetVisualBody(self,"hum_body_Naked0",0,5,"Hum_Head_Pony",11,0,-1);
+		initplayerbody(2);
 	};
 };
 
+
+func void unequip_sld_armor()
+{
+	if(self.id == 0)
+	{
+		initplayerbody(0);
+	};
+};
 func void unequip_psi_armor()
 {
 	if(self.id == 0)
@@ -200,8 +241,8 @@ instance STT_ARMOR_M(C_Item)
 	visual = "sttm.3ds";
 	visual_change = "Hum_STTM_ARMOR.asc";
 	visual_skin = 0;
-	on_equip = equip_psi_armor;
-	on_unequip = unequip_psi_armor;
+	// on_equip = equip_stt_armor_m;
+	// on_unequip = unequip_stt_armor_m;
 	material = MAT_LEATHER;
 	description = name;
 	text[1] = NAME_Prot_Edge;
@@ -231,8 +272,8 @@ instance STT_ARMOR_H(C_Item)
 	visual = "stth.3ds";
 	visual_change = "Hum_STTS_ARMOR.asc";
 	visual_skin = 0;
-	on_equip = equip_psi_armor;
-	on_unequip = unequip_psi_armor;
+	// on_equip = equip_psi_armor;
+	// on_unequip = unequip_psi_armor;
 	material = MAT_LEATHER;
 	description = name;
 	text[1] = NAME_Prot_Edge;
@@ -262,8 +303,8 @@ instance GRD_ARMOR_L(C_Item)
 	visual = "grdl.3ds";
 	visual_change = "Hum_GRDL_ARMOR.asc";
 	visual_skin = 0;
-	on_equip = equip_psi_armor;
-	on_unequip = unequip_psi_armor;
+	// on_equip = equip_psi_armor;
+	// on_unequip = unequip_psi_armor;
 	material = MAT_LEATHER;
 	description = name;
 	text[1] = NAME_Prot_Edge;
@@ -567,7 +608,7 @@ instance SLD_ARMOR_L(C_Item)
 	visual_change = "Hum_SLDL_ARMOR.asc";
 	visual_skin = 0;
 	on_equip = equip_sld_armor;
-	on_unequip = unequip_psi_armor;
+	on_unequip = unequip_sld_armor;
 	material = MAT_LEATHER;
 	description = name;
 	text[1] = NAME_Prot_Edge;

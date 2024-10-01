@@ -46,6 +46,38 @@ func int Night_Damage(var int damageTotal)
     return damageTotal;
 };
 
+func void OnDamage_Hit_Mystique()
+{
+    if(self.npcType == Npctype_MystiqueMonster)
+    {
+        if(self.id == ID_GHOST)
+        {
+            AI_StartState(victim,ZS_MagicFreeze,0,"");
+        };
+    };
+};
+
+func void OnDamage_Hit_VisualChange(var C_Npc npc)
+{
+    if(Npc_IsPlayer(npc))
+    {
+        if(
+            Npc_IsInFightMode(self,FMODE_FIST)
+        &&  Hlp_Random(4) == 0
+        )
+        {
+            F_VisualChange_Fingal_ApplyToPC();
+        }
+        else if(Npc_GetReadiedWeapon_DamageType_IsBlunt(self))
+        {
+            if(Hlp_Random(20) == 0)
+            {
+                F_VisualChange_Fingal_ApplyToPC();
+            };
+        };
+    };
+};
+
 //ФУНКЦИИ ОТВЕЦАЮЩИЕ ЗА ОБРАБОТКУ УРОНА
 //на данный момент они здесь не все
 //просто одну добавил
@@ -68,10 +100,12 @@ func int OnDamage_Hit(var int damageTotal)
     {
         return Night_Damage(damageTotal);
     };
-    
+    OnDamage_Hit_Mystique();
+
     Weapon_ProjectileSave(item,self,victim);
     Weapon_Deterioration(item);
     Npc_Training(self,item);
+    OnDamage_Hit_VisualChange(victim);
     // Print(item.name);
 	// if(Npc_IsPlayer(self))
 	// {
