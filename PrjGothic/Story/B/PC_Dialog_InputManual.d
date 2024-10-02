@@ -1294,3 +1294,106 @@ func void PC_Dialog_InputManual(var C_Npc slf)
     Info_EXIT.npc = Hlp_GetInstanceID(slf);
     PC_Dialog_InputManual_00.npc = Hlp_GetInstanceID(slf);
 };
+
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+const string NAME_PC_InputManual_Digit = "-” ¿«¿“‹ ◊»—ÀŒ-";
+var int InputManual_Digit_Value;
+instance InputManual_Digit(C_Info)
+{
+    npc = PC_Thief;
+	nr = 101;
+	condition = InputManual_Digit_Condition;
+	information = InputManual_Digit_Info;
+	permanent = 1;
+	description = NAME_PC_InputManual_Digit;
+};
+func int InputManual_Digit_Condition()
+{
+    return true;
+};
+func void InputManual_Digit_Info()
+{
+	Info_ClearChoices(InputManual_Digit);
+    Info_AddChoice(InputManual_Digit,"—ÚÂÂÚ¸",InputManual_Digit_Clear);
+    Info_AddChoice(InputManual_Digit,"œÓ‰Ú‚Â‰ËÚ¸",InputManual_Digit_Confirm);
+    Info_AddChoice(InputManual_Digit,"0",InputManual_Digit_5);
+    Info_AddChoice(InputManual_Digit,"9",InputManual_Digit_5);
+    Info_AddChoice(InputManual_Digit,"8",InputManual_Digit_5);
+    Info_AddChoice(InputManual_Digit,"7",InputManual_Digit_5);
+    Info_AddChoice(InputManual_Digit,"6",InputManual_Digit_5);
+    Info_AddChoice(InputManual_Digit,"5",InputManual_Digit_5);
+    Info_AddChoice(InputManual_Digit,"4",InputManual_Digit_4);
+    Info_AddChoice(InputManual_Digit,"3",InputManual_Digit_3);
+    Info_AddChoice(InputManual_Digit,"2",InputManual_Digit_2);
+    Info_AddChoice(InputManual_Digit,"1",InputManual_Digit_1);
+
+};
+/////////////////////////
+func void InputManual_Digit_1()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 1;
+    InputManual_Digit_Info();
+};
+func void InputManual_Digit_2()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 2;
+    InputManual_Digit_Info();
+};
+func void InputManual_Digit_3()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 3;
+    InputManual_Digit_Info();
+};
+func void InputManual_Digit_4()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 4;
+    InputManual_Digit_Info();
+};
+func void InputManual_Digit_5()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 5;
+    InputManual_Digit_Info();
+};
+func void InputManual_Digit_6()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 6;
+    InputManual_Digit_Info();
+};
+func void InputManual_Digit_7()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 7;
+    InputManual_Digit_Info();
+};
+func void InputManual_Digit_8()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 8;
+    InputManual_Digit_Info();
+};
+func void InputManual_Digit_9()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 9;
+    InputManual_Digit_Info();
+};
+func void InputManual_Digit_0()
+{
+    InputManual_Digit_Value = InputManual_Digit_Value * 10;
+    InputManual_Digit_Info();
+};
+/////////////////////////
+func void InputManual_Digit_Confirm()
+{
+    PrintI(InputManual_Digit_Value);
+    InputManual_Digit_Value = 0;
+    AI_StopProcessInfos(hero);
+};
+func void InputManual_Digit_Clear()
+{
+    InputManual_Digit_Value = 0;
+    InputManual_Digit_Info();
+};
