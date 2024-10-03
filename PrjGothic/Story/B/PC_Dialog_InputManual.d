@@ -1322,11 +1322,11 @@ func void InputManual_Digit_Info()
 	Info_ClearChoices(InputManual_Digit);
     Info_AddChoice(InputManual_Digit,"Стереть",InputManual_Digit_Clear);
     Info_AddChoice(InputManual_Digit,"Подтвердить",InputManual_Digit_Confirm);
-    Info_AddChoice(InputManual_Digit,"0",InputManual_Digit_5);
-    Info_AddChoice(InputManual_Digit,"9",InputManual_Digit_5);
-    Info_AddChoice(InputManual_Digit,"8",InputManual_Digit_5);
-    Info_AddChoice(InputManual_Digit,"7",InputManual_Digit_5);
-    Info_AddChoice(InputManual_Digit,"6",InputManual_Digit_5);
+    Info_AddChoice(InputManual_Digit,"0",InputManual_Digit_0);
+    Info_AddChoice(InputManual_Digit,"9",InputManual_Digit_9);
+    Info_AddChoice(InputManual_Digit,"8",InputManual_Digit_8);
+    Info_AddChoice(InputManual_Digit,"7",InputManual_Digit_7);
+    Info_AddChoice(InputManual_Digit,"6",InputManual_Digit_6);
     Info_AddChoice(InputManual_Digit,"5",InputManual_Digit_5);
     Info_AddChoice(InputManual_Digit,"4",InputManual_Digit_4);
     Info_AddChoice(InputManual_Digit,"3",InputManual_Digit_3);
@@ -1337,52 +1337,52 @@ func void InputManual_Digit_Info()
 /////////////////////////
 func void InputManual_Digit_1()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 1;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 1);
     InputManual_Digit_Info();
 };
 func void InputManual_Digit_2()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 2;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 2);
     InputManual_Digit_Info();
 };
 func void InputManual_Digit_3()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 3;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 3);
     InputManual_Digit_Info();
 };
 func void InputManual_Digit_4()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 4;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 4);
     InputManual_Digit_Info();
 };
 func void InputManual_Digit_5()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 5;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 5);
     InputManual_Digit_Info();
 };
 func void InputManual_Digit_6()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 6;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 6);
     InputManual_Digit_Info();
 };
 func void InputManual_Digit_7()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 7;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 7);
     InputManual_Digit_Info();
 };
 func void InputManual_Digit_8()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 8;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 8);
     InputManual_Digit_Info();
 };
 func void InputManual_Digit_9()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10 + 9;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 9);
     InputManual_Digit_Info();
 };
 func void InputManual_Digit_0()
 {
-    InputManual_Digit_Value = InputManual_Digit_Value * 10;
+    InputManual_Digit_Value = (InputManual_Digit_Value * 10);
     InputManual_Digit_Info();
 };
 /////////////////////////
