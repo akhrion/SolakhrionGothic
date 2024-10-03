@@ -1304,6 +1304,7 @@ func void PC_Dialog_InputManual(var C_Npc slf)
 /////////////////////////////////////////////////////////////////
 const string NAME_PC_InputManual_Digit = "-УКАЗАТЬ ЧИСЛО-";
 var int InputManual_Digit_Value;
+var int InputManual_Digit_DialogTheme;
 instance InputManual_Digit(C_Info)
 {
     npc = PC_Thief;
@@ -1315,24 +1316,38 @@ instance InputManual_Digit(C_Info)
 };
 func int InputManual_Digit_Condition()
 {
-    return true;
+    return false;
+};
+func void InputManual_Digit_Info_Loop(var C_Info dialogueTheme)
+{
+    Print(dialogueTheme.description);
+	Info_ClearChoices(VLK_585_Aleph_SCHUPPEN);
+    Info_AddChoice(dialogueTheme,"Стереть",InputManual_Digit_Clear);
+    Info_AddChoice(dialogueTheme,"Подтвердить",InputManual_Digit_Confirm);
+    Info_AddChoice(dialogueTheme,"0",InputManual_Digit_0);
+    Info_AddChoice(dialogueTheme,"9",InputManual_Digit_9);
+    Info_AddChoice(dialogueTheme,"8",InputManual_Digit_8);
+    Info_AddChoice(dialogueTheme,"7",InputManual_Digit_7);
+    Info_AddChoice(dialogueTheme,"6",InputManual_Digit_6);
+    Info_AddChoice(dialogueTheme,"5",InputManual_Digit_5);
+    Info_AddChoice(dialogueTheme,"4",InputManual_Digit_4);
+    Info_AddChoice(dialogueTheme,"3",InputManual_Digit_3);
+    Info_AddChoice(dialogueTheme,"2",InputManual_Digit_2);
+    Info_AddChoice(dialogueTheme,"1",InputManual_Digit_1);
+
+};
+func void InputManual_Digit_Info_InitTheme()
+{
+    if(InputManual_Digit_DialogTheme == InputManual_Digit_ALEPH_SECRETS_NUGGET)
+    {
+        Print("123");
+        InputManual_Digit_Info_Loop(VLK_585_Aleph_SCHUPPEN);
+    };
 };
 func void InputManual_Digit_Info()
 {
-	Info_ClearChoices(InputManual_Digit);
-    Info_AddChoice(InputManual_Digit,"Стереть",InputManual_Digit_Clear);
-    Info_AddChoice(InputManual_Digit,"Подтвердить",InputManual_Digit_Confirm);
-    Info_AddChoice(InputManual_Digit,"0",InputManual_Digit_0);
-    Info_AddChoice(InputManual_Digit,"9",InputManual_Digit_9);
-    Info_AddChoice(InputManual_Digit,"8",InputManual_Digit_8);
-    Info_AddChoice(InputManual_Digit,"7",InputManual_Digit_7);
-    Info_AddChoice(InputManual_Digit,"6",InputManual_Digit_6);
-    Info_AddChoice(InputManual_Digit,"5",InputManual_Digit_5);
-    Info_AddChoice(InputManual_Digit,"4",InputManual_Digit_4);
-    Info_AddChoice(InputManual_Digit,"3",InputManual_Digit_3);
-    Info_AddChoice(InputManual_Digit,"2",InputManual_Digit_2);
-    Info_AddChoice(InputManual_Digit,"1",InputManual_Digit_1);
-
+    InputManual_Digit_Value = 0;
+    InputManual_Digit_Info_InitTheme();
 };
 /////////////////////////
 func void InputManual_Digit_1()
@@ -1389,8 +1404,8 @@ func void InputManual_Digit_0()
 func void InputManual_Digit_Confirm()
 {
     PrintI(InputManual_Digit_Value);
-    InputManual_Digit_Value = 0;
-    AI_StopProcessInfos(hero);
+    // InputManual_Digit_Value = 0;
+    // AI_StopProcessInfos(hero);
 };
 func void InputManual_Digit_Clear()
 {
