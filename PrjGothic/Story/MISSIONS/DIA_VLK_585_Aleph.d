@@ -208,32 +208,21 @@ instance VLK_585_Aleph_SCHUPPEN(C_Info)
 
 func int VLK_585_Aleph_SCHUPPEN_Condition()
 {
+	return true;
 	if(Npc_KnowsInfo(hero,grd_271_ulbert_drunk) && !Npc_KnowsInfo(hero,GRD_261_Brandick_ALEPH) && (ALEPH_KEY == FALSE) && Npc_KnowsInfo(hero,VLK_585_Aleph_GUARDS))
 	{
 		return 1;
 	};
 };
 
-func void VLK_585_Aleph_SCHUPPEN_Info()
-{
-	AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_Info_15_01");	//Ты знаешь что-нибудь о ключе к ящикам на складе?
-	AI_Output(self,other,"VLK_585_Aleph_SCHUPPEN_Info_05_02");	//Ну, все зависит от...
-	AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_Info_15_03");	//От того, сколько я заплачу?
-	AI_Output(self,other,"VLK_585_Aleph_SCHUPPEN_Info_05_04");	//Вот, ты быстро учишься.
-	Info_ClearChoices(VLK_585_Aleph_SCHUPPEN);
-	Info_AddChoice(VLK_585_Aleph_SCHUPPEN,DIALOG_BACK,VLK_585_Aleph_SCHUPPEN_Back);
-	Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"Заплатить 50 кусков.",VLK_585_Aleph_SCHUPPEN_50);
-	Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"Заплатить 30 кусков.",VLK_585_Aleph_SCHUPPEN_30);
-	Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"Заплатить 15 кусков.",VLK_585_Aleph_SCHUPPEN_15);
-};
-
+///////////////////////////////////////////////////////////////////
 func void VLK_585_Aleph_SCHUPPEN_50()
 {
 	if(Npc_HasItems(hero,ItMiNugget) >= 50)
 	{
-		AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_50_15_01");	//50 кусков тебе хватит?
-		b_printtrademsg1("Отдано руды: 50");
-		B_GiveInvItems(other,self,ItMiNugget,50);
+		// AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_50_15_01");	//50 кусков тебе хватит?
+		Show_TradeMsg_SI("Отдано руды: ", InputManual_Digit_Value);
+		B_GiveInvItems(other,self,ItMiNugget,InputManual_Digit_Value);
 		AI_Output(self,other,"VLK_585_Aleph_SCHUPPEN_50_05_02");	//Твоя щедрость безгранична! Возьми ключ. А еще возьми это кольцо. Оно было моим талисманом на счастье.
 		b_printtrademsg2("Получен ключ от склада и кольцо силы.");
 		CreateInvItems(other,ItKe_OM_03,1);
@@ -253,9 +242,9 @@ func void VLK_585_Aleph_SCHUPPEN_30()
 	if(Npc_HasItems(hero,ItMiNugget) >= 30)
 	{
 		Info_ClearChoices(VLK_585_Aleph_SCHUPPEN);
-		AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_30_15_01");	//Предлагаю 30 кусков.
-		b_printtrademsg1("Отдано руды: 30");
-		B_GiveInvItems(other,self,ItMiNugget,30);
+		// AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_30_15_01");	//Предлагаю 30 кусков.
+		Show_TradeMsg_SI("Отдано руды: ", InputManual_Digit_Value);
+		B_GiveInvItems(other,self,ItMiNugget,InputManual_Digit_Value);
 		AI_Output(self,other,"VLK_585_Aleph_SCHUPPEN_30_05_02");	//Хорошо. У меня как раз есть ключ. Совершенно случайно, кстати.
 		b_printtrademsg2("Получен ключ от склада.");
 		CreateInvItem(self,ItKe_OM_03);
@@ -271,9 +260,42 @@ func void VLK_585_Aleph_SCHUPPEN_30()
 
 func void VLK_585_Aleph_SCHUPPEN_15()
 {
-	AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_15_15_01");	//Тебя устроит 15 кусков?
-	AI_Output(self,other,"VLK_585_Aleph_SCHUPPEN_15_05_02");	//15 кусков? Никогда не видел никакого ключа!
+	// AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_15_15_01");	//Тебя устроит 15 кусков?
+	AI_Output(self,other,"VLK_585_Aleph_SCHUPPEN_15_05_02");	//Что это? Никогда не видел никакого ключа!
+	// AI_Output(self,other,"VLK_585_Aleph_SCHUPPEN_15_05_02");	//15 кусков? Никогда не видел никакого ключа!
 };
+/////////////////////////////////////////////////////////
+func void VLK_585_Aleph_SCHUPPEN_Info()
+{
+	AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_Info_15_01");	//Ты знаешь что-нибудь о ключе к ящикам на складе?
+	AI_Output(self,other,"VLK_585_Aleph_SCHUPPEN_Info_05_02");	//Ну, все зависит от...
+	AI_Output(other,self,"VLK_585_Aleph_SCHUPPEN_Info_15_03");	//От того, сколько я заплачу?
+	AI_Output(self,other,"VLK_585_Aleph_SCHUPPEN_Info_05_04");	//Вот, ты быстро учишься.
+	InputManual_Digit_DialogTheme = InputManual_Digit_ALEPH_SECRETS_NUGGET;
+	Info_ClearChoices(VLK_585_Aleph_SCHUPPEN);
+	Info_AddChoice(VLK_585_Aleph_SCHUPPEN,DIALOG_BACK,VLK_585_Aleph_SCHUPPEN_Back);
+	// Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"Заплатить 50 кусков.",VLK_585_Aleph_SCHUPPEN_50);
+	// Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"Заплатить 30 кусков.",VLK_585_Aleph_SCHUPPEN_30);
+	// Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"Заплатить 15 кусков.",VLK_585_Aleph_SCHUPPEN_15);
+	Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"Заплатить N кусков.",InputManual_Digit_Info);
+};
+func void VLK_585_Aleph_SCHUPPEN_N()
+{
+	if(InputManual_Digit_Value >= 50)
+	{
+		VLK_585_Aleph_SCHUPPEN_50();
+	}
+	else if(InputManual_Digit_Value >= 30)
+	{
+		VLK_585_Aleph_SCHUPPEN_30();
+	}
+	else if(InputManual_Digit_Value >= 15)
+	{
+		VLK_585_Aleph_SCHUPPEN_15();
+	};
+	Info_ClearChoices(VLK_585_Aleph_SCHUPPEN);
+};
+
 
 func void VLK_585_Aleph_SCHUPPEN_Back()
 {

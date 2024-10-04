@@ -1318,87 +1318,81 @@ func int InputManual_Digit_Condition()
 {
     return false;
 };
-func void InputManual_Digit_Info_Loop(var C_Info dialogueTheme)
-{
-    Print(dialogueTheme.description);
-	Info_ClearChoices(VLK_585_Aleph_SCHUPPEN);
-    Info_AddChoice(dialogueTheme,"Стереть",InputManual_Digit_Clear);
-    Info_AddChoice(dialogueTheme,"Подтвердить",InputManual_Digit_Confirm);
-    Info_AddChoice(dialogueTheme,"0",InputManual_Digit_0);
-    Info_AddChoice(dialogueTheme,"9",InputManual_Digit_9);
-    Info_AddChoice(dialogueTheme,"8",InputManual_Digit_8);
-    Info_AddChoice(dialogueTheme,"7",InputManual_Digit_7);
-    Info_AddChoice(dialogueTheme,"6",InputManual_Digit_6);
-    Info_AddChoice(dialogueTheme,"5",InputManual_Digit_5);
-    Info_AddChoice(dialogueTheme,"4",InputManual_Digit_4);
-    Info_AddChoice(dialogueTheme,"3",InputManual_Digit_3);
-    Info_AddChoice(dialogueTheme,"2",InputManual_Digit_2);
-    Info_AddChoice(dialogueTheme,"1",InputManual_Digit_1);
-
-};
-func void InputManual_Digit_Info_InitTheme()
+func void InputManual_Digit_Info_Loop()
 {
     if(InputManual_Digit_DialogTheme == InputManual_Digit_ALEPH_SECRETS_NUGGET)
     {
-        Print("123");
-        InputManual_Digit_Info_Loop(VLK_585_Aleph_SCHUPPEN);
+        Info_ClearChoices(VLK_585_Aleph_SCHUPPEN);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"Стереть",InputManual_Digit_Clear);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"Подтвердить",VLK_585_Aleph_SCHUPPEN_N);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"0",InputManual_Digit_0);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"9",InputManual_Digit_9);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"8",InputManual_Digit_8);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"7",InputManual_Digit_7);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"6",InputManual_Digit_6);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"5",InputManual_Digit_5);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"4",InputManual_Digit_4);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"3",InputManual_Digit_3);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"2",InputManual_Digit_2);
+        Info_AddChoice(VLK_585_Aleph_SCHUPPEN,"1",InputManual_Digit_1);
     };
 };
+
 func void InputManual_Digit_Info()
 {
     InputManual_Digit_Value = 0;
-    InputManual_Digit_Info_InitTheme();
+    InputManual_Digit_Info_Loop();
 };
 /////////////////////////
 func void InputManual_Digit_1()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 1);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 func void InputManual_Digit_2()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 2);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 func void InputManual_Digit_3()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 3);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 func void InputManual_Digit_4()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 4);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 func void InputManual_Digit_5()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 5);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 func void InputManual_Digit_6()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 6);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 func void InputManual_Digit_7()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 7);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 func void InputManual_Digit_8()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 8);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 func void InputManual_Digit_9()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10 + 9);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 func void InputManual_Digit_0()
 {
     InputManual_Digit_Value = (InputManual_Digit_Value * 10);
-    InputManual_Digit_Info();
+    InputManual_Digit_Info_Loop();
 };
 /////////////////////////
 func void InputManual_Digit_Confirm()
