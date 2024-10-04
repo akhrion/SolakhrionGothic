@@ -77,6 +77,34 @@ func void VLK_585_Aleph_GUARDS_Info()
 };
 
 
+instance VLK_585_Aleph_INFO_FewNugget(C_Info)
+{
+	npc = VLK_585_Aleph;
+	condition = VLK_585_Aleph_INFO_FewNugget_Condition;
+	information = VLK_585_Aleph_INFO_FewNugget_Info;
+	important = 0;
+	permanent = 0;
+	description = "я вообще не ношу с собой руду.";
+};
+
+func int VLK_585_Aleph_INFO_FewNugget_Condition()
+{
+	if(
+		(Npc_HasItems(hero,ItMiNugget) < 10)
+	&& Npc_KnowsInfo(hero,VLK_585_Aleph_GUARDS)
+	&& !Npc_KnowsInfo(hero,VLK_585_Aleph_INFO))
+	{
+		return 1;
+	};
+};
+func void VLK_585_Aleph_INFO_FewNugget_Info()
+{
+	AI_Output(other,self,"VLK_585_Aleph_INFO_FewNugget_NULL_01"); //я вообще не ношу с собой руду.
+	AI_Output(self,other,"VLK_585_Aleph_INFO_FewNugget_NULL_02"); //¬ообще не носишь!? ѕарень ты еще не знаешь кого здесь можно повстречать. ≈сли ты наткнешьс€ не на тех людей.
+	AI_Output(self,other,"VLK_585_Aleph_INFO_FewNugget_NULL_03"); //»ли они сами теб€ найдут, а руды у теб€ при себе не будет, тоо.. они могут захотеть не грабить теб€, а как-то иначе скоротать досуг, понимаешь?
+	AI_Output(self,other,"VLK_585_Aleph_INFO_FewNugget_NULL_04"); //» € знаю одного хорошего парн€.. вернее € знал одного хорошего парн€. ≈ще пару дней назад мы с ним дурили стражников.. ќн думал, что сможет обдурить каждого здесь, в этой колонии.. ќн думал.. ƒа кака€ разница теперь, что он думал.
+	AI_Output(self,other,"VLK_585_Aleph_INFO_FewNugget_NULL_05"); //ј что думаешь ты?
+};
 instance VLK_585_Aleph_INFO(C_Info)
 {
 	npc = VLK_585_Aleph;
