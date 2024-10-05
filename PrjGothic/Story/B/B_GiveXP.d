@@ -50,7 +50,102 @@ func void B_GiveXP(var int add_xp)
 		Snd_Play("LevelUp");
 	};
 };
+func void B_GiveXP_To(var int add_xp,var C_Npc npc)
+{
+	var string msg;
+	PrintDebugNpc(PD_ZS_FRAME,"B_GiveXP_To");
+	if(npc.level == 0)
+	{
+		npc.exp_next = 500;
+	};
+	msg = NAME_XPGained;
+	if(DIFF_HARD == TRUE)
+	{
+		npc.exp = npc.exp + (add_xp / 2);
+		msg = ConcatStrings(msg,IntToString(add_xp / 2));
+	}
+	else
+	{
+		npc.exp = npc.exp + add_xp;
+		msg = ConcatStrings(msg,IntToString(add_xp));
+	};
+	if(Npc_IsPlayer(npc))
+	{
+		PrintScreen(msg,-1,_YPOS_MESSAGE_XPGAINED,"font_old_10_white.tga",_TIME_MESSAGE_XPGAINED);
+	}
+	else
+	{
+		ShowMsg_NpcGetXP(npc.name,add_xp);
+	};
+	if(npc.exp >= npc.exp_next)
+	{
+		npc.level = npc.level + 1;
+		npc.exp_next = npc.exp_next + ((npc.level + 1) * 500);
+		if(!Npc_IsDead(npc))
+		{
+			if(akh_Mod == true)
+			{
+				Npc_RescaleHitpoints(npc);
+			}
+			else if(DIFF_HARD == TRUE)
+			{
+				npc.attribute[ATR_HITPOINTS_MAX] = npc.attribute[ATR_HITPOINTS_MAX] + 8;
+				npc.attribute[ATR_HITPOINTS] = npc.attribute[ATR_HITPOINTS] + 8;
+			}
+			else
+			{
+				npc.attribute[ATR_HITPOINTS_MAX] = npc.attribute[ATR_HITPOINTS_MAX] + HP_PER_LEVEL;
+				npc.attribute[ATR_HITPOINTS] = npc.attribute[ATR_HITPOINTS] + HP_PER_LEVEL;
+			};
+		};
+		npc.lp = npc.lp + LP_PER_LEVEL;
+		if(Npc_IsPlayer(npc))
+		{
+			PrintScreen(NAME_LevelUp,-1,_YPOS_MESSAGE_LEVELUP,"font_old_20_white.tga",_TIME_MESSAGE_LEVELUP);
+			Snd_Play("LevelUp");
+		}
+		else
+		{
+			ShowMsg_NpcGetXP(npc.name,add_xp);
+		};
+	};
+};
 
+func void NpcDeathXP_GiveTo(var C_Npc dead, var C_Npc awarded)
+{
+	PrintDebugNpc(PD_ZS_FRAME,"NpcDeathXP_GiveTo");
+	PrintGlobals(PD_ZS_Check);
+	if(
+		(
+			C_NpcIsHuman(dead)
+			&& (
+				Npc_WasInState(dead,ZS_Unconscious) || dead.aivar[AIV_WASDEFEATEDBYSC]
+			)
+		) || (dead.level == 0) || (dead.npcType == npctype_friend)
+	)
+	{
+		PrintDebugNpc(PD_ZS_Check,"...ѕострадавший - человек без сознани€!");
+	}
+	else
+	{
+		PrintDebugNpc(PD_ZS_Check,"...∆ертва либо не без сознани€, либо не человек!");
+		if(C_NpcIsHuman(dead) && ((dead.npcType == Npctype_MINE_Ambient) || (dead.npcType == npctype_ambient) || (dead.id == 899) || (dead.id == 898)))
+		{
+			if((dead.npcType == npctype_ambient) && ((dead.id == 336) || (dead.id == 337) || (dead.id == 338) || (dead.id == 889) || (dead.id == 239) || (dead.id == 701) || (dead.id == 704) || (dead.id == 828)))
+			{
+				B_GiveXP_To(dead.level * XP_PER_LEVEL_DEAD,awarded);
+			}
+			else
+			{
+				B_GiveXP_To(10,awarded);
+			};
+		}
+		else if(dead.level > 0)
+		{
+			B_GiveXP_To(dead.level * XP_PER_LEVEL_DEAD,awarded);
+		};
+	};
+};
 func void B_DeathXP()
 {
 	PrintDebugNpc(PD_ZS_FRAME,"B_DeathXP");

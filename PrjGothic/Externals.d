@@ -13,6 +13,16 @@ func void msgSS(var string str_, var string strr_, var int x_, var int y_, var i
 func void msgSI(var string str_, var int i_, var int x_, var int y_, var int _time){
 	PrintScreen(ConcatStrings(str_,IntToString(i_)),x_,y_,"FONT_OLD_10_WHITE.TGA",_time);
 };
+func int Num_GetSmallest(var int d, var int dd)
+{
+	if(d < dd){return d;};
+	return dd;
+};
+func int Num_Is(var int d, var int dd)
+{
+	if(d == dd){return true;};
+	return false;
+};
 
 func string getConcatStr7(
 	var string s1, var string s2, var string s3,
@@ -429,6 +439,55 @@ func int IRLSecToGameMin(var int seconds)
 {
 	return seconds / 4;
 };
+
+
+
+var int ShowMsg_AutoRow_1_Time;
+var int ShowMsg_AutoRow_2_Time;
+var int ShowMsg_AutoRow_3_Time;
+var int ShowMsg_AutoRow_4_Time;
+var int ShowMsg_AutoRow_5_Time;
+var int ShowMsg_AutoRow_6_Time;
+var int ShowMsg_AutoRow_7_Time;
+var int ShowMsg_AutoRow_8_Time;
+func void private_ShowMsg_AutoRow(
+	var string msg,
+	var int column,
+	var int time
+)
+{
+	var int farRow;
+	var int row;
+	farRow = Num_GetSmallest(ShowMsg_AutoRow_1_Time,ShowMsg_AutoRow_2_Time);
+	farRow = Num_GetSmallest(farRow,ShowMsg_AutoRow_3_Time);
+	farRow = Num_GetSmallest(farRow,ShowMsg_AutoRow_4_Time);
+	farRow = Num_GetSmallest(farRow,ShowMsg_AutoRow_5_Time);
+	farRow = Num_GetSmallest(farRow,ShowMsg_AutoRow_6_Time);
+	farRow = Num_GetSmallest(farRow,ShowMsg_AutoRow_7_Time);
+	farRow = Num_GetSmallest(farRow,ShowMsg_AutoRow_8_Time);
+
+	if(farRow == ShowMsg_AutoRow_1_Time){row = 37;ShowMsg_AutoRow_1_Time = getTimestamp();}
+	else if(farRow == ShowMsg_AutoRow_2_Time){row = 39;ShowMsg_AutoRow_2_Time = getTimestamp();}
+	else if(farRow == ShowMsg_AutoRow_3_Time){row = 41;ShowMsg_AutoRow_3_Time = getTimestamp();}
+	else if(farRow == ShowMsg_AutoRow_4_Time){row = 43;ShowMsg_AutoRow_4_Time = getTimestamp();}
+	else if(farRow == ShowMsg_AutoRow_5_Time){row = 43;ShowMsg_AutoRow_5_Time = getTimestamp();}
+	else if(farRow == ShowMsg_AutoRow_6_Time){row = 43;ShowMsg_AutoRow_6_Time = getTimestamp();}
+	else if(farRow == ShowMsg_AutoRow_7_Time){row = 43;ShowMsg_AutoRow_7_Time = getTimestamp();}
+	else if(farRow == ShowMsg_AutoRow_8_Time){row = 45;ShowMsg_AutoRow_8_Time = getTimestamp();};
+
+	PrintScreen(msg,column,row,"FONT_OLD_10_WHITE.TGA",time);
+};
+func void ShowMsg_AutoRow(var string msg)
+{
+	private_ShowMsg_AutoRow(msg,-1,3);
+};
+func void ShowMsg_NpcGetXP(var string npcName, var int exp)
+{
+	private_ShowMsg_AutoRow(
+		ConcatStrings(ConcatStrings(npcName,IntToString(exp)),NAME_XPGained
+	),70,3);
+};
+
 
 
 //Функции ниже, можно удалять

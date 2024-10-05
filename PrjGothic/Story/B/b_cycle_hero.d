@@ -1,3 +1,17 @@
+func void PC_SpecBehavior_Target()
+{
+    if(!Npc_GetTarget(hero)){return;};
+    if(
+        other.guild == GIL_MEATBUG
+    &&  Npc_GetDistToNpc(hero,other) < 150
+	&&	Npc_GetBodyState(hero) != BS_STAND
+    )
+    {
+		// ShowMsg_AutoRow("PC_SpecBehavior_Target");
+        Npc_SetHP(other,0);
+        NpcDeathXP_GiveTo(other,hero);
+    };
+};
 func int PC_GetMovementSpeed()
 {
 	var string lastNearWP;
@@ -472,8 +486,9 @@ func void PC_Bashed()
 
 func void b_cycle02_hero()
 {
-	return;
 	if(Npc_IsDead(hero)){return;};
+	PC_SpecBehavior_Target();
+	return;
 	PC_Bowman();
 	NPC_Dodge(hero);
 	hero_TakeItem();
