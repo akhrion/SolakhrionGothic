@@ -477,6 +477,7 @@ func void private_ShowMsg_AutoRow(
 
 	PrintScreen(msg,column,row,"FONT_OLD_10_WHITE.TGA",time);
 };
+//Функция сама отслеживает свободную строку для вывода сообщения на экран
 func void ShowMsg_AutoRow(var string msg)
 {
 	private_ShowMsg_AutoRow(msg,-1,3);
