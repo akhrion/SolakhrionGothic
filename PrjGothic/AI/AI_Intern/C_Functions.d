@@ -1805,7 +1805,7 @@ func void Npc_IWasLightedByOther()
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////‘”Õ ÷»» Œ“¬≈◊¿ﬁŸ»≈ «¿ ”Õ» ¿À‹ÕŒ≈ œŒ¬≈ƒ≈Õ»≈ Õœ—
 ////////////////////////////////////////////////////////////////////////////////
-func void SpecBehavior()
+func void SpecBehavior_RespawnCountdown()
 {
 	if(self.spawnDelay)
 	{
@@ -1815,7 +1815,9 @@ func void SpecBehavior()
 	{
 		Npc_SetRespawning(self,false);
 	};
-
+};
+func void SpecBehavior_Swampfly()
+{
 	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPFLY)
 	{
 		Print("¯Â¯ÓÌ¸");
@@ -1842,6 +1844,9 @@ func void SpecBehavior()
 			};
 		};
 	};
+};
+func void SpecBehavior_Swampshark()
+{
 	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
 	{
 		// Print("ID_SWAMPSHARK");
@@ -1897,6 +1902,12 @@ func void SpecBehavior()
 		};
 		Npc_SetTarget(swampshark,swampsharkTarget);
 	};
+};
+func void SpecBehavior()
+{
+	SpecBehavior_RespawnCountdown();
+	SpecBehavior_Swampfly();
+	SpecBehavior_Swampshark();
 	Npc_IWasLightedByOther();
 };
 
