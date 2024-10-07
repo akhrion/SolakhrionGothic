@@ -268,6 +268,11 @@ func void PC_Torch()
 		};
 	};
 };
+func void overlay02()
+{
+	msgSI("My BodyState: ",Npc_GetBodyState(hero),				0,52,1);
+};
+
 func void PC_Limitedbag()
 {
 	if(Npc_GetInvItemBySlot(hero,INV_FOOD,2))
@@ -488,6 +493,7 @@ func void b_cycle02_hero()
 {
 	if(Npc_IsDead(hero)){return;};
 	PC_SpecBehavior_Target();
+	overlay02();
 	return;
 	PC_Bowman();
 	NPC_Dodge(hero);
@@ -667,35 +673,39 @@ func void PC_Idling()
 		};
 	};
 };
+func void overlay_Hungry()
+{
+	if(Npc_IsHungry(hero))
+	{
+		msg("Голоден",											0,OVERLAY_Hungry_Y,1);
+	}
+	else
+	{
+		msg("Сыт",												0,OVERLAY_Hungry_Y,1);
+	};
+};
 func void overlay()
 {
-	// if(overlay_loaded < 5){return;};
-	// msgSI("Знание цели ",Npc_GetTalentValue(hero,NPC_TALENT_1H),0,OVERLAY_TargetKnowledge_Y,1);
-
-
-	msgSI("My BodyState: ",Npc_GetBodyState(hero),0,72,1);
-
 	if(Npc_GetTarget(hero))
 	{
-		msgSI("ID: ",other.id,60,2,1);
+		msgSI("ID: ",other.id,									60,2,1);
 		item = Npc_GetEquippedArmor(other);
-		msgSI("Armor ID: ",Hlp_GetInstanceID(item),60,4,1);
-
-
+		msgSI("Armor ID: ",Hlp_GetInstanceID(item),				60,4,1);
+		msgSI("Dist to target: ",Npc_GetDistToPlayer(other),	60,OVERLAY_TARGET_DISTANCE_Y,1);
 		OVERLAY_TargetKnowledge = PC_Knowledge();
-		msgSI("Знание цели ",OVERLAY_TargetKnowledge,0,OVERLAY_TargetKnowledge_Y,1);
-		msgSI("Dist to target: ",Npc_GetDistToPlayer(other),0,OVERLAY_TARGET_DISTANCE_Y,1);
+		msgSI("Знание цели ",OVERLAY_TargetKnowledge,			60,OVERLAY_TargetKnowledge_Y,1);
 	};
 
-	msgSI("Стойкость ",PC_Stamina,0,OVERLAY_Stamina_Y,1);
-	msgSI("Сила ",PC_ATR_STR,0,OVERLAY_ATR_STR_Y,1);
-	msgSI("Ловкость ",PC_ATR_DEX,0,OVERLAY_ATR_DEX_Y,1);
-	msgSI("Интеллект ",PC_ATR_INT,0,OVERLAY_ATR_INT_Y,1);
-	msgSI("Удача ",PC_ATR_LUC,0,OVERLAY_ATR_LUC_Y,1);
-	msgSI("Скорость движения ",PC_MovementSpeed,0,OVERLAY_PCMOVEMENTSPEED_Y,1);
+	overlay_Hungry();
+	msgSI("Стойкость ",PC_Stamina,								0,OVERLAY_Stamina_Y,1);
+	msgSI("Сила ",PC_ATR_STR,									0,OVERLAY_ATR_STR_Y,1);
+	msgSI("Ловкость ",PC_ATR_DEX,								0,OVERLAY_ATR_DEX_Y,1);
+	msgSI("Интеллект ",PC_ATR_INT,								0,OVERLAY_ATR_INT_Y,1);
+	msgSI("Удача ",PC_ATR_LUC,									0,OVERLAY_ATR_LUC_Y,1);
+	msgSI("Скорость движения ",PC_MovementSpeed,				0,OVERLAY_PCMOVEMENTSPEED_Y,1);
 	if(Npc_IsWounded(hero))
 	{
-		msg("Кровотечение",OVERLAY_Wounded_X,OVERLAY_Wounded_Y,1);
+		msg("Кровотечение",										OVERLAY_Wounded_X,OVERLAY_Wounded_Y,1);
 	};
 };
 
@@ -703,6 +713,7 @@ func void overlay()
 func void b_cycle_hero()
 {
 	if(Npc_IsDead(hero)){return;};
+
 	DAILYHELLO();
 	if(Npc_IsDead(ScavengerAgressive_1))
 	{
@@ -719,6 +730,10 @@ func void b_cycle_hero()
 	Npc_Wounded(hero);
 	G_MonkeyLock();
 	G_VisualChange_Fingal_RemoveFromPC();
+	Npc_MakeTheBodyStronger(hero);
+	Human_Jump(hero);
+    Human_Run(hero);
+	Human_Rest(hero);
 	overlay();
 	// PC_Test();
 

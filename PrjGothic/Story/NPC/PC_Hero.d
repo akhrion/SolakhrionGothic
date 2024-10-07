@@ -25,6 +25,7 @@ instance PC_Hero(Npc_Default)
 	SetTestItems();
 	SetTestSkils();
 	SetTestAttributes();
+	aivar[AIV_FREEMAN] = aivar[AIV_FREEMAN] | AIV_FREEMAN_WEIGHT_FATY;
 };
 
 instance PC_Hero_L2(Npc_Default)

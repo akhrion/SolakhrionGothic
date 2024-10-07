@@ -1074,6 +1074,10 @@ func void Npc_IncreaseHP(var C_NPC npc,var int hp)
 	IF(npc.attribute[ATR_HITPOINTS] > npc.attribute[ATR_HITPOINTS_MAX]){Npc_SetHP(npc,npc.attribute[ATR_HITPOINTS_MAX]);return;};
 	npc.attribute[ATR_HITPOINTS] += hp;
 };
+func void Npc_IncreaseHPMax(var C_NPC npc,var int hp)
+{
+	npc.attribute[ATR_HITPOINTS_MAX] += hp;
+};
 func int Npc_IsReceiveDamage(var C_Npc victim, var C_Npc attacker)
 {
 	if(Npc_IsInFightMode(attacker,FMODE_MAGIC))
@@ -1930,6 +1934,11 @@ func void Quest_DeAssign(var C_Info quest)
 {
 	quest.npc = -1;
 };
+func void Npc_SetMovementSpeed(var C_Npc npc,var float speed)
+{
+	Mdl_SetModelScale(npc,1,1,speed);
+};
+
 func void DAILYHELLO()
 {
 	if(DAILYHELLOUSER)
@@ -2001,11 +2010,154 @@ func void Food_ChangeNpcRegen(var C_Item itm, var C_Npc npc)
 		Npc_SetRegen(npc,1);
 	};
 };
+//Предполагается использование этой функции из C_Item.on_state
+func void Food_ChangeNpcHP()
+{
+	//Если регулярно питаться, то у вас растёт максимальная жизненная сила
+};
+func void Npc_Fight_Exhaust(var C_Npc npc)
+{
+	//entrypoint
+	//OnDamage_Hit()
+	if(Npc_IsPlayer(npc))
+	{
+		if(PC_Stamina > 5)
+		{
+			PC_Stamina -=5;
+		};
+	};
+	if(Hlp_Random(100) > 0){return;};
+	Npc_SetHungry(npc,true);
+};
+func int Npc_IsRegenerate(var C_Npc npc)
+{
+	if(
+		!Npc_IsHungry(npc)
+	&&	Npc_GetHP(npc) < Npc_GetHPMax(npc)
+	)
+	{
+		return true;
+	};
+	return false;
+};
+func void Npc_MakeTheBodyStronger_Random_ChangeHPMax(var C_Npc npc)
+{
+	if(!Npc_IsRegenerate(npc)){return;};
+	if(Hlp_Random(100) > 0){return;};
+	Npc_IncreaseHPMax(npc,1);
+};
+func void Npc_MakeTheBodyStronger(var C_Npc npc)
+{
+	Npc_MakeTheBodyStronger_Random_ChangeHPMax(npc);
+};
 func void Npc_Regeneration(var C_Npc npc)
 {
 	Npc_RegenerationDecreasePerSecond(npc);
 };
+func int Human_GetWeight(var C_Npc npc)
+{
+	return npc.aivar[AIV_FREEMAN]
+	& (
+		AIV_FREEMAN_WEIGHT_ANOREXIC
+		| AIV_FREEMAN_WEIGHT_NORMAL
+		| AIV_FREEMAN_WEIGHT_FATY
+	);
+};
+func void Human_SetWeight(var C_Npc npc, var int inxWeight)
+{
+	var int CurNpcWeight;
+	CurNpcWeight = Human_GetWeight(npc);
+	if(CurNpcWeight == inxWeight){return;};
 
+	if(CurNpcWeight & AIV_FREEMAN_WEIGHT_ANOREXIC)
+	{
+		npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_WEIGHT_ANOREXIC;
+	}
+	else if(CurNpcWeight & AIV_FREEMAN_WEIGHT_NORMAL)
+	{
+		npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_WEIGHT_NORMAL;
+	}
+	else if(CurNpcWeight & AIV_FREEMAN_WEIGHT_FATY)
+	{
+		npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_WEIGHT_FATY;
+	};
+
+	if(inxWeight & AIV_FREEMAN_WEIGHT_ANOREXIC)
+	{
+		Npc_SetMovementSpeed(npc,1.2);
+		Mdl_SetModelFatness(npc,-1);
+	}
+	else if(inxWeight & AIV_FREEMAN_WEIGHT_NORMAL)
+	{
+		Npc_SetMovementSpeed(npc,1);
+		Mdl_SetModelFatness(npc,1);
+	}
+	else if(inxWeight & AIV_FREEMAN_WEIGHT_FATY)
+	{
+		Npc_SetMovementSpeed(npc,0.8);
+		Mdl_SetModelFatness(npc,+2);
+	};
+	npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | inxWeight;
+};
+func void Human_InitWeight_Random(var C_Npc npc)
+{
+	if(Human_GetWeight(npc) != 0){return;};
+	var int rnd;
+	rnd = Hlp_Random(3);
+	if(rnd == 0)
+	{
+		Human_SetWeight(npc,AIV_FREEMAN_WEIGHT_ANOREXIC);
+	}
+	else if(rnd == 1)
+	{
+		Human_SetWeight(npc,AIV_FREEMAN_WEIGHT_NORMAL);
+	}
+	else if(rnd == 2)
+	{
+		Human_SetWeight(npc,AIV_FREEMAN_WEIGHT_FATY);
+	};
+};
+func void Human_Jump(var C_Npc npc)
+{
+	if(!Npc_IsPlayer(npc)){return;};
+	//переменная прописана только для ГГ
+	if(Npc_GetBodyState(npc) == BS_JUMP)
+	{
+		PC_Stamina -=10;
+	};
+};
+func void Human_Rest(var C_Npc npc)
+{
+	if(!Npc_IsPlayer(npc)){return;};
+	//переменная прописана только для ГГ
+	if(PC_Stamina < 99)
+	{
+		PC_Stamina +=3;
+	};
+	if(
+		(
+			(Npc_GetBodyState(npc) == BS_RUN)
+		||	(Npc_GetBodyState(npc) == BS_WALK)
+		||	(Npc_GetBodyState(npc) == BS_JUMP)
+		)
+	)
+	{
+		return;
+	};
+	if(PC_Stamina < 90)
+	{
+		PC_Stamina += 10;
+	};
+};
+func void Human_Run(var C_Npc npc)
+{
+	if(!Npc_IsPlayer(npc)){return;};
+	//переменная прописана только для ГГ
+	if(Npc_GetBodyState(npc) == BS_RUN)
+	{
+		PC_Stamina -=3;
+	};
+};
 func int Human_HasDailyFood(var C_Npc npc)
 {
 	if(
@@ -2033,6 +2185,11 @@ func void Human_EatDailyFood(var C_Npc npc)
 func int Npc_IsNpc(var C_Npc npc, var C_Npc npc2)
 {
 	return Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(npc2);
+};
+
+func void Npc_Fatigue(var C_Npc npc)
+{
+
 };
 
 func void Human_DailyBehavior(var C_Npc npc)
@@ -2186,10 +2343,6 @@ func void Npc_SetWidth(var C_Npc npc,var float width)
 func void Npc_SetDepth(var C_Npc npc,var float depth)
 {
 	Mdl_SetModelScale(npc,1,1,depth);
-};
-func void Npc_SetMovementSpeed(var C_Npc npc,var float speed)
-{
-	Mdl_SetModelScale(npc,1,1,speed);
 };
 
 

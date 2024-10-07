@@ -118,6 +118,7 @@ func void UseMutton()
 {
 	Npc_SetHungry(self,false);
 	Food_ChangeNpcRegen(item,self);
+	Food_ChangeNpcHP();
 	// Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Fleisch);
 };
 

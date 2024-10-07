@@ -415,6 +415,9 @@ const int ATTRIBUTESCAP_DEX_ROBINHOOD = 150;
 const int ATTRIBUTESCAP_DEX_ROBINHOODFATHER = 300;
 const int InputManual_Digit_ALEPH_SECRETS_NUGGET = 33;
 
+const int GAMESIZES_NUGGET_FEW = 10;
+const int GAMESIZES_NUGGET_NORMAL = 100;
+const int GAMESIZES_NUGGET_MANY = 1000;
 
 //AKHRION MOD
 var int giTrade;   //открывает реплику у торговцев, после нескольких трейдов
@@ -591,9 +594,10 @@ const int OVERLAY_BODYSTATE_AIV_ABILITY_Y = 14;
 const int OVERLAY_BODYSTATE_HERO_Y = 16;
 const int OVERLAY_BODYSTATE_HERO_AND_Y = 18;
 const int OVERLAY_BODYSTATE_DODGE_Y = 20;
+const int OVERLAY_TARGET_DISTANCE_Y = 6;
 var int OVERLAY_TargetKnowledge;
-const int OVERLAY_TargetKnowledge_Y = 74;
-const int OVERLAY_TARGET_DISTANCE_Y = 76;
+const int OVERLAY_TargetKnowledge_Y = 8;
+const int OVERLAY_Hungry_Y = 76;
 const int OVERLAY_Stamina_Y = 78;
 const int OVERLAY_ATR_STR_Y = 80;
 const int OVERLAY_ATR_DEX_Y = 82;

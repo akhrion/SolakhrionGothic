@@ -67,6 +67,7 @@ const int ID_SWAMPFLY = 36;
 const int ID_ORCDOG = 37;
 const int ID_YSCAVENGER = 38;
 const int ID_YMOLERAT = 39;
+const int ID_GHOST = 40;
 const int AIV_MM_PARTYMEMBER = 23;
 const int AIV_MM_DEATHINVGIVEN = 24;
 const int MID_CANYONTROLL = 5000;
