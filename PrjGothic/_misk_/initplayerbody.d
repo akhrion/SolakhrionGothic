@@ -35,6 +35,9 @@ func void initplayerbody(var int equipment)
 	var int texhead;
 	var int texskin;
 
+	//Дефолтная текстура для ГГ
+	texbody = TEX_Body_PC_Def;
+
 	//Дефолтный цвет кожи для ГГ
 	texskin = TEX_Skin_PC_Def;
 
