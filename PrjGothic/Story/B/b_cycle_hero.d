@@ -148,18 +148,6 @@ func void hero_TakeItem()
 	{
 	};
 };
-func void PC_DropItem()
-{
-	if(C_BodyStateContains(hero,BS_INVENTORY))
-	{
-		if(PC_DropCursedRing)
-		{
-			PC_DropCursedRing = false;
-			Wld_RemoveItem(CursedRing_01);
-			EquipItem(hero,CursedRing_01);
-		};
-	};
-};
 func void PC_WeaponHand_Handler(var C_Item _itm)
 {
 	if(
@@ -494,6 +482,9 @@ func void b_cycle02_hero()
 	if(Npc_IsDead(hero)){return;};
 	PC_SpecBehavior_Target();
 	overlay02();
+	PC_RefuseTakeItem_Any();
+	PC_RefuseTakeItem_Overloaded();
+	PC_Items();
 	return;
 	PC_Bowman();
 	NPC_Dodge(hero);
@@ -579,7 +570,6 @@ else
 
 PC_Torch();
 PC_Limitedbag();
-PC_DropItem();
 PC_Forging();
 PC_SitCampfire();
 
@@ -708,7 +698,6 @@ func void overlay()
 		msg("Кровотечение",										OVERLAY_Wounded_X,OVERLAY_Wounded_Y,1);
 	};
 };
-
 
 func void b_cycle_hero()
 {

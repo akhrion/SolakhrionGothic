@@ -776,3 +776,18 @@ var int PC_Temporal_Haste_TimeEnd_Timestamp;
 
 
 
+var int Huno_OLDSWORDS_WasStartedTrade;
+var int Huno_OLDSWORDS_IsRecieved;
+var int Huno_OLDSWORDS_IronAward;
+const int ironPer_Nail = 1;
+const int ironPer_Pickaxe = 10;
+const int ironPer_Poker = 10;
+const int ironPer_Sickle = 5;
+const int ironPer_Sword_1h = 20;
+const int ironPer_Sword_2h = 35;
+const int ironPer_Axe_1h = 20;
+const int ironPer_Axe_2h = 50;
+
+var int PC_CantTakeItem;
+var int PC_CursedRing_CantDrop;
+var int PC_CursedRing_CantUnequip;

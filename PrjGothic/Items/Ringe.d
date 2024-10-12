@@ -810,32 +810,59 @@ instance CursedRing_01(C_Item)
 };
 func void Equip_CursedRing_01()
 {
-	if(self.attribute[ATR_MANA_MAX] > 10)
-	{
-		Npc_GetInvItem(self,CursedRing_01);
-		item.name = "Кольцо рукожопа";
-		item.description = "Кольцо рукожопа";
-	};
+	TrueVision(CursedRing_01,self);
 	Npc_ChangeAttribute(self,ATR_DEXTERITY,-2);
 };
+
 func void UnEquip_CursedRing_01()
 {
-	if(self.attribute[ATR_MANA_MAX] < 10)
+	if(
+		PC_CursedRing_CantDrop
+	||	PC_CursedRing_CantUnequip
+	)
 	{
-		Print("Кольцо не снимается..");
-		Npc_GetInvItem(self,CursedRing_01);
-		if(Hlp_IsValidItem(item))
-		{
-			Npc_RemoveInvItem(self,Hlp_GetInstanceID(item));
-			EquipItem(self,CursedRing_01);
-			return;
-		};
-		//По какой-то причине, если использовать "else" то первое условие не отрабатывает.. мистика.
-		PC_DropCursedRing = true;
+		return;
+	};
+	if(self.attribute[ATR_MANA_MAX] < 30)
+	{
+		PC_CursedRing_CantDrop = true;
+		PC_CursedRing_CantUnequip = true;
+		Npc_ChangeAttribute(self,ATR_DEXTERITY,2);
+	}
+	else if(self.attribute[ATR_MANA_MAX] < 60)
+	{
+		PC_CursedRing_CantDrop = true;
+		Npc_ChangeAttribute(self,ATR_DEXTERITY,2);
 	}
 	else
 	{
 		Npc_ChangeAttribute(self,ATR_DEXTERITY,2);
+	};
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+	if(PC_CursedRing_CantDrop)
+	{
+		if(Npc_GetBodyState(self) == BS_INVENTORY)
+		{
+			PC_DropCursedRing = true;
+			return;
+		};
+	};
+	if(PC_CursedRing_CantUnequip)
+	{
+		Npc_GetInvItem(self,CursedRing_01);
+		if(Hlp_GetInstanceID(item) == Hlp_GetInstanceID(CursedRing_01))
+		{
+			ShowMsg_AutoRow("Кольцо не снимается..");
+			Npc_RemoveInvItem(self,Hlp_GetInstanceID(item));
+			EquipItem(self,CursedRing_01);
+			Equip_CursedRing_01();
+
+			PC_CursedRing_CantDrop = false;
+			PC_CursedRing_CantUnequip = false;
+		};
+		return;
 	};
 };
 
