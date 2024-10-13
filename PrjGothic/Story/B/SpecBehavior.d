@@ -18,6 +18,9 @@ func void SpecBehavior_RespawnCountdown()
 func void SpecBehavior_Human()
 {
     if(!C_NpcIsHuman(self)){return;};
+	var int oth;
+	oth = Hlp_GetInstanceID(other);
+
     Npc_PerceiveAll(self);
     if(!Wld_DetectNpc(self,-1,NOFUNC,-1)){return;};
     if(
@@ -26,10 +29,10 @@ func void SpecBehavior_Human()
     &&  Npc_GetDistToNpc(self,other) < 150
     )
     {
-        // ShowMsg_AutoRow("SpecBehavior_Human");
         Npc_SetHP(other,0);
         NpcDeathXP_GiveTo(other,self);
     };
+	other = Hlp_GetNpc(oth);
 };
 func void SpecBehavior_Meatbug_IamWasTrampled()
 {
