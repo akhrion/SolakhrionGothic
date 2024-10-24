@@ -24,7 +24,7 @@ func void Npc_ReceiveBash(var C_Npc vict, var C_Npc attacker)
 const int Fireshield_Damage = 50;
 func void ReactToDamage_Mage_Fireshield()
 {
-	if(Fireshield_Damage - other.protection[PROT_FIRE] > 0)
+	if(Fireshield_Damage - other.protection[PROT_INDEX_FIRE] > 0)
 	{
 		if(Hlp_Random(3))
 		{
@@ -38,7 +38,7 @@ func void ReactToDamage_Mage_Fireshield()
 		{
 			Print("Я горю!");
 		};
-		Npc_ChangeAttribute(other,ATR_HITPOINTS,-(Fireshield_Damage - other.protection[PROT_FIRE]));
+		Npc_ChangeAttribute(other,ATR_HITPOINTS,-(Fireshield_Damage - other.protection[PROT_INDEX_FIRE]));
 	};
 };
 func void ReactToDamage_ByBackSide()

@@ -36,6 +36,10 @@ func void Npc_CheckMyCloth(var C_Npc npc)
 
 func void B_Cycle_NPC()
 {
+    ApplyPeriodicalEffects(self);
+
+
+
     if(!C_IsSecondPassed())
     {
         return;
@@ -47,7 +51,9 @@ func void B_Cycle_NPC()
     Human_InitWeight_Random(self);
     Npc_Poisoned(self);
     Npc_Wounded(self);
+
     Npc_CheckMyCloth(self);
+    Npc_ChecksHisInventory(self);
 
     Human_DailyBehavior(self);
     SpecBehavior();
@@ -56,6 +62,8 @@ func void B_Cycle_NPC()
     Human_Run(self);
     Human_Rest(self);
 
+    // Npc_Massive(self);
+    ReinitPeriodicalEffects(self);
     B_Cycle60_NPC();
 };
 

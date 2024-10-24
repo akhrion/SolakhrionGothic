@@ -7,16 +7,16 @@ prototype Mst_Default_BlackGobbo(C_Npc)
 	level = 12;
 	attribute[ATR_STRENGTH] = 20;
 	attribute[ATR_DEXTERITY] = 20;
-	attribute[ATR_HITPOINTS_MAX] = 80;
-	attribute[ATR_HITPOINTS] = 80;
+	attribute[ATR_HITPOINTS_MAX] = 180;
+	attribute[ATR_HITPOINTS] = 180;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 40;
-	protection[PROT_EDGE] = 40;
-	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 20;
-	protection[PROT_FLY] = 0;
-	protection[PROT_MAGIC] = 0;
+	protection[PROT_INDEX_BLUNT] = 60;
+	protection[PROT_INDEX_EDGE] = 40;
+	protection[PROT_INDEX_POINT] = 10;
+	protection[PROT_INDEX_FIRE] = 50;
+	protection[PROT_INDEX_FLY] = 50;
+	protection[PROT_INDEX_MAGIC] = 0;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_GOBBO;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -43,7 +43,7 @@ instance BlackGobboMace(Mst_Default_BlackGobbo)
 {
 	Set_BlackGobbo_Visuals();
 	Npc_SetToFightMode(self,ItMw_1H_Nailmace_01);
-	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + 35;
+	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + attribute[ATR_STRENGTH];
 };
 
 instance BlackGobboWarrior(Mst_Default_BlackGobbo)
@@ -51,11 +51,11 @@ instance BlackGobboWarrior(Mst_Default_BlackGobbo)
 	level = 15;
 	Set_BlackGobbo_Visuals();
 	Npc_SetToFightMode(self,ItMw_1H_Mace_01);
-	attribute[ATR_STRENGTH] = 60 + 30;
-	attribute[ATR_HITPOINTS_MAX] = 105;
-	attribute[ATR_HITPOINTS] = 105;
-	protection[PROT_BLUNT] = 50;
-	protection[PROT_EDGE] = 50;
+	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + attribute[ATR_STRENGTH] + attribute[ATR_STRENGTH];
+	attribute[ATR_HITPOINTS_MAX] = attribute[ATR_HITPOINTS_MAX] + attribute[ATR_HITPOINTS_MAX];
+	attribute[ATR_HITPOINTS] = attribute[ATR_HITPOINTS] + attribute[ATR_HITPOINTS];
+	protection[PROT_INDEX_BLUNT] = 80;
+	protection[PROT_INDEX_EDGE] = 60;
 	name[0] = "Гоблин-воин";
 };
 
@@ -73,11 +73,11 @@ instance BLACKGOBBOLEADER(Mst_Default_BlackGobbo)
 	level = 17;
 	set_blackgobboleader_visuals();
 	Npc_SetToFightMode(self,ItMw_1H_Sword_Short_01);
-	attribute[ATR_STRENGTH] = 60 + 30;
-	attribute[ATR_HITPOINTS_MAX] = 115;
-	attribute[ATR_HITPOINTS] = 115;
-	protection[PROT_BLUNT] = 60;
-	protection[PROT_EDGE] = 60;
+	attribute[ATR_STRENGTH] = attribute[ATR_STRENGTH] + attribute[ATR_STRENGTH] + attribute[ATR_STRENGTH];
+	attribute[ATR_HITPOINTS_MAX] = attribute[ATR_HITPOINTS_MAX] + 115;
+	attribute[ATR_HITPOINTS] = attribute[ATR_HITPOINTS] + 115;
+	protection[PROT_INDEX_BLUNT] = 100;
+	protection[PROT_INDEX_EDGE] = 80;
 	name[0] = "Гоблин-вожак";
 };
 

@@ -13,8 +13,8 @@ instance Non_1500_Gilbert(Npc_Default)
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_HITPOINTS] = 148;
 	attribute[ATR_HITPOINTS_MAX] = 148;
-	protection[PROT_FLY] = 9999;
-	protection[PROT_FALL] = 9999;
+	protection[PROT_INDEX_FLY] = 9999;
+	protection[PROT_INDEX_FALL] = 9999;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",2,0,"Hum_Head_Thief",16,1,vlk_armor_l);

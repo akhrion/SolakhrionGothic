@@ -8,11 +8,11 @@ prototype TestBabe(C_Npc)
 	attribute[ATR_DEXTERITY] = 5;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_EDGE] = 5;
-	protection[PROT_BLUNT] = 5;
-	protection[PROT_POINT] = 5;
-	protection[PROT_FIRE] = 5;
-	protection[PROT_MAGIC] = 5;
+	protection[PROT_INDEX_EDGE] = 5;
+	protection[PROT_INDEX_BLUNT] = 5;
+	protection[PROT_INDEX_POINT] = 5;
+	protection[PROT_INDEX_FIRE] = 5;
+	protection[PROT_INDEX_MAGIC] = 5;
 	attribute[ATR_HITPOINTS_MAX] = 5;
 	attribute[ATR_HITPOINTS] = 5;
 	senses = SENSE_HEAR | SENSE_SEE;

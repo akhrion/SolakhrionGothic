@@ -11,12 +11,12 @@ prototype Mst_Default_Zombie(C_Npc)
 	attribute[ATR_HITPOINTS] = 250;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 130;
-	protection[PROT_EDGE] = 130;
-	protection[PROT_POINT] = 9999;
-	protection[PROT_FIRE] = 100;
-	protection[PROT_FLY] = 30;
-	protection[PROT_MAGIC] = 100;
+	protection[PROT_INDEX_BLUNT] = 130;
+	protection[PROT_INDEX_EDGE] = 130;
+	protection[PROT_INDEX_POINT] = 9999;
+	protection[PROT_INDEX_FIRE] = 100;
+	protection[PROT_INDEX_FLY] = 30;
+	protection[PROT_INDEX_MAGIC] = 100;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_ZOMBIE;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -94,9 +94,9 @@ instance ZombieTheKeeper(Mst_Default_Zombie)
 	id = MID_THEKEEPER;
 	set_zombie5_visuals();
 	Npc_SetToFistMode(self);
-	protection[PROT_BLUNT] = 150;
-	protection[PROT_EDGE] = 150;
-	protection[PROT_FIRE] = 9999;
+	protection[PROT_INDEX_BLUNT] = 150;
+	protection[PROT_INDEX_EDGE] = 150;
+	protection[PROT_INDEX_FIRE] = 9999;
 	senses_range = 1000;
 	aivar[AIV_MM_Behaviour] = HUNTER;
 	aivar[AIV_MM_PercRange] = 1000;
@@ -109,3 +109,14 @@ instance ZombieTheKeeper(Mst_Default_Zombie)
 	CreateInvItem(self,ItKe_Focus5);
 };
 
+instance Ghost(Mst_Default_Zombie)
+{
+	name[0] = "Призрак";
+	npcType = Npctype_MystiqueMonster;
+	level = 20;
+	id = ID_GHOST;
+	Set_Zombie_Visuals();
+	Npc_SetToFistMode(self);
+	Npc_SetMovementSpeed(self,0.5);
+
+};

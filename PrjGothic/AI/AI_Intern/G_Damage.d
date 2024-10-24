@@ -1,3 +1,89 @@
+func int XardasRiddle_GetDamage(var int damageTotal)
+{
+    if(Hlp_GetInstanceID(victim) == Hlp_GetInstanceID(XardasRiddle_StoneGolem))
+    {
+        if(Npc_GetReadiedWeapon_DamageType_IsBlunt(self))
+        {
+            return damageTotal;
+        };
+    }
+    else if(Hlp_GetInstanceID(victim) == Hlp_GetInstanceID(XardasRiddle_FireGolem))
+    {
+        if(damageinfo.IsSpellDamage)
+        {
+            if(
+                damageinfo.SpellID == SPL_ICECUBE
+            ||  damageinfo.SpellID == SPL_ICEWAVE
+            )
+            {
+                return damageTotal;
+            };
+        };
+    }
+    else if(Hlp_GetInstanceID(victim) == Hlp_GetInstanceID(XardasRiddle_IceGolem))
+    {
+        if(damageinfo.IsSpellDamage)
+        {
+            if(
+                damageinfo.SpellID == SPL_FIREBOLT
+            ||  damageinfo.SpellID == SPL_FIREBALL
+            ||  damageinfo.SpellID == SPL_FIRESTORM
+            ||  damageinfo.SpellID == SPL_FIRERAIN
+            )
+            {
+                return damageTotal;
+            };
+        };
+    };
+    return 0;
+};
+func int XardasRiddle()
+{
+    if(victim.guild == GIL_GOLEM)
+    {
+        if(
+            Hlp_GetInstanceID(victim) == Hlp_GetInstanceID(XardasRiddle_StoneGolem)
+        ||  Hlp_GetInstanceID(victim) == Hlp_GetInstanceID(XardasRiddle_FireGolem)
+        ||  Hlp_GetInstanceID(victim) == Hlp_GetInstanceID(XardasRiddle_IceGolem)
+        )
+        {
+            return true;
+        };
+    };
+    return false;
+};
+
+
+var int PC_ArtStyle_1H_ImproveVariety;
+var int PC_ArtStyle_1H_Level;
+var int PC_ArtStyle_1H_Value;
+func void ArtStyle()
+{
+    //При сражении есть вероятность повышения навыка одноручного меча
+    //Вероятность повышается с каждой итерацией, потом сбрасывается на начало.
+    if(!Npc_IsPlayer(self)){return;};
+
+    if(self.weapon == 3)
+    {
+        //ОДНОРУЧНЫЙ БОЙ
+        if(Npc_GetTalentSkill(self,NPC_TALENT_1H) != PC_ArtStyle_1H_Level)
+        {
+            PC_ArtStyle_1H_Level = Npc_GetTalentSkill(self,NPC_TALENT_1H);
+        };
+        PC_ArtStyle_1H_ImproveVariety +=PC_ArtStyle_1H_Level;
+
+        if(Hlp_Random(100) < PC_ArtStyle_1H_ImproveVariety)
+        {
+            PC_ArtStyle_1H_ImproveVariety = 0;
+
+            PC_ArtStyle_1H_Value = Npc_GetTalentValue(self,NPC_TALENT_1H);
+            Npc_SetTalentValue(self, NPC_TALENT_1H, PC_ArtStyle_1H_Value + 1);
+        };
+    };
+};
+
+
+
 //Стрелы и болты попавшие в противника, могут остаться у него в инвентаре.
 //Если не сломаются..
 func void Weapon_ProjectileSave(var C_Item itm,var C_Npc attacker,var C_Npc vict)
@@ -95,7 +181,20 @@ func void OnDamage_Hit_VisualChange(var C_Npc npc)
 // item - орудие убийства (может быть null)
 func int OnDamage_Hit(var int damageTotal)
 {
+    if(XardasRiddle()){
+        damageTotal = XardasRiddle_GetDamage(damageTotal);
+        return damageTotal;
+    };
+    if(
+        Hlp_GetInstanceID(item) == Hlp_GetInstanceID(ItRw_Bow_Long_Lucky)
+    &&  Hlp_Random(100) < 1
+    )
+    {
+        //С вероятностью в 1% Счастливый лук нанесёт х10 урона по цели
+        return damageTotal * 10;
+    };
     if(Npc_IsDodge(victim)){return 0;};
+    ArtStyle();
     if(IsNight())
     {
         return Night_Damage(damageTotal);
@@ -103,7 +202,7 @@ func int OnDamage_Hit(var int damageTotal)
     OnDamage_Hit_Mystique();
 
     Weapon_ProjectileSave(item,self,victim);
-    Weapon_Deterioration(item);
+    // Weapon_Deterioration(item);
     Npc_Training(self,item);
     OnDamage_Hit_VisualChange(victim);
     Npc_Fight_Exhaust(self);

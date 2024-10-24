@@ -14,7 +14,7 @@ instance PC_Fighter(Npc_Default)
 	attribute[ATR_MANA] = 20;
 	attribute[ATR_HITPOINTS_MAX] = 22;
 	attribute[ATR_HITPOINTS] = 22;
-	protection[PROT_FIRE] = 1000;
+	protection[PROT_INDEX_FIRE] = 1000;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",0,3,"Hum_Head_Fighter",13,0,sld_armor_m);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

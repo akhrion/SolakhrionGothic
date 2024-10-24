@@ -11,12 +11,12 @@ prototype Mst_Default_MinecrawlerWarrior(C_Npc)
 	attribute[ATR_HITPOINTS] = 200;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 120;
-	protection[PROT_EDGE] = 120;
-	protection[PROT_POINT] = 35;
-	protection[PROT_FIRE] = 50;
-	protection[PROT_FLY] = 30;
-	protection[PROT_MAGIC] = 50;
+	protection[PROT_INDEX_BLUNT] = 120;
+	protection[PROT_INDEX_EDGE] = 120;
+	protection[PROT_INDEX_POINT] = 35;
+	protection[PROT_INDEX_FIRE] = 50;
+	protection[PROT_INDEX_FLY] = 30;
+	protection[PROT_INDEX_MAGIC] = 50;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_MINECRAWLER;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -65,12 +65,12 @@ instance OTMinecrawler(Mst_Default_MinecrawlerWarrior)
 	attribute[ATR_HITPOINTS] = 300;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 70;
-	protection[PROT_EDGE] = 70;
-	protection[PROT_POINT] = 35;
-	protection[PROT_FIRE] = 30;
-	protection[PROT_FLY] = 70;
-	protection[PROT_MAGIC] = 30;
+	protection[PROT_INDEX_BLUNT] = 70;
+	protection[PROT_INDEX_EDGE] = 70;
+	protection[PROT_INDEX_POINT] = 35;
+	protection[PROT_INDEX_FIRE] = 30;
+	protection[PROT_INDEX_FLY] = 70;
+	protection[PROT_INDEX_MAGIC] = 30;
 	damagetype = DAM_EDGE;
 };
 

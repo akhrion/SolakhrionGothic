@@ -12,12 +12,12 @@ prototype Mst_Default_OrcWarrior(C_Npc)
 	attribute[ATR_HITPOINTS] = 250;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 100;
-	protection[PROT_EDGE] = 100;
-	protection[PROT_POINT] = 40;
-	protection[PROT_FIRE] = 55;
-	protection[PROT_FLY] = 30;
-	protection[PROT_MAGIC] = 30;
+	protection[PROT_INDEX_BLUNT] = 100;
+	protection[PROT_INDEX_EDGE] = 100;
+	protection[PROT_INDEX_POINT] = 40;
+	protection[PROT_INDEX_FIRE] = 55;
+	protection[PROT_INDEX_FLY] = 30;
+	protection[PROT_INDEX_MAGIC] = 30;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_HUMAN_MASTER;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -47,10 +47,10 @@ instance OrcWarrior1(Mst_Default_OrcWarrior)
 	attribute[ATR_STRENGTH] = 55;
 	attribute[ATR_HITPOINTS_MAX] = 210;
 	attribute[ATR_HITPOINTS] = 210;
-	protection[PROT_BLUNT] = 60;
-	protection[PROT_EDGE] = 60;
-	protection[PROT_POINT] = 30;
-	protection[PROT_FIRE] = 30;
+	protection[PROT_INDEX_BLUNT] = 60;
+	protection[PROT_INDEX_EDGE] = 60;
+	protection[PROT_INDEX_POINT] = 30;
+	protection[PROT_INDEX_FIRE] = 30;
 	EquipItem(self,ItMw2hOrcAxe01);
 };
 
@@ -62,10 +62,10 @@ instance OrcWarrior2(Mst_Default_OrcWarrior)
 	attribute[ATR_STRENGTH] = 60;
 	attribute[ATR_HITPOINTS_MAX] = 230;
 	attribute[ATR_HITPOINTS] = 230;
-	protection[PROT_BLUNT] = 70;
-	protection[PROT_EDGE] = 70;
-	protection[PROT_POINT] = 35;
-	protection[PROT_FIRE] = 35;
+	protection[PROT_INDEX_BLUNT] = 70;
+	protection[PROT_INDEX_EDGE] = 70;
+	protection[PROT_INDEX_POINT] = 35;
+	protection[PROT_INDEX_FIRE] = 35;
 	EquipItem(self,ItMw2hOrcAxe02);
 };
 
@@ -77,10 +77,10 @@ instance OrcWarrior3(Mst_Default_OrcWarrior)
 	attribute[ATR_STRENGTH] = 65;
 	attribute[ATR_HITPOINTS_MAX] = 250;
 	attribute[ATR_HITPOINTS] = 250;
-	protection[PROT_BLUNT] = 80;
-	protection[PROT_EDGE] = 80;
-	protection[PROT_POINT] = 40;
-	protection[PROT_FIRE] = 40;
+	protection[PROT_INDEX_BLUNT] = 80;
+	protection[PROT_INDEX_EDGE] = 80;
+	protection[PROT_INDEX_POINT] = 40;
+	protection[PROT_INDEX_FIRE] = 40;
 	EquipItem(self,ItMw2hOrcAxe03);
 };
 
@@ -92,10 +92,10 @@ instance OrcWarrior4(Mst_Default_OrcWarrior)
 	attribute[ATR_STRENGTH] = 75;
 	attribute[ATR_HITPOINTS_MAX] = 300;
 	attribute[ATR_HITPOINTS] = 300;
-	protection[PROT_BLUNT] = 100;
-	protection[PROT_EDGE] = 100;
-	protection[PROT_POINT] = 45;
-	protection[PROT_FIRE] = 45;
+	protection[PROT_INDEX_BLUNT] = 100;
+	protection[PROT_INDEX_EDGE] = 100;
+	protection[PROT_INDEX_POINT] = 45;
+	protection[PROT_INDEX_FIRE] = 45;
 	EquipItem(self,ItMw2hOrcAxe04);
 };
 

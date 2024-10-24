@@ -14,12 +14,12 @@ instance NOV_1367_Novize(Npc_Default)
 	attribute[ATR_MANA] = 0;
 	attribute[ATR_HITPOINTS_MAX] = 250;
 	attribute[ATR_HITPOINTS] = 250;
-	protection[PROT_BLUNT] = 1000;
-	protection[PROT_EDGE] = 1000;
-	protection[PROT_POINT] = 1000;
-	protection[PROT_FIRE] = 80;
-	protection[PROT_FLY] = 80;
-	protection[PROT_MAGIC] = 50;
+	protection[PROT_INDEX_BLUNT] = 1000;
+	protection[PROT_INDEX_EDGE] = 1000;
+	protection[PROT_INDEX_POINT] = 1000;
+	protection[PROT_INDEX_FIRE] = 80;
+	protection[PROT_INDEX_FLY] = 80;
+	protection[PROT_INDEX_MAGIC] = 50;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",1,1,"Hum_Head_FatBald",117,3,nov_armor_l);
 	B_Scale(self);

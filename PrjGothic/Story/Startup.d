@@ -37,6 +37,7 @@ func void LOADING_InitVariables_PC()    //По сути эту функцию можно вызывать из 
 func void LOADING_InitVariables()   //Variables initialisation on a Loading game
 {
 	cLoadings +=1;
+	bGameLoaded = true;
 };
 
 func void LOADING_InitHaste_PC()
@@ -1205,6 +1206,9 @@ func void Startup_Sub_Surface()
 	Wld_InsertNpc(GreenGobboSword,"PATH_OC_NC_5");
 	Wld_InsertNpc(Meatbug,"OW_SAWHUT_MEATBUG_SPAWN");
 	Wld_InsertNpc(Meatbug,"OW_SAWHUT_MEATBUG_SPAWN");
+	Wld_InsertNpc(Meatbug,"FP_ROAM_OW_ROOT_MEATBUG_01");
+	Wld_InsertNpc(Meatbug,"FP_ROAM_OW_BRIDGE_MEATBUG_01");
+	Wld_InsertNpc(Meatbug,"FP_ROAM_OW_GATEOC_MEATBUG_01");
 	Wld_InsertNpc(Wolf,"OW_PATH_02_SPAWN_HOGEWOLF");
 	Wld_InsertNpc(GreenGobboSword,"OW_GOBBO_PLACE_SPAWN");
 	Wld_InsertNpc(GreenGobboSword,"OW_GOBBO_PLACE_SPAWN");
@@ -1517,6 +1521,7 @@ func void Startup_Sub_Surface()
 	Wld_InsertNpc(Bloodfly,"SPAWN_BLOODFLYPATH_OC_PSI_14");
 	Wld_InsertNpc(Meatbug,"SPAWN_OW_MEATBUG_01_01");
 	Wld_InsertNpc(Meatbug,"SPAWN_OW_MEATBUG_01_01");
+	Wld_InsertNpc(Meatbug,"OW_PATH_1_17_1");
 	Wld_InsertNpc(YMolerat,"SPAWN_MOLERAT02_SPAWN01");
 	Wld_InsertNpc(YScavenger,"SPAWN_SCAVENGER_TOTU_LEFT_PLAT");
 	Wld_InsertNpc(YScavenger,"SPAWN_SCAVENGER2_TOTU_LEFT_PLAT2");
@@ -1769,9 +1774,9 @@ func void Startup_Sub_Surface()
 	Wld_InsertNpc(OrcShaman,"OW_PATH_06_14_HEILIGTUM2");
 	Wld_InsertNpc(OrcShaman,"OW_PATH_06_14_HEILIGTUM3");
 	Wld_InsertNpc(OrcShaman,"OW_PATH_06_14_HEILIGTUM4");
-	Wld_InsertNpc(StoneGolem,"OW_PATH_123");
-	Wld_InsertNpc(IceGolem,"OW_PATH_125");
-	Wld_InsertNpc(FireGolem,"OW_PATH_127");
+	Wld_InsertNpc(XardasRiddle_StoneGolem,"OW_PATH_123");
+	Wld_InsertNpc(XardasRiddle_IceGolem,"OW_PATH_125");
+	Wld_InsertNpc(XardasRiddle_FireGolem,"OW_PATH_127");
 	Wld_InsertNpc(OrcScout,"BRIDGE_CASTLE_TO_PLATEAU");
 	Wld_InsertNpc(OrcScout,"CASTLE_16");
 	Wld_InsertNpc(Skeleton,"OW_FOGDUNGEON_06");

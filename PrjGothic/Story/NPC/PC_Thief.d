@@ -15,7 +15,7 @@ instance PC_Thief(Npc_Default)
 	attribute[ATR_MANA] = 0;
 	attribute[ATR_HITPOINTS_MAX] = 340;
 	attribute[ATR_HITPOINTS] = 340;
-	protection[PROT_FIRE] = 1000;
+	protection[PROT_INDEX_FIRE] = 1000;
 	Npc_SetTalentSkill(self,NPC_TALENT_PICKPOCKET,1);
 	Npc_SetTalentValue(self,NPC_TALENT_PICKPOCKET,60);
 	Npc_SetTalentSkill(self,NPC_TALENT_SNEAK,1);

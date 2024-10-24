@@ -14,7 +14,7 @@ instance PC_Mage(Npc_Default)
 	attribute[ATR_MANA] = 150;
 	attribute[ATR_HITPOINTS_MAX] = 250;
 	attribute[ATR_HITPOINTS] = 250;
-	protection[PROT_FIRE] = 1000;
+	protection[PROT_INDEX_FIRE] = 1000;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",0,1,"Hum_Head_Bald",76,1,kdf_armor_l);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

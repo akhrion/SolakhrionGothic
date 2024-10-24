@@ -12,12 +12,12 @@ prototype Mst_Default_Molerat(C_Npc)
 	attribute[ATR_HITPOINTS] = 80;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 28;
-	protection[PROT_EDGE] = 18;
-	protection[PROT_POINT] = 15;
-	protection[PROT_FIRE] = 5;
-	protection[PROT_FLY] = 0;
-	protection[PROT_MAGIC] = 0;
+	protection[PROT_INDEX_BLUNT] = 28;
+	protection[PROT_INDEX_EDGE] = 18;
+	protection[PROT_INDEX_POINT] = 15;
+	protection[PROT_INDEX_FIRE] = 5;
+	protection[PROT_INDEX_FLY] = 0;
+	protection[PROT_INDEX_MAGIC] = 0;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_MOLERAT;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -36,12 +36,14 @@ prototype Mst_Default_Molerat(C_Npc)
 
 func void Set_Molerat_Visuals()
 {
+	Mdl_SetModelScale(self,0.7,0.7,0.7);
 	Mdl_SetVisual(self,"Molerat.mds");
 	Mdl_SetVisualBody(self,"Mol_Body",1,DEFAULT,"",DEFAULT,DEFAULT,-1);
 };
 
 func void set_ymolerat_visuals()
 {
+	Mdl_SetModelScale(self,0.6,0.6,0.6);
 	Mdl_SetVisual(self,"Molerat.mds");
 	Mdl_SetVisualBody(self,"Mol_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
 };
@@ -63,11 +65,10 @@ instance YMolerat(Mst_Default_Molerat)
 	attribute[ATR_DEXTERITY] = 5;
 	attribute[ATR_HITPOINTS_MAX] = 40;
 	attribute[ATR_HITPOINTS] = 40;
-	protection[PROT_BLUNT] = 8;
-	protection[PROT_EDGE] = 8;
+	protection[PROT_INDEX_BLUNT] = 8;
+	protection[PROT_INDEX_EDGE] = 8;
 	fight_tactic = FAI_MONSTER_COWARD;
 	set_ymolerat_visuals();
-	Mdl_SetModelScale(self,0.8,0.8,0.8);
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,1);
 	spawnDelay = 60;

@@ -139,6 +139,14 @@ class C_ITEMREACT
 	var func reaction;
 };
 
+class C_DamageInfo
+{
+    var int ItemID;
+    var int IsSpellDamage;
+    var int SpellID;
+    var int SpellLevel;
+};
+
 instance self(C_Npc)
 {
 };
@@ -159,3 +167,6 @@ instance hero(C_Npc)
 {
 };
 
+instance damageinfo(C_DamageInfo)
+{
+};

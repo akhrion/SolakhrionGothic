@@ -150,6 +150,28 @@ instance ItRw_Bow_Long_01(C_Item)
 	count[5] = value;
 };
 
+instance ItRw_Bow_Long_Lucky(C_Item)
+{
+	name = "—частливый лук";
+	mainflag = ITEM_KAT_FF;
+	flags = ITEM_BOW;
+	material = MAT_WOOD;
+	value = 440;
+	damageTotal = 40 * AKH_BOWMANLINE_MULTIPLIER;
+	damagetype = DAM_POINT;
+	munition = ItAmArrow;
+	cond_atr[2] = ATR_DEXTERITY;
+	cond_value[2] = 22;
+	visual = "ItRw_Bow_Long_01.mms";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Dex_needed;
+	count[3] = cond_value[2];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItRw_Bow_Long_02(C_Item)
 {
 	name = "ќсиновый лук";

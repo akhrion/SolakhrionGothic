@@ -8,6 +8,7 @@ func void PC_SpecBehavior_Target()
     )
     {
 		// ShowMsg_AutoRow("PC_SpecBehavior_Target");
+		Snd_Play("HERB_STOMP");
         Npc_SetHP(other,0);
         NpcDeathXP_GiveTo(other,hero);
     };
@@ -601,6 +602,7 @@ func void bsfire_hero()
 };
 func int PC_Knowledge()
 {
+	return 0;
 	Npc_GetTarget(hero);
 	if(Hlp_StrCmp(other.name,"")){return 0;};
 	if(other.guild < GIL_SEPERATOR_HUM)
@@ -733,6 +735,7 @@ func void b_cycle_hero()
 		PC_Forging_Incandescence_IsStopped = false;
 		bsfire_hero();
 	};
+	ReinitPeriodicalEffects(hero);
 };
 func void b_cycle60_hero()
 {

@@ -3,7 +3,7 @@ func void B_MagicHurtNpc(var C_Npc attacker,var int damage)
 {
 	var int effectiveDamage;
 	PrintDebugNpc(PD_ZS_FRAME,"B_MagicHurtNpc");
-	effectiveDamage = damage - self.protection[PROT_MAGIC];
+	effectiveDamage = damage - self.protection[PROT_INDEX_MAGIC];
 	if(effectiveDamage < 0)
 	{
 		effectiveDamage = 0;

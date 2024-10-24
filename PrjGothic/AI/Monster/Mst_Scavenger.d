@@ -12,12 +12,12 @@ prototype Mst_Default_Scavenger(C_Npc)
 	attribute[ATR_HITPOINTS] = 40;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 19;
-	protection[PROT_EDGE] = 9;
-	protection[PROT_POINT] = 5;
-	protection[PROT_FIRE] = 0;
-	protection[PROT_FLY] = 0;
-	protection[PROT_MAGIC] = 0;
+	protection[PROT_INDEX_BLUNT] = 19;
+	protection[PROT_INDEX_EDGE] = 9;
+	protection[PROT_INDEX_POINT] = 5;
+	protection[PROT_INDEX_FIRE] = 0;
+	protection[PROT_INDEX_FLY] = 0;
+	protection[PROT_INDEX_MAGIC] = 0;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_SCAVENGER;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -39,6 +39,7 @@ prototype Mst_Default_Scavenger(C_Npc)
 
 func void Set_Scavenger_Visuals()
 {
+	Mdl_SetModelScale(self,0.7,0.7,0.7);
 	Mdl_SetVisual(self,"Scavenger.mds");
 	Mdl_SetVisualBody(self,"Sca_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
 };
@@ -51,6 +52,7 @@ func void Set_Scavenger_Invisible_Visuals()
 
 func void set_yscavenger_visuals()
 {
+	Mdl_SetModelScale(self,0.6,0.6,0.6);
 	Mdl_SetVisual(self,"Scavenger.mds");
 	Mdl_SetVisualBody(self,"Sca_Body",1,DEFAULT,"",DEFAULT,DEFAULT,-1);
 };
@@ -87,11 +89,10 @@ instance YScavenger(Mst_Default_Scavenger)
 	attribute[ATR_DEXTERITY] = 6;
 	attribute[ATR_HITPOINTS_MAX] = 35;
 	attribute[ATR_HITPOINTS] = 35;
-	protection[PROT_BLUNT] = 8;
-	protection[PROT_EDGE] = 8;
+	protection[PROT_INDEX_BLUNT] = 8;
+	protection[PROT_INDEX_EDGE] = 8;
 	fight_tactic = FAI_MONSTER_COWARD;
 	set_yscavenger_visuals();
-	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,1);
 	spawnDelay = 60;

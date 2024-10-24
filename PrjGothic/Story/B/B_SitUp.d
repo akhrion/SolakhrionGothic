@@ -65,11 +65,11 @@ instance FreemineOrc(C_Npc)
 	attribute[ATR_DEXTERITY] = 20;
 	attribute[ATR_HITPOINTS_MAX] = 250;
 	attribute[ATR_HITPOINTS] = 10;
-	protection[PROT_EDGE] = 15;
-	protection[PROT_BLUNT] = 15;
-	protection[PROT_POINT] = 5;
-	protection[PROT_FIRE] = 7;
-	protection[PROT_MAGIC] = 0;
+	protection[PROT_INDEX_EDGE] = 15;
+	protection[PROT_INDEX_BLUNT] = 15;
+	protection[PROT_INDEX_POINT] = 5;
+	protection[PROT_INDEX_FIRE] = 7;
+	protection[PROT_INDEX_MAGIC] = 0;
 	Mdl_SetVisual(self,"orc.mds");
 	Mdl_SetVisualBody(self,"Orc_BodySlave",DEFAULT,DEFAULT,"Orc_HeadSlave",DEFAULT,DEFAULT,-1);
 	fight_tactic = FAI_ORC;

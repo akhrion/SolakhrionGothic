@@ -121,11 +121,11 @@ instance ItArRobeMithril(C_Item)
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	value = 1098;
-	protection[PROT_EDGE] = 20;
-	protection[PROT_BLUNT] = 20;
-	protection[PROT_POINT] = 20;
-	protection[PROT_FIRE] = 20;
-	protection[PROT_MAGIC] = 20;
+	protection[PROT_INDEX_EDGE] = 20;
+	protection[PROT_INDEX_BLUNT] = 20;
+	protection[PROT_INDEX_POINT] = 20;
+	protection[PROT_INDEX_FIRE] = 20;
+	protection[PROT_INDEX_MAGIC] = 20;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_None;
 	disguiseGuild = GIL_None;

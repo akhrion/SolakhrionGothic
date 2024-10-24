@@ -252,7 +252,7 @@ instance Neks_Amulett(C_Item)
 	on_unequip = UnEquip_Schutzamulett_Nek;
 	description = "Амулет убитого стражника";
 	text[1] = "На обратной стороне выбито имя 'Нек'";
-	text[2] = NAME_Prot_Edge;
+	text[2] = NAME_PROT_INDEX_EDGE;
 	count[2] = 5;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -261,14 +261,14 @@ instance Neks_Amulett(C_Item)
 
 func void Equip_Schutzamulett_Nek()
 {
-	self.protection[PROT_EDGE] += 5;
-	self.protection[PROT_BLUNT] += 5;
+	self.protection[PROT_INDEX_EDGE] += 5;
+	self.protection[PROT_INDEX_BLUNT] += 5;
 };
 
 func void UnEquip_Schutzamulett_Nek()
 {
-	self.protection[PROT_EDGE] -= 5;
-	self.protection[PROT_BLUNT] -= 5;
+	self.protection[PROT_INDEX_EDGE] -= 5;
+	self.protection[PROT_INDEX_BLUNT] -= 5;
 };
 
 

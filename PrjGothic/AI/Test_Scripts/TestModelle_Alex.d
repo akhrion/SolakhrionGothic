@@ -44,11 +44,11 @@ instance OverlayOrc(C_Npc)
 	attribute[ATR_DEXTERITY] = 0;
 	attribute[ATR_HITPOINTS_MAX] = 20;
 	attribute[ATR_HITPOINTS] = 20;
-	protection[PROT_EDGE] = 5;
-	protection[PROT_BLUNT] = 5;
-	protection[PROT_POINT] = 5;
-	protection[PROT_FIRE] = 5;
-	protection[PROT_MAGIC] = 5;
+	protection[PROT_INDEX_EDGE] = 5;
+	protection[PROT_INDEX_BLUNT] = 5;
+	protection[PROT_INDEX_POINT] = 5;
+	protection[PROT_INDEX_FIRE] = 5;
+	protection[PROT_INDEX_MAGIC] = 5;
 	Mdl_SetVisual(self,"orc.mds");
 	Mdl_SetVisualBody(self,"Orc_BodyWarrior",DEFAULT,DEFAULT,"Orc_Head",DEFAULT,DEFAULT,-1);
 	Mdl_ApplyOverlayMds(self,"Orc_Drunken.mds");
@@ -330,8 +330,8 @@ instance Testratte(Mst_Default_Molerat)
 	attribute[ATR_DEXTERITY] = 5;
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
-	protection[PROT_BLUNT] = 8;
-	protection[PROT_EDGE] = 8;
+	protection[PROT_INDEX_BLUNT] = 8;
+	protection[PROT_INDEX_EDGE] = 8;
 	fight_tactic = FAI_MONSTER_MASTER;
 	Set_Molerat_Visuals();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);

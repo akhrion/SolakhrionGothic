@@ -23,15 +23,15 @@ func void ZS_MagicFreeze()
 	{
 		AI_PlayAniBS(self,"T_STAND_2_FREEZE_VICTIM",BS_UNCONSCIOUS);
 	};
-	if(self.attribute[ATR_HITPOINTS] > ((SPL_FREEZE_DAMAGE + 1) - self.protection[PROT_MAGIC]))
-	{
-		B_MagicHurtNpc(other,SPL_FREEZE_DAMAGE);
-	};
 };
 
 func int ZS_MagicFreeze_Loop()
 {
 	PrintDebugNpc(PD_ZS_LOOP,"ZS_MagicFreeze_Loop");
+	if(self.attribute[ATR_HITPOINTS] > ((SPL_FREEZE_DAMAGE + 1) - self.protection[PROT_INDEX_MAGIC]))
+	{
+		B_MagicHurtNpc(other,SPL_FREEZE_DAMAGE);
+	};
 	if(Npc_GetStateTime(self) > SPL_TIME_FREEZE)
 	{
 		B_StopMagicFreeze();

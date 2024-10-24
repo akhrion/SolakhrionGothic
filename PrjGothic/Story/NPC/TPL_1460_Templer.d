@@ -13,12 +13,12 @@ instance TPL_1460_Templer(Npc_Default)
 	attribute[ATR_MANA] = 0;
 	attribute[ATR_HITPOINTS_MAX] = 250;
 	attribute[ATR_HITPOINTS] = 250;
-	protection[PROT_BLUNT] = 90;
-	protection[PROT_EDGE] = 90;
-	protection[PROT_POINT] = 140;
-	protection[PROT_FIRE] = 50;
-	protection[PROT_FLY] = 80;
-	protection[PROT_MAGIC] = 75;
+	protection[PROT_INDEX_BLUNT] = 90;
+	protection[PROT_INDEX_EDGE] = 90;
+	protection[PROT_INDEX_POINT] = 140;
+	protection[PROT_INDEX_FIRE] = 50;
+	protection[PROT_INDEX_FLY] = 80;
+	protection[PROT_INDEX_MAGIC] = 75;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",1,1,"Hum_Head_Bald",117,2,tpl_armor_m);

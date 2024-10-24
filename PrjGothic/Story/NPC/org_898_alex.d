@@ -13,7 +13,7 @@ instance ORG_898_ALEX(Npc_Default)
 	attribute[ATR_MANA] = 20;
 	attribute[ATR_HITPOINTS_MAX] = 1500;
 	attribute[ATR_HITPOINTS] = 1500;
-	protection[PROT_FIRE] = 1000;
+	protection[PROT_INDEX_FIRE] = 1000;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",0,1,"Hum_Head_Bald",39,4,org2l);

@@ -29,7 +29,7 @@ instance Schutzamulett_Feuer(C_Item)
 	on_equip = Equip_Schutzamulett_Feuer;
 	on_unequip = UnEquip_Schutzamulett_Feuer;
 	description = "Амулет пламени";
-	text[2] = NAME_Prot_Fire;
+	text[2] = NAME_PROT_INDEX_FIRE;
 	count[2] = 10;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -38,12 +38,12 @@ instance Schutzamulett_Feuer(C_Item)
 
 func void Equip_Schutzamulett_Feuer()
 {
-	self.protection[PROT_FIRE] += 10;
+	self.protection[PROT_INDEX_FIRE] += 10;
 };
 
 func void UnEquip_Schutzamulett_Feuer()
 {
-	self.protection[PROT_FIRE] -= 10;
+	self.protection[PROT_INDEX_FIRE] -= 10;
 };
 
 
@@ -59,7 +59,7 @@ instance Schutzamulett_Waffen(C_Item)
 	on_equip = Equip_Schutzamulett_Waffen;
 	on_unequip = UnEquip_Schutzamulett_Waffen;
 	description = "Амулет защиты";
-	text[2] = NAME_Prot_Edge;
+	text[2] = NAME_PROT_INDEX_EDGE;
 	count[2] = 15;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -68,14 +68,14 @@ instance Schutzamulett_Waffen(C_Item)
 
 func void Equip_Schutzamulett_Waffen()
 {
-	self.protection[PROT_EDGE] += 15;
-	self.protection[PROT_BLUNT] += 15;
+	self.protection[PROT_INDEX_EDGE] += 15;
+	self.protection[PROT_INDEX_BLUNT] += 15;
 };
 
 func void UnEquip_Schutzamulett_Waffen()
 {
-	self.protection[PROT_EDGE] -= 15;
-	self.protection[PROT_BLUNT] -= 15;
+	self.protection[PROT_INDEX_EDGE] -= 15;
+	self.protection[PROT_INDEX_BLUNT] -= 15;
 };
 
 
@@ -91,7 +91,7 @@ instance Schutzamulett_Geschosse(C_Item)
 	on_equip = Equip_Schutzamulett_Geschosse;
 	on_unequip = UnEquip_Schutzamulett_Geschosse;
 	description = "Амулет дубовой кожи";
-	text[2] = NAME_Prot_Point;
+	text[2] = NAME_PROT_INDEX_POINT;
 	count[2] = 15;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -100,12 +100,12 @@ instance Schutzamulett_Geschosse(C_Item)
 
 func void Equip_Schutzamulett_Geschosse()
 {
-	self.protection[PROT_POINT] += 15;
+	self.protection[PROT_INDEX_POINT] += 15;
 };
 
 func void UnEquip_Schutzamulett_Geschosse()
 {
-	self.protection[PROT_POINT] -= 15;
+	self.protection[PROT_INDEX_POINT] -= 15;
 };
 
 
@@ -121,7 +121,7 @@ instance Schutzamulett_Magie(C_Item)
 	on_equip = Equip_Schutzamulett_Magie;
 	on_unequip = UnEquip_Schutzamulett_Magie;
 	description = "Амулет силы духа";
-	text[2] = NAME_Prot_Magic;
+	text[2] = NAME_PROT_INDEX_MAGIC;
 	count[2] = 8;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -130,12 +130,12 @@ instance Schutzamulett_Magie(C_Item)
 
 func void Equip_Schutzamulett_Magie()
 {
-	self.protection[PROT_MAGIC] += 8;
+	self.protection[PROT_INDEX_MAGIC] += 8;
 };
 
 func void UnEquip_Schutzamulett_Magie()
 {
-	self.protection[PROT_MAGIC] -= 8;
+	self.protection[PROT_INDEX_MAGIC] -= 8;
 };
 
 
@@ -151,9 +151,9 @@ instance Schutzamulett_Magie_Feuer(C_Item)
 	on_equip = Equip_Schutzamulett_Magie_Feuer;
 	on_unequip = UnEquip_Schutzamulett_Magie_Feuer;
 	description = "Амулет очищения";
-	text[2] = NAME_Prot_Fire;
+	text[2] = NAME_PROT_INDEX_FIRE;
 	count[2] = 10;
-	text[3] = NAME_Prot_Magic;
+	text[3] = NAME_PROT_INDEX_MAGIC;
 	count[3] = 8;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -162,14 +162,14 @@ instance Schutzamulett_Magie_Feuer(C_Item)
 
 func void Equip_Schutzamulett_Magie_Feuer()
 {
-	self.protection[PROT_MAGIC] += 8;
-	self.protection[PROT_FIRE] += 10;
+	self.protection[PROT_INDEX_MAGIC] += 8;
+	self.protection[PROT_INDEX_FIRE] += 10;
 };
 
 func void UnEquip_Schutzamulett_Magie_Feuer()
 {
-	self.protection[PROT_MAGIC] -= 8;
-	self.protection[PROT_FIRE] -= 10;
+	self.protection[PROT_INDEX_MAGIC] -= 8;
+	self.protection[PROT_INDEX_FIRE] -= 10;
 };
 
 
@@ -185,9 +185,9 @@ instance Schutzamulett_Waffen_Geschosse(C_Item)
 	on_equip = Equip_Schutzamulett_Waffen_Geschosse;
 	on_unequip = UnEquip_Schutzamulett_Waffen_Geschosse;
 	description = "Амулет каменной кожи";
-	text[2] = NAME_Prot_Edge;
+	text[2] = NAME_PROT_INDEX_EDGE;
 	count[2] = 15;
-	text[3] = NAME_Prot_Point;
+	text[3] = NAME_PROT_INDEX_POINT;
 	count[3] = 15;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -196,16 +196,16 @@ instance Schutzamulett_Waffen_Geschosse(C_Item)
 
 func void Equip_Schutzamulett_Waffen_Geschosse()
 {
-	self.protection[PROT_EDGE] += 15;
-	self.protection[PROT_BLUNT] += 15;
-	self.protection[PROT_POINT] += 15;
+	self.protection[PROT_INDEX_EDGE] += 15;
+	self.protection[PROT_INDEX_BLUNT] += 15;
+	self.protection[PROT_INDEX_POINT] += 15;
 };
 
 func void UnEquip_Schutzamulett_Waffen_Geschosse()
 {
-	self.protection[PROT_EDGE] -= 15;
-	self.protection[PROT_BLUNT] -= 15;
-	self.protection[PROT_POINT] -= 15;
+	self.protection[PROT_INDEX_EDGE] -= 15;
+	self.protection[PROT_INDEX_BLUNT] -= 15;
+	self.protection[PROT_INDEX_POINT] -= 15;
 };
 
 
@@ -221,13 +221,13 @@ instance Schutzamulett_Total(C_Item)
 	on_equip = Equip_Schutzamulett_Total;
 	on_unequip = UnEquip_Schutzamulett_Total;
 	description = "Амулет железной кожи";
-	text[1] = NAME_Prot_Fire;
+	text[1] = NAME_PROT_INDEX_FIRE;
 	count[1] = 10;
-	text[2] = NAME_Prot_Magic;
+	text[2] = NAME_PROT_INDEX_MAGIC;
 	count[2] = 8;
-	text[3] = NAME_Prot_Point;
+	text[3] = NAME_PROT_INDEX_POINT;
 	count[3] = 15;
-	text[4] = NAME_Prot_Edge;
+	text[4] = NAME_PROT_INDEX_EDGE;
 	count[4] = 15;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -236,20 +236,20 @@ instance Schutzamulett_Total(C_Item)
 
 func void Equip_Schutzamulett_Total()
 {
-	self.protection[PROT_EDGE] += 15;
-	self.protection[PROT_BLUNT] += 15;
-	self.protection[PROT_POINT] += 15;
-	self.protection[PROT_FIRE] += 10;
-	self.protection[PROT_MAGIC] += 8;
+	self.protection[PROT_INDEX_EDGE] += 15;
+	self.protection[PROT_INDEX_BLUNT] += 15;
+	self.protection[PROT_INDEX_POINT] += 15;
+	self.protection[PROT_INDEX_FIRE] += 10;
+	self.protection[PROT_INDEX_MAGIC] += 8;
 };
 
 func void UnEquip_Schutzamulett_Total()
 {
-	self.protection[PROT_EDGE] -= 15;
-	self.protection[PROT_BLUNT] -= 15;
-	self.protection[PROT_POINT] -= 15;
-	self.protection[PROT_FIRE] -= 10;
-	self.protection[PROT_MAGIC] -= 8;
+	self.protection[PROT_INDEX_EDGE] -= 15;
+	self.protection[PROT_INDEX_BLUNT] -= 15;
+	self.protection[PROT_INDEX_POINT] -= 15;
+	self.protection[PROT_INDEX_FIRE] -= 10;
+	self.protection[PROT_INDEX_MAGIC] -= 8;
 };
 
 

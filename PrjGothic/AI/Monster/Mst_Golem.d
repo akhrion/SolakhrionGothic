@@ -10,12 +10,12 @@ prototype Mst_Default_Golem(C_Npc)
 	attribute[ATR_HITPOINTS] = 600;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 9999;
-	protection[PROT_EDGE] = 9999;
-	protection[PROT_POINT] = 9999;
-	protection[PROT_FIRE] = 9999;
-	protection[PROT_FLY] = 9999;
-	protection[PROT_MAGIC] = 9999;
+	protection[PROT_INDEX_BLUNT] = PROT_IMMUN;
+	protection[PROT_INDEX_EDGE] = PROT_IMMUN;
+	protection[PROT_INDEX_POINT] = PROT_IMMUN;
+	protection[PROT_INDEX_FIRE] = PROT_IMMUN;
+	protection[PROT_INDEX_FLY] = PROT_IMMUN;
+	protection[PROT_INDEX_MAGIC] = PROT_IMMUN;
 	damagetype = DAM_FLY;
 	fight_tactic = FAI_GOLEM;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -52,11 +52,22 @@ func void Set_IceGolem_Visuals()
 };
 
 
+instance XardasRiddle_StoneGolem(Mst_Default_Golem)
+{
+	name[0] = "Каменный голем";
+	aivar[AIV_MM_REAL_ID] = id_stonegolem;
+	attribute[ATR_HITPOINTS_MAX] = 15;
+	attribute[ATR_HITPOINTS] = 15;
+	protection[PROT_INDEX_BLUNT] = 75;
+	Set_StoneGolem_Visuals();
+	CreateInvItem(self,ItAt_StoneGolem_01);
+	Npc_SetToFistMode(self);
+};
 instance StoneGolem(Mst_Default_Golem)
 {
 	name[0] = "Каменный голем";
 	aivar[AIV_MM_REAL_ID] = id_stonegolem;
-	protection[PROT_BLUNT] = 75;
+	protection[PROT_INDEX_BLUNT] = 75;
 	Set_StoneGolem_Visuals();
 	CreateInvItem(self,ItAt_StoneGolem_01);
 	Npc_SetToFistMode(self);
@@ -69,8 +80,8 @@ instance SummonedByPC_StoneGolem(Mst_Default_Golem)
 	level = 0;
 	Set_StoneGolem_Visuals();
 	Npc_SetToFistMode(self);
-	protection[PROT_EDGE] = 100;
-	protection[PROT_BLUNT] = 75;
+	protection[PROT_INDEX_EDGE] = 100;
+	protection[PROT_INDEX_BLUNT] = 75;
 	senses = SENSE_HEAR | SENSE_SEE;
 	start_aistate = ZS_MM_SummonedByPC;
 	aivar[AIV_HASDEFEATEDSC] = 400;
@@ -84,10 +95,22 @@ instance SummonedByNPC_StoneGolem(Mst_Default_Golem)
 	aivar[AIV_MM_REAL_ID] = ID_STONEGOLEM;
 	Set_StoneGolem_Visuals();
 	Npc_SetToFistMode(self);
-	protection[PROT_BLUNT] = 75;
+	protection[PROT_INDEX_BLUNT] = 75;
 	start_aistate = ZS_MM_Summoned;
 };
-
+instance XardasRiddle_FireGolem(Mst_Default_Golem)
+{
+	name[0] = "Огненный голем";
+	aivar[AIV_MM_REAL_ID] = id_firegolem;
+	Set_FireGolem_Visuals();
+	Npc_SetToFistMode(self);
+	attribute[ATR_STRENGTH] = 50;
+	protection[PROT_INDEX_MAGIC] = 0;
+	attribute[ATR_HITPOINTS_MAX] = 15;
+	attribute[ATR_HITPOINTS] = 15;
+	damagetype = DAM_FIRE;
+	CreateInvItem(self,ItAt_FireGolem_01);
+};
 instance FireGolem(Mst_Default_Golem)
 {
 	name[0] = "Огненный голем";
@@ -95,13 +118,28 @@ instance FireGolem(Mst_Default_Golem)
 	Set_FireGolem_Visuals();
 	Npc_SetToFistMode(self);
 	attribute[ATR_STRENGTH] = 50;
-	protection[PROT_MAGIC] = 0;
+	protection[PROT_INDEX_MAGIC] = 0;
 	attribute[ATR_HITPOINTS_MAX] = 150;
 	attribute[ATR_HITPOINTS] = 150;
 	damagetype = DAM_FIRE;
 	CreateInvItem(self,ItAt_FireGolem_01);
 };
 
+instance XardasRiddle_IceGolem(Mst_Default_Golem)
+{
+	name[0] = "Ледяной голем";
+	aivar[AIV_MM_REAL_ID] = id_icegolem;
+	Set_IceGolem_Visuals();
+	attribute[ATR_MANA_MAX] = 5000;
+	attribute[ATR_MANA] = 5000;
+	attribute[ATR_HITPOINTS_MAX] = 15;
+	attribute[ATR_HITPOINTS] = 15;
+	protection[PROT_INDEX_FIRE] = 0;
+	damagetype = DAM_BLUNT;
+	CreateInvItem(self,ItAt_IceGolem_01);
+	CreateInvItem(self,ItAt_IceGolem_02);
+	fight_tactic = FAI_HUMAN_MAGE;
+};
 instance IceGolem(Mst_Default_Golem)
 {
 	name[0] = "Ледяной голем";
@@ -111,7 +149,7 @@ instance IceGolem(Mst_Default_Golem)
 	attribute[ATR_MANA] = 500;
 	attribute[ATR_HITPOINTS_MAX] = 150;
 	attribute[ATR_HITPOINTS] = 150;
-	protection[PROT_FIRE] = 0;
+	protection[PROT_INDEX_FIRE] = 0;
 	damagetype = DAM_BLUNT;
 	CreateInvItem(self,ItAt_IceGolem_01);
 	CreateInvItem(self,ItAt_IceGolem_02);
@@ -129,6 +167,6 @@ instance Bridgegolem(Mst_Default_Golem)
 	attribute[ATR_DEXTERITY] = 100;
 	attribute[ATR_HITPOINTS_MAX] = 250;
 	attribute[ATR_HITPOINTS] = 250;
-	protection[PROT_BLUNT] = 50;
+	protection[PROT_INDEX_BLUNT] = 50;
 };
 

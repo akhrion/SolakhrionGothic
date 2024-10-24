@@ -37,6 +37,10 @@ func void SpecBehavior_Human()
 func void SpecBehavior_Meatbug_IamWasTrampled()
 {
     if(Npc_IsRespawning(self)){return;};
+
+	var int oth;
+	oth = Hlp_GetInstanceID(other);
+
 	Npc_PerceiveAll(self);
 	if(!Wld_DetectNpc(self,-1,NOFUNC,-1)){return;};
 
@@ -46,8 +50,11 @@ func void SpecBehavior_Meatbug_IamWasTrampled()
 	){return;};
 
     // ShowMsg_AutoRow("SpecBehavior_Meatbug_IamWasTrampled");
+	Snd_Play("HERB_STOMP");
 	Npc_SetHP(self,0);
     NpcDeathXP_GiveTo(self,other);
+
+	other = Hlp_GetNpc(oth);
 };
 func void SpecBehavior_Meatbug()
 {
@@ -148,7 +155,7 @@ func void SpecBehavior()
 {
 	SpecBehavior_RespawnCountdown();
     SpecBehavior_Human();
-	SpecBehavior_Meatbug();
+	// SpecBehavior_Meatbug();
 	SpecBehavior_Swampfly();
 	SpecBehavior_Swampshark();
 	Npc_IWasLightedByOther();

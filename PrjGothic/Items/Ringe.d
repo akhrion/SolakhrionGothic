@@ -11,7 +11,7 @@ instance Schutzring_Feuer1(C_Item)
 	on_equip = Equip_Schutzring_Feuer1;
 	on_unequip = UnEquip_Schutzring_Feuer1;
 	description = "Кольцо защиты от огня";
-	text[2] = NAME_Prot_Fire;
+	text[2] = NAME_PROT_INDEX_FIRE;
 	count[2] = 3;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -20,12 +20,12 @@ instance Schutzring_Feuer1(C_Item)
 
 func void Equip_Schutzring_Feuer1()
 {
-	self.protection[PROT_FIRE] += 3;
+	self.protection[PROT_INDEX_FIRE] += 3;
 };
 
 func void UnEquip_Schutzring_Feuer1()
 {
-	self.protection[PROT_FIRE] -= 3;
+	self.protection[PROT_INDEX_FIRE] -= 3;
 };
 
 
@@ -41,7 +41,7 @@ instance Schutzring_Feuer2(C_Item)
 	on_equip = Equip_Schutzring_Feuer2;
 	on_unequip = UnEquip_Schutzring_Feuer2;
 	description = "Защита от огня";
-	text[2] = NAME_Prot_Fire;
+	text[2] = NAME_PROT_INDEX_FIRE;
 	count[2] = 5;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -50,12 +50,12 @@ instance Schutzring_Feuer2(C_Item)
 
 func void Equip_Schutzring_Feuer2()
 {
-	self.protection[PROT_FIRE] += 5;
+	self.protection[PROT_INDEX_FIRE] += 5;
 };
 
 func void UnEquip_Schutzring_Feuer2()
 {
-	self.protection[PROT_FIRE] -= 5;
+	self.protection[PROT_INDEX_FIRE] -= 5;
 };
 
 
@@ -71,7 +71,7 @@ instance Schutzring_Geschosse1(C_Item)
 	on_equip = Equip_Schutzring_Geschosse1;
 	on_unequip = UnEquip_Schutzring_Geschosse1;
 	description = "Кольцо деревянной кожи";
-	text[2] = NAME_Prot_Point;
+	text[2] = NAME_PROT_INDEX_POINT;
 	count[2] = 5;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -80,12 +80,12 @@ instance Schutzring_Geschosse1(C_Item)
 
 func void Equip_Schutzring_Geschosse1()
 {
-	self.protection[PROT_POINT] += 5;
+	self.protection[PROT_INDEX_POINT] += 5;
 };
 
 func void UnEquip_Schutzring_Geschosse1()
 {
-	self.protection[PROT_POINT] -= 5;
+	self.protection[PROT_INDEX_POINT] -= 5;
 };
 
 
@@ -101,7 +101,7 @@ instance Schutzring_Geschosse2(C_Item)
 	on_equip = Equip_Schutzring_Geschosse2;
 	on_unequip = UnEquip_Schutzring_Geschosse2;
 	description = "Кольцо каменной кожи";
-	text[2] = NAME_Prot_Point;
+	text[2] = NAME_PROT_INDEX_POINT;
 	count[2] = 10;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -110,12 +110,12 @@ instance Schutzring_Geschosse2(C_Item)
 
 func void Equip_Schutzring_Geschosse2()
 {
-	self.protection[PROT_POINT] += 10;
+	self.protection[PROT_INDEX_POINT] += 10;
 };
 
 func void UnEquip_Schutzring_Geschosse2()
 {
-	self.protection[PROT_POINT] -= 10;
+	self.protection[PROT_INDEX_POINT] -= 10;
 };
 
 
@@ -131,7 +131,7 @@ instance Schutzring_Waffen1(C_Item)
 	on_equip = Equip_Schutzring_Waffen1;
 	on_unequip = UnEquip_Schutzring_Waffen1;
 	description = "Кольцо железной кожи";
-	text[2] = NAME_Prot_Edge;
+	text[2] = NAME_PROT_INDEX_EDGE;
 	count[2] = 5;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -140,14 +140,14 @@ instance Schutzring_Waffen1(C_Item)
 
 func void Equip_Schutzring_Waffen1()
 {
-	self.protection[PROT_EDGE] += 5;
-	self.protection[PROT_BLUNT] += 5;
+	self.protection[PROT_INDEX_EDGE] += 5;
+	self.protection[PROT_INDEX_BLUNT] += 5;
 };
 
 func void UnEquip_Schutzring_Waffen1()
 {
-	self.protection[PROT_EDGE] -= 5;
-	self.protection[PROT_BLUNT] -= 5;
+	self.protection[PROT_INDEX_EDGE] -= 5;
+	self.protection[PROT_INDEX_BLUNT] -= 5;
 };
 
 
@@ -163,7 +163,7 @@ instance Schutzring_Waffen2(C_Item)
 	on_equip = Equip_Schutzring_Waffen2;
 	on_unequip = UnEquip_Schutzring_Waffen2;
 	description = "Кольцо бронированной кожи";
-	text[2] = NAME_Prot_Edge;
+	text[2] = NAME_PROT_INDEX_EDGE;
 	count[2] = 10;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -172,14 +172,14 @@ instance Schutzring_Waffen2(C_Item)
 
 func void Equip_Schutzring_Waffen2()
 {
-	self.protection[PROT_EDGE] += 10;
-	self.protection[PROT_BLUNT] += 10;
+	self.protection[PROT_INDEX_EDGE] += 10;
+	self.protection[PROT_INDEX_BLUNT] += 10;
 };
 
 func void UnEquip_Schutzring_Waffen2()
 {
-	self.protection[PROT_EDGE] -= 10;
-	self.protection[PROT_BLUNT] -= 10;
+	self.protection[PROT_INDEX_EDGE] -= 10;
+	self.protection[PROT_INDEX_BLUNT] -= 10;
 };
 
 
@@ -195,7 +195,7 @@ instance Schutzring_Magie1(C_Item)
 	on_equip = Equip_Schutzring_Magie1;
 	on_unequip = UnEquip_Schutzring_Magie1;
 	description = "Кольцо силы духа";
-	text[2] = NAME_Prot_Magic;
+	text[2] = NAME_PROT_INDEX_MAGIC;
 	count[2] = 1;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -204,12 +204,12 @@ instance Schutzring_Magie1(C_Item)
 
 func void Equip_Schutzring_Magie1()
 {
-	self.protection[PROT_MAGIC] += 1;
+	self.protection[PROT_INDEX_MAGIC] += 1;
 };
 
 func void UnEquip_Schutzring_Magie1()
 {
-	self.protection[PROT_MAGIC] -= 1;
+	self.protection[PROT_INDEX_MAGIC] -= 1;
 };
 
 
@@ -225,7 +225,7 @@ instance Schutzring_Magie2(C_Item)
 	on_equip = Equip_Schutzring_Magie2;
 	on_unequip = UnEquip_Schutzring_Magie2;
 	description = "Кольцо защиты";
-	text[2] = NAME_Prot_Edge;
+	text[2] = NAME_PROT_INDEX_EDGE;
 	count[2] = 3;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -234,14 +234,14 @@ instance Schutzring_Magie2(C_Item)
 
 func void Equip_Schutzring_Magie2()
 {
-	self.protection[PROT_EDGE] += 3;
-	self.protection[PROT_BLUNT] += 3;
+	self.protection[PROT_INDEX_EDGE] += 3;
+	self.protection[PROT_INDEX_BLUNT] += 3;
 };
 
 func void UnEquip_Schutzring_Magie2()
 {
-	self.protection[PROT_EDGE] -= 3;
-	self.protection[PROT_BLUNT] -= 3;
+	self.protection[PROT_INDEX_EDGE] -= 3;
+	self.protection[PROT_INDEX_BLUNT] -= 3;
 };
 
 
@@ -257,9 +257,9 @@ instance Schutzring_Magie1_Fire1(C_Item)
 	on_equip = Equip_Schutzring_Magie1_Fire1;
 	on_unequip = UnEquip_Schutzring_Magie1_Fire1;
 	description = "Кольцо очищения";
-	text[2] = NAME_Prot_Magic;
+	text[2] = NAME_PROT_INDEX_MAGIC;
 	count[2] = 1;
-	text[3] = NAME_Prot_Fire;
+	text[3] = NAME_PROT_INDEX_FIRE;
 	count[3] = 3;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -268,14 +268,14 @@ instance Schutzring_Magie1_Fire1(C_Item)
 
 func void Equip_Schutzring_Magie1_Fire1()
 {
-	self.protection[PROT_MAGIC] += 1;
-	self.protection[PROT_FIRE] += 3;
+	self.protection[PROT_INDEX_MAGIC] += 1;
+	self.protection[PROT_INDEX_FIRE] += 3;
 };
 
 func void UnEquip_Schutzring_Magie1_Fire1()
 {
-	self.protection[PROT_MAGIC] -= 1;
-	self.protection[PROT_FIRE] -= 3;
+	self.protection[PROT_INDEX_MAGIC] -= 1;
+	self.protection[PROT_INDEX_FIRE] -= 3;
 };
 
 
@@ -291,9 +291,9 @@ instance Schutzring_Magie2_Fire2(C_Item)
 	on_equip = Equip_Schutzring_Magie2_Fire2;
 	on_unequip = UnEquip_Schutzring_Magie2_Fire2;
 	description = "Кольцо неуязвимости";
-	text[2] = NAME_Prot_Magic;
+	text[2] = NAME_PROT_INDEX_MAGIC;
 	count[2] = 3;
-	text[3] = NAME_Prot_Fire;
+	text[3] = NAME_PROT_INDEX_FIRE;
 	count[3] = 5;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -302,14 +302,14 @@ instance Schutzring_Magie2_Fire2(C_Item)
 
 func void Equip_Schutzring_Magie2_Fire2()
 {
-	self.protection[PROT_MAGIC] += 3;
-	self.protection[PROT_FIRE] += 5;
+	self.protection[PROT_INDEX_MAGIC] += 3;
+	self.protection[PROT_INDEX_FIRE] += 5;
 };
 
 func void UnEquip_Schutzring_Magie2_Fire2()
 {
-	self.protection[PROT_MAGIC] -= 3;
-	self.protection[PROT_FIRE] -= 5;
+	self.protection[PROT_INDEX_MAGIC] -= 3;
+	self.protection[PROT_INDEX_FIRE] -= 5;
 };
 
 
@@ -325,9 +325,9 @@ instance Schutzring_Geschosse1_Waffen1(C_Item)
 	on_equip = Equip_Schutzring_Geschosse1_Waffen1;
 	on_unequip = UnEquip_Schutzring_Geschosse1_Waffen1;
 	description = "Кольцо стойкости";
-	text[2] = NAME_Prot_Edge;
+	text[2] = NAME_PROT_INDEX_EDGE;
 	count[2] = 5;
-	text[3] = NAME_Prot_Point;
+	text[3] = NAME_PROT_INDEX_POINT;
 	count[3] = 5;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -336,16 +336,16 @@ instance Schutzring_Geschosse1_Waffen1(C_Item)
 
 func void Equip_Schutzring_Geschosse1_Waffen1()
 {
-	self.protection[PROT_EDGE] += 5;
-	self.protection[PROT_BLUNT] += 5;
-	self.protection[PROT_POINT] += 5;
+	self.protection[PROT_INDEX_EDGE] += 5;
+	self.protection[PROT_INDEX_BLUNT] += 5;
+	self.protection[PROT_INDEX_POINT] += 5;
 };
 
 func void UnEquip_Schutzring_Geschosse1_Waffen1()
 {
-	self.protection[PROT_EDGE] -= 5;
-	self.protection[PROT_BLUNT] -= 5;
-	self.protection[PROT_POINT] -= 5;
+	self.protection[PROT_INDEX_EDGE] -= 5;
+	self.protection[PROT_INDEX_BLUNT] -= 5;
+	self.protection[PROT_INDEX_POINT] -= 5;
 };
 
 
@@ -361,9 +361,9 @@ instance Schutzring_Geschosse2_Waffen2(C_Item)
 	on_equip = Equip_Schutzring_Geschosse2_Waffen2;
 	on_unequip = UnEquip_Schutzring_Geschosse2_Waffen2;
 	description = "Кольцо неприкосновенности";
-	text[2] = NAME_Prot_Edge;
+	text[2] = NAME_PROT_INDEX_EDGE;
 	count[2] = 10;
-	text[3] = NAME_Prot_Point;
+	text[3] = NAME_PROT_INDEX_POINT;
 	count[3] = 10;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -372,16 +372,16 @@ instance Schutzring_Geschosse2_Waffen2(C_Item)
 
 func void Equip_Schutzring_Geschosse2_Waffen2()
 {
-	self.protection[PROT_EDGE] += 10;
-	self.protection[PROT_BLUNT] += 10;
-	self.protection[PROT_POINT] += 10;
+	self.protection[PROT_INDEX_EDGE] += 10;
+	self.protection[PROT_INDEX_BLUNT] += 10;
+	self.protection[PROT_INDEX_POINT] += 10;
 };
 
 func void UnEquip_Schutzring_Geschosse2_Waffen2()
 {
-	self.protection[PROT_EDGE] -= 10;
-	self.protection[PROT_BLUNT] -= 10;
-	self.protection[PROT_POINT] -= 10;
+	self.protection[PROT_INDEX_EDGE] -= 10;
+	self.protection[PROT_INDEX_BLUNT] -= 10;
+	self.protection[PROT_INDEX_POINT] -= 10;
 };
 
 
@@ -397,13 +397,13 @@ instance Schutzring_Total1(C_Item)
 	on_equip = Equip_Schutzring_Total1;
 	on_unequip = UnEquip_Schutzring_Total1;
 	description = "Кольцо неприкосновенности";
-	text[1] = NAME_Prot_Magic;
+	text[1] = NAME_PROT_INDEX_MAGIC;
 	count[1] = 1;
-	text[2] = NAME_Prot_Fire;
+	text[2] = NAME_PROT_INDEX_FIRE;
 	count[2] = 3;
-	text[3] = NAME_Prot_Point;
+	text[3] = NAME_PROT_INDEX_POINT;
 	count[3] = 5;
-	text[4] = NAME_Prot_Edge;
+	text[4] = NAME_PROT_INDEX_EDGE;
 	count[4] = 5;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -412,20 +412,20 @@ instance Schutzring_Total1(C_Item)
 
 func void Equip_Schutzring_Total1()
 {
-	self.protection[PROT_EDGE] += 5;
-	self.protection[PROT_BLUNT] += 5;
-	self.protection[PROT_POINT] += 5;
-	self.protection[PROT_FIRE] += 3;
-	self.protection[PROT_MAGIC] += 1;
+	self.protection[PROT_INDEX_EDGE] += 5;
+	self.protection[PROT_INDEX_BLUNT] += 5;
+	self.protection[PROT_INDEX_POINT] += 5;
+	self.protection[PROT_INDEX_FIRE] += 3;
+	self.protection[PROT_INDEX_MAGIC] += 1;
 };
 
 func void UnEquip_Schutzring_Total1()
 {
-	self.protection[PROT_EDGE] -= 5;
-	self.protection[PROT_BLUNT] -= 5;
-	self.protection[PROT_POINT] -= 5;
-	self.protection[PROT_FIRE] -= 3;
-	self.protection[PROT_MAGIC] -= 1;
+	self.protection[PROT_INDEX_EDGE] -= 5;
+	self.protection[PROT_INDEX_BLUNT] -= 5;
+	self.protection[PROT_INDEX_POINT] -= 5;
+	self.protection[PROT_INDEX_FIRE] -= 3;
+	self.protection[PROT_INDEX_MAGIC] -= 1;
 };
 
 
@@ -441,13 +441,13 @@ instance Schutzring_Total2(C_Item)
 	on_equip = Equip_Schutzring_Total2;
 	on_unequip = UnEquip_Schutzring_Total2;
 	description = "Кольцо защиты";
-	text[1] = NAME_Prot_Magic;
+	text[1] = NAME_PROT_INDEX_MAGIC;
 	count[1] = 3;
-	text[2] = NAME_Prot_Fire;
+	text[2] = NAME_PROT_INDEX_FIRE;
 	count[2] = 5;
-	text[3] = NAME_Prot_Point;
+	text[3] = NAME_PROT_INDEX_POINT;
 	count[3] = 10;
-	text[4] = NAME_Prot_Edge;
+	text[4] = NAME_PROT_INDEX_EDGE;
 	count[4] = 10;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -456,20 +456,20 @@ instance Schutzring_Total2(C_Item)
 
 func void Equip_Schutzring_Total2()
 {
-	self.protection[PROT_EDGE] += 10;
-	self.protection[PROT_BLUNT] += 10;
-	self.protection[PROT_POINT] += 10;
-	self.protection[PROT_FIRE] += 5;
-	self.protection[PROT_MAGIC] += 3;
+	self.protection[PROT_INDEX_EDGE] += 10;
+	self.protection[PROT_INDEX_BLUNT] += 10;
+	self.protection[PROT_INDEX_POINT] += 10;
+	self.protection[PROT_INDEX_FIRE] += 5;
+	self.protection[PROT_INDEX_MAGIC] += 3;
 };
 
 func void UnEquip_Schutzring_Total2()
 {
-	self.protection[PROT_EDGE] -= 10;
-	self.protection[PROT_BLUNT] -= 10;
-	self.protection[PROT_POINT] -= 10;
-	self.protection[PROT_FIRE] -= 5;
-	self.protection[PROT_MAGIC] -= 3;
+	self.protection[PROT_INDEX_EDGE] -= 10;
+	self.protection[PROT_INDEX_BLUNT] -= 10;
+	self.protection[PROT_INDEX_POINT] -= 10;
+	self.protection[PROT_INDEX_FIRE] -= 5;
+	self.protection[PROT_INDEX_MAGIC] -= 3;
 };
 
 

@@ -239,7 +239,7 @@ instance ItMi_OrcTalisman(C_Item)
 	on_equip = Equip_OrcTalisman;
 	on_unequip = UnEquip_OrcTalisman;
 	description = name;
-	text[2] = NAME_Prot_Fire;
+	text[2] = NAME_PROT_INDEX_FIRE;
 	count[2] = 20;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -248,12 +248,12 @@ instance ItMi_OrcTalisman(C_Item)
 
 func void Equip_OrcTalisman()
 {
-	self.protection[PROT_FIRE] += 20;
+	self.protection[PROT_INDEX_FIRE] += 20;
 };
 
 func void UnEquip_OrcTalisman()
 {
-	self.protection[PROT_FIRE] -= 20;
+	self.protection[PROT_INDEX_FIRE] -= 20;
 };
 
 

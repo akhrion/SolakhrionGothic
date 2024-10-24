@@ -14,12 +14,12 @@ instance GUR_1212_MadCorKalom(Npc_Default)
 	attribute[ATR_MANA] = 500;
 	attribute[ATR_HITPOINTS_MAX] = 500;
 	attribute[ATR_HITPOINTS] = 500;
-	protection[PROT_BLUNT] = 500;
-	protection[PROT_EDGE] = 500;
-	protection[PROT_POINT] = 500;
-	protection[PROT_FIRE] = 80;
-	protection[PROT_FLY] = 80;
-	protection[PROT_MAGIC] = 60;
+	protection[PROT_INDEX_BLUNT] = 500;
+	protection[PROT_INDEX_EDGE] = 500;
+	protection[PROT_INDEX_POINT] = 500;
+	protection[PROT_INDEX_FIRE] = 80;
+	protection[PROT_INDEX_FLY] = 80;
+	protection[PROT_INDEX_MAGIC] = 60;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Psionic",19,0,gur_armor_h);

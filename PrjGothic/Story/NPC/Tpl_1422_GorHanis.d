@@ -14,10 +14,10 @@ instance Tpl_1422_GorHanis(Npc_Default)
 	attribute[ATR_MANA] = 0;
 	attribute[ATR_HITPOINTS_MAX] = 280;
 	attribute[ATR_HITPOINTS] = 280;
-	protection[PROT_POINT] = 50;
-	protection[PROT_FIRE] = 50;
-	protection[PROT_FLY] = 50;
-	protection[PROT_MAGIC] = 50;
+	protection[PROT_INDEX_POINT] = 50;
+	protection[PROT_INDEX_FIRE] = 50;
+	protection[PROT_INDEX_FLY] = 50;
+	protection[PROT_INDEX_MAGIC] = 50;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",1,1,"Hum_Head_Bald",66,1,tpl_armor_l);

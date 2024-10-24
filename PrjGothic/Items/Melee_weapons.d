@@ -54,6 +54,7 @@ instance ItMw_1H_Poker_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 3;
 	damageTotal = 6;
 	damagetype = DAM_BLUNT;
@@ -77,6 +78,7 @@ instance ItMw_1H_Sickle_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_METAL;
+	weight = ironPer_Axe_1h;
 	value = 4;
 	damageTotal = 7;
 	damagetype = DAM_EDGE;
@@ -99,6 +101,7 @@ instance ItMwPickaxe(C_Item)
 	name = "Кирка";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	value = 2;
 	damageTotal = 7;
 	damagetype = DAM_EDGE;
@@ -123,6 +126,7 @@ instance ItMw_1H_Sledgehammer_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 50;
 	damageTotal = 8;
 	damagetype = DAM_BLUNT;
@@ -146,6 +150,7 @@ instance ItMw_1H_Mace_Light_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 5;
 	damageTotal = 8;
 	damagetype = DAM_BLUNT;
@@ -169,6 +174,7 @@ instance ItMw_1H_Hatchet_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 6;
 	damageTotal = 9;
 	damagetype = DAM_EDGE;
@@ -192,6 +198,7 @@ instance ITMW_SKELETON_SWORD(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 0;
 	damageTotal = 10;
 	damagetype = DAM_EDGE;
@@ -220,6 +227,7 @@ instance ItMw_1H_Sword_Old_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 10;
 	damageTotal = 10;
 	damagetype = DAM_EDGE;
@@ -248,6 +256,7 @@ instance ItMw_1H_Nailmace_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 13;
 	damageTotal = 11;
 	damagetype = DAM_BLUNT;
@@ -272,6 +281,7 @@ instance ItMw_1H_Sword_Short_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 40;
 	damageTotal = 12;
 	damagetype = DAM_EDGE;
@@ -295,6 +305,7 @@ instance ItMw_1H_Sword_Short_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 60;
 	damageTotal = 14;
 	damagetype = DAM_EDGE;
@@ -318,6 +329,7 @@ instance ItMw_1H_Sword_Short_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 70;
 	damageTotal = 16;
 	damagetype = DAM_EDGE;
@@ -341,6 +353,7 @@ instance ItMw_1H_Sword_Short_04(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 90;
 	damageTotal = 18;
 	damagetype = DAM_EDGE;
@@ -364,6 +377,7 @@ instance ItMw_1H_Sword_Short_05(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 115;
 	damageTotal = 21;
 	damagetype = DAM_EDGE;
@@ -387,6 +401,7 @@ instance ItMw_1H_Axe_Old_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 45;
 	damageTotal = 13;
 	damagetype = DAM_EDGE;
@@ -410,6 +425,7 @@ instance ITMW_SKELETON_AXE(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 0;
 	damageTotal = 13;
 	damagetype = DAM_EDGE;
@@ -431,6 +447,7 @@ instance ItMw_1H_Scythe_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 65;
 	damageTotal = 15;
 	damagetype = DAM_EDGE;
@@ -454,6 +471,7 @@ instance ITMW_SKELETON_SCYTHE(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 0;
 	damageTotal = 15;
 	damagetype = DAM_EDGE;
@@ -474,6 +492,7 @@ instance ItMw_2H_Staff_01(C_Item)
 	name = "Боевой посох";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE | ITEM_2HD_STAFF;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 20;
 	damageTotal = 17;
@@ -497,6 +516,7 @@ instance ItMw_2H_Staff_02(C_Item)
 	name = "Посох судьи";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE | ITEM_2HD_STAFF;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 95;
 	damageTotal = 19;
@@ -520,6 +540,7 @@ instance ItMw_2H_Staff_03(C_Item)
 	name = "Посох священника";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE | ITEM_2HD_STAFF;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 125;
 	damageTotal = 22;
@@ -543,6 +564,7 @@ instance ItMw_2H_Staff_KDF_01(C_Item)
 	name = "Посох магов";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE | ITEM_2HD_STAFF;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 20;
 	damageTotal = 17;
@@ -567,6 +589,7 @@ instance ItMw_1H_LightGuardsSword_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 70;
 	damageTotal = 22;
 	damagetype = DAM_EDGE;
@@ -590,6 +613,7 @@ instance ItMw_1H_Mace_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 55;
 	damageTotal = 23;
 	damagetype = DAM_BLUNT | DAM_POINT;
@@ -613,6 +637,7 @@ instance ItMw_1H_Mace_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 60;
 	damageTotal = 25;
 	damagetype = DAM_BLUNT;
@@ -636,6 +661,7 @@ instance ItMw_1H_Mace_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 65;
 	damageTotal = 30;
 	damagetype = DAM_BLUNT | DAM_POINT;
@@ -659,6 +685,7 @@ instance ItMw_1H_Mace_04(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 70;
 	damage[DAM_INDEX_BLUNT] = 30;
 	damage[DAM_INDEX_POINT] = 10;
@@ -684,6 +711,7 @@ instance ItMw_1H_Axe_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 66;
 	damageTotal = 27;
 	damagetype = DAM_EDGE;
@@ -707,6 +735,7 @@ instance ItMw_1H_Sword_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = Value_1H_Sword_01;
 	damageTotal = 20;
 	damagetype = DAM_EDGE;
@@ -732,6 +761,7 @@ instance ItMw_1H_Sword_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 80;
 	damageTotal = 30;
 	damagetype = DAM_EDGE;
@@ -755,6 +785,7 @@ instance ItMw_1H_Sword_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 90;
 	damageTotal = 32;
 	damagetype = DAM_EDGE;
@@ -778,6 +809,7 @@ instance ItMw_1H_Sword_04(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 100;
 	damageTotal = 33;
 	damagetype = DAM_EDGE;
@@ -801,6 +833,7 @@ instance ItMw_1H_Sword_05(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 110;
 	damageTotal = 34;
 	damagetype = DAM_EDGE;
@@ -824,6 +857,7 @@ instance ItMw_1H_Mace_War_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 125;
 	damageTotal = 35;
 	damagetype = DAM_BLUNT;
@@ -847,6 +881,7 @@ instance ItMw_1H_Mace_War_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 130;
 	damageTotal = 36;
 	damagetype = DAM_BLUNT;
@@ -870,6 +905,7 @@ instance ItMw_1H_Mace_War_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 135;
 	damageTotal = 37;
 	damagetype = DAM_BLUNT;
@@ -893,6 +929,7 @@ instance ItMw_1H_Mace_War_04(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 140;
 	damageTotal = 39;
 	damagetype = DAM_BLUNT;
@@ -916,6 +953,7 @@ instance ItMw_1H_Sword_Long_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 370;
 	damageTotal = 40;
 	damagetype = DAM_EDGE;
@@ -939,6 +977,7 @@ instance ItMw_1H_Sword_Long_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 390;
 	damageTotal = 42;
 	damagetype = DAM_EDGE;
@@ -962,6 +1001,7 @@ instance ItMw_1H_Sword_Long_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 410;
 	damageTotal = 44;
 	damagetype = DAM_EDGE;
@@ -985,6 +1025,7 @@ instance ItMw_1H_Sword_Long_04(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 440;
 	damageTotal = 46;
 	damagetype = DAM_EDGE;
@@ -1008,6 +1049,7 @@ instance ItMw_1H_Sword_Long_05(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 460;
 	damageTotal = 48;
 	damagetype = DAM_EDGE;
@@ -1031,6 +1073,7 @@ instance ItMw_1H_Warhammer_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 480;
 	damageTotal = 50;
 	damagetype = DAM_BLUNT;
@@ -1054,6 +1097,7 @@ instance ItMw_1H_Warhammer_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 495;
 	damageTotal = 51;
 	damagetype = DAM_BLUNT;
@@ -1077,6 +1121,7 @@ instance ItMw_1H_Warhammer_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 510;
 	damageTotal = 52;
 	damagetype = DAM_BLUNT;
@@ -1100,6 +1145,7 @@ instance ItMw_1H_Axe_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 525;
 	damageTotal = 53;
 	damagetype = DAM_EDGE;
@@ -1123,6 +1169,7 @@ instance ItMw_1H_Axe_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
+	weight = ironPer_Axe_1h;
 	value = 540;
 	damageTotal = 54;
 	damagetype = DAM_EDGE;
@@ -1146,6 +1193,7 @@ instance ItMw_1H_Sword_Broad_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 555;
 	damageTotal = 55;
 	damagetype = DAM_EDGE;
@@ -1169,6 +1217,7 @@ instance ItMw_1H_Sword_Broad_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 575;
 	damageTotal = 57;
 	damagetype = DAM_EDGE;
@@ -1192,6 +1241,7 @@ instance ItMw_1H_Sword_Broad_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 590;
 	damageTotal = 58;
 	damagetype = DAM_EDGE;
@@ -1215,6 +1265,7 @@ instance ItMw_1H_Sword_Broad_04(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 605;
 	damageTotal = 59;
 	damagetype = DAM_EDGE;
@@ -1238,6 +1289,7 @@ instance ItMw_2H_Sword_Old_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 150;
 	damageTotal = 61;
 	damagetype = DAM_EDGE;
@@ -1261,6 +1313,7 @@ instance ItMw_1H_Sword_Bastard_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 200;
 	damageTotal = 45;
 	damagetype = DAM_EDGE;
@@ -1284,6 +1337,7 @@ instance ItMw_1H_Sword_Bastard_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 650;
 	damageTotal = 64;
 	damagetype = DAM_EDGE;
@@ -1307,6 +1361,7 @@ instance ItMw_1H_Sword_Bastard_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 665;
 	damageTotal = 65;
 	damagetype = DAM_EDGE;
@@ -1330,6 +1385,7 @@ instance ItMw_1H_Sword_Bastard_04(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	value = 680;
 	damageTotal = 66;
 	damagetype = DAM_EDGE;
@@ -1352,6 +1408,7 @@ instance ItMw_2H_Axe_Old_01(C_Item)
 	name = "Старый боевой топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 400;
 	damageTotal = 67;
@@ -1375,6 +1432,7 @@ instance ItMw_2H_Axe_Old_02(C_Item)
 	name = "Кровавая жатва";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 710;
 	damageTotal = 68;
@@ -1398,6 +1456,7 @@ instance ItMw_2H_Axe_Old_03(C_Item)
 	name = "Старый судейский топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 725;
 	damageTotal = 69;
@@ -1422,6 +1481,7 @@ instance ItMw_2H_Sword_Light_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 740;
 	damageTotal = 70;
 	damagetype = DAM_EDGE;
@@ -1445,6 +1505,7 @@ instance ITMW_2H_SWORD_LIGHT_01_PRICED(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	on_equip = equip_2hbonus;
 	on_unequip = unequip_2hbonus;
 	value = 1090;
@@ -1470,6 +1531,7 @@ instance ItMw_2H_Sword_Light_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 200;
 	damageTotal = 71;
 	damagetype = DAM_EDGE;
@@ -1493,6 +1555,7 @@ instance ITMW_2H_SWORD_LIGHT_02_PRICED(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	on_equip = equip_2hbonus;
 	on_unequip = unequip_2hbonus;
 	value = 1105;
@@ -1518,6 +1581,7 @@ instance ItMw_2H_Sword_Light_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 775;
 	damageTotal = 73;
 	damagetype = DAM_EDGE;
@@ -1541,6 +1605,7 @@ instance ItMw_2H_Sword_Light_04(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 790;
 	damageTotal = 74;
 	damagetype = DAM_EDGE;
@@ -1564,6 +1629,7 @@ instance ItMw_2H_Sword_Light_05(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 810;
 	damageTotal = 76;
 	damagetype = DAM_EDGE;
@@ -1586,6 +1652,7 @@ instance ItMw_2H_Axe_light_01(C_Item)
 	name = "Легкий боевой топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 825;
 	damageTotal = 77;
@@ -1609,6 +1676,7 @@ instance ItMw_2H_Axe_light_02(C_Item)
 	name = "Удар грома";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 845;
 	damageTotal = 79;
@@ -1632,6 +1700,7 @@ instance ItMw_2H_Axe_light_03(C_Item)
 	name = "Час расплаты";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 860;
 	damageTotal = 80;
@@ -1656,6 +1725,7 @@ instance ItMw_2H_Sword_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 875;
 	damageTotal = 81;
 	damagetype = DAM_EDGE;
@@ -1679,6 +1749,7 @@ instance ItMw_2H_Sword_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 895;
 	damageTotal = 83;
 	damagetype = DAM_EDGE;
@@ -1702,6 +1773,7 @@ instance ItMw_2H_Sword_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 915;
 	damageTotal = 85;
 	damagetype = DAM_EDGE;
@@ -1725,6 +1797,7 @@ instance ItMw_2H_Sword_Heavy_01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 930;
 	damageTotal = 86;
 	damagetype = DAM_EDGE;
@@ -1748,6 +1821,7 @@ instance ItMw_2H_Sword_Heavy_02(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 950;
 	damageTotal = 88;
 	damagetype = DAM_EDGE;
@@ -1771,6 +1845,7 @@ instance ItMw_2H_Sword_Heavy_03(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 970;
 	damageTotal = 90;
 	damagetype = DAM_EDGE;
@@ -1794,6 +1869,7 @@ instance ItMw_2H_Sword_Heavy_04(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	value = 990;
 	damageTotal = 92;
 	damagetype = DAM_EDGE;
@@ -1816,6 +1892,7 @@ instance ItMw_2H_Axe_Heavy_01(C_Item)
 	name = "Боевой топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 1010;
 	damageTotal = 94;
@@ -1839,6 +1916,7 @@ instance ItMw_2H_Axe_Heavy_02(C_Item)
 	name = "Глас воина";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 1030;
 	damageTotal = 96;
@@ -1862,6 +1940,7 @@ instance ItMw_2H_Axe_Heavy_03(C_Item)
 	name = "Кулак варвара";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 1050;
 	damageTotal = 98;
@@ -1885,6 +1964,7 @@ instance ItMw_2H_Axe_Heavy_04(C_Item)
 	name = "Кулак тролля";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 1070;
 	damageTotal = 100;
@@ -1909,6 +1989,7 @@ instance ItMw2hOrcSword01(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_WOOD;
+	weight = ironPer_Sword_2h;
 	value = 10;
 	damageTotal = 40;
 	damagetype = DAM_EDGE;
@@ -1931,6 +2012,7 @@ instance ItMw2hOrcAxe01(C_Item)
 	name = "Краш Пагх";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 14;
 	damageTotal = 50;
@@ -1954,6 +2036,7 @@ instance ItMw2hOrcAxe02(C_Item)
 	name = "Краш Уррок";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 18;
 	damageTotal = 55;
@@ -1977,6 +2060,7 @@ instance ItMw2hOrcAxe03(C_Item)
 	name = "Краш Агаш";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 20;
 	damageTotal = 60;
@@ -2000,6 +2084,7 @@ instance ItMw2hOrcAxe04(C_Item)
 	name = "Краш Брокдар";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 22;
 	damageTotal = 65;
@@ -2023,6 +2108,7 @@ instance ItMw2hOrcMace01(C_Item)
 	name = "Краш Каррок";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 24;
 	damageTotal = 300;
@@ -2046,6 +2132,7 @@ instance ItRwOrcstaff(C_Item)
 	name = "Грахтнакк";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 24;
 	damageTotal = 0;
@@ -2065,6 +2152,7 @@ instance ItRwUdOrcstaff(C_Item)
 	name = "ШаБаНакк";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
+	weight = ironPer_Axe_2h;
 	material = MAT_WOOD;
 	value = 24;
 	damageTotal = 0;
@@ -2082,6 +2170,7 @@ instance GOLDENSWORD(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	on_equip = equip_2hbonus;
 	on_unequip = unequip_2hbonus;
 	value = 500;
@@ -2107,6 +2196,7 @@ instance GS1H(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_1h;
 	on_equip = equip_1hbonus;
 	on_unequip = unequip_1hbonus;
 	value = 1000;
@@ -2132,6 +2222,7 @@ instance GS2H(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
+	weight = ironPer_Sword_2h;
 	on_equip = equip_2hbonus;
 	on_unequip = unequip_2hbonus;
 	value = 1000;
@@ -2157,6 +2248,7 @@ instance ITMW_TRAINSWORD(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_WOOD;
+	weight = ironPer_Sword_1h;
 	value = 0;
 	damageTotal = 1;
 	damagetype = DAM_EDGE;

@@ -14,7 +14,7 @@ instance PC_Psionic(Npc_Default)
 	attribute[ATR_MANA] = 50;
 	attribute[ATR_HITPOINTS_MAX] = 220;
 	attribute[ATR_HITPOINTS] = 220;
-	protection[PROT_FIRE] = 1000;
+	protection[PROT_INDEX_FIRE] = 1000;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Bald",17,2,nov_armor_h);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
