@@ -683,6 +683,29 @@ func void ZS_ezRespawn_EatGround_End()
 	AI_PlayAni(self,"T_EAT_2_STAND");
 };
 
+func void ZS_MM_Rtn_SkeletonRespawning()
+{
+	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_SkeletonRespawning");
+	AI_PlayAni(self,"T_DEAD");
+	ShowMsg_AutoRow("1");
+};
+func int ZS_MM_Rtn_SkeletonRespawning_Loop()
+{
+	ShowMsg_AutoRow("2");
+	if(Npc_GetStateTime(self) > 3)
+	{
+		return LOOP_END;
+	};
+	AI_Wait(self,1);
+	return LOOP_CONTINUE;
+};
+func void ZS_MM_Rtn_SkeletonRespawning_End()
+{
+	ShowMsg_AutoRow("3");
+	AI_PlayAni(self,"T_SPAWN");
+	AI_Wait(self,3);
+};
+
 func void ZS_MM_AllScheduler()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_AllScheduler");
@@ -690,6 +713,7 @@ func void ZS_MM_AllScheduler()
 	{
 		if(self.guild == GIL_SCAVENGER){AI_StartState(self,ZS_ezRespawn_EatGround,0,"");};
 		if(self.guild == GIL_MEATBUG){AI_StartState(self,ZS_MM_Rtn_Wusel,0,"");};
+//		if(self.guild == GIL_SKELETON){AI_StartState(self,ZS_MM_Rtn_SkeletonRespawning,0,"");};
 	};
 	if(Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) || (self.aivar[AIV_MM_SleepStart] == OnlyRoutine))
 	{

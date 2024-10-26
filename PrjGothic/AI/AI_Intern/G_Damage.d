@@ -181,6 +181,28 @@ func void OnDamage_Hit_VisualChange(var C_Npc npc)
 // item - орудие убийства (может быть null)
 func int OnDamage_Hit(var int damageTotal)
 {
+    if(victim.guild == GIL_SKELETON)
+    {
+        ShowMsg_AutoRow("aaaa");
+        if(damageTotal > Npc_GetHP(victim))
+        {
+            ShowMsg_AutoRow("qqqqqqqqqqqqq");
+            // AI_StartState(victim,ZS_MM_Rtn_SkeletonRespawning,0,"");
+
+            AI_PlayAni(victim,"T_DEAD");
+            AI_Wait(victim,3);
+            AI_PlayAni(victim,"T_SPAWN");
+            AI_Wait(victim,3);
+
+            return 0;
+        }
+        else
+        {
+            return damageTotal;
+        };
+        ShowMsg_AutoRow("zzzzzzzzzz");
+        return 0;
+    };
     if(XardasRiddle()){
         damageTotal = XardasRiddle_GetDamage(damageTotal);
         return damageTotal;
