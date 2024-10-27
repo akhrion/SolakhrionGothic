@@ -78,6 +78,7 @@ const int AIV_FREEMAN_TRAINING = 1 << 19;
 const int AIV_FREEMAN_WEIGHT_ANOREXIC = 1<<20;
 const int AIV_FREEMAN_WEIGHT_NORMAL = 1<<21;
 const int AIV_FREEMAN_WEIGHT_FATY = 1<<22;
+const int AIV_FREEMAN_TRAMPLED = 1<<23;
 const int npctype_ambient = 0;
 const int npctype_main = 1;
 const int npctype_guard = 2;

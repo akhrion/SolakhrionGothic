@@ -6,12 +6,12 @@ prototype Mst_Default_Skeleton(C_Npc)
 	level = 25;
 	attribute[ATR_STRENGTH] = 80;
 	attribute[ATR_DEXTERITY] = 10;
-	attribute[ATR_HITPOINTS_MAX] = 100;
-	attribute[ATR_HITPOINTS] = 100;
+	attribute[ATR_HITPOINTS_MAX] = 20;
+	attribute[ATR_HITPOINTS] = 20;
 	attribute[ATR_MANA_MAX] = 200;
 	attribute[ATR_MANA] = 200;
 	protection[PROT_INDEX_BLUNT] = 35;
-	protection[PROT_INDEX_EDGE] = 50;
+	protection[PROT_INDEX_EDGE] = 60;
 	protection[PROT_INDEX_POINT] = 100;
 	protection[PROT_INDEX_FIRE] = 150;
 	protection[PROT_INDEX_FLY] = 0;

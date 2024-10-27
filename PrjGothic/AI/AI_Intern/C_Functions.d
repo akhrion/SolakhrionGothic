@@ -291,6 +291,39 @@ func int C_NpcIsDown(var C_Npc slf)
 	return FALSE;
 };
 
+func int Npc_IsUndead(var C_Npc npc)
+{
+	if(
+		npc.guild == GIL_SKELETON
+	||	npc.guild == GIL_ZOMBIE
+	||	npc.guild == GIL_UNDEADORC
+	)
+	{
+		return true;
+	};
+	return false;
+};
+func int Npc_IsElemental(var C_Npc npc)
+{
+	if(
+		npc.guild == GIL_GOLEM
+	)
+	{
+		return true;
+	};
+	return false;
+};
+func int Npc_IsDemon(var C_Npc npc)
+{
+	if(
+		npc.guild == GIL_DEMON
+	)
+	{
+		return true;
+	};
+	return false;
+};
+
 func int C_NpcIsHuman(var C_Npc slf)
 {
 	PrintDebugNpc(PD_ZS_DETAIL,"C_NpcIsHuman");
@@ -1086,7 +1119,7 @@ func int Npc_IsReceiveDamage(var C_Npc victim, var C_Npc attacker)
 	};
 	if(Npc_IsInFightMode(attacker,FMODE_FIST))
 	{
-		if(attacker.attribute[ATR_STRENGTH] > victim.protection[PROT_BLUNT])
+		if(attacker.attribute[ATR_STRENGTH] > victim.protection[PROT_INDEX_BLUNT])
 		{
 			return true;
 		}
@@ -1098,35 +1131,35 @@ func int Npc_IsReceiveDamage(var C_Npc victim, var C_Npc attacker)
 
 	var C_Item weapon;
 	weapon = Npc_GetReadiedWeapon(attacker);
-	if(weapon.damage[DAM_INDEX_BARRIER] > victim.protection[PROT_BARRIER])
+	if(weapon.damage[DAM_INDEX_BARRIER] > victim.protection[PROT_INDEX_BARRIER])
 	{
 		return true;
 	};
-	if(weapon.damage[DAM_INDEX_BLUNT] > victim.protection[PROT_BLUNT])
+	if(weapon.damage[DAM_INDEX_BLUNT] > victim.protection[PROT_INDEX_BLUNT])
 	{
 		return true;
 	};
-	if(weapon.damage[DAM_INDEX_EDGE] > victim.protection[PROT_EDGE])
+	if(weapon.damage[DAM_INDEX_EDGE] > victim.protection[PROT_INDEX_EDGE])
 	{
 		return true;
 	};
-	if(weapon.damage[DAM_INDEX_FIRE] > victim.protection[PROT_FIRE])
+	if(weapon.damage[DAM_INDEX_FIRE] > victim.protection[PROT_INDEX_FIRE])
 	{
 		return true;
 	};
-	if(weapon.damage[DAM_INDEX_FLY] > victim.protection[PROT_FLY])
+	if(weapon.damage[DAM_INDEX_FLY] > victim.protection[PROT_INDEX_FLY])
 	{
 		return true;
 	};
-	if(weapon.damage[DAM_INDEX_MAGIC] > victim.protection[PROT_MAGIC])
+	if(weapon.damage[DAM_INDEX_MAGIC] > victim.protection[PROT_INDEX_MAGIC])
 	{
 		return true;
 	};
-	if(weapon.damage[DAM_INDEX_POINT] > victim.protection[PROT_POINT])
+	if(weapon.damage[DAM_INDEX_POINT] > victim.protection[PROT_INDEX_POINT])
 	{
 		return true;
 	};
-	if(weapon.damage[DAM_INDEX_FALL] > victim.protection[PROT_FALL])
+	if(weapon.damage[DAM_INDEX_FALL] > victim.protection[PROT_INDEX_FALL])
 	{
 		return true;
 	};
@@ -1324,16 +1357,16 @@ func void Npc_RescaleProtections(var C_Npc npc)
 	{
 		var C_Item armor;
 		armor = Npc_GetEquippedArmor(npc);
-		if(npc.protection[PROT_BLUNT] != armor.protection[PROT_BLUNT] + npc.attribute[ATR_STRENGTH])
+		if(npc.protection[PROT_INDEX_BLUNT] != armor.protection[PROT_INDEX_BLUNT] + npc.attribute[ATR_STRENGTH])
 		{
-			npc.protection[PROT_BLUNT] = armor.protection[PROT_BLUNT] + npc.attribute[ATR_STRENGTH];
+			npc.protection[PROT_INDEX_BLUNT] = armor.protection[PROT_INDEX_BLUNT] + npc.attribute[ATR_STRENGTH];
 		};
 	}
 	else
 	{
-		if(npc.protection[PROT_BLUNT] != npc.attribute[ATR_STRENGTH])
+		if(npc.protection[PROT_INDEX_BLUNT] != npc.attribute[ATR_STRENGTH])
 		{
-			npc.protection[PROT_BLUNT] = npc.attribute[ATR_STRENGTH];
+			npc.protection[PROT_INDEX_BLUNT] = npc.attribute[ATR_STRENGTH];
 		};
 	};
 };
@@ -1723,6 +1756,15 @@ func void Npc_Wounded(var C_Npc npc)		//если цель ранена, то получает урон на ка
 };
 func void Wound_SetTo(var C_Npc npc)
 {
+	if(
+		Npc_IsUndead(npc)
+	||	Npc_IsElemental(npc)
+	||	Npc_IsDemon(npc)
+	)
+	{
+		return;
+	};
+
 	npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_WOUNDED;
 };
 
@@ -1934,10 +1976,26 @@ func void Quest_DeAssign(var C_Info quest)
 {
 	quest.npc = -1;
 };
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+func void Npc_SetHigh(var C_Npc npc,var float high)
+{
+	Mdl_SetModelScale(npc,1,high,1);
+};
+func void Npc_SetWidth(var C_Npc npc,var float width)
+{
+	Mdl_SetModelScale(npc,width,1,1);
+};
+func void Npc_SetDepth(var C_Npc npc,var float depth)
+{
+	Mdl_SetModelScale(npc,1,1,depth);
+};
 func void Npc_SetMovementSpeed(var C_Npc npc,var float speed)
 {
 	Mdl_SetModelScale(npc,1,1,speed);
 };
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
 func void DAILYHELLO()
 {
@@ -2052,6 +2110,7 @@ func void Npc_MakeTheBodyStronger(var C_Npc npc)
 };
 func void Npc_Regeneration(var C_Npc npc)
 {
+	if(Npc_IsUndead(npc)){return;};
 	Npc_RegenerationDecreasePerSecond(npc);
 };
 func int Human_GetWeight(var C_Npc npc)
@@ -2101,6 +2160,7 @@ func void Human_SetWeight(var C_Npc npc, var int inxWeight)
 };
 func void Human_InitWeight_Random(var C_Npc npc)
 {
+	if(C_NpcIsHuman(npc) == false){return;};
 	if(Human_GetWeight(npc) != 0){return;};
 	var int rnd;
 	rnd = Hlp_Random(3);
@@ -2332,19 +2392,6 @@ func void Npc_Training(var C_Npc npc, var C_Item itm)
 	};
 };
 
-func void Npc_SetHigh(var C_Npc npc,var float high)
-{
-	Mdl_SetModelScale(npc,1,high,1);
-};
-func void Npc_SetWidth(var C_Npc npc,var float width)
-{
-	Mdl_SetModelScale(npc,width,1,1);
-};
-func void Npc_SetDepth(var C_Npc npc,var float depth)
-{
-	Mdl_SetModelScale(npc,1,1,depth);
-};
-
 
 func void HumanVisual_SetMageWomen(var C_Npc npc)
 {
@@ -2389,3 +2436,141 @@ func void C_ALotOfTimeWasting(var int minutesPassed)
 
 	Wld_SetTime(hAll,minWork);
 };
+// Отменяет анимацию подбирания предмета
+// Не работает на квиклут
+func void PC_RefuseTakeItem_Any()
+{
+	if(
+		PC_CantTakeItem
+	&&	Npc_GetBodyState(hero) == BS_TAKEITEM
+	)
+	{
+		// Print(IntToString(Npc_GetBodyState(hero) & BS_TAKEITEM));
+		Npc_ClearAIQueue(hero);
+		// AI_Dodge(hero);
+		AI_PlayAni(hero,"T_CANNOTTAKE");
+	};
+};
+func void PC_RefuseTakeItem_Overloaded()
+{
+	// if(
+	// 	Npc_GetInvItemBySlot(hero,INV_WEAPON,INV_MAX_WEAPONS)
+	// )
+	// {
+	// 	AI_DropItem
+	// };
+};
+
+func void Npc_Massive_Trample(var C_Npc npc)
+{
+	//для более менее стабильности
+	//эта функция должна тригериться в очень частом цикле
+	//потому-что мы не можем гарантировать желаемую отработку Wld_DetectNpc
+	//для стабильности, при тригере должен устанавливаться флаг
+	//а в более медленном (редком) цикле - этот флаг должен сниматься
+	//таким образом будет гарантирован более менее стабильный и периодический тригер
+	return;
+	if(!Npc_IsAnimal(npc)){return;};
+	Npc_PerceiveAll(npc);
+	if(Npc_IsPlayer(other))
+	{
+		ShowMsg_AutoRow("Меня топчут");
+	};
+	if(Wld_DetectNpc(npc,-1,NOFUNC,-1))
+	{
+		if(C_NpcIsHuman(other))
+		{
+			if(Npc_GetDex(other) > ATTRIBUTESCAP_DEX_ACCURATE)
+			{return;};
+			if(Npc_GetDex(other) > ATTRIBUTESCAP_DEX_NORMAL)
+			{
+				if(Hlp_Random(1))
+				{
+					Npc_DecreaseHP(other,DAM_TRAMPLED_AMOUNT);
+				};
+			}
+			else
+			{
+				Npc_DecreaseHP(other,DAM_TRAMPLED_AMOUNT);
+			};
+		};
+	};
+};
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+func void msg_ForPlayer_GotTrampled(var C_Npc npc)
+{
+	if(!Npc_IsPlayer(npc)){return;};
+	ShowMsg_AutoRow("Меня раздавили..");
+};
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+func void Npc_GotTrample(var C_Npc npc)
+{
+	if((npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_TRAMPLED) == 0)
+	{
+		npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_TRAMPLED;
+		Npc_DecreaseHP(npc,DAM_TRAMPLED_AMOUNT);
+	};
+};
+func void Npc_ITrample(var C_Npc npc)
+{
+	if((npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_TRAMPLED) == 0)
+	{
+		npc.aivar[AIV_FREEMAN] = npc.aivar[AIV_FREEMAN] | AIV_FREEMAN_TRAMPLED;
+		Npc_DecreaseHP(npc,DAM_TRAMPLED_AMOUNT);
+		msg_ForPlayer_GotTrampled(npc);
+	};
+};
+func void Npc_Massive(var C_Npc npc)
+{
+	var int oth;
+	oth = Hlp_GetInstanceID(other);
+
+	if(Wld_DetectNpc(npc,-1,NOFUNC,-1))
+	{
+		if(Npc_IsAnimal(npc))
+		{
+			if(
+				npc.aivar[AIV_MM_REAL_ID] == ID_TROLL
+			&&	other.aivar[AIV_MM_REAL_ID] != ID_TROLL
+			&&	Npc_GetDistToNpc(npc,other) < 600
+			)
+			{
+				Npc_ITrample(other);
+			};
+		}
+		else if(C_NpcIsHuman(npc))
+		{
+			if(
+				other.aivar[AIV_MM_REAL_ID] == ID_MEATBUG
+			&&	Npc_GetDistToNpc(npc,other) < 150
+			)
+			{
+				Npc_ITrample(other);
+			};
+		};
+	};
+
+	other = Hlp_GetNpc(oth);
+};
+func void ApplyPeriodicalEffects(var C_Npc npc)
+{
+	Npc_Massive(npc);
+};
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+func void Npc_VanishTrample(var C_Npc npc)
+{
+	if(npc.aivar[AIV_FREEMAN] & AIV_FREEMAN_TRAMPLED)
+	{
+		npc.aivar[AIV_FREEMAN] -= AIV_FREEMAN_TRAMPLED;
+	};
+};
+func void ReinitPeriodicalEffects(var C_Npc npc)
+{
+	Npc_VanishTrample(npc);
+};
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////

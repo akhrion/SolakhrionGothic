@@ -13,9 +13,9 @@ prototype Mst_Default_Zombie(C_Npc)
 	attribute[ATR_MANA] = 0;
 	protection[PROT_INDEX_BLUNT] = 330;
 	protection[PROT_INDEX_EDGE] = 230;
-	protection[PROT_INDEX_POINT] = 9999;
+	protection[PROT_INDEX_POINT] = PROT_IMMUN;
 	protection[PROT_INDEX_FIRE] = 120;
-	protection[PROT_INDEX_FLY] = 330;
+	protection[PROT_INDEX_FLY] = PROT_IMMUN;
 	protection[PROT_INDEX_MAGIC] = 100;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_ZOMBIE;

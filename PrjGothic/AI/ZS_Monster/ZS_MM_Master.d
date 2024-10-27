@@ -687,12 +687,17 @@ func void ZS_MM_Rtn_SkeletonRespawning()
 {
 	PrintDebugNpc(PD_MST_FRAME,"ZS_MM_Rtn_SkeletonRespawning");
 	AI_PlayAni(self,"T_DEAD");
-	ShowMsg_AutoRow("1");
 };
 func int ZS_MM_Rtn_SkeletonRespawning_Loop()
 {
-	ShowMsg_AutoRow("2");
-	if(Npc_GetStateTime(self) > 3)
+	if(Npc_GetStateTime(self) == 3)
+	{
+		//Нужно допилить аниму, ибо после завершения визуальной компоненты
+		//анима не завершается, а длится ещё секунду
+		//это вносит определённые баг-моменты в геймплей
+		AI_PlayAni(self,"T_SPAWN");
+	};
+	if(Npc_GetStateTime(self) > 4)
 	{
 		return LOOP_END;
 	};
@@ -701,9 +706,7 @@ func int ZS_MM_Rtn_SkeletonRespawning_Loop()
 };
 func void ZS_MM_Rtn_SkeletonRespawning_End()
 {
-	ShowMsg_AutoRow("3");
-	AI_PlayAni(self,"T_SPAWN");
-	AI_Wait(self,3);
+	Npc_SetRespawning(self,false);
 };
 
 func void ZS_MM_AllScheduler()
@@ -713,7 +716,7 @@ func void ZS_MM_AllScheduler()
 	{
 		if(self.guild == GIL_SCAVENGER){AI_StartState(self,ZS_ezRespawn_EatGround,0,"");};
 		if(self.guild == GIL_MEATBUG){AI_StartState(self,ZS_MM_Rtn_Wusel,0,"");};
-//		if(self.guild == GIL_SKELETON){AI_StartState(self,ZS_MM_Rtn_SkeletonRespawning,0,"");};
+		if(self.guild == GIL_SKELETON){AI_StartState(self,ZS_MM_Rtn_SkeletonRespawning,0,"");};
 	};
 	if(Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) || (self.aivar[AIV_MM_SleepStart] == OnlyRoutine))
 	{

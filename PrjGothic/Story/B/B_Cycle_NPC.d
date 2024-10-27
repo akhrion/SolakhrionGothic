@@ -37,8 +37,7 @@ func void Npc_CheckMyCloth(var C_Npc npc)
 func void B_Cycle_NPC()
 {
     ApplyPeriodicalEffects(self);
-
-
+    UndeadUprising(self);
 
     if(!C_IsSecondPassed())
     {
