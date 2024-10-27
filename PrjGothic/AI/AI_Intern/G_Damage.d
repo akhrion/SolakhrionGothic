@@ -205,7 +205,7 @@ func int OnDamage_Hit(var int damageTotal)
         {
             if(damageTotal > 0)
             {
-                Npc_SetRespawning(victim,true);
+                Npc_SetUndeadUprising(victim,true);
                 return 1;
             };
         };

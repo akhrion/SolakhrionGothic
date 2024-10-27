@@ -140,6 +140,7 @@ func int ZS_Attack_Loop()
 			if(countPursuitCycles > HAI_TIME_FOLLOW)
 			{
 				PrintDebugNpc(PD_ZS_Check,"...Gegner rennt schon zu lange weg!");
+				PrintDebugNpc(PD_ZS_Check,"...Противник слишком долго убегал!");
 				B_FullStop(self);
 				if(C_NpcIsHuman(other))
 				{

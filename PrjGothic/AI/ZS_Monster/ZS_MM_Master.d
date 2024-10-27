@@ -457,13 +457,13 @@ func int ZS_MM_Attack_Loop()
 
 		// Print("!C_NpcIsDown");
 
-		PrintDebugNpc(PD_MST_LOOP,"...Ziel vorhanden!");
+		PrintDebugNpc(PD_MST_LOOP,"...Цель существует!");
 		if(C_BodyStateContains(other,BS_RUN) || C_BodyStateContains(other,BS_JUMP))
 		{
-			PrintDebugNpc(PD_MST_LOOP,"...Ziel lдuft oder springt!");
+			PrintDebugNpc(PD_MST_LOOP,"...Цель бежит или прыгает!");
 			if(Npc_GetStateTime(self) > self.aivar[AIV_MM_FollowTime])
 			{
-				PrintDebugNpc(PD_MST_CHECK,"...Ziel schon zu lange verfolgt!");
+				PrintDebugNpc(PD_MST_CHECK,"...Цель преследовалась слишком долго!");
 				return LOOP_END;
 			};
 		}
@@ -496,7 +496,7 @@ func int ZS_MM_Attack_Loop()
 	}
 	else
 	{
-		PrintDebugNpc(PD_ZS_Check,"...Ziel ist ungьltig oder kampf-unfдhig!");
+		PrintDebugNpc(PD_ZS_Check,"...Цель недействительна или неспособна к бою!");
 		if(self.aivar[AIV_MM_Behaviour] == HUNTER)
 		{
 			Npc_ClearAIQueue(self);
@@ -706,7 +706,8 @@ func int ZS_MM_Rtn_SkeletonRespawning_Loop()
 };
 func void ZS_MM_Rtn_SkeletonRespawning_End()
 {
-	Npc_SetRespawning(self,false);
+	Npc_SetUndeadUprising(self,false);
+	AI_StartState(self,ZS_MM_Attack,0,"");
 };
 
 func void ZS_MM_AllScheduler()
