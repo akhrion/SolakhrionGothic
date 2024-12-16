@@ -1822,6 +1822,7 @@ func void Startup_Sub_Surface()
 	Wld_InsertNpc(Zombie2,"MAGICTOWER_06");
 	Wld_InsertNpc(Zombie3,"MAGICTOWER_06");
 	Wld_InsertNpc(Zombie4,"MAGICTOWER_06");
+	Wld_InsertNpc(Chest_199005010_CringeChest,"LOCATION_02_07");
 };
 
 func void INIT_Sub_Surface()
