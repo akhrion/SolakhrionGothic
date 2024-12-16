@@ -41,10 +41,88 @@ const int AMOUNT_BIGGESTNUM = 1<<10;
 var int CringeChest_AniPlayed_PCComeToChest;
 var int CringeChest_Nugget;
 var int CringeChest_WasOpened;
+var int CringeChest_Direct;
+const int CRINGECHESTDIRECTION_LEFT = 1;
+const int CRINGECHESTDIRECTION_RIGHT = 2;
 
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
+
+
+
+func void G_PickLock_CringeChest(var int bSuccess,var int bBrokenOpen,var int bBrokenLock)
+{
+	var string strSoundFX;
+	var string strMessage;
+	var int strYPos;
+	strSoundFX = _STR_INVALID;
+	strMessage = _STR_INVALID;
+	G_MonkeyLock_RemoveBroken();
+	if(bSuccess)
+	{
+        if(!bBrokenLock)
+        {
+            //true true false
+			strSoundFX = _STR_SOUND_PICKLOCK_SUCCESS;
+			strMessage = _STR_MESSAGE_PICKLOCK_SUCCESSLOUD;
+			strYPos = _YPOS_MESSAGE_PICKLOCK_SUCCESS;
+        }
+		else if(bBrokenOpen)
+		{
+            //true true true
+			strSoundFX = _STR_SOUND_PICKLOCK_UNLOCK;
+			strMessage = _STR_MESSAGE_PICKLOCK_UNLOCK;
+			strYPos = _YPOS_MESSAGE_PICKLOCK_UNLOCK;
+		}
+		else
+		{
+            //true false true
+			strSoundFX = _STR_SOUND_PICKLOCK_SUCCESS;
+			strMessage = _STR_MESSAGE_PICKLOCK_SUCCESS;
+			strYPos = _YPOS_MESSAGE_PICKLOCK_SUCCESS;
+		};
+	}
+	else if(bBrokenOpen)
+	{
+        if(bBrokenLock)
+        {
+            //false true true
+            strSoundFX = _STR_SOUND_PICKLOCK_BROKEN;
+            strMessage = _STR_MESSAGE_PICKLOCK_BROKENLOCK;
+            strYPos = _YPOS_MESSAGE_PICKLOCK_BROKEN;
+        }
+        else
+        {
+            //false true false
+            strSoundFX = _STR_SOUND_PICKLOCK_BROKEN;
+            strMessage = _STR_MESSAGE_PICKLOCK_BROKEN;
+            strYPos = _YPOS_MESSAGE_PICKLOCK_BROKEN;
+            G_MonkeyLock_PickLockBroked();
+        };
+	}
+	else
+	{
+        if(bBrokenLock)
+        {
+            //false false true
+            strSoundFX = _STR_SOUND_PICKLOCK_FAILURE;
+            strMessage = _STR_MESSAGE_PICKLOCK_FAILURE;
+            strYPos = _YPOS_MESSAGE_PICKLOCK_FAILURE;
+        }
+        else
+        {
+            //false false false
+            strSoundFX = _STR_SOUND_PICKLOCK_FAILURE;
+            strMessage = _STR_MESSAGE_PICKLOCK_FAILURECHANCE;
+            strYPos = _YPOS_MESSAGE_PICKLOCK_FAILURE;
+        };
+	};
+	Snd_Play3d(self,strSoundFX);
+	PrintScreen(strMessage,-1,strYPos,_STR_FONT_ONSCREEN,_TIME_MESSAGE_PICKLOCK);
+};
+
+
 
 
 /////////≈сли в сундуке есть руда, то этот алгоритм отработает не так как хотелось бы.
@@ -169,41 +247,141 @@ func void DLG_CringeChest_Unlock_Info()
     if(Npc_HasItems(other,ItKeLockpick))
     {
         Info_AddChoice(DLG_CringeChest_Unlock,DIALOG_BACK,CringeChest_Back);
-        Info_AddChoice(DLG_CringeChest_Unlock,"ѕовернуть влево",CringeChest_Random);
-        Info_AddChoice(DLG_CringeChest_Unlock,"ѕовернуть вправо",CringeChest_Random);//нужно реализовать более интересный алгоритм взлома, потому-что сейчас можно кликать любую строку - на веро€тность взлома это не повли€ет.. можно разнообразить всплывающими фразами, намекающими, что при смене направлени€ шанс увеличитс€.. так-же можно реализовать доп перки, мен€ющие стиль взлома
+        Info_AddChoice(DLG_CringeChest_Unlock,"ѕовернуть влево",CringeChest_RandomL);
+        Info_AddChoice(DLG_CringeChest_Unlock,"ѕовернуть вправо",CringeChest_RandomR);//нужно реализовать более интересный алгоритм взлома, потому-что сейчас можно кликать любую строку - на веро€тность взлома это не повли€ет.. можно разнообразить всплывающими фразами, намекающими, что при смене направлени€ шанс увеличитс€.. так-же можно реализовать доп перки, мен€ющие стиль взлома
     }
     else
     {
         Print("” мен€ нет отмычек..");
     };
-    // Info_AddChoice(DLG_CringeChest_Unlock,"ѕовернуть влево",CringeChest_L);
-    // Info_AddChoice(DLG_CringeChest_Unlock,"ѕовернуть вправо",CringeChest_R);
 };
 
 
 const int CringeChest_Difficult = 5;
 var int CringeChest_Lucks;
-func void CringeChest_Random()
+var int CringeChest_Trys;
+func void CringeChest_Random(var int direction)
 {
-    if(Hlp_Random((hero.attribute[ATR_DEXTERITY] / 10)))
+
+    msgSI("CringeChest_Trys: ",CringeChest_Trys,20,30,2);
+    msgSI("CringeChest_Lucks: ",CringeChest_Lucks,20,32,2);
+
+    if(CringeChest_Trys > hero.attribute[ATR_DEXTERITY])
     {
-        G_PickLock(true,false);
+        //lock is completely broken. chest can't be opened anymore
+        Print("1");
+        G_PickLock_CringeChest(false,true,true);
+        if(CringeChest_Direct){CringeChest_Direct = 0;};
+        DLG_CringeChest_Unlock_Info();
+        return;
+    };
+
+    if(
+        CringeChest_Direct
+    &&  CringeChest_Direct != direction
+    )
+    {
+        //игрок повернул не туду, отмычка ломаетс€, игрок нервно, дико, судорожно плачет (скамрелоадаетс€)
+        Print("2");
+        G_PickLock_CringeChest(false,true,false);
+        Npc_RemoveInvItem(other,ItKeLockpick);
+        CringeChest_Direct = 0;
+        CringeChest_Lucks = 0;
+        CringeChest_Trys +=1;
+        DLG_CringeChest_Unlock_Info();
+        return;
+    };
+
+    if(
+        Hlp_Random(200) < hero.attribute[ATR_DEXTERITY]
+    ||  
+        (
+            CringeChest_Direct == direction
+        &&  Hlp_Random(200) < hero.attribute[ATR_DEXTERITY]//двойной кубик своего рода
+        )
+    )
+    {
+        //next direction is too in this way
+        Print("3");
+        CringeChest_Direct = direction;
+        G_PickLock_CringeChest(true,true,false);
         CringeChest_Lucks +=1;
+
+
+
+    }
+    else if(
+        Hlp_Random(400) < hero.attribute[ATR_DEXTERITY]
+    ||  
+        (
+            CringeChest_Direct == direction
+        &&  Hlp_Random(400) < hero.attribute[ATR_DEXTERITY]
+        )
+    )
+    {
+        //right way
+        Print("4");
+        G_PickLock_CringeChest(true,false,true);
+        CringeChest_Lucks +=1;
+        if(CringeChest_Direct){CringeChest_Direct = 0;};
+    }
+    else if(Hlp_Random(PC_ATR_LUC % 3 + 1))//;) test..
+    {
+        //wrong way, but second chanse
+        Print("5");
+        G_PickLock_CringeChest(false,false,false);
+        if(direction == CRINGECHESTDIRECTION_LEFT)
+        {
+            CringeChest_Direct = CRINGECHESTDIRECTION_RIGHT;
+        }
+        else
+        {
+            CringeChest_Direct = CRINGECHESTDIRECTION_LEFT;
+        };
+        DLG_CringeChest_Unlock_Info();
+        return;
+    }
+    else if(Hlp_Random(100) < hero.attribute[ATR_DEXTERITY])
+    {
+        //wrong way, start begin
+        Print("6");
+        G_PickLock_CringeChest(false,false,true);
+        CringeChest_Lucks = 0;
+        CringeChest_Trys +=1;
+        if(CringeChest_Direct){CringeChest_Direct = 0;};
     }
     else
     {
-        G_PickLock(false,true);
+        //broken picklock. try again
+        Print("7");
+        G_PickLock_CringeChest(false,true,false);
         Npc_RemoveInvItem(other,ItKeLockpick);
         CringeChest_Lucks = 0;
+        CringeChest_Trys +=1;
+        if(CringeChest_Direct){CringeChest_Direct = 0;};
     };
+
+
     if(CringeChest_Lucks == CringeChest_Difficult)
     {
-        G_PickLock(true,true);
+        //chest unlocked
+        Print("8");
+        G_PickLock_CringeChest(true,true,true);
         CringeChest_Unlocked = true;
+        if(CringeChest_Direct){CringeChest_Direct = 0;};
         Info_ClearChoices(DLG_CringeChest_Unlock);
         return;
     };
+    Print("9");
     DLG_CringeChest_Unlock_Info();
+};
+func void CringeChest_RandomL()
+{
+    CringeChest_Random(CRINGECHESTDIRECTION_LEFT);
+};
+func void CringeChest_RandomR()
+{
+    CringeChest_Random(CRINGECHESTDIRECTION_RIGHT);
 };
 func void CringeChest_Back()
 {
